@@ -26,6 +26,13 @@
 
 @property NSString *keywords;
 
-@property BOOL *sortedByDate;
+@property int sortedByDate;
+
+@property NSMutableArray *movies;
+
+@property NSMutableArray *result;
+
+
+
 @end
 

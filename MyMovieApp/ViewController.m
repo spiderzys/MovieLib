@@ -32,31 +32,45 @@
         long tag= sender.view.tag;
         UIImageView *imageView = (UIImageView*)[self.view viewWithTag:tag];
         UIImageView *view = [[UIImageView alloc]initWithFrame:PresentViewFrame];
-                PresentViewController *presentController = [[PresentViewController alloc]init];
+        PresentViewController *presentController = [[PresentViewController alloc]init];
         [presentController.view addSubview:view];
         view.center = presentController.view.center;
         view.image= imageView.image;
         
         [self presentViewController:presentController animated:YES completion:nil];
     }
-
+    
 }
 
 
 
 -(NSArray*)getDataFromUrl:(NSURL*)url withKey:(NSString*) key{
-    
+    NSString *basic = [url absoluteString];
     NSData *data = [NSData dataWithContentsOfURL:url];
     if (data.length == 0) {
         return nil;
     }
     NSError *parserError;
+    NSMutableArray *result =nil;
     NSDictionary *dataDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parserError];
     if ([[dataDic allKeys]containsObject:key]) {
-        NSArray *result =[dataDic objectForKey:key];
-        return result;
+        
+        result =[dataDic objectForKey:key];
+        NSNumber *page = [dataDic objectForKey:@"total_pages"];
+        
+        for (int i = 2; i<=[page intValue]; i++) {
+            NSString *tempQuery = [basic stringByAppendingString:[NSString stringWithFormat:@"&page=%d",i]];
+            data = [NSData dataWithContentsOfURL:[NSURL URLWithString:tempQuery]];
+            if(data.length>0){
+                dataDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parserError];
+                result = [result mutableCopy];
+                NSMutableArray *temp =[dataDic objectForKey:key];
+                [result addObjectsFromArray:temp];
+            }
+        }
+        
     }
-    return nil;
+    return result;
     
 }
 
@@ -83,14 +97,14 @@
             //if (castList.length>60) {
             //    castList = [castList stringByAppendingString:@" ..."];
             //    break;
-           // }
+            // }
             castList = [castList stringByAppendingString:@",  "];
         }
-       // NSLog(@"%@",castList);
-    return castList;
+        // NSLog(@"%@",castList);
+        return castList;
         
     }
-
+    
 }
 
 
@@ -99,7 +113,7 @@
     switch ([r currentReachabilityStatus]) {
         case NotReachable:
             return NO;
-          
+            
     }
     return YES;
     
@@ -114,7 +128,7 @@
 }
 
 -(void)playTrailer:(NSNumber*)idn{
-   
+    
     NSString *videoInquery = [NSString stringWithFormat:@"%@%@/videos?%@",movieWeb,idn,APIKey];
     NSArray *videoResult = [self getDataFromUrl:[NSURL URLWithString:videoInquery] withKey:@"results"];
     NSLog(@"%@",videoInquery);
@@ -133,7 +147,7 @@
             break;
         }
     }
-
+    
 }
 
 
