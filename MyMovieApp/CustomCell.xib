@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UITableViewCell"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomCell" id="lh1-0U-H1p" customClass="CustomTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lh1-0U-H1p" id="0zd-Ph-pkW">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="84N-JX-ExY">
+                        <rect key="frame" x="0.0" y="0.0" width="76" height="43"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="84N-JX-ExY" secondAttribute="height" multiplier="396:223" id="krP-5w-ay1"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="396" id="lhx-ZU-cWP"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="223" id="zzX-TL-N6V"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="lhx-ZU-cWP"/>
+                                <exclude reference="zzX-TL-N6V"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50z-1p-RNG">
+                        <rect key="frame" x="76" y="0.0" width="244" height="43"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="50z-1p-RNG" secondAttribute="trailing" constant="-8" id="E4O-Um-mtN"/>
+                    <constraint firstItem="50z-1p-RNG" firstAttribute="top" secondItem="0zd-Ph-pkW" secondAttribute="topMargin" constant="-8" id="TbD-tl-fRl"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="84N-JX-ExY" secondAttribute="bottom" constant="-8" id="YuO-cy-UF2"/>
+                    <constraint firstItem="50z-1p-RNG" firstAttribute="leading" secondItem="84N-JX-ExY" secondAttribute="trailing" id="ad6-e9-jCj"/>
+                    <constraint firstItem="84N-JX-ExY" firstAttribute="top" secondItem="0zd-Ph-pkW" secondAttribute="topMargin" constant="-8" id="l6U-3z-iB6"/>
+                    <constraint firstItem="84N-JX-ExY" firstAttribute="leading" secondItem="0zd-Ph-pkW" secondAttribute="leadingMargin" constant="-8" id="loX-q9-pEE"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="50z-1p-RNG" secondAttribute="bottom" constant="-8" id="pGY-Ip-VfQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="backPosterImageView" destination="84N-JX-ExY" id="QZ1-fj-hOr"/>
+                <outlet property="infoLabel" destination="50z-1p-RNG" id="tBK-0o-WjD"/>
+            </connections>
+            <point key="canvasLocation" x="338" y="214"/>
+        </tableViewCell>
+    </objects>
+</document>

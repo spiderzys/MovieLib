@@ -18,6 +18,8 @@
 		690D58681BC0B88B00406ADA /* News@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 690D58671BC0B88B00406ADA /* News@2x.png */; };
 		690D58951BC0C88900406ADA /* Comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 690D58931BC0C88900406ADA /* Comments.png */; };
 		690D58961BC0C88900406ADA /* Comments@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 690D58941BC0C88900406ADA /* Comments@2x.png */; };
+		6946E5CD1CB31E96007546ED /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6946E5CC1CB31E96007546ED /* CustomCell.xib */; };
+		6946E5D01CB330F0007546ED /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6946E5CF1CB330F0007546ED /* CustomTableViewCell.m */; };
 		695FC7F41C3A1B2900AA5B24 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695FC7F31C3A1B2900AA5B24 /* ViewController.m */; };
 		69668F471BE1CEC200E9D59A /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 69668F461BE1CEC200E9D59A /* libxml2.tbd */; };
 		69764BC81C37844900509D09 /* MyMovieApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69764BC61C37844900509D09 /* MyMovieApp.xcdatamodeld */; };
@@ -60,6 +62,9 @@
 		690D58931BC0C88900406ADA /* Comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Comments.png; sourceTree = "<group>"; };
 		690D58941BC0C88900406ADA /* Comments@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comments@2x.png"; sourceTree = "<group>"; };
 		690D58971BC0CDB700406ADA /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		6946E5CC1CB31E96007546ED /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
+		6946E5CE1CB330F0007546ED /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		6946E5CF1CB330F0007546ED /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		695FC7F21C3A1B2900AA5B24 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		695FC7F31C3A1B2900AA5B24 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		695FC7FB1C3A5CDF00AA5B24 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -173,10 +178,13 @@
 				690D584E1BC0962200406ADA /* FirstViewController.m */,
 				690D58501BC0962200406ADA /* SecondViewController.h */,
 				690D58511BC0962200406ADA /* SecondViewController.m */,
+				6946E5CE1CB330F0007546ED /* CustomTableViewCell.h */,
+				6946E5CF1CB330F0007546ED /* CustomTableViewCell.m */,
 				699AB2F61C3E3D170066A6C0 /* ThirdViewController.h */,
 				699AB2F71C3E3D170066A6C0 /* ThirdViewController.m */,
 				698006D91C3CC8B400A1494B /* PresentViewController.h */,
 				698006DA1C3CC8B400A1494B /* PresentViewController.m */,
+				6946E5CC1CB31E96007546ED /* CustomCell.xib */,
 				690D58531BC0962200406ADA /* Main.storyboard */,
 				690D58561BC0962200406ADA /* Assets.xcassets */,
 				690D58581BC0962200406ADA /* LaunchScreen.storyboard */,
@@ -309,6 +317,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6946E5CD1CB31E96007546ED /* CustomCell.xib in Resources */,
 				69A2AD8E1C9B772100B775FA /* To.png in Resources */,
 				69F8F10E1C3A764100438350 /* Assets.bundle in Resources */,
 				690D585A1BC0962200406ADA /* LaunchScreen.storyboard in Resources */,
@@ -394,6 +403,7 @@
 				69F5808B1BC738FE00656024 /* ASIHTTPRequest.m in Sources */,
 				69F580891BC738FE00656024 /* ASIDownloadCache.m in Sources */,
 				690D58491BC0962200406ADA /* main.m in Sources */,
+				6946E5D01CB330F0007546ED /* CustomTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

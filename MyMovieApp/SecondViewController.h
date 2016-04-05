@@ -10,9 +10,11 @@
 #import "ViewController.h"
 #import "nonCoreDataMovie.h"
 #import "AppDelegate.h"
-@interface SecondViewController : ViewController
-@property NSString *query;
+@interface SecondViewController : ViewController <UITableViewDataSource,UITableViewDelegate>
 
+//@property NSString *query;
+
+@property (weak, nonatomic) IBOutlet UITableView *searchResultTableView;
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
@@ -28,7 +30,7 @@
 
 @property int sortedByDate;
 
-@property NSMutableArray *movies;
+//@property NSMutableArray *movies;
 
 @property NSMutableArray *result;
 

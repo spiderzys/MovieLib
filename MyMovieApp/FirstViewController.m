@@ -7,42 +7,34 @@
 //
 
 #import "FirstViewController.h"
-
+#import "SecondViewController.h"
 @interface FirstViewController ()
 
 @end
 
 @implementation FirstViewController
-
+@synthesize backImageView;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     
     self.tabBarItem.image = [[UIImage imageNamed:@"News"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.tabBarItem.selectedImage = self.tabBarItem.image;
     UITabBarController *tab = self.tabBarController;
-  //  tab.view.backgroundColor = [UIColor blueColor];
-   // self.view.backgroundColor = [UIColor blueColor];
-    tab.tabBar.backgroundColor = [UIColor greenColor];
-    UIViewController *second = [tab.viewControllers objectAtIndex:1];
+    [tab.tabBar setBackgroundImage:[[UIImage alloc] init]];
+    [tab.tabBar setShadowImage:[[UIImage alloc] init]];
+    tab.tabBar.backgroundColor = [UIColor clearColor];
+    tab.tabBar.alpha = 0.6;
+    SecondViewController *second= [tab.viewControllers objectAtIndex:1];
     second.tabBarItem.image = [[UIImage imageNamed:@"Comments"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
+    second.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
     
     //_height = [[UIScreen mainScreen]bounds].size.height;
     _scrollHeight = _moviePostImage.bounds.size.height;
     _scrollWeight = 0;
     _delegate = [UIApplication sharedApplication].delegate;
     
-    
-    
-    
-    
     [self loadScrollView];
-    //[_movieInfo setText:@"Touch the image of the movie to see details"];
-    _backImageView = [[UIImageView alloc]initWithFrame:_movieInfo.frame];
-    _backImageView.alpha = 0.3;
-    _backImageView.contentMode = UIViewContentModeTopLeft;
-    [self.view addSubview:_backImageView];
     
     // [_movieInfo addSubview:_backImageView];
     _save = [UIButton buttonWithType:UIButtonTypeContactAdd];
@@ -50,14 +42,16 @@
     _save.titleLabel.tintColor = [UIColor blueColor];
     [_save addTarget:self action:@selector(playMovie) forControlEvents:UIControlEventTouchDown];
     [_movieInfo addSubview:_save];
+    _movieInfo.backgroundColor = [UIColor clearColor];
+    self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
+    self.backImageView.alpha = 0.2;
+    
+    [self.view addSubview:self.backImageView];
+    [self.view sendSubviewToBack:self.backImageView];
     [self showInfo:0];
     _save.hidden = NO;
     _save.enabled = YES;
-   
- 
-    // [self netAlert];
-    // Movie *movie = _movies[0];
-    //  NSLog(@"%@",movie.title);
+    
     
 }
 
@@ -232,7 +226,13 @@
         
     }
     else{
-        _result = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"]; // remove movies without post.
+        temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"]; // remove movies without post.
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"release_date"
+                                                                       ascending:NO];
+        
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        temp = [temp sortedArrayUsingDescriptors:sortDescriptors];
+        _result = [temp mutableCopy];
     }
     
 }
@@ -263,7 +263,7 @@
         movie = [_delegate createMovieObject];
         NSDictionary *temp = _result[tag];
         movie.idn = [temp valueForKey:@"id"];
-
+        
         movie.overview = [temp valueForKey:@"overview"];
         if (movie.overview.length==0) {
             movie.overview = @"No overview so far";
@@ -311,19 +311,20 @@
         }
     }
     
-     [_backImageView setImage:[UIImage imageWithData: movie.posterData]];
+    [self.backImageView setImage:[UIImage imageWithData: movie.posterData]];
+   // NSLog(@"%@",self.backImageView.backgroundColor);
     NSString *info = [NSString stringWithFormat:@"%@\nRelease Data: %@      Mark: %.1f \nCast: %@\nOverivew: \n%@ ",movie.title, movie.release_date, mark,showCast, movie.overview];
     [_movieInfo setText:info];
-   
-  //  UIImage *backImage = [UIImage imageWithData:movie.posterData];
     
-  //  [_movieInfo setBackgroundColor:[UIColor colorWithPatternImage:backImage]];
-    //  [_movieInfo.backgroundColor.]
     _selectedMovie = movie;
     
-    //    NSLog(@"%@",movie.idn);
-
-
+    UITabBarController *tab = self.tabBarController;
+    SecondViewController *second = [tab.viewControllers objectAtIndex:1];
+    second.backImageView.alpha = 0.2;
+    second.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
+    [second.backImageView setImage:self.backImageView.image];
+    
+    
 }
 
 
@@ -341,28 +342,27 @@
         long tag= sender.view.tag;
         UIImageView *imageView = (UIImageView*)[self.view viewWithTag:tag];
         UIImageView *view = [[UIImageView alloc]initWithFrame:PresentViewFrame];
-   
-       // PresentViewController *presentController = [[PresentViewController alloc]init];
+        
+        // PresentViewController *presentController = [[PresentViewController alloc]init];
         PresentViewController *presentController = [[PresentViewController alloc]init];
-    //    UITabBarController *tab = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateInitialViewController]
+        //    UITabBarController *tab = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateInitialViewController]
         [presentController.view addSubview:view];
         [presentController addButton];
         view.image= imageView.image;
+        [self presentViewController:presentController animated:YES completion:nil];
         
-               [self presentViewController:presentController animated:YES completion:nil];
-   
     }
 }
 /*
--(void)handleTapView:(UITapGestureRecognizer *)sender{
-    [_presentController dismissViewControllerAnimated:YES completion:nil];
-    // _presentController = nil;
-}
-*/
+ -(void)handleTapView:(UITapGestureRecognizer *)sender{
+ [_presentController dismissViewControllerAnimated:YES completion:nil];
+ // _presentController = nil;
+ }
+ */
 -(void)playMovie{
     
     [super playTrailer:_selectedMovie.idn];
-   
+    
 }
 
 

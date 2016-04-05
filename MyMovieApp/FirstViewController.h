@@ -10,7 +10,7 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 
-@interface FirstViewController : ViewController
+@interface FirstViewController : ViewController<UIScrollViewDelegate>
 
 @property NSMutableArray *movies;
 @property (weak, nonatomic) IBOutlet UITextView *movieInfo;
@@ -26,7 +26,7 @@
 @property BOOL connected;
 @property UIButton *save;
 @property AppDelegate *delegate;
-@property UIImageView *backImageView;
+
 
 //@property PresentViewController *presentController;
 

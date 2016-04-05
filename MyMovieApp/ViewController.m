@@ -13,10 +13,11 @@
 @end
 
 @implementation ViewController
-
+@synthesize backImageView;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+
     
     // Do any additional setup after loading the view.
 }
@@ -35,7 +36,7 @@
         PresentViewController *presentController = [[PresentViewController alloc]init];
         [presentController.view addSubview:view];
         view.center = presentController.view.center;
-        view.image= imageView.image;
+        view.image = imageView.image;
         
         [self presentViewController:presentController animated:YES completion:nil];
     }
@@ -131,21 +132,26 @@
     
     NSString *videoInquery = [NSString stringWithFormat:@"%@%@/videos?%@",movieWeb,idn,APIKey];
     NSArray *videoResult = [self getDataFromUrl:[NSURL URLWithString:videoInquery] withKey:@"results"];
-    NSLog(@"%@",videoInquery);
-    for (NSDictionary *result in videoResult) {
-        
-        if ([[result objectForKey:@"site"] isEqualToString:@"YouTube"]) {
+    if(videoResult==nil){
+        [self singleOptionAlertWithMessage:@"no connection"];
+    }
+    else{
+        for (NSDictionary *result in videoResult) {
             
-            PresentViewController *presentController = [[PresentViewController alloc]init];
-            YTPlayerView *player = [[YTPlayerView alloc]initWithFrame:PresentViewFrame];
-            player.center = presentController.view.center;
-            [presentController.view addSubview: player];
-            [presentController addButton];
-            [self presentViewController:presentController animated:YES completion:nil];
-            NSString *playId = [result objectForKey:@"key"];
-            [player loadWithVideoId:playId];
-            break;
+            if ([[result objectForKey:@"site"] isEqualToString:@"YouTube"]) {
+                
+                PresentViewController *presentController = [[PresentViewController alloc]init];
+                YTPlayerView *player = [[YTPlayerView alloc]initWithFrame:PresentViewFrame];
+                player.center = presentController.view.center;
+                [presentController.view addSubview: player];
+                [presentController addButton];
+                [self presentViewController:presentController animated:YES completion:nil];
+                NSString *playId = [result objectForKey:@"key"];
+                [player loadWithVideoId:playId];
+                return;
+            }
         }
+        [self singleOptionAlertWithMessage:@"no trailer available"];
     }
     
 }

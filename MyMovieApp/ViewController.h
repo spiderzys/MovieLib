@@ -16,10 +16,12 @@
 #import "YTPlayerView.h"
 #import "PresentViewController.h"
 
-@interface ViewController : UIViewController<UIScrollViewDelegate,YTPlayerViewDelegate>
+@interface ViewController : UIViewController<YTPlayerViewDelegate>
+@property UIImageView *backImageView;
 
 -(NSArray*)getDataFromUrl:(NSURL*)url withKey:(NSString*) key;
 -(NSMutableArray*)removeUndesiredDataFromResults:(NSArray *)results WithNullValueForKey:(NSString*)key;
+
 -(BOOL)connectAPI:(NSString*)web;
 -(void)netAlert;
 -(NSString*)getCastFromUrl:(NSURL*) url;
