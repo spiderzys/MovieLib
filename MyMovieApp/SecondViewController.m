@@ -8,6 +8,8 @@
 
 #import "SecondViewController.h"
 #import "CustomTableViewCell.h"
+#import "CustomViewController.h"
+#import "FirstViewController.h"
 @interface SecondViewController ()
 
 @end
@@ -35,6 +37,9 @@
     _markLabel.userInteractionEnabled = NO;
     _markLabel.textColor = [UIColor blueColor];
     _dateLabel.textColor = [UIColor blackColor];
+    if(_result!=nil){
+        [self sortResult];
+    }
 }
 
 - (IBAction)resortByDate:(id)sender {
@@ -44,7 +49,9 @@
     _markLabel.userInteractionEnabled = YES;
     _markLabel.textColor = [UIColor blackColor];
     _dateLabel.textColor = [UIColor blueColor];
-    
+    if(_result!=nil){
+        [self sortResult];
+    }
 }
 
 
@@ -57,7 +64,7 @@
 
 
 -(void)search{
-    [_searchButton setBackgroundColor:[UIColor redColor]];
+    // [_searchButton setBackgroundColor:[UIColor redColor]];
     _keywords = _keywordsText.text;
     
     if (_keywords.length ==0) {
@@ -81,8 +88,8 @@
             _result = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"backdrop_path"]; // remove movies without post.
             [self sortResult];
             _searchResultTableView.hidden = NO;
-           
-           [_searchResultTableView reloadData];
+            
+            
             
             
         }
@@ -92,6 +99,9 @@
 }
 
 -(void)sortResult{
+    
+    
+    
     NSSortDescriptor *sortDescriptor;
     if(_sortedByDate==1){
         
@@ -105,7 +115,13 @@
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     NSArray *sorted = [_result sortedArrayUsingDescriptors:sortDescriptors];
     _result = [sorted mutableCopy];
-    
+    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activity.center = self.view.center;
+    activity.hidesWhenStopped = YES;
+    [self.view addSubview:activity];
+    [activity startAnimating];
+    [_searchResultTableView reloadData];
+    [activity stopAnimating];
 }
 
 /*
@@ -133,6 +149,43 @@
  }
  */
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CustomViewController *viewController = [[CustomViewController alloc]initWithNibName:@"CustomViewController" bundle:nil];
+    
+    [self presentViewController:viewController animated:YES completion:nil];
+    
+    NSDictionary *movie = [_result objectAtIndex:indexPath.row];
+    NSNumber *mark = [movie valueForKey:@"vote_average"];
+    CustomTableViewCell *cell = [self.searchResultTableView cellForRowAtIndexPath:indexPath];
+    [viewController.backImageView setImage:cell.backPosterImageView.image];
+    NSString *title = cell.infoLabel.text;
+    NSString *info = nil;
+    if(mark.floatValue == 0){
+        info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A  \nOverivew: \n%@ ",title, [movie valueForKey:@"release_date"], [movie valueForKey:@"overview"]];
+    }
+    else{
+       info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f  \nOverivew: \n%@ ",title, [movie valueForKey:@"release_date"], [mark floatValue], [movie valueForKey:@"overview"]];
+    }
+    [viewController.movieInfo setText:info];
+    UIImageView *view = [[UIImageView alloc]initWithFrame:viewController.view.frame];
+    [viewController.view addSubview:view];
+    [viewController.view sendSubviewToBack:view];
+    //  view.image = self.backImageView.image;
+    
+    
+    NSString *posterPath = [movie valueForKey:@"poster_path"];
+    posterPath = [imdbPosterWeb stringByAppendingString:posterPath];
+    NSData *poster = [NSData dataWithContentsOfURL:[NSURL URLWithString:posterPath]];
+    if(poster.length>0){
+        //  UIImageView *view = [[UIImageView alloc]initWithFrame:viewController.view.frame];
+        
+        self.backImageView.image = [UIImage imageWithData:poster];
+        FirstViewController *first= [self.tabBarController.viewControllers objectAtIndex:1];
+        first.backImageView.image = self.backImageView.image;
+    }
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _result.count;
 }
@@ -143,32 +196,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CustomTableViewCell *customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     if (!customCell) {
+        
         [_searchResultTableView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
-        // customCell = [[CustomTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CustomCell"];
         customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     }
     NSDictionary *movie = [_result objectAtIndex:indexPath.row];
-  //  NSLog(@"%@",[movie valueForKey:@"title"]);
     customCell.infoLabel.text = [movie valueForKey:@"title"];
     NSString *backPath = [movie valueForKey:@"backdrop_path"];
     backPath = [imdbPosterWeb stringByAppendingString:backPath];
-   // NSLog(@"%@",backPath);
     NSData *back = [NSData dataWithContentsOfURL:[NSURL URLWithString:backPath]];
     [customCell.backPosterImageView setImage:[UIImage imageWithData:back]];
-    
     return customCell;
     
 }
-
-
-
-
-
-
-
-
-
-
 
 
 -(void)viewDidAppear:(BOOL)animated{

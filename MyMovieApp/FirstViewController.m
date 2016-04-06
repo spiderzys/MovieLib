@@ -16,7 +16,7 @@
 @synthesize backImageView;
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     
     self.tabBarItem.image = [[UIImage imageNamed:@"News"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.tabBarItem.selectedImage = self.tabBarItem.image;
@@ -42,7 +42,7 @@
     _save.titleLabel.tintColor = [UIColor blueColor];
     [_save addTarget:self action:@selector(playMovie) forControlEvents:UIControlEventTouchDown];
     [_movieInfo addSubview:_save];
-    _movieInfo.backgroundColor = [UIColor clearColor];
+    
     self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
     self.backImageView.alpha = 0.2;
     
@@ -312,10 +312,15 @@
     }
     
     [self.backImageView setImage:[UIImage imageWithData: movie.posterData]];
-   // NSLog(@"%@",self.backImageView.backgroundColor);
-    NSString *info = [NSString stringWithFormat:@"%@\nRelease Data: %@      Mark: %.1f \nCast: %@\nOverivew: \n%@ ",movie.title, movie.release_date, mark,showCast, movie.overview];
-    [_movieInfo setText:info];
-    
+    // NSLog(@"%@",self.backImageView.backgroundColor);
+    if(mark==0){
+        NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A \nCast: %@\nOverivew: \n%@ ",movie.title, movie.release_date,showCast, movie.overview];
+        [_movieInfo setText:info];
+    }
+    else{
+        NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f \nCast: %@\nOverivew: \n%@ ",movie.title, movie.release_date, mark,showCast, movie.overview];
+        [_movieInfo setText:info];
+    }
     _selectedMovie = movie;
     
     UITabBarController *tab = self.tabBarController;

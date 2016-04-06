@@ -8,8 +8,9 @@
 
 
 #import "ViewController.h"
-#import "nonCoreDataMovie.h"
 #import "AppDelegate.h"
+
+
 @interface SecondViewController : ViewController <UITableViewDataSource,UITableViewDelegate>
 
 //@property NSString *query;
@@ -29,8 +30,6 @@
 @property NSString *keywords;
 
 @property int sortedByDate;
-
-//@property NSMutableArray *movies;
 
 @property NSMutableArray *result;
 

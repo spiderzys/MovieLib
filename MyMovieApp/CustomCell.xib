@@ -46,6 +46,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="50z-1p-RNG" secondAttribute="bottom" constant="-8" id="pGY-Ip-VfQ"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="backPosterImageView" destination="84N-JX-ExY" id="QZ1-fj-hOr"/>
                 <outlet property="infoLabel" destination="50z-1p-RNG" id="tBK-0o-WjD"/>
