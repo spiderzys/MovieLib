@@ -9,7 +9,7 @@
 #import "SecondViewController.h"
 #import "CustomTableViewCell.h"
 #import "CustomViewController.h"
-#import "FirstViewController.h"
+
 @interface SecondViewController ()
 
 @end
@@ -175,8 +175,6 @@
         
         
         self.backImageView.image = [UIImage imageWithData:poster];
-  //      FirstViewController *first= [self.tabBarController.viewControllers objectAtIndex:1];
-  //      first.backImageView.image = self.backImageView.image;
         view.image = self.backImageView.image;
         
     }
