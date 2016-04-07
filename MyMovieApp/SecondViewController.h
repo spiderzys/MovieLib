@@ -27,9 +27,5 @@
 
 @property NSMutableArray *result;
 
-@property (strong, nonatomic)  NSMutableArray *imageDataArray;
-
-
-
 @end
 

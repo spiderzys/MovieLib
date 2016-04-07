@@ -22,11 +22,11 @@
 //@property float imageSpace;
 @property NSMutableArray *result;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *downLoadIndicator;
-@property long selectedMovie;
+@property Movie *selectedMovie;
 @property BOOL connected;
 @property UIButton *save;
 @property AppDelegate *delegate;
-@property int currentLoad;
+
 
 //@property PresentViewController *presentController;
 
