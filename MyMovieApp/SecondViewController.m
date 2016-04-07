@@ -55,6 +55,12 @@
 }
 
 
+- (IBAction)startSearch:(id)sender {
+    
+    
+    [self search];
+    
+}
 
 
 -(void)search{
