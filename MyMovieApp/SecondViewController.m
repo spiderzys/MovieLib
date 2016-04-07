@@ -55,12 +55,8 @@
 }
 
 
-- (IBAction)startSearch:(id)sender {
-    
-    
-    [self search];
-    
-}
+
+
 
 
 -(void)search{
@@ -114,6 +110,22 @@
     activity.hidesWhenStopped = YES;
     [self.view addSubview:activity];
     [activity startAnimating];
+    _imageDataArray = [NSMutableArray array];
+    
+    dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        for (NSDictionary *movie in _result) {
+            NSString *backPath = [movie valueForKey:@"backdrop_path"];
+            backPath = [imdbPosterWeb stringByAppendingString:backPath];
+            NSData *back = [NSData dataWithContentsOfURL:[NSURL URLWithString:backPath]];
+            UIImage *image = [UIImage imageWithData:back];
+            [_imageDataArray addObject:image];
+        }
+    });
+
+    
+    
+    
     [_searchResultTableView reloadData];
     [activity stopAnimating];
 }
@@ -197,12 +209,21 @@
         customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     }
     
-    NSDictionary *movie = [_result objectAtIndex:indexPath.row];
-    customCell.infoLabel.text = [movie valueForKey:@"title"];
-    NSString *backPath = [movie valueForKey:@"backdrop_path"];
-    backPath = [imdbPosterWeb stringByAppendingString:backPath];
-    NSData *back = [NSData dataWithContentsOfURL:[NSURL URLWithString:backPath]];
-    [customCell.backPosterImageView setImage:[UIImage imageWithData:back]];
+    NSLog(@"%d,%d",_imageDataArray.count,indexPath.row);
+    
+    if(_imageDataArray.count<indexPath.row+1){
+        NSDictionary *movie = [_result objectAtIndex:indexPath.row];
+        customCell.infoLabel.text = [movie valueForKey:@"title"];
+        NSString *backPath = [movie valueForKey:@"backdrop_path"];
+        backPath = [imdbPosterWeb stringByAppendingString:backPath];
+        NSData *back = [NSData dataWithContentsOfURL:[NSURL URLWithString:backPath]];
+        [customCell.backPosterImageView setImage:[UIImage imageWithData:back]];
+    }
+    else{
+        UIImage *back = [_imageDataArray objectAtIndex:indexPath.row];
+        [customCell.backPosterImageView setImage:back];
+    }
+
     
     return customCell;
     

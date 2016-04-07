@@ -28,14 +28,6 @@
 		698006DB1C3CC8B400A1494B /* PresentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698006DA1C3CC8B400A1494B /* PresentViewController.m */; };
 		699AB2F81C3E3D170066A6C0 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699AB2F71C3E3D170066A6C0 /* ThirdViewController.m */; };
 		69A2AD8E1C9B772100B775FA /* To.png in Resources */ = {isa = PBXBuildFile; fileRef = 69A2AD8D1C9B772100B775FA /* To.png */; };
-		69F580861BC738FE00656024 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F580731BC738FE00656024 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		69F580871BC738FE00656024 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F580761BC738FE00656024 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		69F580881BC738FE00656024 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F580781BC738FE00656024 /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		69F580891BC738FE00656024 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F5807A1BC738FE00656024 /* ASIDownloadCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		69F5808A1BC738FE00656024 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F5807C1BC738FE00656024 /* ASIFormDataRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		69F5808B1BC738FE00656024 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F5807E1BC738FE00656024 /* ASIHTTPRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		69F5808C1BC738FE00656024 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F580821BC738FE00656024 /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		69F5808D1BC738FE00656024 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F580841BC738FE00656024 /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		69F580901BC7396900656024 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F5808F1BC7396900656024 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		69F580931BC73CA100656024 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F580921BC73CA100656024 /* MobileCoreServices.framework */; };
 		69F580951BC73CB300656024 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F580941BC73CB300656024 /* CoreGraphics.framework */; };
@@ -395,23 +387,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				69F580901BC7396900656024 /* Reachability.m in Sources */,
-				69F580871BC738FE00656024 /* ASIDataCompressor.m in Sources */,
 				690D58521BC0962200406ADA /* SecondViewController.m in Sources */,
 				690D584C1BC0962200406ADA /* AppDelegate.m in Sources */,
-				69F580861BC738FE00656024 /* ASIAuthenticationDialog.m in Sources */,
-				69F5808A1BC738FE00656024 /* ASIFormDataRequest.m in Sources */,
-				69F580881BC738FE00656024 /* ASIDataDecompressor.m in Sources */,
 				698006DB1C3CC8B400A1494B /* PresentViewController.m in Sources */,
 				690D584F1BC0962200406ADA /* FirstViewController.m in Sources */,
 				699AB2F81C3E3D170066A6C0 /* ThirdViewController.m in Sources */,
-				69F5808C1BC738FE00656024 /* ASIInputStream.m in Sources */,
 				6925B9261CB49BAB0023EDCC /* CustomViewController.m in Sources */,
 				69F5809B1BC7487300656024 /* Constant.m in Sources */,
 				695FC7F41C3A1B2900AA5B24 /* ViewController.m in Sources */,
-				69F5808D1BC738FE00656024 /* ASINetworkQueue.m in Sources */,
 				69764BC81C37844900509D09 /* MyMovieApp.xcdatamodeld in Sources */,
-				69F5808B1BC738FE00656024 /* ASIHTTPRequest.m in Sources */,
-				69F580891BC738FE00656024 /* ASIDownloadCache.m in Sources */,
 				690D58491BC0962200406ADA /* main.m in Sources */,
 				6946E5D01CB330F0007546ED /* CustomTableViewCell.m in Sources */,
 			);
