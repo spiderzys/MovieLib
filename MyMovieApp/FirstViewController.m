@@ -231,7 +231,9 @@
                                                                        ascending:NO];
         
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+
         temp = [temp subarrayWithRange:NSMakeRange(0, MIN(30, temp.count))];
+
         temp = [temp sortedArrayUsingDescriptors:sortDescriptors];
         _result = [temp mutableCopy];
     }
