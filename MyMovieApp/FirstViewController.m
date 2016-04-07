@@ -79,7 +79,9 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (_result!=nil) {
+
         int currentPage = _moviePostImage.contentOffset.x/(_scrollHeight*2/3)+10;
+
         [_downLoadIndicator startAnimating];
         while (_movies.count<currentPage & _movies.count < _result.count) {
             scrollView.scrollEnabled = NO;
@@ -231,12 +233,7 @@
                                                                        ascending:NO];
         
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-<<<<<<< HEAD
-
         temp = [temp subarrayWithRange:NSMakeRange(0, MIN(30, temp.count))];
-
-=======
->>>>>>> parent of aa0fceb... 1st
         temp = [temp sortedArrayUsingDescriptors:sortDescriptors];
         _result = [temp mutableCopy];
     }
