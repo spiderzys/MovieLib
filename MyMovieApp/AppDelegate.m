@@ -27,7 +27,7 @@
        
     [self persistentStoreCoordinator];
     NSAssert([self managedObjectContext]!=nil, @"cannot crate manageobjectcontext");
-
+    
     return YES;
 }
 

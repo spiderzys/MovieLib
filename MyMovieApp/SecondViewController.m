@@ -114,8 +114,26 @@
     activity.hidesWhenStopped = YES;
     [self.view addSubview:activity];
     [activity startAnimating];
+    
+    
+    
+    _imageDataArray = [NSMutableArray array];
+    
+    dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+          for (NSDictionary *movie in _result) {
+         NSString *backPath = [movie valueForKey:@"backdrop_path"];
+         backPath = [imdbPosterWeb stringByAppendingString:backPath];
+         NSData *back = [NSData dataWithContentsOfURL:[NSURL URLWithString:backPath]];
+         [_imageDataArray addObject:back];
+         } 
+    });
+    
+    
+    
     [_searchResultTableView reloadData];
     [activity stopAnimating];
+    [activity removeFromSuperview];
 }
 
 /*
@@ -165,9 +183,6 @@
     view.alpha = 0.2;
     [viewController.view addSubview:view];
     [viewController.view sendSubviewToBack:view];
-    //  view.image = self.backImageView.image;
-    
-    
     NSString *posterPath = [movie valueForKey:@"poster_path"];
     if(![posterPath isEqual:[NSNull null]]){
         posterPath = [imdbPosterWeb stringByAppendingString:posterPath];
@@ -196,17 +211,34 @@
         [_searchResultTableView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
         customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     }
+    NSLog(@"%d,%d",_imageDataArray.count,indexPath.row);
+   
+    if(_imageDataArray.count<indexPath.row+1){
+        NSDictionary *movie = [_result objectAtIndex:indexPath.row];
+        customCell.infoLabel.text = [movie valueForKey:@"title"];
+        NSString *backPath = [movie valueForKey:@"backdrop_path"];
+        backPath = [imdbPosterWeb stringByAppendingString:backPath];
+        NSData *back = [NSData dataWithContentsOfURL:[NSURL URLWithString:backPath]];
+        [customCell.backPosterImageView setImage:[UIImage imageWithData:back]];
+    }
+    else{
+        NSData *back = [_imageDataArray objectAtIndex:indexPath.row];
+        [customCell.backPosterImageView setImage:[UIImage imageWithData:back]];
+    }
     
-    NSDictionary *movie = [_result objectAtIndex:indexPath.row];
-    customCell.infoLabel.text = [movie valueForKey:@"title"];
-    NSString *backPath = [movie valueForKey:@"backdrop_path"];
-    backPath = [imdbPosterWeb stringByAppendingString:backPath];
-    NSData *back = [NSData dataWithContentsOfURL:[NSURL URLWithString:backPath]];
-    [customCell.backPosterImageView setImage:[UIImage imageWithData:back]];
+    
+    
+    
     
     return customCell;
     
 }
+
+- (void)reloadRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation{
+    
+}
+
+// for search bar
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     _keywords = [searchBar text];

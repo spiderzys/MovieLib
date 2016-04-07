@@ -24,17 +24,43 @@
     [tab.tabBar setBackgroundImage:[[UIImage alloc] init]];
     [tab.tabBar setShadowImage:[[UIImage alloc] init]];
     tab.tabBar.backgroundColor = [UIColor clearColor];
- //   tab.tabBar.alpha = 0.6;
+    //   tab.tabBar.alpha = 0.6;
     SecondViewController *second= [tab.viewControllers objectAtIndex:1];
     second.tabBarItem.image = [[UIImage imageNamed:@"Comments"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     second.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
     
-    //_height = [[UIScreen mainScreen]bounds].size.height;
     _scrollHeight = _moviePostImage.bounds.size.height;
     _scrollWeight = 0;
     _delegate = [UIApplication sharedApplication].delegate;
     
     [self loadScrollView];
+    
+    dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        for (int i = 0;i<_result.count;i++) {
+            NSDictionary *temp = _result[i];
+            Movie *movie = [_delegate createMovieObject];
+            movie.idn = [temp valueForKey:@"id"];
+            movie.overview = [temp valueForKey:@"overview"];
+            if (movie.overview.length==0) {
+                movie.overview = @"No overview so far";
+            }
+            movie.vote_average =[temp valueForKey:@"vote_average"];
+            movie.title =[temp valueForKey:@"title"];
+            movie.release_date =[temp valueForKey:@"release_date"];
+            NSString *cast = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",movie.idn,APIKey]];
+            
+            movie.cast = [self getCastFromUrl:[NSURL URLWithString:cast]];
+            NSString *poster_path = [temp valueForKey:@"poster_path"];
+            
+            movie.posterData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[imdbPosterWeb stringByAppendingString:poster_path]]];
+            [_movies addObject:movie];
+          //  [self setImageWithTag:i WithData:movie.posterData];
+            [_delegate saveContext];
+            
+            NSLog(@"%d",i);
+        }
+    });
     
     // [_movieInfo addSubview:_backImageView];
     _save = [UIButton buttonWithType:UIButtonTypeContactAdd];
@@ -79,18 +105,38 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (_result!=nil) {
+        
         int currentPage = _moviePostImage.contentOffset.x/(_scrollHeight*2/3)+5;
+        
         [_downLoadIndicator startAnimating];
-        while (_movies.count<currentPage & _movies.count < _result.count) {
-            scrollView.scrollEnabled = NO;
-            [self setImageViewWithTag:_movies.count FromNet:YES];
+        scrollView.scrollEnabled = NO;
+        if(_movies.count<currentPage & _movies.count < _result.count){
+           
+            int i = 0;
+            while (_movies.count+i<currentPage & _movies.count+i < _result.count) {
+                
+                [self setImageViewWithTag:_movies.count+i FromNet:YES];
+                i++;
+            }
             
         }
-        
+        else{
+            for (int i = _currentLoad+1; i<currentPage; i++) {
+                Movie *movie = _movies[i];
+                [self setImageWithTag:i WithData:movie.posterData];
+
+            }
+            
+        }
+        _currentLoad = currentPage;
         scrollView.scrollEnabled = YES;
-        [_downLoadIndicator stopAnimating];
-        
     }
+    
+    
+    
+    [_downLoadIndicator stopAnimating];
+    
+    
 }
 
 
@@ -154,9 +200,6 @@
     }
     
     
-    
-    
-    
 }
 
 -(void)loadFromAPI{
@@ -171,6 +214,7 @@
         [self removeCoreData];
         for (int i=0;i< floor(mScreenWidth/(_scrollHeight*posterRatio))+1 && i<_result.count;i++) {
             [self setImageViewWithTag:i FromNet:YES];
+            _currentLoad = i;
         }
         
     }
@@ -231,7 +275,9 @@
                                                                        ascending:NO];
         
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        temp = [temp subarrayWithRange:NSMakeRange(0, 30)];
         temp = [temp sortedArrayUsingDescriptors:sortDescriptors];
+        
         _result = [temp mutableCopy];
     }
     
@@ -258,35 +304,41 @@
 
 
 -(void)setImageViewWithTag:(long)tag FromNet:(BOOL)con{
-    Movie *movie;
+    NSData *posterData;
     if(con){
-        movie = [_delegate createMovieObject];
         NSDictionary *temp = _result[tag];
-        movie.idn = [temp valueForKey:@"id"];
-        
-        movie.overview = [temp valueForKey:@"overview"];
-        if (movie.overview.length==0) {
-            movie.overview = @"No overview so far";
-        }
-        movie.vote_average =[temp valueForKey:@"vote_average"];
-        movie.title =[temp valueForKey:@"title"];
-        
-        movie.release_date =[temp valueForKey:@"release_date"];
-        NSString *cast = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",movie.idn,APIKey]];
-        
-        movie.cast = [self getCastFromUrl:[NSURL URLWithString:cast]];
-        NSString *poster_path = [temp valueForKey:@"poster_path"];
-        
-        movie.posterData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[imdbPosterWeb stringByAppendingString:poster_path]]];
-        [_movies addObject:movie];
-        [_delegate saveContext];
+        /* movie = [_delegate createMovieObject];
+         NSDictionary *temp = _result[tag];
+         movie.idn = [temp valueForKey:@"id"];
+         
+         movie.overview = [temp valueForKey:@"overview"];
+         if (movie.overview.length==0) {
+         movie.overview = @"No overview so far";
+         }
+         movie.vote_average =[temp valueForKey:@"vote_average"];
+         movie.title =[temp valueForKey:@"title"];
+         
+         movie.release_date =[temp valueForKey:@"release_date"];
+         NSString *cast = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",movie.idn,APIKey]];
+         
+         movie.cast = [self getCastFromUrl:[NSURL URLWithString:cast]];
+         NSString *poster_path = [temp valueForKey:@"poster_path"];
+         */
+        posterData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[imdbPosterWeb stringByAppendingString:[temp valueForKey:@"poster_path"]]]];
+        // [_movies addObject:movie];
+        // [_delegate saveContext];
     }
     else{
-        movie = _movies[tag];
+        Movie *movie = _movies[tag];
+        posterData = movie.posterData;
     }
     
+    [self setImageWithTag:tag WithData:posterData];
+}
+-(void)setImageWithTag:(long)tag WithData:(NSData*) data{
+    // Movie *movie = [_movies objectAtIndex:tag];
     UIImageView *imageView = (UIImageView*)[self.view viewWithTag:tag+20];
-    imageView.image = [UIImage imageWithData: movie.posterData];
+    imageView.image = [UIImage imageWithData: data];
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     singleTap.numberOfTapsRequired=1;
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap2:)];
@@ -299,9 +351,34 @@
 }
 
 -(void)showInfo:(long)num{
-    Movie *movie =_movies[num];
-    float mark = [movie.vote_average floatValue];
-    NSString *castList = movie.cast;
+    NSString *castList;
+    float mark;
+    NSString *release;
+    NSString *overview;
+    NSData *posterData;
+    NSString *title;
+    
+    if(_movies.count<num+1){
+        NSDictionary *movie = [_result objectAtIndex:num];
+        NSString *cast = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",[movie valueForKey:@"id"],APIKey]];
+        castList = [self getCastFromUrl:[NSURL URLWithString:cast]];
+        mark = [[movie valueForKey:@"vote_average"] floatValue];
+        release = [movie valueForKey:@"release_date"];
+        overview = [movie valueForKey:@"overview"];
+        title = [movie valueForKey:@"title"];
+        posterData=[NSData dataWithContentsOfURL:[NSURL URLWithString:[imdbPosterWeb stringByAppendingString:[movie valueForKey:@"poster_path"]]]];
+        
+    }
+    else{
+        
+        Movie *movie =_movies[num];
+        mark = [movie.vote_average floatValue];
+        castList = movie.cast;
+        release = movie.release_date;
+        overview = movie.overview;
+        title = movie.title;
+        posterData = movie.posterData;
+    }
     NSArray *castArray = [castList componentsSeparatedByString:@","];
     NSString *showCast = @"";
     for (NSString *name in castArray) {
@@ -311,17 +388,17 @@
         }
     }
     
-    [self.backImageView setImage:[UIImage imageWithData: movie.posterData]];
+    [self.backImageView setImage:[UIImage imageWithData: posterData]];
     // NSLog(@"%@",self.backImageView.backgroundColor);
     if(mark==0){
-        NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A \nCast: %@\n\n%@ ",movie.title, movie.release_date,showCast, movie.overview];
+        NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A \nCast: %@\n\n%@ ",title, release,showCast, overview];
         [_movieInfo setText:info];
     }
     else{
-        NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f \nCast: %@\n\n%@ ",movie.title, movie.release_date, mark,showCast, movie.overview];
+        NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f \nCast: %@\n\n%@ ",title, release, mark,showCast, overview];
         [_movieInfo setText:info];
     }
-    _selectedMovie = movie;
+    _selectedMovie =num;
     
     UITabBarController *tab = self.tabBarController;
     SecondViewController *second = [tab.viewControllers objectAtIndex:1];
@@ -358,15 +435,11 @@
         
     }
 }
-/*
- -(void)handleTapView:(UITapGestureRecognizer *)sender{
- [_presentController dismissViewControllerAnimated:YES completion:nil];
- // _presentController = nil;
- }
- */
+
+
 -(void)playMovie{
-    
-    [super playTrailer:_selectedMovie.idn];
+    NSDictionary *temp = _result[_selectedMovie];
+    [super playTrailer:[temp valueForKey:@"id"]];
     
 }
 
