@@ -16,6 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view sendSubviewToBack:_backImageView];
+    [_navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    _navigationBar.shadowImage = [UIImage new];
     // Do any additional setup after loading the view from its nib.
     
 }

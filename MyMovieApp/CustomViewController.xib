@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="backImageView" destination="bJf-rz-NeP" id="pFU-Xr-3B6"/>
                 <outlet property="movieInfo" destination="AUC-V7-FMC" id="OhC-7u-thJ"/>
+                <outlet property="navigationBar" destination="5Tg-W9-fj9" id="JnJ-Qh-ZJz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="9MK-Tc-nik"/>
             </connections>
         </placeholder>
@@ -17,51 +18,47 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bJf-rz-NeP">
-                    <rect key="frame" x="0.0" y="44" width="600" height="338"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="bJf-rz-NeP" secondAttribute="height" multiplier="396:223" id="kQa-ef-tZV"/>
-                    </constraints>
-                </imageView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AUC-V7-FMC">
                     <rect key="frame" x="0.0" y="382" width="600" height="218"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nzI-K3-MZE">
-                    <rect key="frame" x="0.0" y="-20" width="600" height="64"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <textAttributes key="titleTextAttributes">
-                        <color key="textShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </textAttributes>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Tg-W9-fj9">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                     <items>
-                        <navigationItem id="kVv-s7-efb">
-                            <barButtonItem key="leftBarButtonItem" systemItem="reply" id="J3I-6P-R1H">
+                        <navigationItem id="8Rg-sl-wbG">
+                            <barButtonItem key="leftBarButtonItem" width="20" systemItem="reply" id="dnS-RB-2bw">
                                 <connections>
-                                    <action selector="turnBack:" destination="-1" id="1lL-4e-KQ9"/>
+                                    <action selector="turnBack:" destination="-1" id="0Hi-3R-LaQ"/>
                                 </connections>
                             </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bJf-rz-NeP">
+                    <rect key="frame" x="0.0" y="0.0" width="678" height="382"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="bJf-rz-NeP" secondAttribute="height" multiplier="396:223" id="kQa-ef-tZV"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="bJf-rz-NeP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="71p-ZS-o6f"/>
                 <constraint firstItem="AUC-V7-FMC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="96P-sB-0oN"/>
-                <constraint firstItem="nzI-K3-MZE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Uy1-lu-6kx"/>
+                <constraint firstItem="bJf-rz-NeP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GPp-he-Y5v"/>
+                <constraint firstItem="5Tg-W9-fj9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pyd-xf-hyE"/>
                 <constraint firstAttribute="bottom" secondItem="AUC-V7-FMC" secondAttribute="bottom" id="YAL-E9-ODd"/>
                 <constraint firstItem="AUC-V7-FMC" firstAttribute="top" secondItem="bJf-rz-NeP" secondAttribute="bottom" id="YdV-Xq-1e7"/>
+                <constraint firstAttribute="trailing" secondItem="5Tg-W9-fj9" secondAttribute="trailing" id="dax-xd-soa"/>
                 <constraint firstAttribute="trailing" secondItem="bJf-rz-NeP" secondAttribute="trailing" id="fNz-it-5eU"/>
-                <constraint firstItem="bJf-rz-NeP" firstAttribute="top" secondItem="nzI-K3-MZE" secondAttribute="bottom" id="hjI-hM-T5w"/>
-                <constraint firstItem="nzI-K3-MZE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-20" id="n8q-hF-iHa"/>
+                <constraint firstItem="5Tg-W9-fj9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fQI-C0-kQ5"/>
                 <constraint firstAttribute="trailing" secondItem="AUC-V7-FMC" secondAttribute="trailing" id="nPa-BG-wYU"/>
-                <constraint firstAttribute="trailing" secondItem="nzI-K3-MZE" secondAttribute="trailing" id="no4-xH-OLb"/>
                 <constraint firstItem="AUC-V7-FMC" firstAttribute="top" secondItem="bJf-rz-NeP" secondAttribute="bottom" id="v0m-Zh-gEi"/>
                 <constraint firstAttribute="bottom" secondItem="bJf-rz-NeP" secondAttribute="bottom" constant="218" id="wTY-xo-Axk"/>
             </constraints>
-            <point key="canvasLocation" x="191" y="345"/>
+            <point key="canvasLocation" x="-40" y="346"/>
         </view>
     </objects>
 </document>

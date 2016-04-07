@@ -14,5 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *movieInfo;
 
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 
 @end

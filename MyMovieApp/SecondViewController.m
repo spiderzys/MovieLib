@@ -21,18 +21,19 @@
     [super viewDidLoad];
     [self.view addSubview:self.backImageView];
     [self.view sendSubviewToBack:self.backImageView];
-    self.backImageView.alpha=0.15;
+    self.backImageView.alpha=0.2;
     
-    _sortedByDate = 1;
+    
+    _searchBar.delegate = self;
     _searchResultTableView.dataSource = self;
     _searchResultTableView.delegate = self;
-    [_dateLabel setUserInteractionEnabled:NO];
+    
     
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (IBAction)resortByMark:(id)sender {
-    _sortedByDate=0;
+    
     _dateLabel.userInteractionEnabled = YES;
     _markLabel.userInteractionEnabled = NO;
     _markLabel.textColor = [UIColor blueColor];
@@ -44,7 +45,6 @@
 
 - (IBAction)resortByDate:(id)sender {
     
-    _sortedByDate=1;
     _dateLabel.userInteractionEnabled = NO;
     _markLabel.userInteractionEnabled = YES;
     _markLabel.textColor = [UIColor blackColor];
@@ -65,11 +65,11 @@
 
 -(void)search{
     // [_searchButton setBackgroundColor:[UIColor redColor]];
-    _keywords = _keywordsText.text;
     
-    if (_keywords.length ==0) {
+    if ([[_keywords stringByReplacingOccurrencesOfString:@" "
+                                              withString:@""] length]==0) {
         
-        [self singleOptionAlertWithMessage:@"no input detected"];
+        [self singleOptionAlertWithMessage:@"no significant input detected"];
     }
     
     else{
@@ -90,20 +90,14 @@
             _searchResultTableView.hidden = NO;
             
             
-            
-            
         }
-        
-        
     }
 }
 
 -(void)sortResult{
     
-    
-    
     NSSortDescriptor *sortDescriptor;
-    if(_sortedByDate==1){
+    if(![_dateLabel isUserInteractionEnabled]){
         
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"release_date"
                                                      ascending:NO];
@@ -161,27 +155,30 @@
     NSString *title = cell.infoLabel.text;
     NSString *info = nil;
     if(mark.floatValue == 0){
-        info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A  \nOverivew: \n%@ ",title, [movie valueForKey:@"release_date"], [movie valueForKey:@"overview"]];
+        info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A  \n\n%@ ",title, [movie valueForKey:@"release_date"], [movie valueForKey:@"overview"]];
     }
     else{
-       info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f  \nOverivew: \n%@ ",title, [movie valueForKey:@"release_date"], [mark floatValue], [movie valueForKey:@"overview"]];
+        info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f  \n\n%@ ",title, [movie valueForKey:@"release_date"], [mark floatValue], [movie valueForKey:@"overview"]];
     }
     [viewController.movieInfo setText:info];
     UIImageView *view = [[UIImageView alloc]initWithFrame:viewController.view.frame];
+    view.alpha = 0.2;
     [viewController.view addSubview:view];
     [viewController.view sendSubviewToBack:view];
     //  view.image = self.backImageView.image;
     
     
     NSString *posterPath = [movie valueForKey:@"poster_path"];
-    posterPath = [imdbPosterWeb stringByAppendingString:posterPath];
-    NSData *poster = [NSData dataWithContentsOfURL:[NSURL URLWithString:posterPath]];
-    if(poster.length>0){
-        //  UIImageView *view = [[UIImageView alloc]initWithFrame:viewController.view.frame];
+    if(![posterPath isEqual:[NSNull null]]){
+        posterPath = [imdbPosterWeb stringByAppendingString:posterPath];
+        NSData *poster = [NSData dataWithContentsOfURL:[NSURL URLWithString:posterPath]];
+        
         
         self.backImageView.image = [UIImage imageWithData:poster];
-        FirstViewController *first= [self.tabBarController.viewControllers objectAtIndex:1];
-        first.backImageView.image = self.backImageView.image;
+  //      FirstViewController *first= [self.tabBarController.viewControllers objectAtIndex:1];
+  //      first.backImageView.image = self.backImageView.image;
+        view.image = self.backImageView.image;
+        
     }
 }
 
@@ -194,22 +191,37 @@
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     CustomTableViewCell *customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     if (!customCell) {
         
         [_searchResultTableView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
         customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     }
+    
     NSDictionary *movie = [_result objectAtIndex:indexPath.row];
     customCell.infoLabel.text = [movie valueForKey:@"title"];
     NSString *backPath = [movie valueForKey:@"backdrop_path"];
     backPath = [imdbPosterWeb stringByAppendingString:backPath];
     NSData *back = [NSData dataWithContentsOfURL:[NSURL URLWithString:backPath]];
     [customCell.backPosterImageView setImage:[UIImage imageWithData:back]];
+    
     return customCell;
     
 }
 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    _keywords = [searchBar text];
+    [searchBar resignFirstResponder];
+    searchBar.userInteractionEnabled = NO;
+    [self search];
+    searchBar.userInteractionEnabled = YES;
+    
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
+}
 
 -(void)viewDidAppear:(BOOL)animated{
     
@@ -221,16 +233,10 @@
     
 }
 
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
-
 
 
 

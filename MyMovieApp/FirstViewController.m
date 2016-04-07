@@ -24,7 +24,7 @@
     [tab.tabBar setBackgroundImage:[[UIImage alloc] init]];
     [tab.tabBar setShadowImage:[[UIImage alloc] init]];
     tab.tabBar.backgroundColor = [UIColor clearColor];
-    tab.tabBar.alpha = 0.6;
+ //   tab.tabBar.alpha = 0.6;
     SecondViewController *second= [tab.viewControllers objectAtIndex:1];
     second.tabBarItem.image = [[UIImage imageNamed:@"Comments"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     second.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
@@ -314,11 +314,11 @@
     [self.backImageView setImage:[UIImage imageWithData: movie.posterData]];
     // NSLog(@"%@",self.backImageView.backgroundColor);
     if(mark==0){
-        NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A \nCast: %@\nOverivew: \n%@ ",movie.title, movie.release_date,showCast, movie.overview];
+        NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A \nCast: %@\n\n%@ ",movie.title, movie.release_date,showCast, movie.overview];
         [_movieInfo setText:info];
     }
     else{
-        NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f \nCast: %@\nOverivew: \n%@ ",movie.title, movie.release_date, mark,showCast, movie.overview];
+        NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f \nCast: %@\n\n%@ ",movie.title, movie.release_date, mark,showCast, movie.overview];
         [_movieInfo setText:info];
     }
     _selectedMovie = movie;

@@ -11,9 +11,7 @@
 #import "AppDelegate.h"
 
 
-@interface SecondViewController : ViewController <UITableViewDataSource,UITableViewDelegate>
-
-//@property NSString *query;
+@interface SecondViewController : ViewController <UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *searchResultTableView;
 
@@ -21,19 +19,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *markLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *searchButton;
-
-@property (weak, nonatomic) IBOutlet UITextField *keywordsText;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @property NSString *searchString;
 
 @property NSString *keywords;
 
-@property int sortedByDate;
-
 @property NSMutableArray *result;
-
-
 
 @end
 
