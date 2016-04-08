@@ -20,4 +20,5 @@ extern CGFloat posterRatio;
 extern NSString * const movieSearchWeb;
 extern NSString * const imdbPosterWeb;
 extern int maxCastLengthForDisplay;
+extern int maxNumberMovie;
 #endif /* Constant_h */

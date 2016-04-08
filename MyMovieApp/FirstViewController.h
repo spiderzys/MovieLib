@@ -20,13 +20,13 @@
 @property float scrollHeight;
 @property float scrollWeight;
 //@property float imageSpace;
-@property NSMutableArray *result;
+@property NSArray *result;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *downLoadIndicator;
-@property Movie *selectedMovie;
+@property int selectedMovie;
 @property BOOL connected;
-@property UIButton *save;
 @property AppDelegate *delegate;
 
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
 
 //@property PresentViewController *presentController;
 

@@ -24,7 +24,7 @@
     [tab.tabBar setBackgroundImage:[[UIImage alloc] init]];
     [tab.tabBar setShadowImage:[[UIImage alloc] init]];
     tab.tabBar.backgroundColor = [UIColor clearColor];
- //   tab.tabBar.alpha = 0.6;
+    //   tab.tabBar.alpha = 0.6;
     SecondViewController *second= [tab.viewControllers objectAtIndex:1];
     second.tabBarItem.image = [[UIImage imageNamed:@"Comments"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     second.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
@@ -36,22 +36,14 @@
     
     [self loadScrollView];
     
-    // [_movieInfo addSubview:_backImageView];
-    _save = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    _save.frame = CGRectMake(mScreenWidth-20, 5, 20, 20);
-    _save.titleLabel.tintColor = [UIColor blueColor];
-    [_save addTarget:self action:@selector(playMovie) forControlEvents:UIControlEventTouchDown];
-    [_movieInfo addSubview:_save];
-    
-    self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
+        self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
     self.backImageView.alpha = 0.2;
-    
+    [self.backImageView setContentMode:UIViewContentModeScaleAspectFill];
+    self.backImageView.clipsToBounds = YES;
+    self.backImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.backImageView];
     [self.view sendSubviewToBack:self.backImageView];
     [self showInfo:0];
-    _save.hidden = NO;
-    _save.enabled = YES;
-    
     
 }
 
@@ -77,27 +69,27 @@
 
 #pragma -mark ---  delegate method for scrollview
 /*
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (_result!=nil) {
-
-
-        int currentPage = _moviePostImage.contentOffset.x/(_scrollHeight*2/3)+10;
-
-      
-
-        [_downLoadIndicator startAnimating];
-        while (_movies.count<currentPage & _movies.count < _result.count) {
-            scrollView.scrollEnabled = NO;
-            [self setImageViewWithTag:_movies.count FromNet:YES];
-            
-        }
-        
-        scrollView.scrollEnabled = YES;
-        [_downLoadIndicator stopAnimating];
-        
-    }
-}
-*/
+ - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+ if (_result!=nil) {
+ 
+ 
+ int currentPage = _moviePostImage.contentOffset.x/(_scrollHeight*2/3)+10;
+ 
+ 
+ 
+ [_downLoadIndicator startAnimating];
+ while (_movies.count<currentPage & _movies.count < _result.count) {
+ scrollView.scrollEnabled = NO;
+ [self setImageViewWithTag:_movies.count FromNet:YES];
+ 
+ }
+ 
+ scrollView.scrollEnabled = YES;
+ [_downLoadIndicator stopAnimating];
+ 
+ }
+ }
+ */
 
 
 // any offset changes
@@ -158,32 +150,9 @@
         
     }
     
-    
-    
-    
-    
 }
 
--(void)loadFromAPI{
-    _movies = [NSMutableArray array];
-    [self loadMovieFromNet];
-    if (_result !=nil) {
-        _moviePostImage.contentSize = CGSizeMake(_result.count*_scrollHeight*posterRatio, _scrollHeight);
-        
-        for (int i = 0;i<_result.count;i++) {
-            [self setImageViewWithTag:i];
-        }
-        [self removeCoreData];
-      //  for (int i=0;i< floor(mScreenWidth/(_scrollHeight*posterRatio))+1 && i<_result.count;i++)
-        for (int i=0;i<_result.count;i++)
-        {
-            [self setImageViewWithTag:i FromNet:YES];
-        }
-        
-    }
-    
-    
-}
+
 
 -(void)loadFromCoreData{
     
@@ -192,12 +161,11 @@
     
     _moviePostImage.contentSize = CGSizeMake(_movies.count*_scrollHeight*posterRatio, _scrollHeight);
     for (int i = 0;i<_movies.count;i++) {
+        Movie *movie = _movies[i];
         [self setImageViewWithTag:i];
-        [self setImageViewWithTag:i FromNet:NO];
+        [self setImageWithTag:i WithData:movie.posterData];
         
     }
-    //   [self netAlert];
-    
     
 }
 
@@ -212,6 +180,53 @@
     
     
 }
+-(void)loadMovieFromCoreData{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
+    NSError *error;
+    
+    
+    _movies = [NSMutableArray arrayWithArray: [_delegate.managedObjectContext executeFetchRequest:request error:&error]];
+    
+    if(_movies==nil){
+        NSLog(@"%@",error);
+        abort();
+    }
+    
+}
+
+-(void)loadFromAPI{
+    _movies = [NSMutableArray array];
+    [self loadMovieFromNet];
+    if (_result !=nil) {
+        _moviePostImage.contentSize = CGSizeMake(_result.count*_scrollHeight*posterRatio, _scrollHeight);
+        
+        for (int i = 0;i<_result.count;i++) {
+            [self setImageViewWithTag:i];
+        }
+        [self removeCoreData];
+        
+        for (int i=0;i<_result.count;i++)
+        {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                NSDictionary *temp = _result[i];
+                NSString *poster_path = [temp valueForKey:@"poster_path"];
+                NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self setImageWithTag:i WithData:data];
+                    });
+                }];
+                [task resume];
+                
+            });
+            
+            
+        }
+        
+    }
+    
+    
+}
+
 
 
 -(void)loadMovieFromNet{
@@ -226,78 +241,88 @@
     //_movieNewsUrl = [NSURL URLWithString:recentMovie];
     
     
-    NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:recentMovie] withKey:@"results"];
-    if (temp == nil) {
-        _result = nil;
+    _result = [self getDataFromUrl:[NSURL URLWithString:recentMovie] withKey:@"results"];
+    if (_result  == nil) {
         [self loadFromCoreData];
         
     }
     else{
-        temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"]; // remove movies without post.
+        _result  = [self removeUndesiredDataFromResults:_result  WithNullValueForKey:@"poster_path"]; // remove movies without post.
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"release_date"
                                                                        ascending:NO];
         
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-
-        temp = [temp subarrayWithRange:NSMakeRange(0, MIN(30, temp.count))];
-        temp = [temp sortedArrayUsingDescriptors:sortDescriptors];
-        _result = [temp mutableCopy];
-    }
-    
-}
-
--(void)loadMovieFromCoreData{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
-    NSError *error;
-    
-    
-    _movies = [NSMutableArray arrayWithArray: [_delegate.managedObjectContext executeFetchRequest:request error:&error]];
-    
-    if(_movies==nil){
-        NSLog(@"%@",error);
-        abort();
-    }
-    
-    for (int i = 0;i<_movies.count;i++) {
-        [self setImageViewWithTag:i FromNet:NO];
         
-    }
-    
-}
-
-
--(void)setImageViewWithTag:(long)tag FromNet:(BOOL)con{
-    Movie *movie;
-    if(con){
-        movie = [_delegate createMovieObject];
-        NSDictionary *temp = _result[tag];
-        movie.idn = [temp valueForKey:@"id"];
+        _result  = [_result subarrayWithRange:NSMakeRange(0, MIN(30,_result .count))];
+        _result  = [_result  sortedArrayUsingDescriptors:sortDescriptors];
         
-        movie.overview = [temp valueForKey:@"overview"];
-        if (movie.overview.length==0) {
-            movie.overview = @"No overview so far";
+        NSMutableArray *array = [NSMutableArray array];
+        for (NSDictionary *temp in _result) {
+            NSString *idn  = [temp valueForKey:@"id"];
+            NSString *overview = [temp valueForKey:@"overview"];
+            if (overview.length==0) {
+                overview = @"No overview so far";
+            }
+            NSNumber *vote_average =[temp valueForKey:@"vote_average"];
+            NSString *title =[temp valueForKey:@"title"];
+            
+            NSString *release_date =[temp valueForKey:@"release_date"];
+            NSString *cast = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
+            
+            cast = [self getCastFromUrl:[NSURL URLWithString:cast]];
+            NSString *poster_path = [temp valueForKey:@"poster_path"];
+            poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
+            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 idn, @"id",
+                                 title, @"title",
+                                 cast, @"cast",
+                                 poster_path, @"poster_path",
+                                 release_date, @"release_date",
+                                 vote_average, @"vote_average",
+                                 overview, @"overview",
+                                 nil];
+            [array addObject:dic];
         }
-        movie.vote_average =[temp valueForKey:@"vote_average"];
-        movie.title =[temp valueForKey:@"title"];
-        
-        movie.release_date =[temp valueForKey:@"release_date"];
-        NSString *cast = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",movie.idn,APIKey]];
-        
-        movie.cast = [self getCastFromUrl:[NSURL URLWithString:cast]];
-        NSString *poster_path = [temp valueForKey:@"poster_path"];
-        
-        movie.posterData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[imdbPosterWeb stringByAppendingString:poster_path]]];
-        [_movies addObject:movie];
-        [_delegate saveContext];
+        _result = [NSArray arrayWithArray:array];
     }
-    else{
-        movie = _movies[tag];
-    }
-    [self setImageWithTag:tag WithData:movie.posterData];
+    
 }
 
 
--(void)setImageWithTag:(long)tag WithData:(NSData*)data{
+
+
+-(void)addMovieToCoreData:(int)tag{
+    Movie *movie;
+    movie = [_delegate createMovieObject];
+    NSDictionary *temp = _result[tag];
+    movie.idn = [temp valueForKey:@"id"];
+    
+    movie.overview = [temp valueForKey:@"overview"];
+    if (movie.overview.length==0) {
+        movie.overview = @"No overview so far";
+    }
+    movie.vote_average =[temp valueForKey:@"vote_average"];
+    movie.title =[temp valueForKey:@"title"];
+    
+    movie.release_date =[temp valueForKey:@"release_date"];
+    NSString *cast = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",movie.idn,APIKey]];
+    
+    movie.cast = [self getCastFromUrl:[NSURL URLWithString:cast]];
+    NSString *poster_path = [temp valueForKey:@"poster_path"];
+    
+    movie.posterData = [NSData dataWithContentsOfURL:[NSURL URLWithString:poster_path]];
+    
+    [_movies addObject:movie];
+    [_delegate saveContext];
+    
+    
+    
+    
+    
+}
+
+
+-(void)setImageWithTag:(int)tag WithData:(NSData*)data{
     UIImageView *imageView = (UIImageView*)[self.view viewWithTag:tag+20];
     imageView.image = [UIImage imageWithData:data];
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
@@ -307,11 +332,12 @@
     [imageView addGestureRecognizer:singleTap];
     [imageView addGestureRecognizer:doubleTap];
     imageView.userInteractionEnabled = YES;
-   // [_moviePostImage addSubview:imageView];
+    // [_moviePostImage addSubview:imageView];
+    
     imageView.backgroundColor = [UIColor grayColor];
 }
 
--(void)showInfo:(long)num{
+-(void)showInfoFromCoreData:(int)num{
     Movie *movie =_movies[num];
     float mark = [movie.vote_average floatValue];
     NSString *castList = movie.cast;
@@ -334,15 +360,50 @@
         NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f \nCast: %@\n\n%@ ",movie.title, movie.release_date, mark,showCast, movie.overview];
         [_movieInfo setText:info];
     }
-    _selectedMovie = movie;
+    _selectedMovie = num;
     
-    UITabBarController *tab = self.tabBarController;
-    SecondViewController *second = [tab.viewControllers objectAtIndex:1];
-    second.backImageView.alpha = 0.2;
-    second.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
-    [second.backImageView setImage:self.backImageView.image];
+  //  UITabBarController *tab = self.tabBarController;
+  //  SecondViewController *second = [tab.viewControllers objectAtIndex:1];
+    //second.backImageView.alpha = 0.2;
+   // second.backImageView = [[UIImageView alloc]initWithFrame:second.view.frame];
+   // [second.backImageView setImage:self.backImageView.image];
     
+}
+-(void)showInfo:(int)num{
+    if(_connected){
+        NSDictionary *temp = [_result objectAtIndex:num];
+        float mark = [[temp valueForKey:@"vote_average" ]floatValue];
+        NSString *title = [temp valueForKey:@"title"];
+        NSString *release_date = [temp valueForKey:@"release_date"];
+        NSString *castList = [temp valueForKey:@"cast"];
+        NSArray *castArray = [castList componentsSeparatedByString:@","];
+        NSString *showCast = @"";
+        for (NSString *name in castArray) {
+            showCast = [showCast stringByAppendingString:name];
+            if (showCast.length>maxCastLengthForDisplay) {
+                break;
+            }
+        }
+        NSString *overview = [temp valueForKey:@"overview"];
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[temp valueForKey:@"poster_path"]]];
+        [self.backImageView setImage:[UIImage imageWithData: data]];
+        // NSLog(@"%@",self.backImageView.backgroundColor);
+        if(mark==0){
+            NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A \nCast: %@\n\n%@ ",title, release_date,showCast,overview];
+            [_movieInfo setText:info];
+        }
+        else{
+            NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f \nCast: %@\n\n%@ ",title, release_date, mark,showCast, overview];
+            [_movieInfo setText:info];
+        }
+        _selectedMovie = num;
+        
     
+    }
+    else{
+        [self showInfoFromCoreData:num];
+    }
+    [_movieInfo setContentOffset:CGPointZero animated:NO];
 }
 
 
@@ -371,17 +432,14 @@
         
     }
 }
-/*
- -(void)handleTapView:(UITapGestureRecognizer *)sender{
- [_presentController dismissViewControllerAnimated:YES completion:nil];
- // _presentController = nil;
- }
- */
--(void)playMovie{
-    
-    [super playTrailer:_selectedMovie.idn];
-    
+
+- (IBAction)play:(id)sender {
+    NSDictionary *temp = _result[_selectedMovie];
+    [super playTrailer:[temp valueForKey:@"id"]];
 }
+
+
+
 
 
 

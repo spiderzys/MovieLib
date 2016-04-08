@@ -17,3 +17,4 @@ NSString * const movieSearchWeb = @"http://api.themoviedb.org/3/search/movie?api
 NSString * const imdbPosterWeb = @"https://image.tmdb.org/t/p/w396";
 CGFloat posterRatio = 2.0/3;
 int maxCastLengthForDisplay = 80;
+int maxNumberMovie = 30;

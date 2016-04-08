@@ -120,11 +120,7 @@
     
 }
 -(void)netAlert{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network issue" message:@"no network connection is available" preferredStyle:UIAlertControllerStyleAlert];
-    //[alert addAction:[UIAlertAction actionWithTitle:@"celluar setting" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){}]];
-    
-    [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {}]];
-    [self presentViewController:alert animated:YES completion:nil];
+    [self singleOptionAlertWithMessage:@"no network"];
     
 }
 

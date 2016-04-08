@@ -9,7 +9,7 @@
 #import "SecondViewController.h"
 #import "CustomTableViewCell.h"
 #import "CustomViewController.h"
-
+#import "FirstViewController.h"
 @interface SecondViewController ()
 
 @end
@@ -19,10 +19,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
+    UITabBarController *tab = self.tabBarController;
+    FirstViewController *first = [tab.viewControllers objectAtIndex:0];
+   
+    [self.backImageView setImage:first.backImageView.image];
     [self.view addSubview:self.backImageView];
     [self.view sendSubviewToBack:self.backImageView];
     self.backImageView.alpha=0.2;
-    
+    [self.backImageView setContentMode:UIViewContentModeScaleAspectFill];
+    self.backImageView.clipsToBounds = YES;
+    self.backImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     
     _searchBar.delegate = self;
     _searchResultTableView.dataSource = self;
@@ -110,7 +117,7 @@
     activity.hidesWhenStopped = YES;
     [self.view addSubview:activity];
     [activity startAnimating];
-    _imageDataArray = [NSMutableArray array];
+    //_imageDataArray = [NSMutableArray array];
     
    /* dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
@@ -127,6 +134,7 @@
     
     
     [_searchResultTableView reloadData];
+    [_searchResultTableView setContentOffset:CGPointZero animated:YES];
     [activity stopAnimating];
 }
 
@@ -155,6 +163,15 @@
  }
  */
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        return 30.0f;
+    } else {
+        return 40.0f;
+    }
+}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     CustomViewController *viewController = [[CustomViewController alloc]initWithNibName:@"CustomViewController" bundle:nil];
     
@@ -177,7 +194,6 @@
     view.alpha = 0.2;
     [viewController.view addSubview:view];
     [viewController.view sendSubviewToBack:view];
-    //  view.image = self.backImageView.image;
     
     
     NSString *posterPath = [movie valueForKey:@"poster_path"];
@@ -190,6 +206,7 @@
         view.image = self.backImageView.image;
         
     }
+    [viewController.movieInfo setContentOffset:CGPointZero animated:NO];
 }
 
 
@@ -231,22 +248,6 @@
     [task resume];
 
    
-    
- /*   NSLog(@"%d,%d",_imageDataArray.count,indexPath.row);
-    
-    if(_imageDataArray.count<indexPath.row+1){
-        NSDictionary *movie = [_result objectAtIndex:indexPath.row];
-        customCell.infoLabel.text = [movie valueForKey:@"title"];
-        NSString *backPath = [movie valueForKey:@"backdrop_path"];
-        backPath = [imdbPosterWeb stringByAppendingString:backPath];
-        NSData *back = [NSData dataWithContentsOfURL:[NSURL URLWithString:backPath]];
-        [customCell.backPosterImageView setImage:[UIImage imageWithData:back]];
-    }
-    else{
-        UIImage *back = [_imageDataArray objectAtIndex:indexPath.row];
-        [customCell.backPosterImageView setImage:back];
-    }
-*/
     
     return customCell;
     

@@ -19,10 +19,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AUC-V7-FMC">
-                    <rect key="frame" x="0.0" y="382" width="600" height="218"/>
+                    <rect key="frame" x="0.0" y="338" width="600" height="262"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                        <rect key="frame" x="0.0" y="451" width="800" height="349"/>
+                    </variation>
                 </textView>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Tg-W9-fj9">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -36,11 +39,26 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bJf-rz-NeP">
-                    <rect key="frame" x="0.0" y="0.0" width="678" height="382"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bJf-rz-NeP">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="bJf-rz-NeP" secondAttribute="height" multiplier="396:223" id="kQa-ef-tZV"/>
+                        <constraint firstAttribute="width" secondItem="bJf-rz-NeP" secondAttribute="height" multiplier="396:223" priority="999" id="kQa-ef-tZV"/>
+                        <constraint firstAttribute="height" constant="160" id="ohI-El-Hfj"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="ohI-El-Hfj"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=compact">
+                        <mask key="constraints">
+                            <exclude reference="kQa-ef-tZV"/>
+                            <include reference="ohI-El-Hfj"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="451"/>
+                    </variation>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -50,14 +68,17 @@
                 <constraint firstItem="bJf-rz-NeP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GPp-he-Y5v"/>
                 <constraint firstItem="5Tg-W9-fj9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pyd-xf-hyE"/>
                 <constraint firstAttribute="bottom" secondItem="AUC-V7-FMC" secondAttribute="bottom" id="YAL-E9-ODd"/>
-                <constraint firstItem="AUC-V7-FMC" firstAttribute="top" secondItem="bJf-rz-NeP" secondAttribute="bottom" id="YdV-Xq-1e7"/>
                 <constraint firstAttribute="trailing" secondItem="5Tg-W9-fj9" secondAttribute="trailing" id="dax-xd-soa"/>
                 <constraint firstAttribute="trailing" secondItem="bJf-rz-NeP" secondAttribute="trailing" id="fNz-it-5eU"/>
                 <constraint firstItem="5Tg-W9-fj9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fQI-C0-kQ5"/>
                 <constraint firstAttribute="trailing" secondItem="AUC-V7-FMC" secondAttribute="trailing" id="nPa-BG-wYU"/>
                 <constraint firstItem="AUC-V7-FMC" firstAttribute="top" secondItem="bJf-rz-NeP" secondAttribute="bottom" id="v0m-Zh-gEi"/>
-                <constraint firstAttribute="bottom" secondItem="bJf-rz-NeP" secondAttribute="bottom" constant="218" id="wTY-xo-Axk"/>
             </constraints>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <exclude reference="v0m-Zh-gEi"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="-40" y="346"/>
         </view>
     </objects>

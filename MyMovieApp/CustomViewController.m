@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view sendSubviewToBack:_backImageView];
+    [self.backImageView setContentMode:UIViewContentModeScaleAspectFill];
+    self.backImageView.clipsToBounds = YES;
+    self.backImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     [_navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     _navigationBar.shadowImage = [UIImage new];
     // Do any additional setup after loading the view from its nib.

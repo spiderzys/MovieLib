@@ -36,6 +36,16 @@
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1A-9G-aIZ">
+                                <rect key="frame" x="573" y="213" width="22" height="22"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="play:" destination="9pv-A4-QxB" eventType="touchDown" id="a2w-6G-hml"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -46,6 +56,8 @@
                             <constraint firstItem="faK-my-Dut" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="Pkn-Fj-o9H"/>
                             <constraint firstItem="faK-my-Dut" firstAttribute="top" secondItem="27f-H0-V5i" secondAttribute="bottom" constant="-2" id="Sfp-6N-gty"/>
                             <constraint firstItem="SKM-X2-b20" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="Swv-H9-XdQ"/>
+                            <constraint firstItem="f1A-9G-aIZ" firstAttribute="top" secondItem="27f-H0-V5i" secondAttribute="bottom" id="Uqv-4M-38e"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="f1A-9G-aIZ" secondAttribute="trailing" constant="-15" id="fUW-2W-wI0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="27f-H0-V5i" secondAttribute="trailing" constant="-20" id="r27-aZ-323"/>
                             <constraint firstItem="27f-H0-V5i" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="sS5-JJ-guX"/>
                             <constraint firstItem="27f-H0-V5i" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="yAF-EW-j7M"/>
@@ -56,6 +68,7 @@
                         <outlet property="downLoadIndicator" destination="SKM-X2-b20" id="qXE-G4-2RU"/>
                         <outlet property="movieInfo" destination="faK-my-Dut" id="25c-c9-ofE"/>
                         <outlet property="moviePostImage" destination="27f-H0-V5i" id="EfF-rY-FmU"/>
+                        <outlet property="playButton" destination="f1A-9G-aIZ" id="TZ9-1w-ou7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
