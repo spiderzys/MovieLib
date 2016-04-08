@@ -27,6 +27,6 @@
 
 @property NSMutableArray *result;
 
-@property NSMutableArray *imageDataArray;
+//@property NSMutableArray *imageDataArray;
 @end
 

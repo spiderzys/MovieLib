@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--recent movies-->
+        <!--First View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" sceneMemberID="viewController">
@@ -51,7 +51,7 @@
                             <constraint firstItem="27f-H0-V5i" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="yAF-EW-j7M"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="recent movies" image="News.png" selectedImage="News.png" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" systemItem="mostRecent" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="downLoadIndicator" destination="SKM-X2-b20" id="qXE-G4-2RU"/>
                         <outlet property="movieInfo" destination="faK-my-Dut" id="25c-c9-ofE"/>
@@ -180,7 +180,4 @@
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="News.png" width="30" height="30"/>
-    </resources>
 </document>

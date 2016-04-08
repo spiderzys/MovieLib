@@ -112,7 +112,7 @@
     [activity startAnimating];
     _imageDataArray = [NSMutableArray array];
     
-    dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+   /* dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         for (NSDictionary *movie in _result) {
             NSString *backPath = [movie valueForKey:@"backdrop_path"];
@@ -123,7 +123,7 @@
         }
     });
 
-    
+    */
     
     
     [_searchResultTableView reloadData];
@@ -209,7 +209,30 @@
         customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     }
     
-    NSLog(@"%d,%d",_imageDataArray.count,indexPath.row);
+    
+    NSDictionary *movie = [_result objectAtIndex:indexPath.row];
+    NSString *backPath = [movie valueForKey:@"backdrop_path"];
+    backPath = [imdbPosterWeb stringByAppendingString:backPath];
+    customCell.infoLabel.text = [movie valueForKey:@"title"];
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:backPath] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (data) {
+            UIImage *image = [UIImage imageWithData:data];
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+              CustomTableViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
+                    if (updateCell)
+                        updateCell.backPosterImageView.image = image;
+                
+                    
+                });
+            }
+        }
+    }];
+    [task resume];
+
+   
+    
+ /*   NSLog(@"%d,%d",_imageDataArray.count,indexPath.row);
     
     if(_imageDataArray.count<indexPath.row+1){
         NSDictionary *movie = [_result objectAtIndex:indexPath.row];
@@ -223,7 +246,7 @@
         UIImage *back = [_imageDataArray objectAtIndex:indexPath.row];
         [customCell.backPosterImageView setImage:back];
     }
-
+*/
     
     return customCell;
     

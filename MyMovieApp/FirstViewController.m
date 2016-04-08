@@ -76,7 +76,7 @@
 }
 
 #pragma -mark ---  delegate method for scrollview
-
+/*
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (_result!=nil) {
 
@@ -97,7 +97,7 @@
         
     }
 }
-
+*/
 
 
 // any offset changes
@@ -174,7 +174,9 @@
             [self setImageViewWithTag:i];
         }
         [self removeCoreData];
-        for (int i=0;i< floor(mScreenWidth/(_scrollHeight*posterRatio))+1 && i<_result.count;i++) {
+      //  for (int i=0;i< floor(mScreenWidth/(_scrollHeight*posterRatio))+1 && i<_result.count;i++)
+        for (int i=0;i<_result.count;i++)
+        {
             [self setImageViewWithTag:i FromNet:YES];
         }
         
@@ -291,9 +293,13 @@
     else{
         movie = _movies[tag];
     }
-    
+    [self setImageWithTag:tag WithData:movie.posterData];
+}
+
+
+-(void)setImageWithTag:(long)tag WithData:(NSData*)data{
     UIImageView *imageView = (UIImageView*)[self.view viewWithTag:tag+20];
-    imageView.image = [UIImage imageWithData: movie.posterData];
+    imageView.image = [UIImage imageWithData:data];
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     singleTap.numberOfTapsRequired=1;
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap2:)];
@@ -301,7 +307,7 @@
     [imageView addGestureRecognizer:singleTap];
     [imageView addGestureRecognizer:doubleTap];
     imageView.userInteractionEnabled = YES;
-    [_moviePostImage addSubview:imageView];
+   // [_moviePostImage addSubview:imageView];
     imageView.backgroundColor = [UIColor grayColor];
 }
 
