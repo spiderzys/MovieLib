@@ -21,8 +21,23 @@
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AUC-V7-FMC">
                     <rect key="frame" x="0.0" y="338" width="600" height="262"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="240" id="xHJ-4T-DeW">
+                            <variation key="heightClass=compact" constant="200"/>
+                        </constraint>
+                    </constraints>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="xHJ-4T-DeW"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=compact">
+                        <mask key="constraints">
+                            <include reference="xHJ-4T-DeW"/>
+                        </mask>
+                    </variation>
                     <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                         <rect key="frame" x="0.0" y="451" width="800" height="349"/>
                     </variation>
@@ -53,7 +68,7 @@
                     <variation key="heightClass=compact">
                         <mask key="constraints">
                             <exclude reference="kQa-ef-tZV"/>
-                            <include reference="ohI-El-Hfj"/>
+                            <exclude reference="ohI-El-Hfj"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
