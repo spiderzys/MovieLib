@@ -21,8 +21,7 @@
 @property float scrollWeight;
 //@property float imageSpace;
 @property NSArray *result;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *downLoadIndicator;
-@property int selectedMovie;
+@property long selectedMovie;
 @property BOOL connected;
 @property AppDelegate *delegate;
 

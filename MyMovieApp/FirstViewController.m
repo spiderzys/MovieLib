@@ -130,14 +130,7 @@
 
 -(void)loadScrollView{
     _moviePostImage.delegate= self;
-    _moviePostImage.bounces = NO;
-    _moviePostImage.pagingEnabled = NO;
-    _moviePostImage.showsHorizontalScrollIndicator = YES;
-    _moviePostImage.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-    [_moviePostImage flashScrollIndicators];
-    // _moviePostImage.contentInset = UIEdgeInsetsMake(0,_imageSpace,0, 0);
-    // _moviePostImage.scrollIndicatorInsets= UIEdgeInsetsMake(0,_imageSpace, 0, 0);
-    
+
     _connected = [self connectAPI:movieDiscoverWeb];
     
     if(_connected){
@@ -337,7 +330,7 @@
     imageView.backgroundColor = [UIColor grayColor];
 }
 
--(void)showInfoFromCoreData:(int)num{
+-(void)showInfoFromCoreData:(long)num{
     Movie *movie =_movies[num];
     float mark = [movie.vote_average floatValue];
     NSString *castList = movie.cast;
@@ -369,7 +362,7 @@
    // [second.backImageView setImage:self.backImageView.image];
     
 }
--(void)showInfo:(int)num{
+-(void)showInfo:(long)num{
     if(_connected){
         NSDictionary *temp = [_result objectAtIndex:num];
         float mark = [[temp valueForKey:@"vote_average" ]floatValue];
@@ -410,7 +403,7 @@
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
     if (sender.state == UIGestureRecognizerStateEnded){
-        [self showInfo:(int)sender.view.tag-20];
+        [self showInfo:sender.view.tag-20];
     }
 }
 
