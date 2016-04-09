@@ -410,7 +410,7 @@
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
     if (sender.state == UIGestureRecognizerStateEnded){
-        [self showInfo:sender.view.tag-20];
+        [self showInfo:(int)sender.view.tag-20];
     }
 }
 
