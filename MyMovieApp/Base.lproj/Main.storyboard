@@ -30,21 +30,13 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="ddddddd " translatesAutoresizingMaskIntoConstraints="NO" id="faK-my-Dut">
                                 <rect key="frame" x="0.0" y="220" width="600" height="331"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="600" id="GhF-WN-fGS"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="GhF-WN-fGS"/>
-                                    </mask>
-                                </variation>
                             </textView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27f-H0-V5i">
                                 <rect key="frame" x="0.0" y="20" width="600" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="aZx-mp-xmb"/>
+                                    <constraint firstAttribute="height" constant="200" id="I9U-dq-I4U"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -53,7 +45,7 @@
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="faK-my-Dut" secondAttribute="bottom" id="0gE-Nh-u3o"/>
                             <constraint firstAttribute="trailingMargin" secondItem="faK-my-Dut" secondAttribute="trailing" constant="-20" id="5uQ-ON-qrm"/>
                             <constraint firstItem="27f-H0-V5i" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="60c-DX-1xY"/>
-                            <constraint firstItem="faK-my-Dut" firstAttribute="height" secondItem="27f-H0-V5i" secondAttribute="height" id="Jhx-DN-WBr"/>
+                            <constraint firstItem="faK-my-Dut" firstAttribute="height" secondItem="27f-H0-V5i" secondAttribute="height" priority="998" id="Jvd-FJ-D6X"/>
                             <constraint firstItem="faK-my-Dut" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="Pkn-Fj-o9H"/>
                             <constraint firstItem="faK-my-Dut" firstAttribute="top" secondItem="27f-H0-V5i" secondAttribute="bottom" id="Sfp-6N-gty"/>
                             <constraint firstItem="f1A-9G-aIZ" firstAttribute="top" secondItem="27f-H0-V5i" secondAttribute="bottom" id="Uqv-4M-38e"/>
@@ -62,11 +54,6 @@
                             <constraint firstItem="27f-H0-V5i" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="sS5-JJ-guX"/>
                             <constraint firstItem="27f-H0-V5i" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="yAF-EW-j7M"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Jhx-DN-WBr"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="mostRecent" id="acW-dT-cKf"/>
                     <connections>
@@ -125,9 +112,10 @@
                                     <outletCollection property="gestureRecognizers" destination="Gcf-iD-omM" appends="YES" id="yAc-wa-0FL"/>
                                 </connections>
                             </label>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FCs-Db-v8q">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FCs-Db-v8q">
                                 <rect key="frame" x="0.0" y="89" width="600" height="462"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

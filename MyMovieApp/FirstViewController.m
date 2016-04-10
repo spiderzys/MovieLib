@@ -13,11 +13,20 @@
 @end
 
 @implementation FirstViewController
+/*
+-(void)loadView{
+     CGFloat width = [[UIScreen mainScreen]bounds].size.width;
+      [_moviePostImage setFrame:CGRectMake(0, 0, width, width*5/8)];
+
+    [super loadView];
+}
+*/
+
 @synthesize backImageView;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
+   // CGFloat width = [[UIScreen mainScreen]bounds].size.width;
+  //  [_moviePostImage setFrame:CGRectMake(0, 0, width, width*5/8)];
     self.tabBarItem.image = [[UIImage imageNamed:@"News"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.tabBarItem.selectedImage = self.tabBarItem.image;
     UITabBarController *tab = self.tabBarController;
@@ -29,8 +38,6 @@
     second.tabBarItem.image = [[UIImage imageNamed:@"Comments"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     second.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
     
-    //_height = [[UIScreen mainScreen]bounds].size.height;
-    _scrollHeight = _moviePostImage.bounds.size.height;
     _scrollWeight = 0;
     _delegate = [UIApplication sharedApplication].delegate;
     
@@ -44,7 +51,8 @@
     [self.view addSubview:self.backImageView];
     [self.view sendSubviewToBack:self.backImageView];
     [self showInfo:0];
-    
+ //   [_movieInfo setContentMode:UIViewContentModeScaleAspectFill];
+ //   _movieInfo.clipsToBounds = YES;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -152,13 +160,14 @@
     
     [self loadMovieFromCoreData];
     
-    _moviePostImage.contentSize = CGSizeMake(_movies.count*_scrollHeight*posterRatio, _scrollHeight);
+    _moviePostImage.contentSize = CGSizeMake(_movies.count*_moviePostImage.bounds.size.height*posterRatio, _moviePostImage.bounds.size.height);
     for (int i = 0;i<_movies.count;i++) {
         Movie *movie = _movies[i];
         [self setImageViewWithTag:i];
         [self setImageWithTag:i WithData:movie.posterData];
         
     }
+    _result = [NSMutableArray arrayWithCapacity:_movies.count];
     
 }
 
@@ -191,7 +200,7 @@
     _movies = [NSMutableArray array];
     [self loadMovieFromNet];
     if (_result !=nil) {
-        _moviePostImage.contentSize = CGSizeMake(_result.count*_scrollHeight*posterRatio, _scrollHeight);
+        _moviePostImage.contentSize = CGSizeMake(_result.count*_moviePostImage.bounds.size.height*posterRatio, _moviePostImage.bounds.size.height);
         
         for (int i = 0;i<_result.count;i++) {
             [self setImageViewWithTag:i];
@@ -437,14 +446,33 @@
 
 
 -(void)setImageViewWithTag:(long)tag{
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(_scrollWeight, 0,_scrollHeight*posterRatio, _scrollHeight)];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(_scrollWeight, 0,_moviePostImage.bounds.size.height*posterRatio, _moviePostImage.bounds.size.height)];
     imageView.tag = 20+tag;
+    [imageView setContentMode:UIViewContentModeScaleAspectFill];
+    [imageView setClipsToBounds:YES];
     [_moviePostImage addSubview:imageView];
-    _scrollWeight = _scrollHeight*posterRatio+_scrollWeight;
-    [imageView setContentMode:UIViewContentModeScaleAspectFit];
+    _scrollWeight = _moviePostImage.bounds.size.height*posterRatio+_scrollWeight;
+    
+  //  imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    
 }
 
-
+-(void)viewDidTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+/*
+ 
+    _scrollWeight = 0;
+    for(int i=0;i<_result.count;i++){
+        UIImageView *imageView = (UIImageView*)[self.view viewWithTag:i+20];
+        [imageView setFrame:CGRectMake( _scrollWeight, 0,_moviePostImage.bounds.size.height*posterRatio, _moviePostImage.bounds.size.height)];
+        _scrollWeight = _moviePostImage.bounds.size.height*posterRatio+_scrollWeight;
+    }
+    [_moviePostImage setContentSize:CGSizeMake(_scrollWeight, _moviePostImage.bounds.size.height)];
+  
+    [self showInfo:_selectedMovie];
+    NSLog(@"%f,%f",_movieInfo.bounds.size.height, _moviePostImage.frame.size.height);
+*/
+    [_movieInfo setContentOffset:CGPointZero animated:NO];
+}
 
 
 

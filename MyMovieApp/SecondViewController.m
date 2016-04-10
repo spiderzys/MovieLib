@@ -117,20 +117,7 @@
     activity.hidesWhenStopped = YES;
     [self.view addSubview:activity];
     [activity startAnimating];
-    //_imageDataArray = [NSMutableArray array];
     
-   /* dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^{
-        for (NSDictionary *movie in _result) {
-            NSString *backPath = [movie valueForKey:@"backdrop_path"];
-            backPath = [imdbPosterWeb stringByAppendingString:backPath];
-            NSData *back = [NSData dataWithContentsOfURL:[NSURL URLWithString:backPath]];
-            UIImage *image = [UIImage imageWithData:back];
-            [_imageDataArray addObject:image];
-        }
-    });
-
-    */
     
     
     [_searchResultTableView reloadData];
@@ -138,30 +125,7 @@
     [activity stopAnimating];
 }
 
-/*
- -(void)generateMovie{
- Movie *movie = [_delegate createMovieObject];
- NSDictionary *temp = _result[tag];
- movie.idn = [temp valueForKey:@"id"];
- 
- movie.overview = [temp valueForKey:@"overview"];
- if (movie.overview.length==0) {
- movie.overview = @"No overview so far";
- }
- movie.vote_average =[temp valueForKey:@"vote_average"];
- movie.title =[temp valueForKey:@"title"];
- 
- movie.release_date =[temp valueForKey:@"release_date"];
- NSString *cast = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",movie.idn,APIKey]];
- 
- movie.cast = [self getCastFromUrl:[NSURL URLWithString:cast]];
- NSString *poster_path = [temp valueForKey:@"poster_path"];
- 
- movie.posterData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[imdbPosterWeb stringByAppendingString:poster_path]]];
- [_movies addObject:movie];
- 
- }
- */
+
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
@@ -191,6 +155,9 @@
     }
     [viewController.movieInfo setText:info];
     UIImageView *view = [[UIImageView alloc]initWithFrame:viewController.view.frame];
+    [view setContentMode:UIViewContentModeScaleAspectFill];
+    view.clipsToBounds = YES;
+    view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     view.alpha = 0.2;
     [viewController.view addSubview:view];
     [viewController.view sendSubviewToBack:view];

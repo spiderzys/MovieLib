@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *moviePostImage;
 //@property NSURL *movieNewsUrl;
 //@property float height;
-@property float scrollHeight;
 @property float scrollWeight;
 //@property float imageSpace;
 @property NSArray *result;
