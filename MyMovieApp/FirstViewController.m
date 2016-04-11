@@ -406,6 +406,7 @@
         [self showInfoFromCoreData:num];
     }
     [_movieInfo setContentOffset:CGPointZero animated:NO];
+    [self.view sendSubviewToBack:_movieInfo];
 }
 
 
@@ -423,7 +424,7 @@
         long tag= sender.view.tag;
         UIImageView *imageView = (UIImageView*)[self.view viewWithTag:tag];
         UIImageView *view = [[UIImageView alloc]initWithFrame:PresentViewFrame];
-        
+        [view setContentMode:UIViewContentModeCenter];
         // PresentViewController *presentController = [[PresentViewController alloc]init];
         PresentViewController *presentController = [[PresentViewController alloc]init];
         //    UITabBarController *tab = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateInitialViewController]
