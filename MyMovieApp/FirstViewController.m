@@ -461,7 +461,9 @@
     
 }
 
--(void)viewDidTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+
 /*
  
     _scrollWeight = 0;
