@@ -87,7 +87,7 @@
 -(NSString*)getCastFromUrl:(NSURL*) url{
     NSArray* names = [self getDataFromUrl:url withKey:@"cast"];
     if(names==nil){
-        return  @"no data so far";
+        return  @"N/A";
     }
     else{
         NSString *castList = @"";
