@@ -9,4 +9,4 @@ Content: Search
 Feature UItableview load image asychronously;
 
 3st tab:
-Content Not decided yet. Maybe login to get some info of accounts. 
+not finished yet
