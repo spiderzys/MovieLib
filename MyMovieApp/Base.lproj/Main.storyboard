@@ -36,7 +36,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27f-H0-V5i">
                                 <rect key="frame" x="0.0" y="20" width="600" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="I9U-dq-I4U"/>
+                                    <constraint firstAttribute="height" constant="200" id="Psp-yh-MyJ"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -44,8 +44,6 @@
                         <constraints>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="faK-my-Dut" secondAttribute="bottom" id="0gE-Nh-u3o"/>
                             <constraint firstAttribute="trailingMargin" secondItem="faK-my-Dut" secondAttribute="trailing" constant="-20" id="5uQ-ON-qrm"/>
-                            <constraint firstItem="27f-H0-V5i" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="60c-DX-1xY"/>
-                            <constraint firstItem="faK-my-Dut" firstAttribute="height" secondItem="27f-H0-V5i" secondAttribute="height" priority="998" id="Jvd-FJ-D6X"/>
                             <constraint firstItem="faK-my-Dut" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="Pkn-Fj-o9H"/>
                             <constraint firstItem="faK-my-Dut" firstAttribute="top" secondItem="27f-H0-V5i" secondAttribute="bottom" id="Sfp-6N-gty"/>
                             <constraint firstItem="f1A-9G-aIZ" firstAttribute="top" secondItem="27f-H0-V5i" secondAttribute="bottom" id="Uqv-4M-38e"/>
@@ -56,7 +54,10 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="mostRecent" id="acW-dT-cKf"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
+                        <outlet property="heightConstraint" destination="Psp-yh-MyJ" id="5Zu-Oz-5dp"/>
                         <outlet property="movieInfo" destination="faK-my-Dut" id="25c-c9-ofE"/>
                         <outlet property="moviePostImage" destination="27f-H0-V5i" id="EfF-rY-FmU"/>
                         <outlet property="playButton" destination="f1A-9G-aIZ" id="TZ9-1w-ou7"/>

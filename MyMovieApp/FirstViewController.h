@@ -15,10 +15,9 @@
 @property NSMutableArray *movies;
 @property (weak, nonatomic) IBOutlet UITextView *movieInfo;
 @property (weak, nonatomic) IBOutlet UIScrollView *moviePostImage;
-//@property NSURL *movieNewsUrl;
-//@property float height;
+
 @property float scrollWeight;
-//@property float imageSpace;
+
 @property NSArray *result;
 @property long selectedMovie;
 @property BOOL connected;
@@ -27,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 
 //@property PresentViewController *presentController;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
 
 @end
 

@@ -13,18 +13,21 @@
 @end
 
 @implementation FirstViewController
-/*
--(void)loadView{
-     CGFloat width = [[UIScreen mainScreen]bounds].size.width;
-      [_moviePostImage setFrame:CGRectMake(0, 0, width, width*5/8)];
-
-    [super loadView];
-}
-*/
-
 @synthesize backImageView;
+
+
+
+
+-(void)loadView{
+    [super loadView];
+    _heightConstraint.constant = (self.view.frame.size.height-48)*0.42;
+    _moviePostImage.frame = CGRectMake(0, 0, _moviePostImage.frame.size.width , _heightConstraint.constant);
+}
+
 - (void)viewDidLoad {
+  
     [super viewDidLoad];
+    NSLog(@"%f",_moviePostImage.frame.size.height);
    // CGFloat width = [[UIScreen mainScreen]bounds].size.width;
   //  [_moviePostImage setFrame:CGRectMake(0, 0, width, width*5/8)];
     self.tabBarItem.image = [[UIImage imageNamed:@"News"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
