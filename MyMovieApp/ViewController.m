@@ -58,7 +58,7 @@
         result =[dataDic objectForKey:key];
         NSNumber *page = [dataDic objectForKey:@"total_pages"];
         
-        for (int i = 2; i<=[page intValue]; i++) {
+        for (int i = 2; i<=[page intValue]&i<10; i++) {
             NSString *tempQuery = [basic stringByAppendingString:[NSString stringWithFormat:@"&page=%d",i]];
             data = [NSData dataWithContentsOfURL:[NSURL URLWithString:tempQuery]];
             if(data.length>0){
@@ -67,7 +67,9 @@
                 NSMutableArray *temp =[dataDic objectForKey:key];
                 [result addObjectsFromArray:temp];
             }
+             NSLog(@"%d",i);
         }
+       
         
     }
     return result;

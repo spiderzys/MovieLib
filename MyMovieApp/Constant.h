@@ -21,4 +21,6 @@ extern NSString * const movieSearchWeb;
 extern NSString * const imdbPosterWeb;
 extern int maxCastLengthForDisplay;
 extern int maxNumberMovie;
+extern NSString * const sessionRequest;
+extern NSString * const loginRequest;
 #endif /* Constant_h */

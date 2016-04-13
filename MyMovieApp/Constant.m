@@ -18,3 +18,5 @@ NSString * const imdbPosterWeb = @"https://image.tmdb.org/t/p/w396";
 CGFloat posterRatio = 2.0/3;
 int maxCastLengthForDisplay = 80;
 int maxNumberMovie = 30;
+NSString * const sessionRequest = @"http://api.themoviedb.org/3/authentication/token/new";
+NSString * const loginRequest = @"http://www.themoviedb.org/authenticate/";

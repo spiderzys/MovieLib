@@ -257,9 +257,11 @@
                                                                        ascending:NO];
         
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-        
         _result  = [_result subarrayWithRange:NSMakeRange(0, MIN(30,_result .count))];
         _result  = [_result  sortedArrayUsingDescriptors:sortDescriptors];
+        
+        
+        
         
         NSMutableArray *array = [NSMutableArray array];
         for (NSDictionary *temp in _result) {
@@ -310,9 +312,9 @@
     movie.title =[temp valueForKey:@"title"];
     
     movie.release_date =[temp valueForKey:@"release_date"];
-    NSString *cast = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",movie.idn,APIKey]];
-    
-    movie.cast = [self getCastFromUrl:[NSURL URLWithString:cast]];
+   
+
+    movie.cast = [temp valueForKey:@"cast"];
     NSString *poster_path = [temp valueForKey:@"poster_path"];
     
     movie.posterData = [NSData dataWithContentsOfURL:[NSURL URLWithString:poster_path]];
