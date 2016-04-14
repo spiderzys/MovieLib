@@ -6,77 +6,93 @@
 //  Copyright © 2016 YANGSHENG ZOU. All rights reserved.
 //
 
-#import "LogWebViewController.h"
-#import "ThirdViewController.h"
 
+#import "ThirdViewController.h"
+#import "RegController.h"
 @interface ThirdViewController ()
 
 @end
 
 @implementation ThirdViewController
 
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear: animated];
+    [self signIn];
+}
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self signIn];
+    
+    //  self.tabBarController.delegate = self;
     // Do any additional setup after loading the view.
 }
 
 -(void)signIn{
-    // WithUsername:(NSString*)username Password:(NSString*)password
-    NSString *requestString = [NSString stringWithFormat:@"%@?%@",sessionRequest,APIKey];;
-    
-   
-    NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:requestString]];
-
-    
-    [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
-      //  NSLog(@"%@",data);
-        NSError *parserError;
-        NSDictionary *dataDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parserError];
-        NSNumber *requestResult = [dataDic valueForKey:@"success"];
-        if ([requestResult intValue]==1) {
-            _requestToken = [dataDic valueForKey:@"request_token"];
-            _tokenExpireData = [dataDic valueForKey:@"expires_at"];
-            
-            
-            
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
-                
-                LogWebViewController *webViewController = [[LogWebViewController alloc]initWithNibName:@"LogWebViewController" bundle:nil];
-                
-                
-                NSString *loginString = [NSString stringWithFormat:@"%@%@",loginRequest,_requestToken];
-                
-                [self presentViewController:webViewController animated:YES completion:nil];
-                [webViewController.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:loginString]]];
-            }];
-            
-            
-            
-        }
-        
-        else{
-            [self singleOptionAlertWithMessage:@"request failed"];
-        }
-
     
     
     
     
-    }
-      ]resume];
-
-  
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Registration and sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"sign in" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        UITextField *usernameField = alertController.textFields.firstObject;
+        UITextField *passwordField = alertController.textFields.lastObject;
+        NSString* username = usernameField.text;
+        NSString* password = passwordField.text;
+        [self loginWithUsername:username Password:password];
+    }];
+    
+    UIAlertAction *regAction = [UIAlertAction actionWithTitle:@"sign up" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        RegController *regController =  [[RegController alloc]initWithNibName:@"RegController" bundle:nil];
+        NSURLRequest *registerRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:regRequestUrl]];
+        [self presentViewController:regController animated:YES completion:^{
+            [regController.webView loadRequest:registerRequest];
+        }];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [self.tabBarController setSelectedIndex:0];
+    }];
+    [alertController addAction:loginAction];
+    [alertController addAction:regAction];
+    [alertController addAction:cancelAction];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *usernameField){
+        [usernameField setPlaceholder:@"username"];}];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *passwordField){
+        [passwordField setPlaceholder:@"password"];
+        [passwordField setSecureTextEntry:YES];
+    }];
+    [self presentViewController:alertController animated:YES completion:nil];
     
     
-    //https://www.themoviedb.org/authenticate/REQUEST_TOKEN
     
 }
 
+-(void)loginWithUsername:(NSString*)username Password:(NSString*)password{
+    NSString *requestString = [NSString stringWithFormat:@"%@?%@",tokenRequestUrl,APIKey];;
+    NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:requestString]];
+    [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
+        NSDictionary *dataDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSLog(@"%@",dataDic);
+        NSNumber *requestResult = [dataDic valueForKey:@"success"];
+        if ([requestResult intValue]==1) {
+            NSString* requestToken = [dataDic valueForKey:@"request_token"];
+            NSString* login = [NSString stringWithFormat:@"https://api.themoviedb.org/3/authentication/token/validate_with_login?%@&request_token=%@&username=%@&password=%@",APIKey,requestToken,username,password];
+            NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:login]];
+            [[[NSURLSession sharedSession] dataTaskWithRequest:loginRequest completionHandler:^(NSData *data2,NSURLResponse *response,NSError *error){
+                NSDictionary *loginResult = [NSJSONSerialization JSONObjectWithData:data2 options:0 error:nil];
+                NSLog(@"%@",loginResult);
+                
+                NSString *session = [NSString stringWithFormat:@"%@?%@&request_token=%@",sessionRequestUrl,APIKey,requestToken];
+                NSURLRequest *sessionRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:session]];
+                [[[NSURLSession sharedSession] dataTaskWithRequest:sessionRequest completionHandler:^(NSData *data3,NSURLResponse *response,NSError *error){
+                    NSDictionary *sessionResult = [NSJSONSerialization JSONObjectWithData:data3 options:0 error:nil];
+                    NSLog(@"%@",sessionResult);
+                 }]resume];
+            }]resume];
+        }
+    }]resume];
 
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -85,13 +101,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

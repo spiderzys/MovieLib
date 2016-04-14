@@ -1,18 +1,18 @@
 //
-//  LogWebViewController.m
+//  RegController.m
 //  MyMovieApp
 //
-//  Created by YANGSHENG ZOU on 2016-04-12.
+//  Created by YANGSHENG ZOU on 2016-04-13.
 //  Copyright © 2016 YANGSHENG ZOU. All rights reserved.
 //
 
-#import "LogWebViewController.h"
+#import "RegController.h"
 
-@interface LogWebViewController ()
+@interface RegController ()
 
 @end
 
-@implementation LogWebViewController
+@implementation RegController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +22,9 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 /*

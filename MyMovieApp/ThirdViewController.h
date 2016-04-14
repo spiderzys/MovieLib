@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
-@interface ThirdViewController : ViewController<NSURLSessionTaskDelegate>
+@interface ThirdViewController : ViewController
 
-@property NSString * requestToken;
-@property NSString * tokenExpireData;
-@property NSMutableData *tokenData;
+//@property NSString * requestToken;
+//@property NSString * tokenExpireData;
+//@property NSMutableData *tokenData;
 @end

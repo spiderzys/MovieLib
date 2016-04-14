@@ -9,7 +9,6 @@
 
 #import "Constant.h"
 
-//NSString * const movieNewsWeb = @"http://api.themoviedb.org/3/discover/movie?api_key=3c9140cda64a622c6cb5feb6c2689164&primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22";
 NSString * const movieDiscoverWeb = @"http://api.themoviedb.org/3/discover/movie?api_key=3c9140cda64a622c6cb5feb6c2689164";
 NSString * const movieWeb = @"http://api.themoviedb.org/3/movie/";
 NSString * const APIKey = @"api_key=3c9140cda64a622c6cb5feb6c2689164";
@@ -18,5 +17,6 @@ NSString * const imdbPosterWeb = @"https://image.tmdb.org/t/p/w396";
 CGFloat posterRatio = 2.0/3;
 int maxCastLengthForDisplay = 80;
 int maxNumberMovie = 30;
-NSString * const sessionRequest = @"http://api.themoviedb.org/3/authentication/token/new";
-NSString * const loginRequest = @"http://www.themoviedb.org/authenticate/";
+NSString * const tokenRequestUrl = @"http://api.themoviedb.org/3/authentication/token/new";
+NSString * const regRequestUrl = @"https://www.themoviedb.org/account/signup";
+NSString * const sessionRequestUrl = @"http://api.themoviedb.org/3/authentication/session/new";
