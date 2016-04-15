@@ -24,4 +24,5 @@ extern int maxNumberMovie;
 extern NSString * const tokenRequestUrl;
 extern NSString * const regRequestUrl;
 extern NSString * const sessionRequestUrl;
+extern NSString * const rateMovieUrl;
 #endif /* Constant_h */

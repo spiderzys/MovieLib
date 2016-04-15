@@ -13,4 +13,7 @@
 //@property NSString * requestToken;
 //@property NSString * tokenExpireData;
 //@property NSMutableData *tokenData;
+@property NSString* userPath;
+@property NSString* session_id;
+@property BOOL sessionIdOk;
 @end

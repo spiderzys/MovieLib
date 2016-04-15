@@ -20,3 +20,5 @@ int maxNumberMovie = 30;
 NSString * const tokenRequestUrl = @"http://api.themoviedb.org/3/authentication/token/new";
 NSString * const regRequestUrl = @"https://www.themoviedb.org/account/signup";
 NSString * const sessionRequestUrl = @"http://api.themoviedb.org/3/authentication/session/new";
+NSString * const rateMovieUrl = @"http://api.themoviedb.org/3/account/";
+//id/rated/movies";
