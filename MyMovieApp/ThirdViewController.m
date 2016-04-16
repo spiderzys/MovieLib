@@ -99,6 +99,7 @@
 }
 
 -(void)loginWithUsername:(NSString*)username Password:(NSString*)password{
+    [alertController dismissViewControllerAnimated:NO completion:nil];
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     NSString *requestString = [NSString stringWithFormat:@"%@?%@",tokenRequestUrl,APIKey];;
     NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:requestString]];
@@ -118,7 +119,12 @@
                 NSURLRequest *sessionRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:session]];
                 [[[NSURLSession sharedSession] dataTaskWithRequest:sessionRequest completionHandler:^(NSData *data3,NSURLResponse *response,NSError *error){
                     NSDictionary *sessionResult = [NSJSONSerialization JSONObjectWithData:data3 options:0 error:nil];
-                    _session_id = [sessionResult valueForKey:@"session_id"];
+                    if([sessionResult valueForKey:@"session_id"]){
+                      _session_id = [sessionResult valueForKey:@"session_id"];
+                    }
+                    else{
+                        _session_id = nil;
+                    }
                     NSLog(@"!!!%@",_session_id);
                        dispatch_semaphore_signal(semaphore);
                  }]resume];
@@ -127,8 +133,32 @@
 
     }]resume];
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    NSLog(@"%@",_session_id);
-    [self updateSessionId:_session_id username:username];
+   // NSLog(@"%@",_session_id);
+    if(_session_id){
+         [self updateSessionId:_session_id username:username];
+    }
+    else{
+        UIAlertController *loginFailAlert = [UIAlertController alertControllerWithTitle:nil message:@"login failed, please check your input" preferredStyle:UIAlertControllerStyleActionSheet];
+        [self presentViewController:loginFailAlert animated:YES completion:nil];
+        [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(loginFailWithAlert:) userInfo:loginFailAlert repeats:NO];
+        
+    }
+}
+
+-(void)loginFailWithAlert:(NSTimer*)Timer{
+    UIAlertController* loginFailAlert = [Timer userInfo];
+    [loginFailAlert dismissViewControllerAnimated:YES completion:^{
+    [self signIn];
+        }];
+}
+
+-(void)clearSessionId{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    [dict setValue:@"" forKey:@"session_id"];
+    [dict setValue:@"" forKey:@"username"];
+    [dict writeToFile:_userPath atomically:YES];
+
 }
 
 
