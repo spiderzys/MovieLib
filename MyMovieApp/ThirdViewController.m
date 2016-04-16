@@ -99,7 +99,6 @@
 }
 
 -(void)loginWithUsername:(NSString*)username Password:(NSString*)password{
-    [alertController dismissViewControllerAnimated:NO completion:nil];
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     NSString *requestString = [NSString stringWithFormat:@"%@?%@",tokenRequestUrl,APIKey];;
     NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:requestString]];
