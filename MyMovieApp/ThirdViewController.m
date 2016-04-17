@@ -17,16 +17,16 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_userPath];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_userPath];
     NSString *username = [dict valueForKey:@"username"];
     NSString *session_id = [dict valueForKey:@"session_id"];
     if([self trySessionId:session_id username:username]){
-        NSLog(@"have signed in already");
+        [self showUserInfo];
     }
     else{
         [self signIn];
     }
-  
+
     
 }
 
@@ -36,6 +36,11 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     _userPath = [basePath stringByAppendingPathComponent:@"user.plist"];
+    
+}
+
+
+-(void)showUserInfo{
     
 }
 
@@ -55,15 +60,15 @@
         else{
             _sessionIdOk = NO;
         }
-        }]resume];
+    }]resume];
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     
     return _sessionIdOk;
-   
+    
 }
 
 -(void)signIn{
-        
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Registration and sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"sign in" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         UITextField *usernameField = alertController.textFields.firstObject;
@@ -104,7 +109,7 @@
     NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:requestString]];
     [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
         NSDictionary *dataDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-     
+        
         NSNumber *requestResult = [dataDic valueForKey:@"success"];
         if ([requestResult intValue]==1) {
             NSString* requestToken = [dataDic valueForKey:@"request_token"];
@@ -119,22 +124,21 @@
                 [[[NSURLSession sharedSession] dataTaskWithRequest:sessionRequest completionHandler:^(NSData *data3,NSURLResponse *response,NSError *error){
                     NSDictionary *sessionResult = [NSJSONSerialization JSONObjectWithData:data3 options:0 error:nil];
                     if([sessionResult valueForKey:@"session_id"]){
-                      _session_id = [sessionResult valueForKey:@"session_id"];
+                        _session_id = [sessionResult valueForKey:@"session_id"];
+                        [self showUserInfo];
                     }
                     else{
                         _session_id = nil;
                     }
-                    NSLog(@"!!!%@",_session_id);
-                       dispatch_semaphore_signal(semaphore);
-                 }]resume];
+                    dispatch_semaphore_signal(semaphore);
+                }]resume];
             }]resume];
         }
-
+        
     }]resume];
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-   // NSLog(@"%@",_session_id);
     if(_session_id){
-         [self updateSessionId:_session_id username:username];
+        [self updateSessionId:_session_id username:username];
     }
     else{
         UIAlertController *loginFailAlert = [UIAlertController alertControllerWithTitle:nil message:@"login failed, please check your input" preferredStyle:UIAlertControllerStyleActionSheet];
@@ -147,8 +151,8 @@
 -(void)loginFailWithAlert:(NSTimer*)Timer{
     UIAlertController* loginFailAlert = [Timer userInfo];
     [loginFailAlert dismissViewControllerAnimated:YES completion:^{
-    [self signIn];
-        }];
+        [self signIn];
+    }];
 }
 
 -(void)clearSessionId{
@@ -157,7 +161,7 @@
     [dict setValue:@"" forKey:@"session_id"];
     [dict setValue:@"" forKey:@"username"];
     [dict writeToFile:_userPath atomically:YES];
-
+    
 }
 
 
