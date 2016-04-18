@@ -7,7 +7,7 @@
 //
 
 #import "SecondViewController.h"
-#import "SearchResultTableViewCell.h"
+#import "CustomTableViewCell.h"
 #import "CustomViewController.h"
 #import "FirstViewController.h"
 @interface SecondViewController ()
@@ -129,9 +129,9 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-        return 40.0f;
+        return 30.0f;
     } else {
-        return 50.0f;
+        return 40.0f;
     }
 }
 
@@ -143,7 +143,7 @@
     
     NSDictionary *movie = [_result objectAtIndex:indexPath.row];
     NSNumber *mark = [movie valueForKey:@"vote_average"];
-    SearchResultTableViewCell *cell = [self.searchResultTableView cellForRowAtIndexPath:indexPath];
+    CustomTableViewCell *cell = [self.searchResultTableView cellForRowAtIndexPath:indexPath];
     [viewController.backImageView setImage:cell.backPosterImageView.image];
     NSString *title = cell.infoLabel.text;
     NSString *info = nil;
@@ -186,11 +186,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    SearchResultTableViewCell *customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
+    CustomTableViewCell *customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     if (!customCell) {
         
-        [_searchResultTableView registerNib:[UINib nibWithNibName:@"SearchResultTableViewCell" bundle:nil] forCellReuseIdentifier:@"SearchResultTableViewCell"];
-        customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
+        [_searchResultTableView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
+        customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"CustomCell"];
     }
     
     
@@ -203,7 +203,7 @@
             UIImage *image = [UIImage imageWithData:data];
             if (image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-              SearchResultTableViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
+              CustomTableViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
                     if (updateCell)
                         updateCell.backPosterImageView.image = image;
                 

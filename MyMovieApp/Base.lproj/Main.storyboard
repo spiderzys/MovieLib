@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -80,100 +79,9 @@
                     <view key="view" contentMode="scaleToFill" id="ZaB-df-aPo">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zob-Nn-vx3">
-                                <rect key="frame" x="58" y="86" width="240" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="favourite list">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <state key="selected" title="favourite list">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIX-0Z-lOW">
-                                <rect key="frame" x="300" y="86" width="240" height="30"/>
-                                <state key="normal" title="watching list"/>
-                                <state key="selected" title="watching list">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAo-Gm-pO5">
-                                <rect key="frame" x="20" y="86" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="hAo-Gm-pO5" secondAttribute="height" multiplier="1:1" id="qFL-wm-Znn"/>
-                                </constraints>
-                                <state key="normal" title="setting"/>
-                            </button>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SJa-s2-Ug6">
-                                <rect key="frame" x="550" y="86" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="SJa-s2-Ug6" secondAttribute="height" multiplier="1:1" id="48u-dk-eId"/>
-                                    <constraint firstAttribute="height" constant="30" id="8ke-sH-6KA"/>
-                                </constraints>
-                                <state key="normal" title="logout"/>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" highlightedImage="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="tCa-gu-7O9">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="86"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="tCa-gu-7O9" secondAttribute="height" multiplier="7:1" id="Lbh-zD-ArR"/>
-                                </constraints>
-                            </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2PY-pm-cJr">
-                                <rect key="frame" x="0.0" y="116" width="600" height="435"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="kMB-Vf-l3z" id="OpJ-Ik-BaK"/>
-                                    <outlet property="delegate" destination="kMB-Vf-l3z" id="4jx-0S-bQv"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="SJa-s2-Ug6" firstAttribute="centerY" secondItem="hAo-Gm-pO5" secondAttribute="centerY" id="5Xt-Qb-AOh"/>
-                            <constraint firstItem="oIX-0Z-lOW" firstAttribute="centerY" secondItem="hAo-Gm-pO5" secondAttribute="centerY" id="HdB-bD-zGO"/>
-                            <constraint firstAttribute="trailing" secondItem="2PY-pm-cJr" secondAttribute="trailing" id="KHl-y0-deT"/>
-                            <constraint firstItem="SJa-s2-Ug6" firstAttribute="trailing" secondItem="ZaB-df-aPo" secondAttribute="trailingMargin" id="Mlm-gN-vS9"/>
-                            <constraint firstItem="Zob-Nn-vx3" firstAttribute="leading" secondItem="hAo-Gm-pO5" secondAttribute="trailing" constant="10" id="NCK-cf-hhQ"/>
-                            <constraint firstItem="hAo-Gm-pO5" firstAttribute="leading" secondItem="ZaB-df-aPo" secondAttribute="leadingMargin" id="POR-Wk-Hz3"/>
-                            <constraint firstItem="tCa-gu-7O9" firstAttribute="leading" secondItem="ZaB-df-aPo" secondAttribute="leadingMargin" constant="-20" id="QV7-SG-hMi"/>
-                            <constraint firstItem="hAo-Gm-pO5" firstAttribute="top" secondItem="tCa-gu-7O9" secondAttribute="bottom" id="RAC-nw-Bug"/>
-                            <constraint firstItem="SJa-s2-Ug6" firstAttribute="top" secondItem="ZaB-df-aPo" secondAttribute="topMargin" constant="10" id="TIB-73-9fa"/>
-                            <constraint firstItem="Zob-Nn-vx3" firstAttribute="centerY" secondItem="hAo-Gm-pO5" secondAttribute="centerY" id="ZbN-9y-kYY"/>
-                            <constraint firstItem="2PY-pm-cJr" firstAttribute="top" secondItem="SJa-s2-Ug6" secondAttribute="bottom" id="Zle-sy-aMn"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="tCa-gu-7O9" secondAttribute="trailing" constant="-20" id="aII-Zr-vcC"/>
-                            <constraint firstItem="SJa-s2-Ug6" firstAttribute="height" secondItem="hAo-Gm-pO5" secondAttribute="height" id="eLf-eB-wJe"/>
-                            <constraint firstItem="Zob-Nn-vx3" firstAttribute="height" secondItem="hAo-Gm-pO5" secondAttribute="height" id="gnL-7t-mr6"/>
-                            <constraint firstItem="oIX-0Z-lOW" firstAttribute="width" secondItem="Zob-Nn-vx3" secondAttribute="width" id="ild-9s-kNU"/>
-                            <constraint firstItem="SJa-s2-Ug6" firstAttribute="leading" secondItem="oIX-0Z-lOW" secondAttribute="trailing" constant="10" id="m2M-qg-HDO"/>
-                            <constraint firstItem="2PY-pm-cJr" firstAttribute="bottom" secondItem="pOd-fG-Fb9" secondAttribute="top" id="mWL-yC-Cj6"/>
-                            <constraint firstItem="tCa-gu-7O9" firstAttribute="top" secondItem="ZaB-df-aPo" secondAttribute="topMargin" id="nWy-iD-izH"/>
-                            <constraint firstItem="2PY-pm-cJr" firstAttribute="leading" secondItem="ZaB-df-aPo" secondAttribute="leading" id="p9u-ym-CXc"/>
-                            <constraint firstItem="oIX-0Z-lOW" firstAttribute="height" secondItem="hAo-Gm-pO5" secondAttribute="height" id="xCa-WH-QyS"/>
-                            <constraint firstItem="oIX-0Z-lOW" firstAttribute="leading" secondItem="Zob-Nn-vx3" secondAttribute="trailing" id="yyd-gy-6SI"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="TIB-73-9fa"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="Pxq-m0-iaj"/>
-                    <connections>
-                        <outlet property="favourtieListButton" destination="Zob-Nn-vx3" id="Ku3-L9-3dG"/>
-                        <outlet property="logoutButton" destination="SJa-s2-Ug6" id="D8O-Ro-Hhh"/>
-                        <outlet property="movieListTable" destination="2PY-pm-cJr" id="Gk3-F9-b0F"/>
-                        <outlet property="movieListTableView" destination="2PY-pm-cJr" id="ZCO-cI-C6o"/>
-                        <outlet property="settingButton" destination="hAo-Gm-pO5" id="3wl-hI-cDs"/>
-                        <outlet property="watchListButton" destination="oIX-0Z-lOW" id="Fz9-KY-DaS"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kky-3t-O7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -299,7 +207,4 @@
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="logo.png" width="280" height="40"/>
-    </resources>
 </document>

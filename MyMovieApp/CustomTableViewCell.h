@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchResultTableViewCell : UITableViewCell
+@interface CustomTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *backPosterImageView;
 
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;

@@ -6,8 +6,8 @@
 //  Copyright © 2016 YANGSHENG ZOU. All rights reserved.
 //
 
-
 #import <UIKit/UIKit.h>
+
 @interface RegController : UIViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
