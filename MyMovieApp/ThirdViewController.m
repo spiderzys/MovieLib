@@ -8,7 +8,8 @@
 
 
 #import "ThirdViewController.h"
-#import "RegController.h"
+#import "RegViewController.h"
+#import "SearchResultTableViewCell.h"
 @interface ThirdViewController ()
 
 @end
@@ -30,6 +31,24 @@
     
 }
 
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 6;
+}
+
+// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    SearchResultTableViewCell *customCell =[_movieListTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
+    if (!customCell) {
+        
+        [_movieListTableView registerNib:[UINib nibWithNibName:@"SearchResultTableViewCell" bundle:nil] forCellReuseIdentifier:@"SearchResultTableViewCell"];
+        customCell =[_movieListTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
+    }
+    return customCell;
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,7 +98,7 @@
     }];
     
     UIAlertAction *regAction = [UIAlertAction actionWithTitle:@"sign up" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        RegController *regController =  [[RegController alloc]initWithNibName:@"RegController" bundle:nil];
+        RegViewController *regController =  [[RegViewController alloc]initWithNibName:@"RegViewController" bundle:nil];
         NSURLRequest *registerRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:regRequestUrl]];
         [self presentViewController:regController animated:YES completion:^{
             [regController.webView loadRequest:registerRequest];

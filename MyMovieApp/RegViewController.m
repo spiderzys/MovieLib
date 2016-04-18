@@ -6,13 +6,13 @@
 //  Copyright © 2016 YANGSHENG ZOU. All rights reserved.
 //
 
-#import "RegController.h"
+#import "RegViewController.h"
 
-@interface RegController ()
+@interface RegViewController ()
 
 @end
 
-@implementation RegController
+@implementation RegViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

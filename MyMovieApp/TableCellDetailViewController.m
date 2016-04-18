@@ -6,13 +6,13 @@
 //  Copyright © 2016 YANGSHENG ZOU. All rights reserved.
 //
 
-#import "CustomViewController.h"
+#import "TableCellDetailViewController.h"
 
-@interface CustomViewController ()
+@interface TableCellDetailViewController ()
 
 @end
 
-@implementation CustomViewController
+@implementation TableCellDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

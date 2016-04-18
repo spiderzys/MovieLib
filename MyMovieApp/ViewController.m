@@ -44,7 +44,7 @@
 
 
 
--(NSArray*)getDataFromUrl:(NSURL*)url withKey:(NSString*) key{
+-(NSArray*)getDataFromUrl:(NSURL*)url withKey:(NSString*) key LimitPages:(int)max{
     NSString *basic = [url absoluteString];
     NSData *data = [NSData dataWithContentsOfURL:url];
     if (data.length == 0) {
@@ -57,8 +57,11 @@
         
         result =[dataDic objectForKey:key];
         NSNumber *page = [dataDic objectForKey:@"total_pages"];
+        if (max==0) {
+            max = [page integerValue];
+        }
         
-        for (int i = 2; i<=[page intValue]&i<10; i++) {
+        for (int i = 2; i<=[page intValue]&i<=max; i++) {
             NSString *tempQuery = [basic stringByAppendingString:[NSString stringWithFormat:@"&page=%d",i]];
             data = [NSData dataWithContentsOfURL:[NSURL URLWithString:tempQuery]];
             if(data.length>0){
@@ -67,7 +70,7 @@
                 NSMutableArray *temp =[dataDic objectForKey:key];
                 [result addObjectsFromArray:temp];
             }
-             NSLog(@"%d",i);
+          //   NSLog(@"%d",i);
         }
        
         
@@ -87,7 +90,7 @@
 }
 
 -(NSString*)getCastFromUrl:(NSURL*) url{
-    NSArray* names = [self getDataFromUrl:url withKey:@"cast"];
+    NSArray* names = [self getDataFromUrl:url withKey:@"cast" LimitPages:0];
     if(names==nil){
         return  @"N/A";
     }
@@ -128,7 +131,7 @@
 -(void)playTrailer:(NSNumber*)idn{
     
     NSString *videoInquery = [NSString stringWithFormat:@"%@%@/videos?%@",movieWeb,idn,APIKey];
-    NSArray *videoResult = [self getDataFromUrl:[NSURL URLWithString:videoInquery] withKey:@"results"];
+    NSArray *videoResult = [self getDataFromUrl:[NSURL URLWithString:videoInquery] withKey:@"results" LimitPages:0];
     if(videoResult==nil){
         [self singleOptionAlertWithMessage:@"no connection"];
     }

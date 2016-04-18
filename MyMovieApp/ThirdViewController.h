@@ -16,4 +16,17 @@
 @property NSString* userPath;
 @property NSString* session_id;
 @property BOOL sessionIdOk;
+
+@property (weak, nonatomic) IBOutlet UIButton *settingButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *watchListButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *favourtieListButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+
+@property (weak, nonatomic) IBOutlet UITableView *movieListTableView;
+
+
+
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomViewController : UIViewController
+@interface TableCellDetailViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *backImageView;
 

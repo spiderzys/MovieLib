@@ -19,7 +19,7 @@
 @interface ViewController : UIViewController<YTPlayerViewDelegate>
 @property UIImageView *backImageView;
 
--(NSArray*)getDataFromUrl:(NSURL*)url withKey:(NSString*) key;
+-(NSArray*)getDataFromUrl:(NSURL*)url withKey:(NSString*) key LimitPages:(int)max;
 -(NSMutableArray*)removeUndesiredDataFromResults:(NSArray *)results WithNullValueForKey:(NSString*)key;
 
 -(BOOL)connectAPI:(NSString*)web;

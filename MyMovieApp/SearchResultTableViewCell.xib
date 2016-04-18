@@ -30,15 +30,15 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50z-1p-RNG">
-                        <rect key="frame" x="51" y="0.0" width="269" height="29"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="50z-1p-RNG">
+                        <rect key="frame" x="51" y="0.0" width="261" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.41923148557449197" green="0.34757930487747596" blue="0.57389152486910988" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="50z-1p-RNG" secondAttribute="trailing" constant="-8" id="E4O-Um-mtN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="50z-1p-RNG" secondAttribute="trailing" id="E4O-Um-mtN"/>
                     <constraint firstItem="50z-1p-RNG" firstAttribute="top" secondItem="0zd-Ph-pkW" secondAttribute="topMargin" constant="-8" id="TbD-tl-fRl"/>
                     <constraint firstAttribute="bottomMargin" secondItem="84N-JX-ExY" secondAttribute="bottom" constant="-8" id="YuO-cy-UF2"/>
                     <constraint firstItem="50z-1p-RNG" firstAttribute="leading" secondItem="84N-JX-ExY" secondAttribute="trailing" id="ad6-e9-jCj"/>
@@ -48,6 +48,7 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="tintColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="backPosterImageView" destination="84N-JX-ExY" id="QZ1-fj-hOr"/>
                 <outlet property="infoLabel" destination="50z-1p-RNG" id="tBK-0o-WjD"/>

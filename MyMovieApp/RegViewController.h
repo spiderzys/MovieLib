@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegController : UIViewController
+@interface RegViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end

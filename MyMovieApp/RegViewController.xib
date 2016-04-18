@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegViewController">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="webView" destination="l0I-ul-eak" id="gqo-hb-vw9"/>
@@ -21,6 +21,7 @@
                     <items>
                         <navigationItem id="geP-Ke-mc3">
                             <barButtonItem key="leftBarButtonItem" systemItem="reply" id="3Xg-cX-03u">
+                                <color key="tintColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="back:" destination="-1" id="9ls-gM-4Hw"/>
                                 </connections>

@@ -8,7 +8,7 @@
 
 #import "SecondViewController.h"
 #import "SearchResultTableViewCell.h"
-#import "CustomViewController.h"
+#import "TableCellDetailViewController.h"
 #import "FirstViewController.h"
 @interface SecondViewController ()
 
@@ -43,7 +43,7 @@
     
     _dateLabel.userInteractionEnabled = YES;
     _markLabel.userInteractionEnabled = NO;
-    _markLabel.textColor = [UIColor blueColor];
+    _markLabel.textColor = _dateLabel.textColor;
     _dateLabel.textColor = [UIColor blackColor];
     if(_result!=nil){
         [self sortResult];
@@ -54,8 +54,9 @@
     
     _dateLabel.userInteractionEnabled = NO;
     _markLabel.userInteractionEnabled = YES;
+    _dateLabel.textColor = _markLabel.textColor;
     _markLabel.textColor = [UIColor blackColor];
-    _dateLabel.textColor = [UIColor blueColor];
+    
     if(_result!=nil){
         [self sortResult];
     }
@@ -80,7 +81,7 @@
                                                          withString:@"+"];
         _searchString = [NSString stringWithFormat:@"%@&query=%@",movieSearchWeb,_keywords];
         
-        NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:_searchString] withKey:@"results"];
+        NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:_searchString] withKey:@"results" LimitPages:0];
         
         if (temp == nil) {
             _result = nil;
@@ -129,15 +130,15 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-        return 30.0f;
+        return 45.0f;
     } else {
-        return 40.0f;
+        return 60.0f;
     }
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    CustomViewController *viewController = [[CustomViewController alloc]initWithNibName:@"CustomViewController" bundle:nil];
+    TableCellDetailViewController *viewController = [[TableCellDetailViewController alloc]initWithNibName:@"TableCellDetailViewController" bundle:nil];
     
     [self presentViewController:viewController animated:YES completion:nil];
     

@@ -246,7 +246,7 @@
     //_movieNewsUrl = [NSURL URLWithString:recentMovie];
     
     
-    _result = [self getDataFromUrl:[NSURL URLWithString:recentMovie] withKey:@"results"];
+    _result = [self getDataFromUrl:[NSURL URLWithString:recentMovie] withKey:@"results" LimitPages:9];
     if (_result  == nil) {
         [self loadFromCoreData];
         
