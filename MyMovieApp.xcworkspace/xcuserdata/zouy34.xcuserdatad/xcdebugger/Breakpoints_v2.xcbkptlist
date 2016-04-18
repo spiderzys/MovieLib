@@ -281,7 +281,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "102"
             endingLineNumber = "102"
-            landmarkName = "-loginWithUsername:Password:"
+            landmarkName = "-signIn"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

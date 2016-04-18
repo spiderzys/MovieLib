@@ -7,7 +7,7 @@
 //
 
 #import "SecondViewController.h"
-#import "CustomTableViewCell.h"
+#import "SearchResultTableViewCell.h"
 #import "CustomViewController.h"
 #import "FirstViewController.h"
 @interface SecondViewController ()
@@ -143,7 +143,7 @@
     
     NSDictionary *movie = [_result objectAtIndex:indexPath.row];
     NSNumber *mark = [movie valueForKey:@"vote_average"];
-    CustomTableViewCell *cell = [self.searchResultTableView cellForRowAtIndexPath:indexPath];
+    SearchResultTableViewCell *cell = [self.searchResultTableView cellForRowAtIndexPath:indexPath];
     [viewController.backImageView setImage:cell.backPosterImageView.image];
     NSString *title = cell.infoLabel.text;
     NSString *info = nil;
@@ -186,11 +186,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    CustomTableViewCell *customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"CustomCell"];
+    SearchResultTableViewCell *customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
     if (!customCell) {
         
-        [_searchResultTableView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:nil] forCellReuseIdentifier:@"CustomCell"];
-        customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"CustomCell"];
+        [_searchResultTableView registerNib:[UINib nibWithNibName:@"SearchResultTableViewCell" bundle:nil] forCellReuseIdentifier:@"SearchResultTableViewCell"];
+        customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
     }
     
     
@@ -203,7 +203,7 @@
             UIImage *image = [UIImage imageWithData:data];
             if (image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-              CustomTableViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
+              SearchResultTableViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
                     if (updateCell)
                         updateCell.backPosterImageView.image = image;
                 
