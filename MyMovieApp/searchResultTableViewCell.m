@@ -6,9 +6,9 @@
 //  Copyright © 2016 YANGSHENG ZOU. All rights reserved.
 //
 
-#import "CustomTableViewCell.h"
+#import "SearchResultTableViewCell.h"
 
-@implementation CustomTableViewCell
+@implementation SearchResultTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

@@ -9,15 +9,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UITableViewCell"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomCell" id="lh1-0U-H1p" customClass="CustomTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomCell" rowHeight="47" id="lh1-0U-H1p" customClass="SearchResultTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lh1-0U-H1p" id="0zd-Ph-pkW">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="84N-JX-ExY">
-                        <rect key="frame" x="0.0" y="0.0" width="51" height="29"/>
+                        <rect key="frame" x="0.0" y="0.0" width="81" height="46"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="84N-JX-ExY" secondAttribute="height" multiplier="396:223" id="krP-5w-ay1"/>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="396" id="lhx-ZU-cWP"/>
@@ -30,8 +30,8 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50z-1p-RNG">
-                        <rect key="frame" x="51" y="0.0" width="269" height="29"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50z-1p-RNG">
+                        <rect key="frame" x="81" y="0.0" width="239" height="46"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                 <outlet property="backPosterImageView" destination="84N-JX-ExY" id="QZ1-fj-hOr"/>
                 <outlet property="infoLabel" destination="50z-1p-RNG" id="tBK-0o-WjD"/>
             </connections>
-            <point key="canvasLocation" x="338" y="214"/>
+            <point key="canvasLocation" x="338" y="222.5"/>
         </tableViewCell>
     </objects>
 </document>
