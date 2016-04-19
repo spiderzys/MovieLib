@@ -9,7 +9,7 @@
 
 #import "ThirdViewController.h"
 #import "RegViewController.h"
-#import "SearchResultTableViewCell.h"
+
 @interface ThirdViewController ()
 
 @end
@@ -22,46 +22,65 @@
     NSString *username = [dict valueForKey:@"username"];
     NSString *session_id = [dict valueForKey:@"session_id"];
     if([self trySessionId:session_id username:username]){
-        [self showUserInfo];
+        [self showUserList];
     }
     else{
         [self signIn];
     }
-
+    
     
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
-}
 
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SearchResultTableViewCell *customCell =[_movieListTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
-    if (!customCell) {
-        
-        [_movieListTableView registerNib:[UINib nibWithNibName:@"SearchResultTableViewCell" bundle:nil] forCellReuseIdentifier:@"SearchResultTableViewCell"];
-        customCell =[_movieListTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
-    }
-    return customCell;
-
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     _userPath = [basePath stringByAppendingPathComponent:@"user.plist"];
+    [[_userLabel layer] setCornerRadius:5.0f];
+    [[_userLabel layer] setMasksToBounds:YES];
+}
+
+
+//--------------------------tableView part-----------------------------------------
+
+-(void)showUserList{
     
 }
 
 
--(void)showUserInfo{
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
 }
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return section;
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return nil;
+}
+
+
+
+
+//-------------------------------------login part------------------------------------
+
+
+
+
+
+
+
+
+
+
+
 
 -(BOOL)trySessionId:(NSString*)sessionId username:(NSString*)username{
     
@@ -72,19 +91,25 @@
         NSLog(@"%@",requestString);
         NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         NSLog(@"%@",rateResult);
-        dispatch_semaphore_signal(semaphore);
+       
         if([rateResult objectForKey:@"results"]){
             _sessionIdOk = YES;
         }
         else{
             _sessionIdOk = NO;
         }
+        dispatch_semaphore_signal(semaphore);
     }]resume];
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     
     return _sessionIdOk;
     
 }
+
+
+
+
+
 
 -(void)signIn{
     
@@ -144,7 +169,7 @@
                     NSDictionary *sessionResult = [NSJSONSerialization JSONObjectWithData:data3 options:0 error:nil];
                     if([sessionResult valueForKey:@"session_id"]){
                         _session_id = [sessionResult valueForKey:@"session_id"];
-                        [self showUserInfo];
+                        [self showUserList];
                     }
                     else{
                         _session_id = nil;
@@ -193,11 +218,22 @@
     [self trySessionId:session_id username:username];
 }
 
+- (IBAction)setting:(id)sender {
+}
+
+- (IBAction)logout:(id)sender {
+}
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
 /*
  #pragma mark - Navigation
  

@@ -15,6 +15,8 @@
 		690D58571BC0962200406ADA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 690D58561BC0962200406ADA /* Assets.xcassets */; };
 		690D585A1BC0962200406ADA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 690D58581BC0962200406ADA /* LaunchScreen.storyboard */; };
 		690E04F71CC4BB91004F3A7D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 690E04F61CC4BB91004F3A7D /* logo.png */; };
+		6916137D1CC5F78F0075A55A /* UserMovieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6916137B1CC5F78F0075A55A /* UserMovieCollectionViewCell.m */; };
+		6916137E1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6916137C1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib */; };
 		6925B9261CB49BAB0023EDCC /* TableCellDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925B9241CB49BAB0023EDCC /* TableCellDetailViewController.m */; };
 		6925B9271CB49BAB0023EDCC /* TableCellDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6925B9251CB49BAB0023EDCC /* TableCellDetailViewController.xib */; };
 		6946E5CD1CB31E96007546ED /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6946E5CC1CB31E96007546ED /* SearchResultTableViewCell.xib */; };
@@ -52,6 +54,9 @@
 		690D585B1BC0962200406ADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		690D58971BC0CDB700406ADA /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		690E04F61CC4BB91004F3A7D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		6916137A1CC5F78F0075A55A /* UserMovieCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMovieCollectionViewCell.h; sourceTree = "<group>"; };
+		6916137B1CC5F78F0075A55A /* UserMovieCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMovieCollectionViewCell.m; sourceTree = "<group>"; };
+		6916137C1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserMovieCollectionViewCell.xib; sourceTree = "<group>"; };
 		6925B9231CB49BAB0023EDCC /* TableCellDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCellDetailViewController.h; sourceTree = "<group>"; };
 		6925B9241CB49BAB0023EDCC /* TableCellDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCellDetailViewController.m; sourceTree = "<group>"; };
 		6925B9251CB49BAB0023EDCC /* TableCellDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableCellDetailViewController.xib; sourceTree = "<group>"; };
@@ -154,11 +159,14 @@
 				690D584E1BC0962200406ADA /* FirstViewController.m */,
 				690D58501BC0962200406ADA /* SecondViewController.h */,
 				690D58511BC0962200406ADA /* SecondViewController.m */,
-				699AB2F61C3E3D170066A6C0 /* ThirdViewController.h */,
-				699AB2F71C3E3D170066A6C0 /* ThirdViewController.m */,
 				6946E5CE1CB330F0007546ED /* SearchResultTableViewCell.h */,
 				6946E5CF1CB330F0007546ED /* SearchResultTableViewCell.m */,
 				6946E5CC1CB31E96007546ED /* SearchResultTableViewCell.xib */,
+				699AB2F61C3E3D170066A6C0 /* ThirdViewController.h */,
+				699AB2F71C3E3D170066A6C0 /* ThirdViewController.m */,
+				6916137A1CC5F78F0075A55A /* UserMovieCollectionViewCell.h */,
+				6916137B1CC5F78F0075A55A /* UserMovieCollectionViewCell.m */,
+				6916137C1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib */,
 				698006D91C3CC8B400A1494B /* PresentViewController.h */,
 				698006DA1C3CC8B400A1494B /* PresentViewController.m */,
 				6925B9231CB49BAB0023EDCC /* TableCellDetailViewController.h */,
@@ -276,6 +284,7 @@
 				6965FFD51CBF4B72009D9AB0 /* RegViewController.xib in Resources */,
 				6965FFC61CBF1883009D9AB0 /* user.plist in Resources */,
 				6925B9271CB49BAB0023EDCC /* TableCellDetailViewController.xib in Resources */,
+				6916137E1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib in Resources */,
 				690D58551BC0962200406ADA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,6 +346,7 @@
 			files = (
 				69F580901BC7396900656024 /* Reachability.m in Sources */,
 				690D58521BC0962200406ADA /* SecondViewController.m in Sources */,
+				6916137D1CC5F78F0075A55A /* UserMovieCollectionViewCell.m in Sources */,
 				690D584C1BC0962200406ADA /* AppDelegate.m in Sources */,
 				698006DB1C3CC8B400A1494B /* PresentViewController.m in Sources */,
 				690D584F1BC0962200406ADA /* FirstViewController.m in Sources */,
