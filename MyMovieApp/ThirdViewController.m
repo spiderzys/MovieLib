@@ -46,7 +46,7 @@
     [[_userLabel layer] setCornerRadius:5.0f];
     [[_userLabel layer] setMasksToBounds:YES];
     _headTitleArray = @[@"Movies you more highly valued",@"Movies you gave approximate rate",@"Movies you less valued"];
-    [_userMovieCollectionView registerNib:[UINib nibWithNibName:@"UserMovieCollectionHeaderView" bundle:nil]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"head"];
+    [_userMovieCollectionView registerClass: [UserMovieCollectionHeaderView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"head"];
     [_userMovieCollectionView registerNib:[UINib nibWithNibName:@"UserMovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
 }
 
@@ -88,13 +88,15 @@
 {
     
     UserMovieCollectionHeaderView *headerView = [_userMovieCollectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"head" forIndexPath:indexPath];
-  
+    if(headerView){
+        UILabel *headLabel = [[UILabel alloc]initWithFrame:headerView.frame];
+        NSString *title = [_headTitleArray objectAtIndex:indexPath.section];
+        [headLabel setText:title];
+        [headerView addSubview:headLabel];
        
-    NSLog(@"%@",headerView.backgroundColor);
+    }
     return headerView ;
 }
-
-
 //-------------------------------------login part------------------------------------
 
 

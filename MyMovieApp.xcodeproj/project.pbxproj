@@ -21,7 +21,6 @@
 		69466A331CC70925002B95B6 /* UserMovieCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69466A311CC70925002B95B6 /* UserMovieCollectionHeaderView.m */; };
 		6946E5CD1CB31E96007546ED /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6946E5CC1CB31E96007546ED /* SearchResultTableViewCell.xib */; };
 		6946E5D01CB330F0007546ED /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6946E5CF1CB330F0007546ED /* SearchResultTableViewCell.m */; };
-		695E01131CC7303400D24FB3 /* UserMovieCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 695E01111CC7303400D24FB3 /* UserMovieCollectionHeaderView.xib */; };
 		695FC7F41C3A1B2900AA5B24 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695FC7F31C3A1B2900AA5B24 /* ViewController.m */; };
 		6965FFC61CBF1883009D9AB0 /* user.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6965FFC51CBF1883009D9AB0 /* user.plist */; };
 		6965FFD41CBF4B72009D9AB0 /* RegViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6965FFD21CBF4B72009D9AB0 /* RegViewController.m */; };
@@ -66,7 +65,6 @@
 		6946E5CC1CB31E96007546ED /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
 		6946E5CE1CB330F0007546ED /* SearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultTableViewCell.h; sourceTree = "<group>"; };
 		6946E5CF1CB330F0007546ED /* SearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultTableViewCell.m; sourceTree = "<group>"; };
-		695E01111CC7303400D24FB3 /* UserMovieCollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserMovieCollectionHeaderView.xib; sourceTree = "<group>"; };
 		695FC7F21C3A1B2900AA5B24 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		695FC7F31C3A1B2900AA5B24 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		695FC7FB1C3A5CDF00AA5B24 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -157,7 +155,6 @@
 			children = (
 				690D584A1BC0962200406ADA /* AppDelegate.h */,
 				690D584B1BC0962200406ADA /* AppDelegate.m */,
-				690D58531BC0962200406ADA /* Main.storyboard */,
 				695FC7F21C3A1B2900AA5B24 /* ViewController.h */,
 				695FC7F31C3A1B2900AA5B24 /* ViewController.m */,
 				690D584D1BC0962200406ADA /* FirstViewController.h */,
@@ -171,7 +168,6 @@
 				699AB2F71C3E3D170066A6C0 /* ThirdViewController.m */,
 				69466A301CC70925002B95B6 /* UserMovieCollectionHeaderView.h */,
 				69466A311CC70925002B95B6 /* UserMovieCollectionHeaderView.m */,
-				695E01111CC7303400D24FB3 /* UserMovieCollectionHeaderView.xib */,
 				6916137A1CC5F78F0075A55A /* UserMovieCollectionViewCell.h */,
 				6916137B1CC5F78F0075A55A /* UserMovieCollectionViewCell.m */,
 				6916137C1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib */,
@@ -183,6 +179,7 @@
 				6965FFD11CBF4B72009D9AB0 /* RegViewController.h */,
 				6965FFD21CBF4B72009D9AB0 /* RegViewController.m */,
 				6965FFD31CBF4B72009D9AB0 /* RegViewController.xib */,
+				690D58531BC0962200406ADA /* Main.storyboard */,
 				690D58561BC0962200406ADA /* Assets.xcassets */,
 				690D58581BC0962200406ADA /* LaunchScreen.storyboard */,
 				6965FFC51CBF1883009D9AB0 /* user.plist */,
@@ -288,7 +285,6 @@
 				690D585A1BC0962200406ADA /* LaunchScreen.storyboard in Resources */,
 				690D58571BC0962200406ADA /* Assets.xcassets in Resources */,
 				6965FFD51CBF4B72009D9AB0 /* RegViewController.xib in Resources */,
-				695E01131CC7303400D24FB3 /* UserMovieCollectionHeaderView.xib in Resources */,
 				6965FFC61CBF1883009D9AB0 /* user.plist in Resources */,
 				6925B9271CB49BAB0023EDCC /* TableCellDetailViewController.xib in Resources */,
 				6916137E1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib in Resources */,
