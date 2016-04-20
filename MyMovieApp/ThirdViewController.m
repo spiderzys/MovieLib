@@ -9,6 +9,8 @@
 
 #import "ThirdViewController.h"
 #import "RegViewController.h"
+#import "UserMovieCollectionViewCell.h"
+#import "UserMovieCollectionHeaderView.h"
 
 @interface ThirdViewController ()
 
@@ -22,6 +24,7 @@
     NSString *username = [dict valueForKey:@"username"];
     NSString *session_id = [dict valueForKey:@"session_id"];
     if([self trySessionId:session_id username:username]){
+        _userLabel.text = username;
         [self showUserList];
     }
     else{
@@ -42,10 +45,13 @@
     _userPath = [basePath stringByAppendingPathComponent:@"user.plist"];
     [[_userLabel layer] setCornerRadius:5.0f];
     [[_userLabel layer] setMasksToBounds:YES];
+    _headTitleArray = @[@"Movies you more highly valued",@"Movies you gave approximate rate",@"Movies you less valued"];
+    [_userMovieCollectionView registerClass: [UserMovieCollectionHeaderView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"head"];
+    [_userMovieCollectionView registerNib:[UINib nibWithNibName:@"UserMovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
 }
 
 
-//--------------------------tableView part-----------------------------------------
+//--------------------------collectionView part-----------------------------------------
 
 -(void)showUserList{
     
@@ -57,18 +63,40 @@
     
 }
 
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 3;
+}
+
+
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return section;
+    return 8;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
+    
+  
+   UserMovieCollectionViewCell * customCell = [_userMovieCollectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+   
+    
+    
+    return customCell;
 }
 
-
-
-
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UserMovieCollectionHeaderView *headerView = [_userMovieCollectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"head" forIndexPath:indexPath];
+    if(headerView){
+        UILabel *headLabel = [[UILabel alloc]initWithFrame:headerView.frame];
+        NSString *title = [_headTitleArray objectAtIndex:indexPath.section];
+        [headLabel setText:title];
+        [headerView addSubview:headLabel];
+       
+    }
+    return headerView ;
+}
 //-------------------------------------login part------------------------------------
 
 
@@ -169,7 +197,6 @@
                     NSDictionary *sessionResult = [NSJSONSerialization JSONObjectWithData:data3 options:0 error:nil];
                     if([sessionResult valueForKey:@"session_id"]){
                         _session_id = [sessionResult valueForKey:@"session_id"];
-                        [self showUserList];
                     }
                     else{
                         _session_id = nil;
@@ -182,7 +209,10 @@
     }]resume];
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     if(_session_id){
+        _userLabel.text = username;
+        [self showUserList];
         [self updateSessionId:_session_id username:username];
+        
     }
     else{
         UIAlertController *loginFailAlert = [UIAlertController alertControllerWithTitle:nil message:@"login failed, please check your input" preferredStyle:UIAlertControllerStyleActionSheet];
@@ -215,7 +245,6 @@
     [dict setValue:session_id forKey:@"session_id"];
     [dict setValue:username forKey:@"username"];
     [dict writeToFile:_userPath atomically:YES];
-    [self trySessionId:session_id username:username];
 }
 
 - (IBAction)setting:(id)sender {

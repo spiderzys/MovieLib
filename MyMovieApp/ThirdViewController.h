@@ -21,4 +21,5 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *userMovieCollectionView;
 
 
+@property NSArray* headTitleArray;
 @end

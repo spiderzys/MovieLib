@@ -14,11 +14,11 @@
 		690D58551BC0962200406ADA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 690D58531BC0962200406ADA /* Main.storyboard */; };
 		690D58571BC0962200406ADA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 690D58561BC0962200406ADA /* Assets.xcassets */; };
 		690D585A1BC0962200406ADA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 690D58581BC0962200406ADA /* LaunchScreen.storyboard */; };
-		690E04F71CC4BB91004F3A7D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 690E04F61CC4BB91004F3A7D /* logo.png */; };
 		6916137D1CC5F78F0075A55A /* UserMovieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6916137B1CC5F78F0075A55A /* UserMovieCollectionViewCell.m */; };
 		6916137E1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6916137C1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib */; };
 		6925B9261CB49BAB0023EDCC /* TableCellDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925B9241CB49BAB0023EDCC /* TableCellDetailViewController.m */; };
 		6925B9271CB49BAB0023EDCC /* TableCellDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6925B9251CB49BAB0023EDCC /* TableCellDetailViewController.xib */; };
+		69466A331CC70925002B95B6 /* UserMovieCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69466A311CC70925002B95B6 /* UserMovieCollectionHeaderView.m */; };
 		6946E5CD1CB31E96007546ED /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6946E5CC1CB31E96007546ED /* SearchResultTableViewCell.xib */; };
 		6946E5D01CB330F0007546ED /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6946E5CF1CB330F0007546ED /* SearchResultTableViewCell.m */; };
 		695FC7F41C3A1B2900AA5B24 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695FC7F31C3A1B2900AA5B24 /* ViewController.m */; };
@@ -60,6 +60,8 @@
 		6925B9231CB49BAB0023EDCC /* TableCellDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCellDetailViewController.h; sourceTree = "<group>"; };
 		6925B9241CB49BAB0023EDCC /* TableCellDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCellDetailViewController.m; sourceTree = "<group>"; };
 		6925B9251CB49BAB0023EDCC /* TableCellDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableCellDetailViewController.xib; sourceTree = "<group>"; };
+		69466A301CC70925002B95B6 /* UserMovieCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMovieCollectionHeaderView.h; sourceTree = "<group>"; };
+		69466A311CC70925002B95B6 /* UserMovieCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMovieCollectionHeaderView.m; sourceTree = "<group>"; };
 		6946E5CC1CB31E96007546ED /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
 		6946E5CE1CB330F0007546ED /* SearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultTableViewCell.h; sourceTree = "<group>"; };
 		6946E5CF1CB330F0007546ED /* SearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultTableViewCell.m; sourceTree = "<group>"; };
@@ -164,6 +166,8 @@
 				6946E5CC1CB31E96007546ED /* SearchResultTableViewCell.xib */,
 				699AB2F61C3E3D170066A6C0 /* ThirdViewController.h */,
 				699AB2F71C3E3D170066A6C0 /* ThirdViewController.m */,
+				69466A301CC70925002B95B6 /* UserMovieCollectionHeaderView.h */,
+				69466A311CC70925002B95B6 /* UserMovieCollectionHeaderView.m */,
 				6916137A1CC5F78F0075A55A /* UserMovieCollectionViewCell.h */,
 				6916137B1CC5F78F0075A55A /* UserMovieCollectionViewCell.m */,
 				6916137C1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib */,
@@ -278,7 +282,6 @@
 			files = (
 				6946E5CD1CB31E96007546ED /* SearchResultTableViewCell.xib in Resources */,
 				69F8F10E1C3A764100438350 /* Assets.bundle in Resources */,
-				690E04F71CC4BB91004F3A7D /* logo.png in Resources */,
 				690D585A1BC0962200406ADA /* LaunchScreen.storyboard in Resources */,
 				690D58571BC0962200406ADA /* Assets.xcassets in Resources */,
 				6965FFD51CBF4B72009D9AB0 /* RegViewController.xib in Resources */,
@@ -356,6 +359,7 @@
 				69F5809B1BC7487300656024 /* Constant.m in Sources */,
 				695FC7F41C3A1B2900AA5B24 /* ViewController.m in Sources */,
 				69764BC81C37844900509D09 /* MyMovieApp.xcdatamodeld in Sources */,
+				69466A331CC70925002B95B6 /* UserMovieCollectionHeaderView.m in Sources */,
 				690D58491BC0962200406ADA /* main.m in Sources */,
 				6946E5D01CB330F0007546ED /* SearchResultTableViewCell.m in Sources */,
 			);
