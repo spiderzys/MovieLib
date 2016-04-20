@@ -20,16 +20,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_userPath];
-    NSString *username = [dict valueForKey:@"username"];
-    NSString *session_id = [dict valueForKey:@"session_id"];
-    if([self trySessionId:session_id username:username]){
-        _userLabel.text = username;
-        [self showUserList];
-    }
-    else{
-        [self signIn];
-    }
+    [self tryLogin];
     
     
 }
@@ -45,9 +36,9 @@
     _userPath = [basePath stringByAppendingPathComponent:@"user.plist"];
     [[_userLabel layer] setCornerRadius:5.0f];
     [[_userLabel layer] setMasksToBounds:YES];
-    _headTitleArray = @[@"Movies you more highly valued",@"Movies you gave approximate rate",@"Movies you less valued"];
-    [_userMovieCollectionView registerClass: [UserMovieCollectionHeaderView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"head"];
+    _headTitleArray = @[@"Rated more:",@"Approximate rate:",@"Rated less:"];
     [_userMovieCollectionView registerNib:[UINib nibWithNibName:@"UserMovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+    _sessionIdOk = NO;
 }
 
 
@@ -70,7 +61,18 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 8;
+    if (section==0) {
+        return _higherRatingList.count;
+    }
+    else if (section==1) {
+        return _approxRatingList.count;
+    }
+    else if (section==2) {
+        return _lowerRatingList.count;
+    }
+    else {
+        return _NARatingList.count;
+    }
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -78,34 +80,117 @@
     
   
    UserMovieCollectionViewCell * customCell = [_userMovieCollectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-   
+    NSDictionary *movie;
+    if (indexPath.section==0) {
+        movie = [_higherRatingList objectAtIndex:indexPath.row];
+    }
+    else if (indexPath.section == 1) {
+        movie = [_approxRatingList objectAtIndex:indexPath.row];
+    }
+    else if (indexPath.section == 2) {
+        movie = [_lowerRatingList objectAtIndex:indexPath.row];
+    }
+    else{
+        movie = [_NARatingList objectAtIndex:indexPath.row];
+    }
+  
+    NSString *poster_path = [movie valueForKey:@"poster_path"];
+    poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (data) {
+            UIImage *image = [UIImage imageWithData:data];
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UserMovieCollectionViewCell *updateCell =(UserMovieCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+                    if (updateCell)
+                        updateCell.cellImageView.image = image;
+                    NSLog(@"%f",updateCell.frame.size.height);
+                    
+                    
+                });
+            }
+        }
+    }];
+    [task resume];
     
-    
+
     return customCell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     
-    UserMovieCollectionHeaderView *headerView = [_userMovieCollectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"head" forIndexPath:indexPath];
+    UserMovieCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"head" forIndexPath:indexPath];
     if(headerView){
-        UILabel *headLabel = [[UILabel alloc]initWithFrame:headerView.frame];
         NSString *title = [_headTitleArray objectAtIndex:indexPath.section];
-        [headLabel setText:title];
-        [headerView addSubview:headLabel];
-       
+        [headerView.headerLabel setText:title];
     }
-    return headerView ;
+    return headerView;
 }
+
+-(void)initRatingListFromUrl:(NSURL*)url{
+    NSArray *temp = [self getDataFromUrl:url withKey:@"results" LimitPages:0];
+    NSLog(@"%@",temp);
+    _NARatingList = [NSMutableArray array];
+    _approxRatingList = [NSMutableArray array];
+    _higherRatingList = [NSMutableArray array];
+    _lowerRatingList = [NSMutableArray array];
+    for (NSDictionary *movie in temp) {
+        NSNumber *rating = [movie valueForKey:@"rating"];
+        NSNumber *vote_average = [movie valueForKey:@"vote_average"];
+        if (rating.floatValue == 0) {
+            
+            [_NARatingList addObject:movie];
+        }
+        else if (rating.floatValue >= 1.3* vote_average.floatValue & rating.floatValue >1+ vote_average.floatValue ) {
+            
+            [_higherRatingList addObject:movie];
+        }
+        else if (vote_average.floatValue >= 1.3* rating.floatValue & vote_average.floatValue >1+ rating.floatValue ) {
+            
+            [_lowerRatingList addObject:movie];
+        }
+        else{
+            NSLog(@"!!");
+            [_approxRatingList addObject:movie];
+        }
+        
+    }
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+      {
+          float height = self.view.frame.size.height;
+          return CGSizeMake(height*0.18	, height*0.24);
+      }
+
+-(void)resetRatingList{
+    _lowerRatingList = nil;
+    _higherRatingList = nil;
+    _approxRatingList = nil;
+    _NARatingList = nil;
+}
+
 //-------------------------------------login part------------------------------------
 
 
 
 
-
-
-
-
+-(void)tryLogin{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_userPath];
+    NSString *username = [dict valueForKey:@"username"];
+    NSString *session_id = [dict valueForKey:@"session_id"];
+    if([self trySessionId:session_id username:username]){
+        _userLabel.text = username;
+        NSLog(@"%@,%@",_higherRatingList,_approxRatingList);
+        [_userMovieCollectionView reloadData];
+    }
+    else{
+        [self signIn];
+    }
+}
 
 
 
@@ -113,15 +198,19 @@
 -(BOOL)trySessionId:(NSString*)sessionId username:(NSString*)username{
     
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    NSString *requestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
-    NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:requestString]];
+    _ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
+    NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:_ratingRequestString]];
     [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
-        NSLog(@"%@",requestString);
+     //   NSLog(@"%@",requestString);
         NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         NSLog(@"%@",rateResult);
-       
         if([rateResult objectForKey:@"results"]){
+            if(_sessionIdOk == NO){
+                
+                [self initRatingListFromUrl:[NSURL URLWithString:_ratingRequestString]];
+            }
             _sessionIdOk = YES;
+            
         }
         else{
             _sessionIdOk = NO;
@@ -210,7 +299,7 @@
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     if(_session_id){
         _userLabel.text = username;
-        [self showUserList];
+        [self trySessionId:_session_id username:username];
         [self updateSessionId:_session_id username:username];
         
     }
@@ -251,6 +340,10 @@
 }
 
 - (IBAction)logout:(id)sender {
+    _session_id = nil;
+    [self clearSessionId];
+    [self.tabBarController setSelectedIndex:0];
+    [self resetRatingList];
 }
 
 

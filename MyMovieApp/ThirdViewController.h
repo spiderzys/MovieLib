@@ -22,4 +22,17 @@
 
 
 @property NSArray* headTitleArray;
+
+@property NSMutableArray *ratingList;
+
+@property NSMutableArray *higherRatingList;
+
+@property NSMutableArray *lowerRatingList;
+
+@property NSMutableArray *approxRatingList;
+
+@property NSMutableArray *NARatingList;
+
+
+@property NSString *ratingRequestString;
 @end
