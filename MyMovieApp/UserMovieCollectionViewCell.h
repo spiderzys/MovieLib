@@ -12,3 +12,4 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
 @end
+

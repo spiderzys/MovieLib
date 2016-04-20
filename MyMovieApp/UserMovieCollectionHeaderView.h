@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UserMovieCollectionHeaderView : UICollectionReusableView
-@property (weak, nonatomic) IBOutlet UILabel *headerLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *headLabel;
 
 @end
