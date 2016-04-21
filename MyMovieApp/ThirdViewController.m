@@ -26,17 +26,14 @@
 }
 
 
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     _userPath = [basePath stringByAppendingPathComponent:@"user.plist"];
-    [[_userLabel layer] setCornerRadius:5.0f];
+    [[_userLabel layer] setCornerRadius:10.0f];
     [[_userLabel layer] setMasksToBounds:YES];
-    _headTitleArray = @[@"Rated more:",@"Approximate rate:",@"Rated less:"];
+    _headTitleArray = @[@"Movies you Rated higher:",@"Approximate rate:",@"Movies you Rated lower:",@"Do the following movies deserve high rates indeed?",@"The following movies are terrible! Do you agree?",@"Few comments for these. Could you contribute?"];
     [_userMovieCollectionView registerNib:[UINib nibWithNibName:@"UserMovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     _sessionIdOk = NO;
 }
@@ -55,7 +52,7 @@
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 3;
+    return 6;
 }
 
 
@@ -70,8 +67,14 @@
     else if (section==2) {
         return _lowerRatingList.count;
     }
-    else {
-        return _NARatingList.count;
+    else if (section==3) {
+        return _niceMovieList.count;
+    }
+    else if (section==4){
+        return _badMovieList.count;
+    }
+    else{
+        return _needRatingMovieList.count;
     }
 }
 
@@ -90,9 +93,17 @@
     else if (indexPath.section == 2) {
         movie = [_lowerRatingList objectAtIndex:indexPath.row];
     }
-    else{
-        movie = [_NARatingList objectAtIndex:indexPath.row];
+    
+    else if (indexPath.section == 3) {
+        movie = [_niceMovieList objectAtIndex:indexPath.row];
     }
+    else if (indexPath.section == 4) {
+        movie = [_badMovieList objectAtIndex:indexPath.row];
+    }
+    else if (indexPath.section == 5) {
+        movie = [_needRatingMovieList objectAtIndex:indexPath.row];
+    }
+    
   
     NSString *poster_path = [movie valueForKey:@"poster_path"];
     poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
@@ -104,13 +115,12 @@
                     UserMovieCollectionViewCell *updateCell =(UserMovieCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
                     if (updateCell)
                         updateCell.cellImageView.image = image;
-                    NSLog(@"%f",updateCell.frame.size.height);
-                    
                     
                 });
             }
         }
     }];
+    
     [task resume];
     
 
@@ -124,38 +134,73 @@
     if(headerView){
         NSString *title = [_headTitleArray objectAtIndex:indexPath.section];
         [headerView.headerLabel setText:title];
+       
     }
     return headerView;
 }
 
 -(void)initRatingListFromUrl:(NSURL*)url{
     NSArray *temp = [self getDataFromUrl:url withKey:@"results" LimitPages:0];
-    NSLog(@"%@",temp);
-    _NARatingList = [NSMutableArray array];
+    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
+    temp = [[NSSet setWithArray:temp] allObjects];
+    
     _approxRatingList = [NSMutableArray array];
     _higherRatingList = [NSMutableArray array];
     _lowerRatingList = [NSMutableArray array];
     for (NSDictionary *movie in temp) {
         NSNumber *rating = [movie valueForKey:@"rating"];
         NSNumber *vote_average = [movie valueForKey:@"vote_average"];
-        if (rating.floatValue == 0) {
-            
-            [_NARatingList addObject:movie];
-        }
-        else if (rating.floatValue >= 1.3* vote_average.floatValue & rating.floatValue >1+ vote_average.floatValue ) {
+        
+        if (rating.floatValue >ratingGap+ vote_average.floatValue) {
             
             [_higherRatingList addObject:movie];
         }
-        else if (vote_average.floatValue >= 1.3* rating.floatValue & vote_average.floatValue >1+ rating.floatValue ) {
+        else if (vote_average.floatValue >ratingGap+ rating.floatValue ) {
             
             [_lowerRatingList addObject:movie];
         }
         else{
-            NSLog(@"!!");
             [_approxRatingList addObject:movie];
         }
         
+        
     }
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy"];
+    NSString *yearString = [formatter stringFromDate:[NSDate date]];
+    
+    
+    
+    NSString *niceMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.gte=8&sort_by=vote_average.desc&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
+    temp = [self getDataFromUrl:[NSURL URLWithString:niceMovieRequestString] withKey:@"results" LimitPages:0];
+    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
+    _niceMovieList = [NSMutableArray array];
+    for (NSDictionary *movie in temp) {
+        [_niceMovieList addObject:movie];
+        
+    }
+    
+    
+    
+    NSString *badMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.lte=3&sort_by=vote_average.desc&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
+    temp = [self getDataFromUrl:[NSURL URLWithString:badMovieRequestString] withKey:@"results" LimitPages:0];
+    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
+    _badMovieList = [NSMutableArray array];
+    for (NSDictionary *movie in temp) {
+        [_badMovieList addObject:movie];
+    }
+    
+    NSString *needRatingMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&sort_by=popularity.desc&vote_count.lte=10",movieDiscoverWeb,APIKey,yearString];
+    temp = [self getDataFromUrl:[NSURL URLWithString:needRatingMovieRequestString] withKey:@"results" LimitPages:1];
+    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
+    _needRatingMovieList = [NSMutableArray array];
+    for (NSDictionary *movie in temp) {
+        [_needRatingMovieList addObject:movie];
+    }
+    
+    
+    
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -166,11 +211,15 @@
           return CGSizeMake(height*0.18	, height*0.24);
       }
 
+
+
 -(void)resetRatingList{
     _lowerRatingList = nil;
     _higherRatingList = nil;
     _approxRatingList = nil;
-    _NARatingList = nil;
+    _badMovieList = nil;
+    _niceMovieList = nil;
+    _needRatingMovieList = nil;
 }
 
 //-------------------------------------login part------------------------------------
@@ -183,15 +232,21 @@
     NSString *username = [dict valueForKey:@"username"];
     NSString *session_id = [dict valueForKey:@"session_id"];
     if([self trySessionId:session_id username:username]){
+       
         _userLabel.text = username;
-        NSLog(@"%@,%@",_higherRatingList,_approxRatingList);
-        [_userMovieCollectionView reloadData];
     }
     else{
         [self signIn];
     }
 }
 
+-(void)reloadRatingList{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
+        _userMovieCollectionView.hidden = YES;
+        [_userMovieCollectionView reloadData];
+        _userMovieCollectionView.hidden = NO;
+    }];
+}
 
 
 
@@ -201,13 +256,12 @@
     _ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
     NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:_ratingRequestString]];
     [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
-     //   NSLog(@"%@",requestString);
         NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        NSLog(@"%@",rateResult);
         if([rateResult objectForKey:@"results"]){
             if(_sessionIdOk == NO){
                 
                 [self initRatingListFromUrl:[NSURL URLWithString:_ratingRequestString]];
+                [self reloadRatingList];
             }
             _sessionIdOk = YES;
             
@@ -222,7 +276,6 @@
     return _sessionIdOk;
     
 }
-
 
 
 
@@ -277,9 +330,6 @@
             NSString* login = [NSString stringWithFormat:@"https://api.themoviedb.org/3/authentication/token/validate_with_login?%@&request_token=%@&username=%@&password=%@",APIKey,requestToken,username,password];
             NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:login]];
             [[[NSURLSession sharedSession] dataTaskWithRequest:loginRequest completionHandler:^(NSData *data2,NSURLResponse *response,NSError *error){
-                NSDictionary *loginResult = [NSJSONSerialization JSONObjectWithData:data2 options:0 error:nil];
-                NSLog(@"%@",loginResult);
-                
                 NSString *session = [NSString stringWithFormat:@"%@?%@&request_token=%@",sessionRequestUrl,APIKey,requestToken];
                 NSURLRequest *sessionRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:session]];
                 [[[NSURLSession sharedSession] dataTaskWithRequest:sessionRequest completionHandler:^(NSData *data3,NSURLResponse *response,NSError *error){
@@ -342,8 +392,11 @@
 - (IBAction)logout:(id)sender {
     _session_id = nil;
     [self clearSessionId];
-    [self.tabBarController setSelectedIndex:0];
     [self resetRatingList];
+    _userLabel.text = @"Guest";
+    [self.tabBarController setSelectedIndex:0];
+    _sessionIdOk = NO;
+    
 }
 
 

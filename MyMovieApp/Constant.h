@@ -25,4 +25,5 @@ extern NSString * const tokenRequestUrl;
 extern NSString * const regRequestUrl;
 extern NSString * const sessionRequestUrl;
 extern NSString * const rateMovieUrl;
+extern float ratingGap;
 #endif /* Constant_h */

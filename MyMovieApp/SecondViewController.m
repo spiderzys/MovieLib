@@ -17,14 +17,20 @@
 @implementation SecondViewController
 
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    UITabBarController *tab = self.tabBarController;
+    FirstViewController *first = [tab.viewControllers objectAtIndex:0];
+    
+    [self.backImageView setImage:first.backImageView.image];
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_searchResultTableView registerNib:[UINib nibWithNibName:@"SearchResultTableViewCell" bundle:nil] forCellReuseIdentifier:@"SearchResultTableViewCell"];
     self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
-    UITabBarController *tab = self.tabBarController;
-    FirstViewController *first = [tab.viewControllers objectAtIndex:0];
-   
-    [self.backImageView setImage:first.backImageView.image];
+    
     [self.view addSubview:self.backImageView];
     [self.view sendSubviewToBack:self.backImageView];
     self.backImageView.alpha=0.2;
@@ -235,15 +241,8 @@
     [searchBar resignFirstResponder];
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    
-    [super viewDidAppear:animated];
-    
-    
-    //NSURL *url = [NSURL URLWithString:@"http://api.themoviedb.org/3/search/movie?api_key=3c9140cda64a622c6cb5feb6c2689164&query=kids"];
-    //  NSArray *temp = [self getDataFromUrl:url withKey:@"results"];
-    
-}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -29,10 +29,11 @@
                                     <action selector="play:" destination="9pv-A4-QxB" eventType="touchDown" id="a2w-6G-hml"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="ddddddd " translatesAutoresizingMaskIntoConstraints="NO" id="faK-my-Dut">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faK-my-Dut">
                                 <rect key="frame" x="0.0" y="220" width="600" height="331"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" red="0.41923148560000001" green="0.3475793049" blue="0.57389152489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27f-H0-V5i">
@@ -109,17 +110,17 @@
                                     <action selector="logout:" destination="kMB-Vf-l3z" eventType="touchUpInside" id="dw4-4q-lrn"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOo-dq-Nw8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOo-dq-Nw8">
                                 <rect key="frame" x="90" y="106" width="420" height="30"/>
                                 <color key="backgroundColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="c7L-My-Non">
-                                <rect key="frame" x="20" y="136" width="560" height="415"/>
+                            <collectionView hidden="YES" clipsSubviews="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="c7L-My-Non">
+                                <rect key="frame" x="4" y="136" width="592" height="415"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="XEt-zP-7Pm">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="XEt-zP-7Pm">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="200" height="30"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -127,17 +128,17 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" reuseIdentifier="head" id="H0h-jo-YWy" customClass="UserMovieCollectionHeaderView">
-                                    <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="592" height="30"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gga-8V-KCS">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="592" height="30"/>
+                                            <color key="backgroundColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" none="YES"/>
                                             </accessibility>
                                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
-                                            <color key="textColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -166,9 +167,9 @@
                             <constraint firstItem="rOo-dq-Nw8" firstAttribute="centerY" secondItem="LnF-yJ-thy" secondAttribute="centerY" id="DuJ-XN-qF7"/>
                             <constraint firstItem="c7L-My-Non" firstAttribute="top" secondItem="rOo-dq-Nw8" secondAttribute="bottom" id="KiK-fb-ogG"/>
                             <constraint firstItem="LnF-yJ-thy" firstAttribute="top" secondItem="DVz-3n-y3c" secondAttribute="bottom" id="M01-ux-nyz"/>
-                            <constraint firstItem="c7L-My-Non" firstAttribute="leading" secondItem="ZaB-df-aPo" secondAttribute="leadingMargin" id="Mum-qp-PyP"/>
+                            <constraint firstItem="c7L-My-Non" firstAttribute="leading" secondItem="ZaB-df-aPo" secondAttribute="leadingMargin" constant="-16" id="Mum-qp-PyP"/>
                             <constraint firstItem="DVz-3n-y3c" firstAttribute="leading" secondItem="ZaB-df-aPo" secondAttribute="leadingMargin" constant="-20" id="OiQ-7P-89f"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="c7L-My-Non" secondAttribute="trailing" id="XYD-0h-G6H"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="c7L-My-Non" secondAttribute="trailing" constant="-16" id="XYD-0h-G6H"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DVz-3n-y3c" secondAttribute="trailing" constant="-20" id="anU-wf-i11"/>
                             <constraint firstItem="pOd-fG-Fb9" firstAttribute="top" secondItem="c7L-My-Non" secondAttribute="bottom" id="fCo-su-jeg"/>
                             <constraint firstItem="LnF-yJ-thy" firstAttribute="leading" secondItem="ZaB-df-aPo" secondAttribute="leadingMargin" constant="-10" id="hB7-Dh-qeZ"/>
@@ -225,11 +226,6 @@
                                     <outletCollection property="gestureRecognizers" destination="Gcf-iD-omM" appends="YES" id="yAc-wa-0FL"/>
                                 </connections>
                             </label>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FCs-Db-v8q">
-                                <rect key="frame" x="0.0" y="75" width="600" height="476"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mark" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQi-qh-cH7">
                                 <rect key="frame" x="147" y="55" width="36" height="20"/>
                                 <gestureRecognizers/>
@@ -240,6 +236,11 @@
                                     <outletCollection property="gestureRecognizers" destination="IRi-Sc-pxH" appends="YES" id="Vs6-Zw-QrF"/>
                                 </connections>
                             </label>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FCs-Db-v8q">
+                                <rect key="frame" x="0.0" y="75" width="600" height="476"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

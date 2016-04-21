@@ -31,8 +31,13 @@
 
 @property NSMutableArray *approxRatingList;
 
-@property NSMutableArray *NARatingList;
+@property NSMutableArray *niceMovieList;
 
+@property NSMutableArray *badMovieList;
+
+@property NSMutableArray *needRatingMovieList;
 
 @property NSString *ratingRequestString;
+
+
 @end

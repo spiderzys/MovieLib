@@ -9,7 +9,7 @@
 
 #import "Constant.h"
 
-NSString * const movieDiscoverWeb = @"http://api.themoviedb.org/3/discover/movie?api_key=3c9140cda64a622c6cb5feb6c2689164";
+NSString * const movieDiscoverWeb = @"http://api.themoviedb.org/3/discover/movie?";
 NSString * const movieWeb = @"http://api.themoviedb.org/3/movie/";
 NSString * const APIKey = @"api_key=3c9140cda64a622c6cb5feb6c2689164";
 NSString * const movieSearchWeb = @"http://api.themoviedb.org/3/search/movie?api_key=3c9140cda64a622c6cb5feb6c2689164";
@@ -21,4 +21,5 @@ NSString * const tokenRequestUrl = @"http://api.themoviedb.org/3/authentication/
 NSString * const regRequestUrl = @"https://www.themoviedb.org/account/signup";
 NSString * const sessionRequestUrl = @"http://api.themoviedb.org/3/authentication/session/new";
 NSString * const rateMovieUrl = @"http://api.themoviedb.org/3/account/";
+float ratingGap = 1.0;
 //id/rated/movies";
