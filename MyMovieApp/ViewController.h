@@ -18,7 +18,8 @@
 
 @interface ViewController : UIViewController<YTPlayerViewDelegate>
 @property UIImageView *backImageView;
-
+@property BOOL sessionIdOk;
+@property NSString* resourcePath;
 -(NSArray*)getDataFromUrl:(NSURL*)url withKey:(NSString*) key LimitPages:(int)max;
 -(NSMutableArray*)removeUndesiredDataFromResults:(NSArray *)results WithNullValueForKey:(NSString*)key;
 

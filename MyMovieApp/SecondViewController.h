@@ -25,7 +25,7 @@
 
 @property NSString *keywords;
 
-@property NSMutableArray *result;
+@property NSMutableArray *searchResult;
 
 @end
 

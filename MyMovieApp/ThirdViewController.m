@@ -20,7 +20,10 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self tryLogin];
+    if([self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]){
+        [self tryLogin];
+    }
+    
     
     
 }
@@ -35,7 +38,7 @@
     [[_userLabel layer] setMasksToBounds:YES];
     _headTitleArray = @[@"Movies you Rated higher:",@"Approximate rate:",@"Movies you Rated lower:",@"Do the following movies deserve high rates indeed?",@"The following movies are terrible! Do you agree?",@"Few comments for these. Could you contribute?"];
     [_userMovieCollectionView registerNib:[UINib nibWithNibName:@"UserMovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
-    _sessionIdOk = NO;
+    self.sessionIdOk = NO;
 }
 
 
@@ -140,14 +143,17 @@
 }
 
 -(void)initRatingListFromUrl:(NSURL*)url{
-    NSArray *temp = [self getDataFromUrl:url withKey:@"results" LimitPages:0];
-    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
-    temp = [[NSSet setWithArray:temp] allObjects];
+    NSDate *start = [NSDate date];
+
+    
+    NSArray *ratedList = [self getDataFromUrl:url withKey:@"results" LimitPages:0];
+    ratedList = [self removeUndesiredDataFromResults:ratedList WithNullValueForKey:@"poster_path"];
+    ratedList = [[NSSet setWithArray:ratedList] allObjects];
     
     _approxRatingList = [NSMutableArray array];
     _higherRatingList = [NSMutableArray array];
     _lowerRatingList = [NSMutableArray array];
-    for (NSDictionary *movie in temp) {
+    for (NSDictionary *movie in ratedList) {
         NSNumber *rating = [movie valueForKey:@"rating"];
         NSNumber *vote_average = [movie valueForKey:@"vote_average"];
         
@@ -172,36 +178,45 @@
     
     
     NSString *niceMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.gte=8&sort_by=vote_average.desc&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
-    temp = [self getDataFromUrl:[NSURL URLWithString:niceMovieRequestString] withKey:@"results" LimitPages:0];
-    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
-    _niceMovieList = [NSMutableArray array];
-    for (NSDictionary *movie in temp) {
-        [_niceMovieList addObject:movie];
-        
-    }
+    NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:niceMovieRequestString] withKey:@"results" LimitPages:0];
+    _niceMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     
     
     
     NSString *badMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.lte=3&sort_by=vote_average.desc&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
     temp = [self getDataFromUrl:[NSURL URLWithString:badMovieRequestString] withKey:@"results" LimitPages:0];
-    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
-    _badMovieList = [NSMutableArray array];
-    for (NSDictionary *movie in temp) {
-        [_badMovieList addObject:movie];
-    }
+    _badMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
+    
+    
     
     NSString *needRatingMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&sort_by=popularity.desc&vote_count.lte=10",movieDiscoverWeb,APIKey,yearString];
     temp = [self getDataFromUrl:[NSURL URLWithString:needRatingMovieRequestString] withKey:@"results" LimitPages:1];
-    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
-    _needRatingMovieList = [NSMutableArray array];
-    for (NSDictionary *movie in temp) {
-        [_needRatingMovieList addObject:movie];
-    }
+    _needRatingMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     
     
+    NSDate *methodFinish = [NSDate date];
+    NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start];
     
+    NSLog(@"Execution Time: %f", executionTime);
     
 }
+-(NSMutableArray*)nonRatedListFrom:(NSArray*)temp ExcludingRatedList:(NSArray*)ratedList{
+    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
+    NSMutableArray *nonRatedList = [NSMutableArray array];
+    for (NSDictionary *movie in temp) {
+        [nonRatedList addObject:movie];
+     
+        for (NSDictionary *ratedMovie in ratedList) {
+            if([movie isEqualToDictionary:ratedMovie]){
+                [nonRatedList removeObject:movie];
+            }
+        }
+      
+        
+    }
+    return nonRatedList;
+}
+
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
@@ -258,22 +273,22 @@
     [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
         NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         if([rateResult objectForKey:@"results"]){
-            if(_sessionIdOk == NO){
+            if(self.sessionIdOk == NO){
                 
                 [self initRatingListFromUrl:[NSURL URLWithString:_ratingRequestString]];
                 [self reloadRatingList];
             }
-            _sessionIdOk = YES;
+            self.sessionIdOk = YES;
             
         }
         else{
-            _sessionIdOk = NO;
+            self.sessionIdOk = NO;
         }
         dispatch_semaphore_signal(semaphore);
     }]resume];
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     
-    return _sessionIdOk;
+    return self.sessionIdOk;
     
 }
 
@@ -284,7 +299,9 @@
 -(void)signIn{
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Registration and sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    alertController.view.tintColor = _userLabel.backgroundColor;
     UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"sign in" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+       
         UITextField *usernameField = alertController.textFields.firstObject;
         UITextField *passwordField = alertController.textFields.lastObject;
         NSString* username = usernameField.text;
@@ -346,7 +363,8 @@
         }
         
     }]resume];
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    NSLog(@"%@",_session_id);
+    dispatch_semaphore_wait(semaphore, 3);
     if(_session_id){
         _userLabel.text = username;
         [self trySessionId:_session_id username:username];
@@ -395,7 +413,7 @@
     [self resetRatingList];
     _userLabel.text = @"Guest";
     [self.tabBarController setSelectedIndex:0];
-    _sessionIdOk = NO;
+    self.sessionIdOk = NO;
     
 }
 

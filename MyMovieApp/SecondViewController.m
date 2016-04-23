@@ -8,7 +8,7 @@
 
 #import "SecondViewController.h"
 #import "SearchResultTableViewCell.h"
-#import "TableCellDetailViewController.h"
+#import "MovieDetailViewController.h"
 #import "FirstViewController.h"
 @interface SecondViewController ()
 
@@ -52,7 +52,7 @@
     _markLabel.userInteractionEnabled = NO;
     _markLabel.textColor = _dateLabel.textColor;
     _dateLabel.textColor = [UIColor blackColor];
-    if(_result!=nil){
+    if(_searchResult!=nil){
         [self sortResult];
     }
 }
@@ -64,7 +64,7 @@
     _dateLabel.textColor = _markLabel.textColor;
     _markLabel.textColor = [UIColor blackColor];
     
-    if(_result!=nil){
+    if(_searchResult!=nil){
         [self sortResult];
     }
 }
@@ -91,12 +91,12 @@
         NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:_searchString] withKey:@"results" LimitPages:0];
         
         if (temp == nil) {
-            _result = nil;
+            _searchResult = nil;
             
             [self singleOptionAlertWithMessage:@"no data for this search. Check your input or network"];
         }
         else{
-            _result = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"backdrop_path"]; // remove movies without post.
+            _searchResult = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"backdrop_path"]; // remove movies without post.
             [self sortResult];
             _searchResultTableView.hidden = NO;
             
@@ -118,8 +118,8 @@
                                                      ascending:NO];
     }
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    NSArray *sorted = [_result sortedArrayUsingDescriptors:sortDescriptors];
-    _result = [sorted mutableCopy];
+    NSArray *sorted = [_searchResult sortedArrayUsingDescriptors:sortDescriptors];
+    _searchResult = [sorted mutableCopy];
     UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     activity.center = self.view.center;
     activity.hidesWhenStopped = YES;
@@ -145,48 +145,17 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    TableCellDetailViewController *viewController = [[TableCellDetailViewController alloc]initWithNibName:@"TableCellDetailViewController" bundle:nil];
-    
+   
+    MovieDetailViewController *viewController = [[MovieDetailViewController alloc]initWithNibName:@"MovieDetailViewController" bundle:nil];
     [self presentViewController:viewController animated:YES completion:nil];
+    NSDictionary *movie = [_searchResult objectAtIndex:indexPath.row];
+    [viewController loadDataFromMovie:movie];
     
-    NSDictionary *movie = [_result objectAtIndex:indexPath.row];
-    NSNumber *mark = [movie valueForKey:@"vote_average"];
-    SearchResultTableViewCell *cell = [self.searchResultTableView cellForRowAtIndexPath:indexPath];
-    [viewController.backImageView setImage:cell.backPosterImageView.image];
-    NSString *title = cell.infoLabel.text;
-    NSString *info = nil;
-    if(mark.floatValue == 0){
-        info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A  \n\n%@ ",title, [movie valueForKey:@"release_date"], [movie valueForKey:@"overview"]];
-    }
-    else{
-        info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f  \n\n%@ ",title, [movie valueForKey:@"release_date"], [mark floatValue], [movie valueForKey:@"overview"]];
-    }
-    [viewController.movieInfo setText:info];
-    UIImageView *view = [[UIImageView alloc]initWithFrame:viewController.view.frame];
-    [view setContentMode:UIViewContentModeScaleAspectFill];
-    view.clipsToBounds = YES;
-    view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    view.alpha = 0.2;
-    [viewController.view addSubview:view];
-    [viewController.view sendSubviewToBack:view];
-    
-    
-    NSString *posterPath = [movie valueForKey:@"poster_path"];
-    if(![posterPath isEqual:[NSNull null]]){
-        posterPath = [imdbPosterWeb stringByAppendingString:posterPath];
-        NSData *poster = [NSData dataWithContentsOfURL:[NSURL URLWithString:posterPath]];
-        
-        
-        self.backImageView.image = [UIImage imageWithData:poster];
-        view.image = self.backImageView.image;
-        
-    }
-    [viewController.movieInfo setContentOffset:CGPointZero animated:NO];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _result.count;
+    return _searchResult.count;
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -196,13 +165,12 @@
     
     SearchResultTableViewCell *customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
     if (!customCell) {
-        
-    //    [_searchResultTableView registerNib:[UINib nibWithNibName:@"SearchResultTableViewCell" bundle:nil] forCellReuseIdentifier:@"SearchResultTableViewCell"];
+    
         customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
     }
     
     
-    NSDictionary *movie = [_result objectAtIndex:indexPath.row];
+    NSDictionary *movie = [_searchResult objectAtIndex:indexPath.row];
     NSString *backPath = [movie valueForKey:@"backdrop_path"];
     backPath = [imdbPosterWeb stringByAppendingString:backPath];
     customCell.infoLabel.text = [movie valueForKey:@"title"];

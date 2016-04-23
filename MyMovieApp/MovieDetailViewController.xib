@@ -3,12 +3,11 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TableCellDetailViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieDetailViewController">
             <connections>
-                <outlet property="backImageView" destination="bJf-rz-NeP" id="pFU-Xr-3B6"/>
+                <outlet property="movieBackdropCollectionView" destination="H0t-fe-LEF" id="q3d-WO-kOO"/>
                 <outlet property="movieInfo" destination="AUC-V7-FMC" id="OhC-7u-thJ"/>
                 <outlet property="navigationBar" destination="5Tg-W9-fj9" id="JnJ-Qh-ZJz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="9MK-Tc-nik"/>
@@ -20,7 +19,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Tg-W9-fj9">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="a9h-tl-qSh"/>
+                    </constraints>
+                    <color key="tintColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <textAttributes key="titleTextAttributes">
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                        <color key="textColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                    </textAttributes>
                     <items>
                         <navigationItem id="8Rg-sl-wbG">
                             <barButtonItem key="leftBarButtonItem" width="20" systemItem="reply" id="dnS-RB-2bw">
@@ -29,74 +37,53 @@
                                     <action selector="turnBack:" destination="-1" id="0Hi-3R-LaQ"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" title="Rate" id="iCm-L2-j6O">
+                                <color key="tintColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bJf-rz-NeP">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="338"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="bJf-rz-NeP" secondAttribute="height" multiplier="396:223" priority="999" id="kQa-ef-tZV"/>
-                        <constraint firstAttribute="height" constant="160" id="ohI-El-Hfj"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="ohI-El-Hfj"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=compact">
-                        <mask key="constraints">
-                            <exclude reference="kQa-ef-tZV"/>
-                            <exclude reference="ohI-El-Hfj"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="451"/>
-                    </variation>
-                </imageView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AUC-V7-FMC">
-                    <rect key="frame" x="0.0" y="338" width="600" height="262"/>
+                    <rect key="frame" x="0.0" y="255" width="600" height="345"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="240" id="xHJ-4T-DeW">
-                            <variation key="heightClass=compact" constant="200"/>
-                        </constraint>
-                    </constraints>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="xHJ-4T-DeW"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=compact">
-                        <mask key="constraints">
-                            <include reference="xHJ-4T-DeW"/>
-                        </mask>
-                    </variation>
                     <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                         <rect key="frame" x="0.0" y="451" width="800" height="349"/>
                     </variation>
                 </textView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="H0t-fe-LEF">
+                    <rect key="frame" x="-16" y="55" width="632" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="1CQ-0D-IRB"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bh2-hw-HqF">
+                        <size key="itemSize" width="50" height="200"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="hZG-Bq-1Uo"/>
+                        <outlet property="delegate" destination="-1" id="NsO-eT-IzV"/>
+                    </connections>
+                </collectionView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="bJf-rz-NeP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="71p-ZS-o6f"/>
                 <constraint firstItem="AUC-V7-FMC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="96P-sB-0oN"/>
-                <constraint firstItem="bJf-rz-NeP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GPp-he-Y5v"/>
                 <constraint firstItem="5Tg-W9-fj9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pyd-xf-hyE"/>
                 <constraint firstAttribute="bottom" secondItem="AUC-V7-FMC" secondAttribute="bottom" id="YAL-E9-ODd"/>
+                <constraint firstAttribute="trailing" secondItem="H0t-fe-LEF" secondAttribute="trailing" constant="-16" id="baG-He-TNO"/>
                 <constraint firstAttribute="trailing" secondItem="5Tg-W9-fj9" secondAttribute="trailing" id="dax-xd-soa"/>
-                <constraint firstAttribute="trailing" secondItem="bJf-rz-NeP" secondAttribute="trailing" id="fNz-it-5eU"/>
                 <constraint firstItem="5Tg-W9-fj9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fQI-C0-kQ5"/>
+                <constraint firstItem="AUC-V7-FMC" firstAttribute="top" secondItem="H0t-fe-LEF" secondAttribute="bottom" id="hm2-EV-4qK"/>
                 <constraint firstAttribute="trailing" secondItem="AUC-V7-FMC" secondAttribute="trailing" id="nPa-BG-wYU"/>
-                <constraint firstItem="AUC-V7-FMC" firstAttribute="top" secondItem="bJf-rz-NeP" secondAttribute="bottom" id="v0m-Zh-gEi"/>
+                <constraint firstItem="H0t-fe-LEF" firstAttribute="top" secondItem="5Tg-W9-fj9" secondAttribute="bottom" id="pMv-0Z-efC"/>
+                <constraint firstItem="H0t-fe-LEF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="-16" id="sQR-Y9-T6f"/>
             </constraints>
-            <variation key="heightClass=regular-widthClass=regular">
-                <mask key="constraints">
-                    <exclude reference="v0m-Zh-gEi"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="-40" y="346"/>
         </view>
+        <tabBarItem title="Item" id="PlK-bp-JuI"/>
     </objects>
 </document>

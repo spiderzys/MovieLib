@@ -40,9 +40,6 @@
     _selectedMovie = -1;
     _scrollWeight = 0;
     _delegate = [UIApplication sharedApplication].delegate;
-    
-    [self loadScrollView];
-    
     self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
     self.backImageView.alpha = 0.2;
     [self.backImageView setContentMode:UIViewContentModeScaleAspectFill];
@@ -50,13 +47,11 @@
     self.backImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.backImageView];
     [self.view sendSubviewToBack:self.backImageView];
-    [self showInfo:0];
-    //   [_movieInfo setContentMode:UIViewContentModeScaleAspectFill];
-    //   _movieInfo.clipsToBounds = YES;
-}
-
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
+    
+    
+    
+    
+    
 }
 
 
@@ -70,64 +65,12 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if (_connected== NO) {
-        [self netAlert];
+    if(_playingMoviesRequestResult.count==0 ||_playingMoviesRequestResult == nil){
+        [self loadScrollView];
+        
     }
 }
 
-#pragma -mark ---  delegate method for scrollview
-/*
- - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
- if (_result!=nil) {
- 
- 
- int currentPage = _moviePostImage.contentOffset.x/(_scrollHeight*2/3)+10;
- 
- 
- 
- [_downLoadIndicator startAnimating];
- while (_movies.count<currentPage & _movies.count < _result.count) {
- scrollView.scrollEnabled = NO;
- [self setImageViewWithTag:_movies.count FromNet:YES];
- 
- }
- 
- scrollView.scrollEnabled = YES;
- [_downLoadIndicator stopAnimating];
- 
- }
- }
- */
-
-
-// any offset changes
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView NS_AVAILABLE_IOS(3_2){
-    
-}// any zoom scale changes
-
-// called on start of dragging (may require some time and or distance to move)
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    
-    
-    
-    
-}
-// called on finger up if the user dragged. velocity is in points/millisecond. targetContentOffset may be changed to adjust where the scroll view comes to rest
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset NS_AVAILABLE_IOS(5_0){
-    
-}
-// called on finger up if the user dragged. decelerate is true if it will continue moving afterwards
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    
-    
-}
-
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
-    
-}// called on finger up as we are moving
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    
-}// called when scroll view grinds to a halt
 
 #pragma -mark ---  delegate method for scrollview
 
@@ -150,6 +93,13 @@
         
         
     }
+    if(_playingMoviesRequestResult.count>0){
+        [self showInfo:0];
+    }
+    else{
+        [self singleOptionAlertWithMessage:@"No networkd detected, for the usage for the first time, please connect network"];
+    }
+
     
 }
 
@@ -167,7 +117,10 @@
         [self setImageWithTag:i WithData:movie.posterData];
         
     }
-    _result = [NSMutableArray arrayWithCapacity:_movies.count];
+    _playingMoviesRequestResult = [NSMutableArray arrayWithCapacity:_movies.count];
+    if (_playingMoviesRequestResult.count>0) {
+        [self netAlert];
+    }
     
 }
 
@@ -199,18 +152,18 @@
 -(void)loadFromAPI{
     _movies = [NSMutableArray array];
     [self loadMovieFromNet];
-    if (_result !=nil) {
-        _moviePostImage.contentSize = CGSizeMake(_result.count*_moviePostImage.bounds.size.height*posterRatio, _moviePostImage.bounds.size.height);
+    if (_playingMoviesRequestResult !=nil) {
+        _moviePostImage.contentSize = CGSizeMake(_playingMoviesRequestResult.count*_moviePostImage.bounds.size.height*posterRatio, _moviePostImage.bounds.size.height);
         
-        for (int i = 0;i<_result.count;i++) {
+        for (int i = 0;i<_playingMoviesRequestResult.count;i++) {
             [self setImageViewWithTag:i];
         }
         [self removeCoreData];
         
-        for (int i=0;i<_result.count;i++)
+        for (int i=0;i<_playingMoviesRequestResult.count;i++)
         {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                NSDictionary *temp = _result[i];
+                NSDictionary *temp = _playingMoviesRequestResult[i];
                 NSString *poster_path = [temp valueForKey:@"poster_path"];
                 NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -233,30 +186,25 @@
 
 -(void)loadMovieFromNet{
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; // here we create NSDateFormatter object for change the Format of date..
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *today = [dateFormatter stringFromDate:[NSDate date]];
-    NSDateComponents *components = [[NSDateComponents alloc] init];
-    [components setDay:-30];
-    NSString *lastMonth =[dateFormatter stringFromDate:[[NSCalendar currentCalendar] dateByAddingComponents:components toDate:[NSDate date] options:0]];
-    NSString *recentMovie = [NSString stringWithFormat:@"%@%@&primary_release_date.gte=%@&primary_release_date.lte=%@&sort_by=popularity.desc",movieDiscoverWeb,APIKey,lastMonth,today];
+
+    NSString *recentMovie = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc",nowPlayWeb,APIKey];
     
-    _result = [self getDataFromUrl:[NSURL URLWithString:recentMovie] withKey:@"results" LimitPages:10];
-    if (_result  == nil) {
+    _playingMoviesRequestResult = [self getDataFromUrl:[NSURL URLWithString:recentMovie] withKey:@"results" LimitPages:10];
+    if (_playingMoviesRequestResult  == nil || _playingMoviesRequestResult.count==0) {
         
         [self loadFromCoreData];
         
     }
     else{
-        _result  = [self removeUndesiredDataFromResults:_result  WithNullValueForKey:@"poster_path"]; // remove movies without post.
-       
+        _playingMoviesRequestResult  = [self removeUndesiredDataFromResults:_playingMoviesRequestResult  WithNullValueForKey:@"poster_path"]; // remove movies without post.
+        
         
         //  _result  = [_result subarrayWithRange:NSMakeRange(0, MIN(30,_result .count))];
-     
+        
         
         
         NSMutableArray *array = [NSMutableArray array];
-        for (NSDictionary *temp in _result) {
+        for (NSDictionary *temp in _playingMoviesRequestResult) {
             NSString *idn  = [temp valueForKey:@"id"];
             NSString *overview = [temp valueForKey:@"overview"];
             if (overview.length==0) {
@@ -269,7 +217,7 @@
             //   NSString *cast = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
             
             //  cast = [self getCastFromUrl:[NSURL URLWithString:cast]];
-    
+            
             NSString *poster_path = [temp valueForKey:@"poster_path"];
             poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
             NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -283,7 +231,7 @@
                                  nil];
             [array addObject:dic];
         }
-        _result = [NSArray arrayWithArray:array];
+        _playingMoviesRequestResult = [NSArray arrayWithArray:array];
     }
     
 }
@@ -294,7 +242,7 @@
 -(void)addMovieToCoreData:(int)tag{
     Movie *movie;
     movie = [_delegate createMovieObject];
-    NSDictionary *temp = _result[tag];
+    NSDictionary *temp = _playingMoviesRequestResult[tag];
     movie.idn = [temp valueForKey:@"id"];
     
     movie.overview = [temp valueForKey:@"overview"];
@@ -368,54 +316,57 @@
 }
 -(void)showInfo:(long)num{
     if(num != _selectedMovie){
-    
-    if(_connected){
-        NSDictionary *temp = [_result objectAtIndex:num];
-        float mark = [[temp valueForKey:@"vote_average" ]floatValue];
-        NSString *title = [temp valueForKey:@"title"];
-        NSString *release_date = [temp valueForKey:@"release_date"];
         
-        NSString *overview = [temp valueForKey:@"overview"];
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[temp valueForKey:@"poster_path"]]];
-        [self.backImageView setImage:[UIImage imageWithData: data]];
-        
-        NSString *idn = [temp valueForKey:@"id"];
-        NSString *cast = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
-        NSString *castList = [self getCastFromUrl:[NSURL URLWithString:cast]];
-        if(castList.length==0){
+        if(_connected){
+            NSDictionary *temp = [_playingMoviesRequestResult objectAtIndex:num];
+            float mark = [[temp valueForKey:@"vote_average" ]floatValue];
+            NSString *title = [temp valueForKey:@"title"];
+            NSString *release_date = [temp valueForKey:@"release_date"];
             
-            castList = @"N/A";
-        }
-        NSArray *castArray = [castList componentsSeparatedByString:@","];
-        
-        NSString *showCast = @"";
-        for (NSString *name in castArray) {
-            showCast = [showCast stringByAppendingString:name];
-            if (showCast.length>maxCastLengthForDisplay) {
-                break;
+            NSString *overview = [temp valueForKey:@"overview"];
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[temp valueForKey:@"poster_path"]]];
+            [self.backImageView setImage:[UIImage imageWithData: data]];
+            
+            NSString *idn = [temp valueForKey:@"id"];
+            NSString *showCast = @"";
+            //  /*
+            NSString *cast = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
+            
+            NSString *castList = [self getCastFromUrl:[NSURL URLWithString:cast]];
+            if(castList.length==0){
+                
+                castList = @"N/A";
             }
-        }
-        
-        
-        
-        
-        if(mark==0){
-            NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A\nCast: %@  \n\n%@ ",title, release_date,showCast, overview];
-            [_movieInfo setText:info];
+            NSArray *castArray = [castList componentsSeparatedByString:@","];
+            
+            
+            for (NSString *name in castArray) {
+                showCast = [showCast stringByAppendingString:name];
+                if (showCast.length>maxCastLengthForDisplay) {
+                    break;
+                }
+            }
+            
+            //  */
+            
+            
+            if(mark==0){
+                NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A\nCast: %@  \n\n%@ ",title, release_date,showCast, overview];
+                [_movieInfo setText:info];
+            }
+            else{
+                NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f\nCast: %@ \n\n%@ ",title, release_date, mark,showCast, overview];
+                [_movieInfo setText:info];
+            }
+            _selectedMovie = num;
+            
+            
         }
         else{
-            NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f\nCast: %@ \n\n%@ ",title, release_date, mark,showCast, overview];
-            [_movieInfo setText:info];
+            [self showInfoFromCoreData:num];
         }
-        _selectedMovie = num;
-        
-        
-    }
-    else{
-        [self showInfoFromCoreData:num];
-    }
-    [_movieInfo setContentOffset:CGPointZero animated:NO];
-    [self.view sendSubviewToBack:_movieInfo];
+        [_movieInfo setContentOffset:CGPointZero animated:NO];
+        [self.view sendSubviewToBack:_movieInfo];
     }
 }
 
@@ -447,7 +398,7 @@
 }
 
 - (IBAction)play:(id)sender {
-    NSDictionary *temp = _result[_selectedMovie];
+    NSDictionary *temp = _playingMoviesRequestResult[_selectedMovie];
     [super playTrailer:[temp valueForKey:@"id"]];
 }
 

@@ -18,14 +18,12 @@
 
 @property float scrollWeight;
 
-@property NSArray *result;
+@property NSArray *playingMoviesRequestResult;
 @property long selectedMovie;
 @property BOOL connected;
 @property AppDelegate *delegate;
 
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
-
-//@property PresentViewController *presentController;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
 

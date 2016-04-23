@@ -13,7 +13,6 @@
 
 @property NSString* userPath;
 @property NSString* session_id;
-@property BOOL sessionIdOk;
 
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
 

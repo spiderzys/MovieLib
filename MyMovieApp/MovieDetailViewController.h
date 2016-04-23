@@ -7,13 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
 
-@interface TableCellDetailViewController : UIViewController
+@interface MovieDetailViewController : ViewController
 
-@property (weak, nonatomic) IBOutlet UIImageView *backImageView;
+
+@property (weak, nonatomic) IBOutlet UICollectionView *movieBackdropCollectionView;
+
 
 @property (weak, nonatomic) IBOutlet UITextView *movieInfo;
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+
+@property NSDictionary* movie;
+
+@property NSArray *movieImagesDicArray;
+
+-(void)loadDataFromMovie:(NSDictionary*)movie;
+
+
 
 @end

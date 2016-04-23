@@ -13,12 +13,43 @@
 @end
 
 @implementation ViewController
-@synthesize backImageView;
+//@synthesize backImageView;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    _sessionIdOk = NO;
     
     // Do any additional setup after loading the view.
+}
+-(BOOL)trySessionId:(NSString*)sessionId username:(NSString*)username{
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    NSString* ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
+    NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:ratingRequestString]];
+    [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
+        NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        if([rateResult objectForKey:@"results"]){
+           
+            _sessionIdOk = YES;
+            
+        }
+        else{
+            _sessionIdOk = NO;
+        }
+        dispatch_semaphore_signal(semaphore);
+    }]resume];
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    return _sessionIdOk;
+}
+
+-(void)tryLogin{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_resourcePath];
+    NSString *username = [dict valueForKey:@"username"];
+    NSString *session_id = [dict valueForKey:@"session_id"];
+    if([self trySessionId:session_id username:username]){
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,7 +89,7 @@
         result =[dataDic objectForKey:key];
         NSNumber *page = [dataDic objectForKey:@"total_pages"];
         if (max==0) {
-            max = [page integerValue];
+            max = [page intValue];
         }
         
         for (int i = 2; i<=[page intValue]&i<=max; i++) {
@@ -128,6 +159,41 @@
     
 }
 
+
+-(void)rateMovieWithId:(NSString*)idn Rate:(float)mark{
+    NSString *rateRequstString = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/%@/rating?",idn];
+    NSURL *URL = [NSURL URLWithString:rateRequstString];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSString* rateHTTPBody = [NSString stringWithFormat:@"{\n  \"value\": %f\n}",mark];
+    [request setHTTPBody:[rateHTTPBody dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      
+                                      if (error) {
+                                          // Handle error...
+                                          return;
+                                      }
+                                      
+                                      if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                          NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                          NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                      }
+                                      
+                                      NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      NSLog(@"Response Body:\n%@\n", body);
+                                  }];
+    [task resume];
+}
+
+
+
 -(void)playTrailer:(NSNumber*)idn{
     
     NSString *videoInquery = [NSString stringWithFormat:@"%@%@/videos?%@",movieWeb,idn,APIKey];
@@ -159,6 +225,7 @@
 
 -(void)singleOptionAlertWithMessage:(NSString *)message{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Alert" message:message preferredStyle:UIAlertControllerStyleAlert];
+    alertController.view.tintColor = [UIColor purpleColor];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
     }]];

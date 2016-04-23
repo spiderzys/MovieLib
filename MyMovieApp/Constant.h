@@ -14,6 +14,7 @@
 #define mScreenHeight   ([UIScreen mainScreen].bounds.size.height)
 #define PresentViewFrame    (CGRectMake(0, mScreenHeight-mScreenWidth/posterRatio, mScreenWidth, mScreenWidth/posterRatio))
 extern NSString * const movieDiscoverWeb;
+extern NSString * const nowPlayWeb;
 extern NSString * const movieWeb;
 extern NSString * const APIKey;
 extern CGFloat posterRatio;
@@ -26,4 +27,5 @@ extern NSString * const regRequestUrl;
 extern NSString * const sessionRequestUrl;
 extern NSString * const rateMovieUrl;
 extern float ratingGap;
+extern NSString * const movieImageUrl;
 #endif /* Constant_h */
