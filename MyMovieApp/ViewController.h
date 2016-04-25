@@ -19,7 +19,8 @@
 @interface ViewController : UIViewController<YTPlayerViewDelegate>
 @property UIImageView *backImageView;
 @property BOOL sessionIdOk;
-@property NSString* resourcePath;
+@property NSString* userResourcePath;
+@property NSString* genreResourcePath;
 -(NSArray*)getDataFromUrl:(NSURL*)url withKey:(NSString*) key LimitPages:(int)max;
 -(NSMutableArray*)removeUndesiredDataFromResults:(NSArray *)results WithNullValueForKey:(NSString*)key;
 
@@ -29,4 +30,5 @@
 -(void)showPoster:(UITapGestureRecognizer *)sender;
 -(void)playTrailer:(NSNumber*)idn;
 -(void)singleOptionAlertWithMessage:(NSString *)message;
+-(void)updateGenre;
 @end

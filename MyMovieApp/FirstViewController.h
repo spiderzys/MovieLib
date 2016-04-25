@@ -10,9 +10,10 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 
-@interface FirstViewController : ViewController<UIScrollViewDelegate>
+@interface FirstViewController : ViewController
 
-@property NSMutableArray *movies;
+
+
 @property (weak, nonatomic) IBOutlet UITextView *movieInfo;
 @property (weak, nonatomic) IBOutlet UIScrollView *moviePostImage;
 
@@ -22,9 +23,7 @@
 @property long selectedMovie;
 @property BOOL connected;
 @property AppDelegate *delegate;
-
-@property (weak, nonatomic) IBOutlet UIButton *playButton;
-
+@property NSTimer* autoScrollTimer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
 
 @end

@@ -21,6 +21,29 @@
     
     // Do any additional setup after loading the view.
 }
+
+-(void)updateGenre{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    self.genreResourcePath = [basePath stringByAppendingPathComponent:@"genre.plist"];
+    NSString *genreRequstString = [NSString stringWithFormat:@"%@%@",genreUrl,APIKey];
+    NSArray *genres = [self getDataFromUrl:[NSURL URLWithString:genreRequstString] withKey:@"genres" LimitPages:0];
+    
+    NSMutableDictionary *genreDic = [NSMutableDictionary dictionary];
+    for (NSDictionary* genreItem in genres) {
+        NSNumber *genreIdn = [genreItem valueForKey:@"id"];
+        NSString *genreId = genreIdn.description;
+        NSString *genreName = [genreItem valueForKey:@"name"];
+        [genreDic setObject:genreName forKey:genreId];
+        
+    }
+    [genreDic writeToFile: self.genreResourcePath atomically:YES];
+    
+   
+}
+
+
+
 -(BOOL)trySessionId:(NSString*)sessionId username:(NSString*)username{
     
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -44,7 +67,7 @@
 }
 
 -(void)tryLogin{
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_resourcePath];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_userResourcePath];
     NSString *username = [dict valueForKey:@"username"];
     NSString *session_id = [dict valueForKey:@"session_id"];
     if([self trySessionId:session_id username:username]){
@@ -136,7 +159,7 @@
             // }
             castList = [castList stringByAppendingString:@",  "];
         }
-        // NSLog(@"%@",castList);
+        
         return castList;
         
     }

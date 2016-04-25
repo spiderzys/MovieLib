@@ -11,7 +11,7 @@
 #import "RegViewController.h"
 #import "UserMovieCollectionViewCell.h"
 #import "UserMovieCollectionHeaderView.h"
-
+#import "MovieDetailViewController.h"
 @interface ThirdViewController ()
 
 @end
@@ -33,7 +33,7 @@
     [super viewDidLoad];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-    _userPath = [basePath stringByAppendingPathComponent:@"user.plist"];
+    self.userResourcePath = [basePath stringByAppendingPathComponent:@"user.plist"];
     [[_userLabel layer] setCornerRadius:10.0f];
     [[_userLabel layer] setMasksToBounds:YES];
     _headTitleArray = @[@"Movies you Rated higher:",@"Approximate rate:",@"Movies you Rated lower:",@"Do the following movies deserve high rates indeed?",@"The following movies are terrible! Do you agree?",@"Few comments for these. Could you contribute?"];
@@ -44,14 +44,57 @@
 
 //--------------------------collectionView part-----------------------------------------
 
--(void)showUserList{
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
+                  willDecelerate:(BOOL)decelerate{
     
+    if (scrollView.contentOffset.y < 0) {
+        
+        if([self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]){
+            
+            scrollView.scrollEnabled = NO;
+            [self initRatingListFromUrl: [NSURL URLWithString:_ratingRequestString]];
+            [self reloadRatingList];
+            scrollView.scrollEnabled = YES;
+        }
+        
+    }
 }
 
 
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    MovieDetailViewController *viewController = [[MovieDetailViewController alloc]initWithNibName:@"MovieDetailViewController" bundle:nil];
+    [self presentViewController:viewController animated:YES completion:^{
+        NSDictionary *movie;
+        if (indexPath.section==0) {
+            
+            movie = [_higherRatingList objectAtIndex:indexPath.row];
+        }
+        else if (indexPath.section==1) {
+            
+            movie = [_lowerRatingList objectAtIndex:indexPath.row];
+        }
+        else if (indexPath.section==2) {
+            
+            movie = [_approxRatingList objectAtIndex:indexPath.row];
+        }
+        else if (indexPath.section==3) {
+            
+            movie = [_niceMovieList objectAtIndex:indexPath.row];
+        }
+        else if (indexPath.section==4){
+            
+            movie = [_badMovieList objectAtIndex:indexPath.row];
+        }
+        else{
+           
+            movie = [_needRatingMovieList objectAtIndex:indexPath.row];
+        }
+         [viewController loadDataFromMovie:movie];
+    }];
     
+    
+   
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -84,8 +127,8 @@
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-  
-   UserMovieCollectionViewCell * customCell = [_userMovieCollectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    
+    UserMovieCollectionViewCell * customCell = [_userMovieCollectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     NSDictionary *movie;
     if (indexPath.section==0) {
         movie = [_higherRatingList objectAtIndex:indexPath.row];
@@ -107,7 +150,7 @@
         movie = [_needRatingMovieList objectAtIndex:indexPath.row];
     }
     
-  
+    
     NSString *poster_path = [movie valueForKey:@"poster_path"];
     poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -126,7 +169,7 @@
     
     [task resume];
     
-
+    
     return customCell;
 }
 
@@ -137,14 +180,14 @@
     if(headerView){
         NSString *title = [_headTitleArray objectAtIndex:indexPath.section];
         [headerView.headerLabel setText:title];
-       
+        
     }
     return headerView;
 }
 
 -(void)initRatingListFromUrl:(NSURL*)url{
     NSDate *start = [NSDate date];
-
+    
     
     NSArray *ratedList = [self getDataFromUrl:url withKey:@"results" LimitPages:0];
     ratedList = [self removeUndesiredDataFromResults:ratedList WithNullValueForKey:@"poster_path"];
@@ -205,13 +248,13 @@
     NSMutableArray *nonRatedList = [NSMutableArray array];
     for (NSDictionary *movie in temp) {
         [nonRatedList addObject:movie];
-     
+        
         for (NSDictionary *ratedMovie in ratedList) {
             if([movie isEqualToDictionary:ratedMovie]){
                 [nonRatedList removeObject:movie];
             }
         }
-      
+        
         
     }
     return nonRatedList;
@@ -221,10 +264,10 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-      {
-          float height = self.view.frame.size.height;
-          return CGSizeMake(height*0.18	, height*0.24);
-      }
+{
+    float height = self.view.frame.size.height;
+    return CGSizeMake(height*0.18	, height*0.24);
+}
 
 
 
@@ -243,11 +286,11 @@
 
 
 -(void)tryLogin{
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_userPath];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile: self.userResourcePath];
     NSString *username = [dict valueForKey:@"username"];
     NSString *session_id = [dict valueForKey:@"session_id"];
     if([self trySessionId:session_id username:username]){
-       
+        
         _userLabel.text = username;
     }
     else{
@@ -301,7 +344,7 @@
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Registration and sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
     alertController.view.tintColor = _userLabel.backgroundColor;
     UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"sign in" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-       
+        
         UITextField *usernameField = alertController.textFields.firstObject;
         UITextField *passwordField = alertController.textFields.lastObject;
         NSString* username = usernameField.text;
@@ -363,7 +406,7 @@
         }
         
     }]resume];
-    NSLog(@"%@",_session_id);
+    
     dispatch_semaphore_wait(semaphore, 3);
     if(_session_id){
         _userLabel.text = username;
@@ -391,7 +434,7 @@
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
     [dict setValue:@"" forKey:@"session_id"];
     [dict setValue:@"" forKey:@"username"];
-    [dict writeToFile:_userPath atomically:YES];
+    [dict writeToFile: self.userResourcePath atomically:YES];
     
 }
 
@@ -401,7 +444,7 @@
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
     [dict setValue:session_id forKey:@"session_id"];
     [dict setValue:username forKey:@"username"];
-    [dict writeToFile:_userPath atomically:YES];
+    [dict writeToFile: self.userResourcePath atomically:YES];
 }
 
 - (IBAction)setting:(id)sender {

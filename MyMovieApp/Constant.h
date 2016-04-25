@@ -21,11 +21,14 @@ extern CGFloat posterRatio;
 extern NSString * const movieSearchWeb;
 extern NSString * const imdbPosterWeb;
 extern int maxCastLengthForDisplay;
-extern int maxNumberMovie;
+extern int maxNumberPagesOfScrollView;
 extern NSString * const tokenRequestUrl;
 extern NSString * const regRequestUrl;
 extern NSString * const sessionRequestUrl;
 extern NSString * const rateMovieUrl;
 extern float ratingGap;
 extern NSString * const movieImageUrl;
+extern float scrollViewContentGap;
+extern NSString * const genreUrl;
+extern float scrollVelocity;
 #endif /* Constant_h */

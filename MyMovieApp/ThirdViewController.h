@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
-@interface ThirdViewController : ViewController
+@interface ThirdViewController : ViewController <UIScrollViewDelegate>
 
 
-@property NSString* userPath;
+
 @property NSString* session_id;
 
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
@@ -22,7 +22,7 @@
 
 @property NSArray* headTitleArray;
 
-@property NSMutableArray *ratingList;
+//@property NSMutableArray *ratingList;
 
 @property NSMutableArray *higherRatingList;
 

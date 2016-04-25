@@ -38,9 +38,7 @@
     self.backImageView.clipsToBounds = YES;
     self.backImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     
-    _searchBar.delegate = self;
-    _searchResultTableView.dataSource = self;
-    _searchResultTableView.delegate = self;
+    
     
     
     // Do any additional setup after loading the view, typically from a nib.
@@ -74,21 +72,21 @@
 
 
 
--(void)search{
+-(void)searchKeywords:(NSString*) keywords{
     // [_searchButton setBackgroundColor:[UIColor redColor]];
     
-    if ([[_keywords stringByReplacingOccurrencesOfString:@" "
+    if ([[keywords stringByReplacingOccurrencesOfString:@" "
                                               withString:@""] length]==0) {
         
         [self singleOptionAlertWithMessage:@"no significant input detected"];
     }
     
     else{
-        _keywords = [_keywords stringByReplacingOccurrencesOfString:@" "
+        keywords = [keywords stringByReplacingOccurrencesOfString:@" "
                                                          withString:@"+"];
-        _searchString = [NSString stringWithFormat:@"%@&query=%@",movieSearchWeb,_keywords];
+        NSString *searchString = [NSString stringWithFormat:@"%@&query=%@",movieSearchWeb,keywords];
         
-        NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:_searchString] withKey:@"results" LimitPages:0];
+        NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:searchString] withKey:@"results" LimitPages:0];
         
         if (temp == nil) {
             _searchResult = nil;
@@ -147,9 +145,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    
     MovieDetailViewController *viewController = [[MovieDetailViewController alloc]initWithNibName:@"MovieDetailViewController" bundle:nil];
-    [self presentViewController:viewController animated:YES completion:nil];
-    NSDictionary *movie = [_searchResult objectAtIndex:indexPath.row];
-    [viewController loadDataFromMovie:movie];
+    [self presentViewController:viewController animated:YES completion:^{
+        NSDictionary *movie = [_searchResult objectAtIndex:indexPath.row];
+        [viewController loadDataFromMovie:movie];
+    }];
+   
     
 }
 
@@ -197,10 +197,10 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    _keywords = [searchBar text];
+    NSString* keywords = [searchBar text];
     [searchBar resignFirstResponder];
     searchBar.userInteractionEnabled = NO;
-    [self search];
+    [self searchKeywords:keywords];
     searchBar.userInteractionEnabled = YES;
     
 }
