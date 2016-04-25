@@ -30,37 +30,20 @@
                                 </connections>
                             </scrollView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faK-my-Dut">
-                                <rect key="frame" x="0.0" y="255" width="600" height="296"/>
+                                <rect key="frame" x="0.0" y="220" width="600" height="331"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <collectionView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LyM-16-9e9">
-                                <rect key="frame" x="4" y="220" width="592" height="35"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="pXZ-hT-IZi"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="5" id="ppI-oa-fzb">
-                                    <size key="itemSize" width="50" height="35"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="faK-my-Dut" secondAttribute="bottom" id="0gE-Nh-u3o"/>
                             <constraint firstAttribute="trailingMargin" secondItem="faK-my-Dut" secondAttribute="trailing" constant="-20" id="5uQ-ON-qrm"/>
-                            <constraint firstItem="LyM-16-9e9" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-16" id="GgF-aR-ysZ"/>
+                            <constraint firstItem="faK-my-Dut" firstAttribute="top" secondItem="27f-H0-V5i" secondAttribute="bottom" id="5xC-kb-p6O"/>
                             <constraint firstItem="faK-my-Dut" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="Pkn-Fj-o9H"/>
-                            <constraint firstItem="LyM-16-9e9" firstAttribute="top" secondItem="27f-H0-V5i" secondAttribute="bottom" id="ZAp-sN-48G"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="LyM-16-9e9" secondAttribute="trailing" constant="-16" id="cg3-1S-dhp"/>
-                            <constraint firstItem="faK-my-Dut" firstAttribute="top" secondItem="LyM-16-9e9" secondAttribute="bottom" id="hvf-Ho-zfM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="27f-H0-V5i" secondAttribute="trailing" constant="-20" id="r27-aZ-323"/>
                             <constraint firstItem="27f-H0-V5i" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="sS5-JJ-guX"/>
                             <constraint firstItem="27f-H0-V5i" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="yAF-EW-j7M"/>
@@ -350,7 +333,6 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="QiR-vz-U8H" kind="relationship" relationship="viewControllers" id="iTA-t9-Tny"/>
                         <segue destination="kMB-Vf-l3z" kind="relationship" relationship="viewControllers" id="LVb-21-gmb"/>
-                        <segue destination="v1Z-8Q-Dga" kind="relationship" relationship="viewControllers" id="HSt-X2-17W"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

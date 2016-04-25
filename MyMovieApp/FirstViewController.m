@@ -78,6 +78,7 @@
 
 
 -(void)loadScrollView{
+    [[_moviePostImage subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
     _scrollWeight = 0;
     _selectedMovie = 0;
     _connected = [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]];
@@ -111,8 +112,8 @@
     
     float velocity = [[timer userInfo] floatValue];
     //This makes the scrollView scroll to the desired position
-    if(velocity+_moviePostImage.contentOffset.x<_scrollWeight & velocity+_moviePostImage.contentOffset.x>0){
-  
+    if(velocity+_moviePostImage.contentOffset.x+self.view.bounds.size.width<_scrollWeight & velocity+_moviePostImage.contentOffset.x>0){
+        NSLog(@"%f,%f",_moviePostImage.contentOffset.x,_scrollWeight);
         [_moviePostImage setContentOffset: CGPointMake(velocity+_moviePostImage.contentOffset.x,0) animated:YES];
     }
 }
@@ -267,7 +268,7 @@
     
     
     
-    if (scrollView.contentOffset.x < 0) {
+    if ((scrollView.contentOffset.x < 0) & [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]) {
         
         scrollView.scrollEnabled = NO;
         [self loadScrollView];
@@ -424,7 +425,7 @@
 {
     if (sender.state == UIGestureRecognizerStateEnded & sender.view.tag-20!= _selectedMovie){
         
-        
+        [_autoScrollTimer invalidate];
         [self showInfo:sender.view.tag-20];
     }
 }
