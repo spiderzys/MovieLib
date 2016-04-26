@@ -45,7 +45,7 @@
     self.backImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.backImageView];
     [self.view sendSubviewToBack:self.backImageView];
-   
+    
 }
 
 
@@ -63,7 +63,7 @@
         [self loadScrollView];
         
     }
-
+    
 }
 
 
@@ -99,7 +99,7 @@
     else{
         [self singleOptionAlertWithMessage:@"No networkd detected, for the usage for the first time, please connect network"];
     }
-     [self autoScroll:[NSNumber numberWithFloat:scrollVelocity]];
+    [self autoScroll:[NSNumber numberWithFloat:scrollVelocity]];
     
     
 }
@@ -113,7 +113,7 @@
     float velocity = [[timer userInfo] floatValue];
     //This makes the scrollView scroll to the desired position
     if(velocity+_moviePostImage.contentOffset.x+self.view.bounds.size.width<_scrollWeight & velocity+_moviePostImage.contentOffset.x>0){
-        NSLog(@"%f,%f",_moviePostImage.contentOffset.x,_scrollWeight);
+        
         [_moviePostImage setContentOffset: CGPointMake(velocity+_moviePostImage.contentOffset.x,0) animated:YES];
     }
 }
@@ -274,7 +274,7 @@
         [self loadScrollView];
         scrollView.scrollEnabled = YES;
     }
-
+    
 }
 
 
@@ -382,32 +382,31 @@
         }
         NSString *info;
         if(mark==0){
-            info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A\nCast: %@  \n\nOverview:\n%@ ",title, release_date,showCast, overview];
+            info = [NSString stringWithFormat:@"%@\n\nRelease Date: %@      Mark: N/A\nCast: %@  \n\nOverview:\n%@ ",title, release_date,showCast, overview];
             
         }
         else{
-            info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f\nCast: %@ \n\nOverview:\n%@ ",title, release_date, mark,showCast, overview];
+            info = [NSString stringWithFormat:@"%@\n\nRelease Date: %@      Mark: %.1f\nCast: %@ \n\nOverview:\n%@ ",title, release_date, mark,showCast, overview];
             
         }
         NSString *reviewRequestString = [NSString stringWithFormat:@"%@%@/reviews?%@",movieWeb,idn,APIKey];
         NSArray *reviewList = [self getDataFromUrl:[NSURL URLWithString:reviewRequestString] withKey:@"results" LimitPages:1];
         NSString *reviewString = @"\n\nReview:\n";
-        if(reviewList.count==0){
-            reviewString = [reviewString stringByAppendingString:@"N/A"];
-        }
-        else{
+        int reviewLength = reviewString.length;
+        if(reviewList.count>0){
+            
             for (NSDictionary *reviewDic in reviewList) {
                 NSString *author = [reviewDic valueForKey:@"author"];
                 NSString *content = [reviewDic valueForKey:@"content"];
                 reviewString = [NSString stringWithFormat:@"%@\n%@:\n%@\n(End)\n",reviewString,author,content];
             }
         }
-        
-        info = [info stringByAppendingString:reviewString];
-    
+        if(reviewString.length>reviewLength){
+            info = [info stringByAppendingString:reviewString];
+        }
         NSMutableAttributedString *attributedInfo = [[NSMutableAttributedString alloc]initWithString:info attributes:_movieInfo.typingAttributes];
-        [attributedInfo addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:25] range:NSMakeRange(0, title.length)];
-        [attributedInfo addAttribute:NSForegroundColorAttributeName value:_movieInfo.textColor range:NSMakeRange(0, info.length)];
+        [attributedInfo addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:22] range:NSMakeRange(0, title.length)];
+        [attributedInfo addAttribute: NSLinkAttributeName value: @"" range: NSMakeRange(0,title.length)];
         [_movieInfo setAttributedText:attributedInfo];
         
         _selectedMovie = num;
@@ -488,9 +487,13 @@
      NSLog(@"%f,%f",_movieInfo.bounds.size.height, _moviePostImage.frame.size.height);
      */
     [_movieInfo setContentOffset:CGPointZero animated:NO];
-   // [_moviePostImage setContentOffset:CGPointMake(_selectedMovie*(scrollViewContentGap+_moviePostImage.bounds.size.height*posterRatio), 0) animated:YES];
+    // [_moviePostImage setContentOffset:CGPointMake(_selectedMovie*(scrollViewContentGap+_moviePostImage.bounds.size.height*posterRatio), 0) animated:YES];
 }
 
-
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
+    
+    
+    return NO;
+}
 
 @end
