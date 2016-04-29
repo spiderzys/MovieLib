@@ -30,13 +30,17 @@
             if ([[result objectForKey:@"site"] isEqualToString:@"YouTube"]) {
                 
                 
-                YTPlayerView *player = [[YTPlayerView alloc]initWithFrame:CGRectMake(0, 0, _playerView.frame.size.width, _playerView.frame.size.height)];
-                [self.playerView addSubview: player];
-                NSLog(@"%@,%@",_playerView.description,player.description);
+                YTPlayerView *player = [[YTPlayerView alloc]initWithFrame:CGRectMake(0, 0, _imageView.frame.size.width, _imageView.frame.size.height)];
+                
+                YTPlayerView *player2 = [[YTPlayerView alloc]initWithFrame:CGRectMake(0, 0, _playerView.frame.size.width, _playerView.frame.size.height)];
+                [_imageView addSubview: player];
+                
+                [_playerView addSubview:player2];
                 
                
                 NSString *playId = [result objectForKey:@"key"];
                 [player loadWithVideoId:playId];
+                [player2 loadWithVideoId:playId];
                 return;
             }
         }

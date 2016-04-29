@@ -457,7 +457,7 @@
     _userLabel.text = @"Guest";
     [self.tabBarController setSelectedIndex:0];
     self.sessionIdOk = NO;
-    
+    [_userMovieCollectionView reloadData];
 }
 
 

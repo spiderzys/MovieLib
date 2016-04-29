@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faK-my-Dut">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faK-my-Dut">
                                 <rect key="frame" x="0.0" y="220" width="600" height="331"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -298,23 +298,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2oQ-5w-hOO">
+                                <rect key="frame" x="118" y="130" width="90" height="120"/>
+                            </imageView>
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="gPH-Bl-FB6">
-                                <rect key="frame" x="58" y="130" width="339" height="224"/>
+                                <rect key="frame" x="20" y="130" width="90" height="120"/>
                                 <color key="backgroundColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="339" id="1R6-fv-xaI"/>
-                                    <constraint firstAttribute="height" constant="224" id="pYn-en-07m"/>
+                                    <constraint firstAttribute="width" constant="90" id="1R6-fv-xaI"/>
+                                    <constraint firstAttribute="height" constant="120" id="pYn-en-07m"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2oQ-5w-hOO" firstAttribute="width" secondItem="gPH-Bl-FB6" secondAttribute="width" id="ASV-oT-Et7"/>
                             <constraint firstItem="gPH-Bl-FB6" firstAttribute="top" secondItem="eD8-GY-r14" secondAttribute="bottom" constant="110" id="Blg-5C-Nu0"/>
-                            <constraint firstItem="gPH-Bl-FB6" firstAttribute="leading" secondItem="TzL-K8-nbz" secondAttribute="leadingMargin" constant="38" id="fAG-pq-GRb"/>
+                            <constraint firstItem="gPH-Bl-FB6" firstAttribute="leading" secondItem="TzL-K8-nbz" secondAttribute="leadingMargin" id="fAG-pq-GRb"/>
+                            <constraint firstItem="2oQ-5w-hOO" firstAttribute="height" secondItem="gPH-Bl-FB6" secondAttribute="height" id="k2Y-tm-QKE"/>
+                            <constraint firstItem="2oQ-5w-hOO" firstAttribute="leading" secondItem="gPH-Bl-FB6" secondAttribute="trailing" constant="8" id="nU5-e2-mtc"/>
+                            <constraint firstItem="2oQ-5w-hOO" firstAttribute="centerY" secondItem="gPH-Bl-FB6" secondAttribute="centerY" id="oha-8p-DTE"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="Uzb-MR-e0j"/>
                     <connections>
+                        <outlet property="imageView" destination="2oQ-5w-hOO" id="wx8-Jx-fwn"/>
                         <outlet property="playerView" destination="gPH-Bl-FB6" id="9a6-Cx-ud9"/>
                     </connections>
                 </viewController>
@@ -336,6 +344,7 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="QiR-vz-U8H" kind="relationship" relationship="viewControllers" id="iTA-t9-Tny"/>
                         <segue destination="kMB-Vf-l3z" kind="relationship" relationship="viewControllers" id="LVb-21-gmb"/>
+                        <segue destination="v1Z-8Q-Dga" kind="relationship" relationship="viewControllers" id="ra3-cn-IWz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

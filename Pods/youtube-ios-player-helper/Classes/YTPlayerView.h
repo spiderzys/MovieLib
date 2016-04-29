@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// this copy has been modified by MovieLab's author.
 #import <UIKit/UIKit.h>
 
 @class YTPlayerView;
@@ -118,7 +119,7 @@ typedef NS_ENUM(NSInteger, YTPlayerError) {
  */
 @interface YTPlayerView : UIView<UIWebViewDelegate>
 
-@property(nonatomic, strong, readonly) UIWebView *webView;
+@property(nonatomic, strong) UIWebView *webView;
 
 /** A delegate to be notified on playback events. */
 @property(nonatomic, weak) id<YTPlayerViewDelegate> delegate;
@@ -200,7 +201,7 @@ typedef NS_ENUM(NSInteger, YTPlayerError) {
 - (BOOL)loadWithPlaylistId:(NSString *)playlistId playerVars:(NSDictionary *)playerVars;
 
 - (BOOL)loadWithPlayerParams:(NSDictionary *)additionalPlayerParams;
-
+- (UIWebView *)createNewWebView;
 #pragma mark - Player controls
 
 // These methods correspond to their JavaScript equivalents as documented here:
@@ -657,5 +658,7 @@ typedef NS_ENUM(NSInteger, YTPlayerError) {
 - (int)playlistIndex;
 
 - (void)removeWebView;
+
+
 
 @end

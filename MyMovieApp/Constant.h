@@ -31,4 +31,7 @@ extern NSString * const movieImageUrl;
 extern float scrollViewContentGap;
 extern NSString * const genreUrl;
 extern float scrollVelocity;
+extern CGFloat backdropRatio;
+extern CGFloat trailerRatio;
+extern NSString * const youtubeWeb;
 #endif /* Constant_h */

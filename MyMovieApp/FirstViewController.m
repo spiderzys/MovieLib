@@ -8,14 +8,15 @@
 
 #import "FirstViewController.h"
 #import "SecondViewController.h"
+#import "MovieMediaViewController.h"
 @interface FirstViewController ()
 
 @end
-
+static NSDictionary *attribute;
 @implementation FirstViewController
 @synthesize backImageView;
 
-//setNeedsDisplay]
+
 
 
 
@@ -28,6 +29,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    attribute = _movieInfo.typingAttributes;
     self.tabBarItem.image = [[UIImage imageNamed:@"News"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.tabBarItem.selectedImage = self.tabBarItem.image;
     UITabBarController *tab = self.tabBarController;
@@ -99,7 +101,7 @@
     else{
         [self singleOptionAlertWithMessage:@"No networkd detected, for the usage for the first time, please connect network"];
     }
-    [self autoScroll:[NSNumber numberWithFloat:scrollVelocity]];
+    
     
     
 }
@@ -183,7 +185,9 @@
                 NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self setImageWithTag:i WithData:data];
-                        
+                        if(i==5){
+                            [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
+                        }
                         if(i<=30){
                             [temp setObject:data forKey:@"poster_data"];
                             [self addMovieToCoreData:i];
@@ -269,7 +273,7 @@
     
     
     if ((scrollView.contentOffset.x < 0) & [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]) {
-        
+        NSLog(@"reload");
         scrollView.scrollEnabled = NO;
         [self loadScrollView];
         scrollView.scrollEnabled = YES;
@@ -404,7 +408,7 @@
         if(reviewString.length>reviewLength){
             info = [info stringByAppendingString:reviewString];
         }
-        NSMutableAttributedString *attributedInfo = [[NSMutableAttributedString alloc]initWithString:info attributes:_movieInfo.typingAttributes];
+        NSMutableAttributedString *attributedInfo = [[NSMutableAttributedString alloc]initWithString:info attributes:attribute];
         [attributedInfo addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:22] range:NSMakeRange(0, title.length)];
         [attributedInfo addAttribute: NSLinkAttributeName value: @"" range: NSMakeRange(0,title.length)];
         [_movieInfo setAttributedText:attributedInfo];
@@ -448,13 +452,13 @@
     }
 }
 
-- (IBAction)play:(id)sender {
-    NSDictionary *temp = _playingMoviesRequestResult[_selectedMovie];
-    [super playTrailer:[temp valueForKey:@"id"]];
+
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [_autoScrollTimer invalidate];
+    [super viewDidDisappear:animated];
+    
 }
-
-
-
 
 
 
@@ -490,10 +494,18 @@
     // [_moviePostImage setContentOffset:CGPointMake(_selectedMovie*(scrollViewContentGap+_moviePostImage.bounds.size.height*posterRatio), 0) animated:YES];
 }
 
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
-    
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRang{
+    NSDictionary * movie = [_playingMoviesRequestResult objectAtIndex:_selectedMovie];
+    MovieMediaViewController *mediaViewController = [[MovieMediaViewController alloc]initWithNibName:@"MovieMediaViewController" bundle:nil movieDic:movie];
+    [self presentViewController:mediaViewController animated:YES completion:nil];
     
     return NO;
+}
+
+- (void)textViewDidChangeSelection:(UITextView *)textView {
+    if(NSEqualRanges(textView.selectedRange, NSMakeRange(0, 0)) == NO) {
+        textView.selectedRange = NSMakeRange(0, 0);
+    }
 }
 
 @end

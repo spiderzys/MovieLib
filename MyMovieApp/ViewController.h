@@ -16,7 +16,7 @@
 #import "YTPlayerView.h"
 #import "PresentViewController.h"
 
-@interface ViewController : UIViewController<YTPlayerViewDelegate>
+@interface ViewController : UIViewController
 @property UIImageView *backImageView;
 @property BOOL sessionIdOk;
 @property NSString* userResourcePath;

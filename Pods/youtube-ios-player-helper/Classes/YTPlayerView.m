@@ -678,9 +678,9 @@ NSString static *const kYTPlayerStaticProxyRegexPattern = @"^https://content.goo
   }
 
   // Remove the existing webView to reset any state
-  [self.webView removeFromSuperview];
-  _webView = [self createNewWebView];
-  [self addSubview:self.webView];
+  //[self.webView removeFromSuperview];
+ // _webView = [self createNewWebView];
+ // [self addSubview:self.webView];
 
   NSError *error = nil;
   NSString *path = [[NSBundle bundleForClass:[YTPlayerView class]] pathForResource:@"YTPlayerView-iframe-player"
@@ -694,7 +694,7 @@ NSString static *const kYTPlayerStaticProxyRegexPattern = @"^https://content.goo
                                                      ofType:@"html"
                                                 inDirectory:@"Assets"];
   }
-    
+  
   NSString *embedHTMLTemplate =
       [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
 
@@ -844,5 +844,7 @@ NSString static *const kYTPlayerStaticProxyRegexPattern = @"^https://content.goo
     });
     return frameworkBundle;
 }
+
+
 
 @end

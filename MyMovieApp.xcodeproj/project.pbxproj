@@ -40,8 +40,8 @@
 		69F580991BC73DA900656024 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F580981BC73DA900656024 /* libz.1.2.5.tbd */; };
 		69F5809B1BC7487300656024 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F5809A1BC7487300656024 /* Constant.m */; };
 		69F8F10E1C3A764100438350 /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69F8F10D1C3A764100438350 /* Assets.bundle */; };
-		69FCCCC31CCF483D0067420B /* movieMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FCCCC11CCF483D0067420B /* movieMediaViewController.m */; };
-		69FCCCC41CCF483D0067420B /* movieMediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69FCCCC21CCF483D0067420B /* movieMediaViewController.xib */; };
+		69FCCCC31CCF483D0067420B /* MovieMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FCCCC11CCF483D0067420B /* MovieMediaViewController.m */; };
+		69FCCCC41CCF483D0067420B /* MovieMediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69FCCCC21CCF483D0067420B /* MovieMediaViewController.xib */; };
 		BFA44ACBC84EB8F5F5815235 /* libPods-MyMovieApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3879134C8E5BC01DD945129 /* libPods-MyMovieApp.a */; };
 /* End PBXBuildFile section */
 
@@ -98,9 +98,9 @@
 		69F580981BC73DA900656024 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
 		69F5809A1BC7487300656024 /* Constant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constant.m; sourceTree = "<group>"; };
 		69F8F10D1C3A764100438350 /* Assets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Assets.bundle; sourceTree = "<group>"; };
-		69FCCCC01CCF483D0067420B /* movieMediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = movieMediaViewController.h; sourceTree = "<group>"; };
-		69FCCCC11CCF483D0067420B /* movieMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = movieMediaViewController.m; sourceTree = "<group>"; };
-		69FCCCC21CCF483D0067420B /* movieMediaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = movieMediaViewController.xib; sourceTree = "<group>"; };
+		69FCCCC01CCF483D0067420B /* MovieMediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieMediaViewController.h; sourceTree = "<group>"; };
+		69FCCCC11CCF483D0067420B /* MovieMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieMediaViewController.m; sourceTree = "<group>"; };
+		69FCCCC21CCF483D0067420B /* MovieMediaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieMediaViewController.xib; sourceTree = "<group>"; };
 		7E07A5864759464E2E821440 /* Pods-MyMovieApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMovieApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyMovieApp/Pods-MyMovieApp.debug.xcconfig"; sourceTree = "<group>"; };
 		8ABB8052FAD66F22F2712F70 /* Pods-MyMovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMovieApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyMovieApp/Pods-MyMovieApp.release.xcconfig"; sourceTree = "<group>"; };
 		A3879134C8E5BC01DD945129 /* libPods-MyMovieApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyMovieApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,11 +170,9 @@
 			children = (
 				690D584A1BC0962200406ADA /* AppDelegate.h */,
 				690D584B1BC0962200406ADA /* AppDelegate.m */,
-				69FCCCC01CCF483D0067420B /* movieMediaViewController.h */,
-				69FCCCC11CCF483D0067420B /* movieMediaViewController.m */,
-				69FCCCC21CCF483D0067420B /* movieMediaViewController.xib */,
-				6948B0291CCD93D80072565F /* testViewController.h */,
-				6948B02A1CCD93D80072565F /* testViewController.m */,
+				69FCCCC01CCF483D0067420B /* MovieMediaViewController.h */,
+				69FCCCC11CCF483D0067420B /* MovieMediaViewController.m */,
+				69FCCCC21CCF483D0067420B /* MovieMediaViewController.xib */,
 				695FC7F21C3A1B2900AA5B24 /* ViewController.h */,
 				695FC7F31C3A1B2900AA5B24 /* ViewController.m */,
 				690D58531BC0962200406ADA /* Main.storyboard */,
@@ -200,6 +198,8 @@
 				69027DE91CC9F30E00DD6C3A /* MovieBackdropCollectionViewCell.h */,
 				69027DE31CC9F2A900DD6C3A /* MovieBackdropCollectionViewCell.m */,
 				698F02E91CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib */,
+				6948B0291CCD93D80072565F /* testViewController.h */,
+				6948B02A1CCD93D80072565F /* testViewController.m */,
 				6965FFD11CBF4B72009D9AB0 /* RegViewController.h */,
 				6965FFD21CBF4B72009D9AB0 /* RegViewController.m */,
 				6965FFD31CBF4B72009D9AB0 /* RegViewController.xib */,
@@ -304,7 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69FCCCC41CCF483D0067420B /* movieMediaViewController.xib in Resources */,
+				69FCCCC41CCF483D0067420B /* MovieMediaViewController.xib in Resources */,
 				6946E5CD1CB31E96007546ED /* SearchResultTableViewCell.xib in Resources */,
 				69F8F10E1C3A764100438350 /* Assets.bundle in Resources */,
 				690D585A1BC0962200406ADA /* LaunchScreen.storyboard in Resources */,
@@ -374,7 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69FCCCC31CCF483D0067420B /* movieMediaViewController.m in Sources */,
+				69FCCCC31CCF483D0067420B /* MovieMediaViewController.m in Sources */,
 				69F580901BC7396900656024 /* Reachability.m in Sources */,
 				690D58521BC0962200406ADA /* SecondViewController.m in Sources */,
 				6916137D1CC5F78F0075A55A /* UserMovieCollectionViewCell.m in Sources */,

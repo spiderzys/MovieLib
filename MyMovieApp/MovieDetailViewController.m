@@ -189,6 +189,7 @@
     return customCell;
 }
 
+
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
