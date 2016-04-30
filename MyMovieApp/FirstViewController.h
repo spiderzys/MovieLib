@@ -25,6 +25,7 @@
 @property AppDelegate *delegate;
 @property NSTimer* autoScrollTimer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivityIndicator;
 
 @end
 

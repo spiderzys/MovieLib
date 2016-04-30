@@ -16,40 +16,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    NSString *idn = @"209112";
-    NSString *videoInquery = [NSString stringWithFormat:@"%@%@/videos?%@",movieWeb,idn,APIKey];
-    NSArray *videoResult = [self getDataFromUrl:[NSURL URLWithString:videoInquery] withKey:@"results" LimitPages:0];
+    _activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    _activityIndicator.color = [UIColor blackColor];
     
-    if(videoResult==nil){
-        [self singleOptionAlertWithMessage:@"no connection"];
-    }
-    else{
-        for (NSDictionary *result in videoResult) {
-            
-            if ([[result objectForKey:@"site"] isEqualToString:@"YouTube"]) {
-                
-                
-                YTPlayerView *player = [[YTPlayerView alloc]initWithFrame:CGRectMake(0, 0, _imageView.frame.size.width, _imageView.frame.size.height)];
-                
-                YTPlayerView *player2 = [[YTPlayerView alloc]initWithFrame:CGRectMake(0, 0, _playerView.frame.size.width, _playerView.frame.size.height)];
-                [_imageView addSubview: player];
-                
-                [_playerView addSubview:player2];
-                
-               
-                NSString *playId = [result objectForKey:@"key"];
-                [player loadWithVideoId:playId];
-                [player2 loadWithVideoId:playId];
-                return;
-            }
-        }
-        [self singleOptionAlertWithMessage:@"no trailer available"];
-    }
+    _activityIndicator.center = CGPointMake(50, 50);
+    _activityIndicator.center = CGPointMake(_testView.frame.size.width/2,_testView.frame.size.height/2);
+  //  _activityIndicator.center = _testView.center;
+   // _activityIndicator.hidesWhenStopped = NO;
+    NSLog(@"%@",_activityIndicator.description);
+    [_testView addSubview:_activityIndicator];
+    [_activityIndicator startAnimating];
+    
+    [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(stop) userInfo:nil repeats:NO];
 
     
     
     
+}
+-(void)stop{
+    [_activityIndicator stopAnimating];
 }
 
 - (void)didReceiveMemoryWarning {

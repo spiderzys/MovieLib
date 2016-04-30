@@ -9,7 +9,7 @@
 #import "ViewController.h"
 
 @interface testViewController : ViewController
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (nonatomic,retain) UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIView *testView;
 
-@property (weak, nonatomic) IBOutlet UIView *playerView;
 @end

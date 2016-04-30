@@ -38,5 +38,7 @@
 
 @property NSString *ratingRequestString;
 
+@property UIActivityIndicatorView* loadingActivityIndicator;
+
 
 @end

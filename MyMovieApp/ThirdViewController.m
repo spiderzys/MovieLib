@@ -303,6 +303,7 @@
         _userMovieCollectionView.hidden = YES;
         [_userMovieCollectionView reloadData];
         _userMovieCollectionView.hidden = NO;
+       
     }];
 }
 
@@ -342,7 +343,7 @@
 -(void)signIn{
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Registration and sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    alertController.view.tintColor = _userLabel.backgroundColor;
+    alertController.view.tintColor = [UIColor blackColor] ;//_userLabel.backgroundColor;
     UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"sign in" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         
         UITextField *usernameField = alertController.textFields.firstObject;

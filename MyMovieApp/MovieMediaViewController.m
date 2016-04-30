@@ -28,7 +28,8 @@ static CGRect NALabelRect;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _tintColor = self.navigationItem.leftBarButtonItem.tintColor;
-    
+    [_navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    _navigationBar.shadowImage = [UIImage new];
     self.navigationItem.title = [_movie valueForKey:@"title"];
     [self setCollectionView];
     
@@ -38,14 +39,14 @@ static CGRect NALabelRect;
 -(void)setCollectionView{
     [_movieMediaCollection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cell];
     [_movieMediaCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:header];
-    NALabelSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*0.1);
+    NALabelSize = CGSizeMake([UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height*0.1);
     NALabelRect = CGRectMake(20, 0, NALabelSize.width, NALabelSize.height);
     // Do any additional setup after loading the view from its nib.
     
     
     NSString *idn = [_movie valueForKey:@"id"];
     NSString *movieImagesString = [NSString stringWithFormat:@"%@%@/images?%@",movieImageUrl,idn,APIKey];
-    NSLog(@"%@",movieImagesString);
+  //  NSLog(@"%@",movieImagesString);
     NSData *moviesImagesData = [NSData dataWithContentsOfURL:[NSURL URLWithString:movieImagesString]];
     if(moviesImagesData.length>0){
         
@@ -154,19 +155,25 @@ static CGRect NALabelRect;
         else{
             float tralierWidth = collectionViewHeight*trailerRatio;
             mediaScrollView.contentSize = CGSizeMake(_tailerArray.count*(tralierWidth+scrollViewContentGap) , collectionViewHeight);
-            
+            [collectionViewCell addSubview:mediaScrollView];
             for (int i = 0; i<_tailerArray.count; i++) {
+               
+                
                 YTPlayerView *player = [[YTPlayerView alloc]initWithFrame:CGRectMake(i*(tralierWidth+scrollViewContentGap),0, tralierWidth , collectionViewHeight)];
                 player.webView = [player createNewWebView];
                 [player addSubview:player.webView];
-                [mediaScrollView addSubview:player];
-                NSString * playid = [_tailerArray objectAtIndex:i];
                 
+                NSString * playid = [_tailerArray objectAtIndex:i];
+                [mediaScrollView addSubview:player];
                 
                 
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                     [player loadWithVideoId:playid];
+                    if(i==_tailerArray.count-1){
+                        [_loadingIndicator stopAnimating];
+                    }
                     
+
                 });
                 
             }
@@ -174,7 +181,7 @@ static CGRect NALabelRect;
             
             
             
-            [collectionViewCell addSubview:mediaScrollView];
+            
             
         }
         
@@ -252,6 +259,17 @@ static CGRect NALabelRect;
         [headerView addSubview:label];
         label.textColor = _tintColor;
         [label setText:[_headTitleArray objectAtIndex:indexPath.section]];
+        
+        if(indexPath.section==2){
+            _loadingIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            _loadingIndicator.color = _tintColor;
+            _loadingIndicator.center = CGPointMake(label.frame.size.width/2, label.frame.size.height/2);
+            NSLog(@"%@,%@",NSStringFromCGSize(NALabelSize),NSStringFromCGRect(NALabelRect));
+            [label addSubview:_loadingIndicator];
+            [_loadingIndicator startAnimating];
+        }
+        
+        
     }
     return headerView;
 }

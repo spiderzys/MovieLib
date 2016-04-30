@@ -29,6 +29,7 @@ static NSDictionary *attribute;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    NSLog(@"%@",NSStringFromCGRect(self.view.frame));
     attribute = _movieInfo.typingAttributes;
     self.tabBarItem.image = [[UIImage imageNamed:@"News"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.tabBarItem.selectedImage = self.tabBarItem.image;
@@ -80,6 +81,7 @@ static NSDictionary *attribute;
 
 
 -(void)loadScrollView{
+    [_loadingActivityIndicator startAnimating];
     [[_moviePostImage subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
     _scrollWeight = 0;
     _selectedMovie = 0;
@@ -185,8 +187,9 @@ static NSDictionary *attribute;
                 NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self setImageWithTag:i WithData:data];
-                        if(i==5){
+                        if(i==6){
                             [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
+                            [_loadingActivityIndicator stopAnimating];
                         }
                         if(i<=30){
                             [temp setObject:data forKey:@"poster_data"];

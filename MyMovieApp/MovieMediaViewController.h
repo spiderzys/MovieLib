@@ -10,6 +10,7 @@
 #import "ViewController.h"
 @interface MovieMediaViewController : ViewController<YTPlayerViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *movieMediaCollection;
 
@@ -25,6 +26,7 @@
 
 @property NSDictionary *movie;
 
+@property UIActivityIndicatorView *loadingIndicator;
 -(void)setCollectionView;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil movieDic:(NSDictionary*)movie;

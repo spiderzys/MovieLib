@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieMediaViewController">
             <connections>
                 <outlet property="movieMediaCollection" destination="MmA-GL-ECG" id="I4b-aF-AhF"/>
+                <outlet property="navigationBar" destination="NOn-77-YO3" id="LjR-yw-SeB"/>
                 <outlet property="navigationItem" destination="9Tk-jr-88z" id="Fo8-T5-z14"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -33,6 +34,7 @@
                 </collectionView>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NOn-77-YO3">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="x62-t9-FYA"/>
                     </constraints>
