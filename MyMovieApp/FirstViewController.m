@@ -275,15 +275,13 @@ static NSDictionary *attribute;
     
     
     
-    if ((scrollView.contentOffset.x < -10) & [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]) {
-        NSLog(@"reload");
+    if ((scrollView.contentOffset.x < -50) & [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]) {
         scrollView.scrollEnabled = NO;
         [self loadScrollView];
         scrollView.scrollEnabled = YES;
     }
     
 }
-
 
 
 -(void)addMovieToCoreData:(int)tag{
