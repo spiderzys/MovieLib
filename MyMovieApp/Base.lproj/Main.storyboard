@@ -160,6 +160,10 @@
                                     <constraint firstAttribute="width" secondItem="DVz-3n-y3c" secondAttribute="height" multiplier="7:1" id="J0s-Zw-Q59"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sAg-EW-CCU">
+                                <rect key="frame" x="290" y="146" width="20" height="20"/>
+                                <color key="color" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -178,12 +182,15 @@
                             <constraint firstItem="KFm-yA-2hQ" firstAttribute="leading" secondItem="rOo-dq-Nw8" secondAttribute="trailing" constant="10" id="hYK-s1-X1n"/>
                             <constraint firstItem="KFm-yA-2hQ" firstAttribute="width" secondItem="LnF-yJ-thy" secondAttribute="width" id="kkc-Wz-gyp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KFm-yA-2hQ" secondAttribute="trailing" constant="-10" id="qeD-QX-CaR"/>
+                            <constraint firstItem="sAg-EW-CCU" firstAttribute="centerX" secondItem="ZaB-df-aPo" secondAttribute="centerX" id="uFE-ZU-MYd"/>
+                            <constraint firstItem="sAg-EW-CCU" firstAttribute="top" secondItem="rOo-dq-Nw8" secondAttribute="bottom" constant="10" id="uh0-by-kec"/>
                             <constraint firstItem="DVz-3n-y3c" firstAttribute="top" secondItem="ZaB-df-aPo" secondAttribute="topMargin" constant="20" id="vco-UL-Ij6"/>
                             <constraint firstItem="KFm-yA-2hQ" firstAttribute="height" secondItem="LnF-yJ-thy" secondAttribute="height" id="zZf-hn-ybs"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="Pxq-m0-iaj"/>
                     <connections>
+                        <outlet property="loadingActivityIndicator" destination="sAg-EW-CCU" id="Dh4-CU-ESc"/>
                         <outlet property="userLabel" destination="rOo-dq-Nw8" id="gRz-vU-xTW"/>
                         <outlet property="userMovieCollectionView" destination="c7L-My-Non" id="jRJ-y7-iqm"/>
                     </connections>

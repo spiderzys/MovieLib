@@ -275,7 +275,7 @@ static NSDictionary *attribute;
     
     
     
-    if ((scrollView.contentOffset.x < 0) & [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]) {
+    if ((scrollView.contentOffset.x < -10) & [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]) {
         NSLog(@"reload");
         scrollView.scrollEnabled = NO;
         [self loadScrollView];

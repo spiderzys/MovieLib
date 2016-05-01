@@ -300,9 +300,11 @@
 
 -(void)reloadRatingList{
     [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
+        [_loadingActivityIndicator startAnimating];
         _userMovieCollectionView.hidden = YES;
         [_userMovieCollectionView reloadData];
         _userMovieCollectionView.hidden = NO;
+        [_loadingActivityIndicator startAnimating];
        
     }];
 }

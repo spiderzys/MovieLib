@@ -38,7 +38,8 @@
 
 @property NSString *ratingRequestString;
 
-@property UIActivityIndicatorView* loadingActivityIndicator;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivityIndicator;
+
 
 
 @end
