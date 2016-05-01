@@ -1,782 +1,1404 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		006CA7289952B00BA727BEF299ECE8BD /* NXOAuth2Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5084E1E24DA8DCA642903E746228B2 /* NXOAuth2Constants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0992373E828319E84CF32CA572BA3877 /* NXOAuth2AccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A0957659B637D33231683774FC1800 /* NXOAuth2AccountStore.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		198F8CB2EB0FD8A76BB8F827216B6B77 /* NXOAuth2PostBodyStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 7308FC43133CEB4E15719660414AC297 /* NXOAuth2PostBodyStream.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		1A218CC4F468E4157871048D2FA107EE /* youtube-ios-player-helper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7263D87598FF1AF9426FE89A77FDB099 /* youtube-ios-player-helper-dummy.m */; };
-		1CC5AACA78908ED08FB968E551C9E907 /* NSData+NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = A0B431D88C88837CDA799B5B6C5C9E29 /* NSData+NXOAuth2.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1D56CA0D7139A4028B93CA7E074AEDDF /* NXOAuth2ConnectionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = C09C184D5A8FC6B4AA7F39DF6496BB4B /* NXOAuth2ConnectionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1FC05C99BA48029B527FC7482BBA87D5 /* NXOAuth2Account.h in Headers */ = {isa = PBXBuildFile; fileRef = DED8703FB686A58F0FAF54E0A554ED8F /* NXOAuth2Account.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		26336B744D83735380067DEDB1381207 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0307982621563C439755B9BC0ED60A1A /* Foundation.framework */; };
-		29586E6E3C8D6F62D117FA1684C911AF /* NXOAuth2Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 3682EC61B06E120C22F18D449C8873ED /* NXOAuth2Request.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		2F603E30DC05C00DA356E6A85631BB91 /* NSURL+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 447A283BDD65D2492AAD654201BA7DE2 /* NSURL+NXOAuth2.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		3AE3D4CD9960B3471E2E445470807E92 /* NXOAuth2FileStreamWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BA6F1CA8F86E7BF670424ED416208 /* NXOAuth2FileStreamWrapper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		43E283C47E79FE66D338B3049661CEE8 /* NXOAuth2Client-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F3142D2E4555330B5B781AF5CC291A38 /* NXOAuth2Client-dummy.m */; };
-		44F191740E27CCCE532A4BF5E62318C4 /* NXOAuth2FileStreamWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = F88C9A345CE3AB0AD68445232A76F3E1 /* NXOAuth2FileStreamWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		45995A1C9596908132B5FC22E41B6821 /* NXOAuth2Request.h in Headers */ = {isa = PBXBuildFile; fileRef = 82545DB65032132CEB6428C40E449E1E /* NXOAuth2Request.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		496F81C0BF46852BDB2FF6DD0613A705 /* NSData+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 96349483A00E0E24380C793B93B8AE69 /* NSData+NXOAuth2.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		569991ABD4FF1C800DEF9C0B44F990FB /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 099DF973F2A0866DB1536374B729938C /* YTPlayerView.m */; };
-		5B46959B711883A342F66AA89430292E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0307982621563C439755B9BC0ED60A1A /* Foundation.framework */; };
-		67B47E511DCA3A06974DBCFE2B65D012 /* NXOAuth2Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C06266B6EC6364533B5DAB26B50FDB /* NXOAuth2Connection.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		876B49C130BA2283A8A226A296C950F3 /* NXOAuth2Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F175CBE0F6D14A9CFB213787659B5B5 /* NXOAuth2Account.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		89B6CFE588B981547314C4103D8B4675 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FA6CD62EB7A9C85C7DBBA20924D70A /* Security.framework */; };
-		8E0647A6DE92E993472445D8A9A31410 /* NXOAuth2TrustDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 35DBC85C2A50A1F9B223B7E059845A2E /* NXOAuth2TrustDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9182B36F359CE9F54AD3CD24BE93CBC5 /* NSString+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 691AF78D621D313F9505FDEA147594F9 /* NSString+NXOAuth2.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		9EB5C021CD0890A0F1A01E3BF4093E2B /* NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = 93309FCDEFD09D744B164C71C3AD06DD /* NXOAuth2.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A2CA9E6B2BDCF663BE218A1FE2F00269 /* NXOAuth2PostBodyPart.h in Headers */ = {isa = PBXBuildFile; fileRef = BBF881F6DCEA78FBCCB3DCD7CD2505A0 /* NXOAuth2PostBodyPart.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A464A7711317466CE3622FFF75923DD4 /* NXOAuth2AccessToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F7C6AC8FEDB3CE84B500A521E1D1A89 /* NXOAuth2AccessToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AB7A92BC0570218D33CB991B74709C56 /* NXOAuth2PostBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 350B11BB80B42EC746C79C1C64F20517 /* NXOAuth2PostBodyPart.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		B23A00A5ED73210D3BC7AA7F21EA9B1C /* NSURL+NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = CAE3E380BF48C04CC3C0C44B276965CC /* NSURL+NXOAuth2.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C35FB79A52A53C86EC1AEE2BF99712CF /* NXOAuth2AccountStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7073D2D766384D21CEF128EBDE44F565 /* NXOAuth2AccountStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDC229FCDA668D0077958EB1B48C03D7 /* NXOAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AADF3390CC643DEE1CBD145EC1127F7 /* NXOAuth2Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D27B1021ED5A281761C33D770E16A58D /* NXOAuth2PostBodyStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DF4346E668FBBBF74454DA4D6EBC784 /* NXOAuth2PostBodyStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D48FA58A38ADC8CAF616EF9A472581E9 /* NXOAuth2Connection.h in Headers */ = {isa = PBXBuildFile; fileRef = FAA50FC6C611E57139281595EED2CF9A /* NXOAuth2Connection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D6DF5A496FD858DE4036ACE9A912C895 /* NXOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = EA69065C30F9FC0E0C2A1A3C91AE8D99 /* NXOAuth2Client.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		DAB700113F7712B04BB616327CE67306 /* YTPlayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C598B8C0D62F383B39E94E05C76A9F8 /* YTPlayerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DB3B2657B0DBB2EC8F74D1A602582051 /* NSString+NXOAuth2.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B032B772FF14FBA11169A35C22C841B /* NSString+NXOAuth2.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DC259A831AAD609D68A368E16228D4F5 /* NXOAuth2ClientDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BB24C1D08EC3AA970EFAB87611AF23BC /* NXOAuth2ClientDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DCE85E0F86BF5DEF4842CD3D58C043F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0307982621563C439755B9BC0ED60A1A /* Foundation.framework */; };
-		E66FF19936CA6EF7FF4BF3E13EE0D7D7 /* NXOAuth2Account+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = BFAC84DC46E8EFF4A00A6F9FE658B0C0 /* NXOAuth2Account+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E853BE263359DA52DC711831B3866FCA /* Pods-MyMovieApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E3ADB57891E9730A785A396819A8DEB9 /* Pods-MyMovieApp-dummy.m */; };
-		F61B50E72560137C1BAB08BB5E0F704B /* NXOAuth2AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A6CC8CCDF2597DDD23679F4949F252 /* NXOAuth2AccessToken.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		F80352DA4E8B5745EFBBAE0A619D62CD /* NXOAuth2Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B89DA59E9285C2D27CF523F7F75ECB17 /* NXOAuth2Constants.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		6D3701D9BA3734752A60307400EF3413 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 396CA8A4947B8985DE531758F0091C02;
-			remoteInfo = "youtube-ios-player-helper";
-		};
-		70D11FFB486873345A5C2A44F660FE42 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5106305555539CA93648617BE376FF0E;
-			remoteInfo = "youtube-ios-player-helper-Assets";
-		};
-		C56D04B71FE6F4DFC7A95105C7D34CC7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1E85AABA23B5E543708FA4E03130F831;
-			remoteInfo = NXOAuth2Client;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		0284FACEAA9829789642781516D0DF44 /* NXOAuth2Client.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NXOAuth2Client.xcconfig; sourceTree = "<group>"; };
-		0307982621563C439755B9BC0ED60A1A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		05A6CC8CCDF2597DDD23679F4949F252 /* NXOAuth2AccessToken.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2AccessToken.m; path = Sources/OAuth2Client/NXOAuth2AccessToken.m; sourceTree = "<group>"; };
-		099DF973F2A0866DB1536374B729938C /* YTPlayerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YTPlayerView.m; path = Classes/YTPlayerView.m; sourceTree = "<group>"; };
-		1013B7ED2816B09F3F1C31B3C480E49A /* Pods-MyMovieApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MyMovieApp-acknowledgements.markdown"; sourceTree = "<group>"; };
-		229AB29C0AE0CCC6CB1531BC60B8B6DB /* Pods-MyMovieApp-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MyMovieApp-resources.sh"; sourceTree = "<group>"; };
-		2F7C6AC8FEDB3CE84B500A521E1D1A89 /* NXOAuth2AccessToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2AccessToken.h; path = Sources/OAuth2Client/NXOAuth2AccessToken.h; sourceTree = "<group>"; };
-		350B11BB80B42EC746C79C1C64F20517 /* NXOAuth2PostBodyPart.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2PostBodyPart.m; path = Sources/OAuth2Client/NXOAuth2PostBodyPart.m; sourceTree = "<group>"; };
-		35DBC85C2A50A1F9B223B7E059845A2E /* NXOAuth2TrustDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2TrustDelegate.h; path = Sources/OAuth2Client/NXOAuth2TrustDelegate.h; sourceTree = "<group>"; };
-		3682EC61B06E120C22F18D449C8873ED /* NXOAuth2Request.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Request.m; path = Sources/OAuth2Client/NXOAuth2Request.m; sourceTree = "<group>"; };
-		447A283BDD65D2492AAD654201BA7DE2 /* NSURL+NXOAuth2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURL+NXOAuth2.m"; path = "Sources/NSURL+NXOAuth2.m"; sourceTree = "<group>"; };
-		4D3BA6F1CA8F86E7BF670424ED416208 /* NXOAuth2FileStreamWrapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2FileStreamWrapper.m; path = Sources/OAuth2Client/NXOAuth2FileStreamWrapper.m; sourceTree = "<group>"; };
-		5AADF3390CC643DEE1CBD145EC1127F7 /* NXOAuth2Client.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Client.h; path = Sources/OAuth2Client/NXOAuth2Client.h; sourceTree = "<group>"; };
-		60E3B6B2DD370B87562BD1B24CD9B7E2 /* Assets.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Assets.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		60FA6CD62EB7A9C85C7DBBA20924D70A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		691AF78D621D313F9505FDEA147594F9 /* NSString+NXOAuth2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+NXOAuth2.m"; path = "Sources/NSString+NXOAuth2.m"; sourceTree = "<group>"; };
-		69505CD65E5BB8E11FC0BF7D6DCDBB70 /* Pods-MyMovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MyMovieApp.release.xcconfig"; sourceTree = "<group>"; };
-		6B032B772FF14FBA11169A35C22C841B /* NSString+NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+NXOAuth2.h"; path = "Sources/NSString+NXOAuth2.h"; sourceTree = "<group>"; };
-		6E5084E1E24DA8DCA642903E746228B2 /* NXOAuth2Constants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Constants.h; path = Sources/OAuth2Client/NXOAuth2Constants.h; sourceTree = "<group>"; };
-		6F9192691E8CED6553C0BBC427D0D81F /* Pods-MyMovieApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MyMovieApp-acknowledgements.plist"; sourceTree = "<group>"; };
-		7073D2D766384D21CEF128EBDE44F565 /* NXOAuth2AccountStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2AccountStore.h; path = Sources/OAuth2Client/NXOAuth2AccountStore.h; sourceTree = "<group>"; };
-		7263D87598FF1AF9426FE89A77FDB099 /* youtube-ios-player-helper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "youtube-ios-player-helper-dummy.m"; sourceTree = "<group>"; };
-		7308FC43133CEB4E15719660414AC297 /* NXOAuth2PostBodyStream.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2PostBodyStream.m; path = Sources/OAuth2Client/NXOAuth2PostBodyStream.m; sourceTree = "<group>"; };
-		7793D5E84DA9A38D85DFB218B20DFD9A /* NXOAuth2Client-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NXOAuth2Client-prefix.pch"; sourceTree = "<group>"; };
-		82545DB65032132CEB6428C40E449E1E /* NXOAuth2Request.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Request.h; path = Sources/OAuth2Client/NXOAuth2Request.h; sourceTree = "<group>"; };
-		83A5C986267385BBCA353159C39D7579 /* Pods-MyMovieApp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MyMovieApp-frameworks.sh"; sourceTree = "<group>"; };
-		8DF4346E668FBBBF74454DA4D6EBC784 /* NXOAuth2PostBodyStream.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2PostBodyStream.h; path = Sources/OAuth2Client/NXOAuth2PostBodyStream.h; sourceTree = "<group>"; };
-		8F175CBE0F6D14A9CFB213787659B5B5 /* NXOAuth2Account.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Account.m; path = Sources/OAuth2Client/NXOAuth2Account.m; sourceTree = "<group>"; };
-		930C0B99DF3AB673F20E184630873B88 /* libyoutube-ios-player-helper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libyoutube-ios-player-helper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		93309FCDEFD09D744B164C71C3AD06DD /* NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2.h; path = Sources/OAuth2Client/NXOAuth2.h; sourceTree = "<group>"; };
-		96349483A00E0E24380C793B93B8AE69 /* NSData+NXOAuth2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+NXOAuth2.m"; path = "Sources/NSData+NXOAuth2.m"; sourceTree = "<group>"; };
-		9C598B8C0D62F383B39E94E05C76A9F8 /* YTPlayerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YTPlayerView.h; path = Classes/YTPlayerView.h; sourceTree = "<group>"; };
-		A0B431D88C88837CDA799B5B6C5C9E29 /* NSData+NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+NXOAuth2.h"; path = "Sources/NSData+NXOAuth2.h"; sourceTree = "<group>"; };
-		A13C652A9F03178D7041BA25EC56A7A5 /* libNXOAuth2Client.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNXOAuth2Client.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A801E8E1EA5A26A824547351C9C78780 /* libPods-MyMovieApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyMovieApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B89DA59E9285C2D27CF523F7F75ECB17 /* NXOAuth2Constants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Constants.m; path = Sources/OAuth2Client/NXOAuth2Constants.m; sourceTree = "<group>"; };
-		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BB24C1D08EC3AA970EFAB87611AF23BC /* NXOAuth2ClientDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2ClientDelegate.h; path = Sources/OAuth2Client/NXOAuth2ClientDelegate.h; sourceTree = "<group>"; };
-		BBF881F6DCEA78FBCCB3DCD7CD2505A0 /* NXOAuth2PostBodyPart.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2PostBodyPart.h; path = Sources/OAuth2Client/NXOAuth2PostBodyPart.h; sourceTree = "<group>"; };
-		BFAC84DC46E8EFF4A00A6F9FE658B0C0 /* NXOAuth2Account+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NXOAuth2Account+Private.h"; sourceTree = "<group>"; };
-		C09C184D5A8FC6B4AA7F39DF6496BB4B /* NXOAuth2ConnectionDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2ConnectionDelegate.h; path = Sources/OAuth2Client/NXOAuth2ConnectionDelegate.h; sourceTree = "<group>"; };
-		C3A0957659B637D33231683774FC1800 /* NXOAuth2AccountStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2AccountStore.m; path = Sources/OAuth2Client/NXOAuth2AccountStore.m; sourceTree = "<group>"; };
-		CAE3E380BF48C04CC3C0C44B276965CC /* NSURL+NXOAuth2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURL+NXOAuth2.h"; path = "Sources/NSURL+NXOAuth2.h"; sourceTree = "<group>"; };
-		CAF99BE933CEA8C08C32BFEF8C1F6D2F /* youtube-ios-player-helper.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "youtube-ios-player-helper.xcconfig"; sourceTree = "<group>"; };
-		D1BFEBE4A64625686A53736474D82AB1 /* Pods-MyMovieApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MyMovieApp.debug.xcconfig"; sourceTree = "<group>"; };
-		D8C06266B6EC6364533B5DAB26B50FDB /* NXOAuth2Connection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Connection.m; path = Sources/OAuth2Client/NXOAuth2Connection.m; sourceTree = "<group>"; };
-		DED8703FB686A58F0FAF54E0A554ED8F /* NXOAuth2Account.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Account.h; path = Sources/OAuth2Client/NXOAuth2Account.h; sourceTree = "<group>"; };
-		E3ADB57891E9730A785A396819A8DEB9 /* Pods-MyMovieApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MyMovieApp-dummy.m"; sourceTree = "<group>"; };
-		E57131685E6C8D11559335870BAF62F8 /* youtube-ios-player-helper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "youtube-ios-player-helper-prefix.pch"; sourceTree = "<group>"; };
-		EA69065C30F9FC0E0C2A1A3C91AE8D99 /* NXOAuth2Client.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NXOAuth2Client.m; path = Sources/OAuth2Client/NXOAuth2Client.m; sourceTree = "<group>"; };
-		F3142D2E4555330B5B781AF5CC291A38 /* NXOAuth2Client-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NXOAuth2Client-dummy.m"; sourceTree = "<group>"; };
-		F88C9A345CE3AB0AD68445232A76F3E1 /* NXOAuth2FileStreamWrapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2FileStreamWrapper.h; path = Sources/OAuth2Client/NXOAuth2FileStreamWrapper.h; sourceTree = "<group>"; };
-		FAA50FC6C611E57139281595EED2CF9A /* NXOAuth2Connection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NXOAuth2Connection.h; path = Sources/OAuth2Client/NXOAuth2Connection.h; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		0523047AA72CB6A975959D84B7BCA559 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		130B29F21FE249DC03BD58D68D549913 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				26336B744D83735380067DEDB1381207 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ABED539E6B2ADE87CA13EBDE82FF3543 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DCE85E0F86BF5DEF4842CD3D58C043F0 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BE98135A552FC71BF990DB90C060E208 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5B46959B711883A342F66AA89430292E /* Foundation.framework in Frameworks */,
-				89B6CFE588B981547314C4103D8B4675 /* Security.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		0F40911BDE036479FCA93B9620202D6B /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				59F9C98973BD9CBE7E152463CBEC2B79 /* Pods-MyMovieApp */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		116132F12D483A8ADDCE227087757A34 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				CAF99BE933CEA8C08C32BFEF8C1F6D2F /* youtube-ios-player-helper.xcconfig */,
-				7263D87598FF1AF9426FE89A77FDB099 /* youtube-ios-player-helper-dummy.m */,
-				E57131685E6C8D11559335870BAF62F8 /* youtube-ios-player-helper-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/youtube-ios-player-helper";
-			sourceTree = "<group>";
-		};
-		2245A4A28C489D8FE746D3DFEB5BBBAC /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B56EA41AC096AD34E9433B55DDBE34CE /* NXOAuth2Client */,
-				B394DC3F49F103B78D86966491C9CCE4 /* youtube-ios-player-helper */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5A86A7991AF0B723B7571D408852AEBF /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4C691E06506BBC436BB8390251DE7A87 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				0284FACEAA9829789642781516D0DF44 /* NXOAuth2Client.xcconfig */,
-				F3142D2E4555330B5B781AF5CC291A38 /* NXOAuth2Client-dummy.m */,
-				7793D5E84DA9A38D85DFB218B20DFD9A /* NXOAuth2Client-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/NXOAuth2Client";
-			sourceTree = "<group>";
-		};
-		59F9C98973BD9CBE7E152463CBEC2B79 /* Pods-MyMovieApp */ = {
-			isa = PBXGroup;
-			children = (
-				1013B7ED2816B09F3F1C31B3C480E49A /* Pods-MyMovieApp-acknowledgements.markdown */,
-				6F9192691E8CED6553C0BBC427D0D81F /* Pods-MyMovieApp-acknowledgements.plist */,
-				E3ADB57891E9730A785A396819A8DEB9 /* Pods-MyMovieApp-dummy.m */,
-				83A5C986267385BBCA353159C39D7579 /* Pods-MyMovieApp-frameworks.sh */,
-				229AB29C0AE0CCC6CB1531BC60B8B6DB /* Pods-MyMovieApp-resources.sh */,
-				D1BFEBE4A64625686A53736474D82AB1 /* Pods-MyMovieApp.debug.xcconfig */,
-				69505CD65E5BB8E11FC0BF7D6DCDBB70 /* Pods-MyMovieApp.release.xcconfig */,
-			);
-			name = "Pods-MyMovieApp";
-			path = "Target Support Files/Pods-MyMovieApp";
-			sourceTree = "<group>";
-		};
-		5A86A7991AF0B723B7571D408852AEBF /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				0307982621563C439755B9BC0ED60A1A /* Foundation.framework */,
-				60FA6CD62EB7A9C85C7DBBA20924D70A /* Security.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		7DB346D0F39D3F0E887471402A8071AB = {
-			isa = PBXGroup;
-			children = (
-				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
-				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
-				2245A4A28C489D8FE746D3DFEB5BBBAC /* Pods */,
-				A5780E883012025126A73F568157DA47 /* Products */,
-				0F40911BDE036479FCA93B9620202D6B /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		A5780E883012025126A73F568157DA47 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				60E3B6B2DD370B87562BD1B24CD9B7E2 /* Assets.bundle */,
-				A13C652A9F03178D7041BA25EC56A7A5 /* libNXOAuth2Client.a */,
-				A801E8E1EA5A26A824547351C9C78780 /* libPods-MyMovieApp.a */,
-				930C0B99DF3AB673F20E184630873B88 /* libyoutube-ios-player-helper.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B394DC3F49F103B78D86966491C9CCE4 /* youtube-ios-player-helper */ = {
-			isa = PBXGroup;
-			children = (
-				9C598B8C0D62F383B39E94E05C76A9F8 /* YTPlayerView.h */,
-				099DF973F2A0866DB1536374B729938C /* YTPlayerView.m */,
-				116132F12D483A8ADDCE227087757A34 /* Support Files */,
-			);
-			path = "youtube-ios-player-helper";
-			sourceTree = "<group>";
-		};
-		B56EA41AC096AD34E9433B55DDBE34CE /* NXOAuth2Client */ = {
-			isa = PBXGroup;
-			children = (
-				A0B431D88C88837CDA799B5B6C5C9E29 /* NSData+NXOAuth2.h */,
-				96349483A00E0E24380C793B93B8AE69 /* NSData+NXOAuth2.m */,
-				6B032B772FF14FBA11169A35C22C841B /* NSString+NXOAuth2.h */,
-				691AF78D621D313F9505FDEA147594F9 /* NSString+NXOAuth2.m */,
-				CAE3E380BF48C04CC3C0C44B276965CC /* NSURL+NXOAuth2.h */,
-				447A283BDD65D2492AAD654201BA7DE2 /* NSURL+NXOAuth2.m */,
-				93309FCDEFD09D744B164C71C3AD06DD /* NXOAuth2.h */,
-				2F7C6AC8FEDB3CE84B500A521E1D1A89 /* NXOAuth2AccessToken.h */,
-				05A6CC8CCDF2597DDD23679F4949F252 /* NXOAuth2AccessToken.m */,
-				DED8703FB686A58F0FAF54E0A554ED8F /* NXOAuth2Account.h */,
-				8F175CBE0F6D14A9CFB213787659B5B5 /* NXOAuth2Account.m */,
-				BFAC84DC46E8EFF4A00A6F9FE658B0C0 /* NXOAuth2Account+Private.h */,
-				7073D2D766384D21CEF128EBDE44F565 /* NXOAuth2AccountStore.h */,
-				C3A0957659B637D33231683774FC1800 /* NXOAuth2AccountStore.m */,
-				5AADF3390CC643DEE1CBD145EC1127F7 /* NXOAuth2Client.h */,
-				EA69065C30F9FC0E0C2A1A3C91AE8D99 /* NXOAuth2Client.m */,
-				BB24C1D08EC3AA970EFAB87611AF23BC /* NXOAuth2ClientDelegate.h */,
-				FAA50FC6C611E57139281595EED2CF9A /* NXOAuth2Connection.h */,
-				D8C06266B6EC6364533B5DAB26B50FDB /* NXOAuth2Connection.m */,
-				C09C184D5A8FC6B4AA7F39DF6496BB4B /* NXOAuth2ConnectionDelegate.h */,
-				6E5084E1E24DA8DCA642903E746228B2 /* NXOAuth2Constants.h */,
-				B89DA59E9285C2D27CF523F7F75ECB17 /* NXOAuth2Constants.m */,
-				F88C9A345CE3AB0AD68445232A76F3E1 /* NXOAuth2FileStreamWrapper.h */,
-				4D3BA6F1CA8F86E7BF670424ED416208 /* NXOAuth2FileStreamWrapper.m */,
-				BBF881F6DCEA78FBCCB3DCD7CD2505A0 /* NXOAuth2PostBodyPart.h */,
-				350B11BB80B42EC746C79C1C64F20517 /* NXOAuth2PostBodyPart.m */,
-				8DF4346E668FBBBF74454DA4D6EBC784 /* NXOAuth2PostBodyStream.h */,
-				7308FC43133CEB4E15719660414AC297 /* NXOAuth2PostBodyStream.m */,
-				82545DB65032132CEB6428C40E449E1E /* NXOAuth2Request.h */,
-				3682EC61B06E120C22F18D449C8873ED /* NXOAuth2Request.m */,
-				35DBC85C2A50A1F9B223B7E059845A2E /* NXOAuth2TrustDelegate.h */,
-				4C691E06506BBC436BB8390251DE7A87 /* Support Files */,
-			);
-			path = NXOAuth2Client;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		43471989221A06B58A7A1A2B7A0B30A3 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DAB700113F7712B04BB616327CE67306 /* YTPlayerView.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E00EFA61CB6BE390356A2D41B9BACC8C /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1CC5AACA78908ED08FB968E551C9E907 /* NSData+NXOAuth2.h in Headers */,
-				DB3B2657B0DBB2EC8F74D1A602582051 /* NSString+NXOAuth2.h in Headers */,
-				B23A00A5ED73210D3BC7AA7F21EA9B1C /* NSURL+NXOAuth2.h in Headers */,
-				9EB5C021CD0890A0F1A01E3BF4093E2B /* NXOAuth2.h in Headers */,
-				A464A7711317466CE3622FFF75923DD4 /* NXOAuth2AccessToken.h in Headers */,
-				E66FF19936CA6EF7FF4BF3E13EE0D7D7 /* NXOAuth2Account+Private.h in Headers */,
-				1FC05C99BA48029B527FC7482BBA87D5 /* NXOAuth2Account.h in Headers */,
-				C35FB79A52A53C86EC1AEE2BF99712CF /* NXOAuth2AccountStore.h in Headers */,
-				CDC229FCDA668D0077958EB1B48C03D7 /* NXOAuth2Client.h in Headers */,
-				DC259A831AAD609D68A368E16228D4F5 /* NXOAuth2ClientDelegate.h in Headers */,
-				D48FA58A38ADC8CAF616EF9A472581E9 /* NXOAuth2Connection.h in Headers */,
-				1D56CA0D7139A4028B93CA7E074AEDDF /* NXOAuth2ConnectionDelegate.h in Headers */,
-				006CA7289952B00BA727BEF299ECE8BD /* NXOAuth2Constants.h in Headers */,
-				44F191740E27CCCE532A4BF5E62318C4 /* NXOAuth2FileStreamWrapper.h in Headers */,
-				A2CA9E6B2BDCF663BE218A1FE2F00269 /* NXOAuth2PostBodyPart.h in Headers */,
-				D27B1021ED5A281761C33D770E16A58D /* NXOAuth2PostBodyStream.h in Headers */,
-				45995A1C9596908132B5FC22E41B6821 /* NXOAuth2Request.h in Headers */,
-				8E0647A6DE92E993472445D8A9A31410 /* NXOAuth2TrustDelegate.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
-/* Begin PBXNativeTarget section */
-		00D46FE2A19345B383D8886934CAA961 /* Pods-MyMovieApp */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C6CA84CF8AAD9B8DB5E03809A07FBE2A /* Build configuration list for PBXNativeTarget "Pods-MyMovieApp" */;
-			buildPhases = (
-				4B2E2B30B50462E80FC91E118FAEC0C2 /* Sources */,
-				130B29F21FE249DC03BD58D68D549913 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D0F6421868BD4F940D9F4EF3D9ED6556 /* PBXTargetDependency */,
-				412E3AA8E7848E7F2BA0ED5EA9C8AAAF /* PBXTargetDependency */,
-			);
-			name = "Pods-MyMovieApp";
-			productName = "Pods-MyMovieApp";
-			productReference = A801E8E1EA5A26A824547351C9C78780 /* libPods-MyMovieApp.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		1E85AABA23B5E543708FA4E03130F831 /* NXOAuth2Client */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C89A8A53A46D3DEF96F80C4034490CA4 /* Build configuration list for PBXNativeTarget "NXOAuth2Client" */;
-			buildPhases = (
-				28A89D93FC444A6217968F7769FA4266 /* Sources */,
-				BE98135A552FC71BF990DB90C060E208 /* Frameworks */,
-				E00EFA61CB6BE390356A2D41B9BACC8C /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = NXOAuth2Client;
-			productName = NXOAuth2Client;
-			productReference = A13C652A9F03178D7041BA25EC56A7A5 /* libNXOAuth2Client.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		396CA8A4947B8985DE531758F0091C02 /* youtube-ios-player-helper */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1C49FF48BB5CAF95057B0CA0345F857B /* Build configuration list for PBXNativeTarget "youtube-ios-player-helper" */;
-			buildPhases = (
-				59BD1AC3FE7FD4A00AAEBEFA62C6F761 /* Sources */,
-				ABED539E6B2ADE87CA13EBDE82FF3543 /* Frameworks */,
-				43471989221A06B58A7A1A2B7A0B30A3 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FEF10B3AEFC3724129B711B49B06F2B9 /* PBXTargetDependency */,
-			);
-			name = "youtube-ios-player-helper";
-			productName = "youtube-ios-player-helper";
-			productReference = 930C0B99DF3AB673F20E184630873B88 /* libyoutube-ios-player-helper.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		5106305555539CA93648617BE376FF0E /* youtube-ios-player-helper-Assets */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E97F7F978816C1E768948450222AA9B0 /* Build configuration list for PBXNativeTarget "youtube-ios-player-helper-Assets" */;
-			buildPhases = (
-				74AB93601276AE86146678D018D2E7E9 /* Sources */,
-				0523047AA72CB6A975959D84B7BCA559 /* Frameworks */,
-				07F18F142277506325823398362D84FE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "youtube-ios-player-helper-Assets";
-			productName = "youtube-ios-player-helper-Assets";
-			productReference = 60E3B6B2DD370B87562BD1B24CD9B7E2 /* Assets.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
-			};
-			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = A5780E883012025126A73F568157DA47 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				1E85AABA23B5E543708FA4E03130F831 /* NXOAuth2Client */,
-				00D46FE2A19345B383D8886934CAA961 /* Pods-MyMovieApp */,
-				396CA8A4947B8985DE531758F0091C02 /* youtube-ios-player-helper */,
-				5106305555539CA93648617BE376FF0E /* youtube-ios-player-helper-Assets */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		07F18F142277506325823398362D84FE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		28A89D93FC444A6217968F7769FA4266 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				496F81C0BF46852BDB2FF6DD0613A705 /* NSData+NXOAuth2.m in Sources */,
-				9182B36F359CE9F54AD3CD24BE93CBC5 /* NSString+NXOAuth2.m in Sources */,
-				2F603E30DC05C00DA356E6A85631BB91 /* NSURL+NXOAuth2.m in Sources */,
-				F61B50E72560137C1BAB08BB5E0F704B /* NXOAuth2AccessToken.m in Sources */,
-				876B49C130BA2283A8A226A296C950F3 /* NXOAuth2Account.m in Sources */,
-				0992373E828319E84CF32CA572BA3877 /* NXOAuth2AccountStore.m in Sources */,
-				43E283C47E79FE66D338B3049661CEE8 /* NXOAuth2Client-dummy.m in Sources */,
-				D6DF5A496FD858DE4036ACE9A912C895 /* NXOAuth2Client.m in Sources */,
-				67B47E511DCA3A06974DBCFE2B65D012 /* NXOAuth2Connection.m in Sources */,
-				F80352DA4E8B5745EFBBAE0A619D62CD /* NXOAuth2Constants.m in Sources */,
-				3AE3D4CD9960B3471E2E445470807E92 /* NXOAuth2FileStreamWrapper.m in Sources */,
-				AB7A92BC0570218D33CB991B74709C56 /* NXOAuth2PostBodyPart.m in Sources */,
-				198F8CB2EB0FD8A76BB8F827216B6B77 /* NXOAuth2PostBodyStream.m in Sources */,
-				29586E6E3C8D6F62D117FA1684C911AF /* NXOAuth2Request.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4B2E2B30B50462E80FC91E118FAEC0C2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E853BE263359DA52DC711831B3866FCA /* Pods-MyMovieApp-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		59BD1AC3FE7FD4A00AAEBEFA62C6F761 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1A218CC4F468E4157871048D2FA107EE /* youtube-ios-player-helper-dummy.m in Sources */,
-				569991ABD4FF1C800DEF9C0B44F990FB /* YTPlayerView.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		74AB93601276AE86146678D018D2E7E9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		412E3AA8E7848E7F2BA0ED5EA9C8AAAF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "youtube-ios-player-helper";
-			target = 396CA8A4947B8985DE531758F0091C02 /* youtube-ios-player-helper */;
-			targetProxy = 6D3701D9BA3734752A60307400EF3413 /* PBXContainerItemProxy */;
-		};
-		D0F6421868BD4F940D9F4EF3D9ED6556 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = NXOAuth2Client;
-			target = 1E85AABA23B5E543708FA4E03130F831 /* NXOAuth2Client */;
-			targetProxy = C56D04B71FE6F4DFC7A95105C7D34CC7 /* PBXContainerItemProxy */;
-		};
-		FEF10B3AEFC3724129B711B49B06F2B9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "youtube-ios-player-helper-Assets";
-			target = 5106305555539CA93648617BE376FF0E /* youtube-ios-player-helper-Assets */;
-			targetProxy = 70D11FFB486873345A5C2A44F660FE42 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin XCBuildConfiguration section */
-		3C2A1485F8CBEE403D1C8F5F03B9DBAE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0284FACEAA9829789642781516D0DF44 /* NXOAuth2Client.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/NXOAuth2Client/NXOAuth2Client-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		49EF8DFE6823971CCD53FFBC84C7B59A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CAF99BE933CEA8C08C32BFEF8C1F6D2F /* youtube-ios-player-helper.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = Assets;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		5CE5176205D06FF3FFE3DDDA9291E44B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				ONLY_ACTIVE_ARCH = YES;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Debug;
-		};
-		5F37D59132B0EFE279330CC6A154C4B3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69505CD65E5BB8E11FC0BF7D6DCDBB70 /* Pods-MyMovieApp.release.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		74857149DC1E0D599B8A01A78349A926 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		8F24815DF72709475C86A53C02F4F473 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CAF99BE933CEA8C08C32BFEF8C1F6D2F /* youtube-ios-player-helper.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				PRODUCT_NAME = Assets;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		A7262BD3C9D2C55EBA04785CC459CEAE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CAF99BE933CEA8C08C32BFEF8C1F6D2F /* youtube-ios-player-helper.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/youtube-ios-player-helper/youtube-ios-player-helper-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		CFBFA10C8438D887954E66CCA2F8AD2A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0284FACEAA9829789642781516D0DF44 /* NXOAuth2Client.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/NXOAuth2Client/NXOAuth2Client-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		D1852E3C2FB198CCD7E4988EB7DB7EA2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D1BFEBE4A64625686A53736474D82AB1 /* Pods-MyMovieApp.debug.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		DDC71FFA24931D859515533FCBAB7026 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CAF99BE933CEA8C08C32BFEF8C1F6D2F /* youtube-ios-player-helper.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/youtube-ios-player-helper/youtube-ios-player-helper-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		1C49FF48BB5CAF95057B0CA0345F857B /* Build configuration list for PBXNativeTarget "youtube-ios-player-helper" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A7262BD3C9D2C55EBA04785CC459CEAE /* Debug */,
-				DDC71FFA24931D859515533FCBAB7026 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5CE5176205D06FF3FFE3DDDA9291E44B /* Debug */,
-				74857149DC1E0D599B8A01A78349A926 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C6CA84CF8AAD9B8DB5E03809A07FBE2A /* Build configuration list for PBXNativeTarget "Pods-MyMovieApp" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D1852E3C2FB198CCD7E4988EB7DB7EA2 /* Debug */,
-				5F37D59132B0EFE279330CC6A154C4B3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C89A8A53A46D3DEF96F80C4034490CA4 /* Build configuration list for PBXNativeTarget "NXOAuth2Client" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CFBFA10C8438D887954E66CCA2F8AD2A /* Debug */,
-				3C2A1485F8CBEE403D1C8F5F03B9DBAE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E97F7F978816C1E768948450222AA9B0 /* Build configuration list for PBXNativeTarget "youtube-ios-player-helper-Assets" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				49EF8DFE6823971CCD53FFBC84C7B59A /* Debug */,
-				8F24815DF72709475C86A53C02F4F473 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>027C73147152DB301C568CCEDBE3BB2D</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Assets.bundle</string>
+			<key>path</key>
+			<string>Assets.bundle</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>0794F039E478C9D6CCB28856058610C4</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>5D3C87F2A1B5733D44716C03B49CC50A</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/HCSStarRatingView/HCSStarRatingView-prefix.pch</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PRIVATE_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>09500E7502A8A2DE0BF55ECD3D952CBD</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>5D3C87F2A1B5733D44716C03B49CC50A</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/HCSStarRatingView/HCSStarRatingView-prefix.pch</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PRIVATE_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>0F40911BDE036479FCA93B9620202D6B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>59F9C98973BD9CBE7E152463CBEC2B79</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Targets Support Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0F6DA524A1CB31719338E458405DBB20</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>A8488902FAD1650405BAE38299A468E3</string>
+			<key>remoteInfo</key>
+			<string>HCSStarRatingView</string>
+		</dict>
+		<key>1013B7ED2816B09F3F1C31B3C480E49A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>path</key>
+			<string>Pods-MyMovieApp-acknowledgements.markdown</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>10A6F6D0DBD2D155E0A6C2FC9C52E0E3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E3ADB57891E9730A785A396819A8DEB9</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>11046853A0308DBF95F76BCAC311979C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YTPlayerView.m</string>
+			<key>path</key>
+			<string>Classes/YTPlayerView.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1B06D5DD38CA65C00D9D066754F62699</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7D799D472CEC5571DF7F2FE142727EF6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>20F0806A731540D229D73F184327B3BC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>63A244C3B42971BFA7F9BAE54E9474A2</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>229AB29C0AE0CCC6CB1531BC60B8B6DB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-MyMovieApp-resources.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2439CFBFFA26FBCE2A9A8EB787727CF9</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>027C73147152DB301C568CCEDBE3BB2D</string>
+				<string>6DF71F8C0416EA1710ABA662C0981567</string>
+				<string>791BD49D4EB47DB78424E3DEFDD9C7A4</string>
+				<string>4A5DE4E6300FA60334FC21C38AA927EE</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>27DCBDB7AE10E716F0E9D9003FFD0656</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>2B389FAB51F6EEA43F72CA7BDC8E8E28</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>STRIP_INSTALLED_PRODUCT</key>
+				<string>NO</string>
+				<key>SYMROOT</key>
+				<string>${SRCROOT}/../build</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>2D8E8EC45A3A1A1D94AE762CB5028504</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>2B389FAB51F6EEA43F72CA7BDC8E8E28</string>
+				<string>5A0C6FE968931D888F00C9EC18DDF5BC</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>3290515B8AC6A8F17EC6A30D18DD8561</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>A693E526D4075F8DD754D41D266686C7</string>
+				<string>9D512BF26345F13B292CBE1EE7023AAA</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>32FB460B4114291E8D944FF2A0E8F8B3</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>BC7208EF41283EEA17E70D3BF5F2BB28</string>
+			<key>buildPhases</key>
+			<array>
+				<string>27DCBDB7AE10E716F0E9D9003FFD0656</string>
+				<string>4CAF0E31EEB1F1EA6B168861F43464CC</string>
+				<string>D863288940A816D1A91DC18BEAF7519C</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>youtube-ios-player-helper-Assets</string>
+			<key>productName</key>
+			<string>youtube-ios-player-helper-Assets</string>
+			<key>productReference</key>
+			<string>027C73147152DB301C568CCEDBE3BB2D</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle</string>
+		</dict>
+		<key>3BC8CF97B14255AFAAE0BF12C4F10242</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E8F7F78D6100DE30FFA04C2C6ED303A1</string>
+				<string>5F546575C7B0A8231E934FC3DCEF5BD8</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>3E4E89230EF59BC255123B67864ACF77</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>3EA8DC713B1A07B9E95582335A8E15EC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>youtube-ios-player-helper</string>
+			<key>target</key>
+			<string>9D6994988CEA875B7C6DBEC1C4619504</string>
+			<key>targetProxy</key>
+			<string>773E0A5F4F0E5278EC7A2A091122F8C8</string>
+		</dict>
+		<key>4032BA44561C3C9E02DA447E18F68922</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3E4E89230EF59BC255123B67864ACF77</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>4A5DE4E6300FA60334FC21C38AA927EE</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>libyoutube-ios-player-helper.a</string>
+			<key>path</key>
+			<string>libyoutube-ios-player-helper.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>4A8497AB8C46DB052AC26A27ADDD5CE1</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>09500E7502A8A2DE0BF55ECD3D952CBD</string>
+				<string>0794F039E478C9D6CCB28856058610C4</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>4CAF0E31EEB1F1EA6B168861F43464CC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>4CD971554DE22A3C95B8E5070ACBD088</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E63A0C2807E22A22C5D769B35FA6E0FA</string>
+				<string>11046853A0308DBF95F76BCAC311979C</string>
+				<string>C3774A2A58741071A8889A77A11427C9</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>youtube-ios-player-helper</string>
+			<key>path</key>
+			<string>youtube-ios-player-helper</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4F75671B9D7D01075AD8B02491A89E4C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>youtube-ios-player-helper-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>59F9C98973BD9CBE7E152463CBEC2B79</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>1013B7ED2816B09F3F1C31B3C480E49A</string>
+				<string>6F9192691E8CED6553C0BBC427D0D81F</string>
+				<string>E3ADB57891E9730A785A396819A8DEB9</string>
+				<string>83A5C986267385BBCA353159C39D7579</string>
+				<string>229AB29C0AE0CCC6CB1531BC60B8B6DB</string>
+				<string>D1BFEBE4A64625686A53736474D82AB1</string>
+				<string>69505CD65E5BB8E11FC0BF7D6DCDBB70</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods-MyMovieApp</string>
+			<key>path</key>
+			<string>Target Support Files/Pods-MyMovieApp</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5A0C6FE968931D888F00C9EC18DDF5BC</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>RELEASE=1</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>STRIP_INSTALLED_PRODUCT</key>
+				<string>NO</string>
+				<key>SYMROOT</key>
+				<string>${SRCROOT}/../build</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>5D3C87F2A1B5733D44716C03B49CC50A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>HCSStarRatingView.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5F546575C7B0A8231E934FC3DCEF5BD8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>11046853A0308DBF95F76BCAC311979C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>63A244C3B42971BFA7F9BAE54E9474A2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3E4E89230EF59BC255123B67864ACF77</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6892C2AC3D7B3E39689F34572EBC7DC4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HCSStarRatingView.m</string>
+			<key>path</key>
+			<string>HCSStarRatingView/HCSStarRatingView.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>69505CD65E5BB8E11FC0BF7D6DCDBB70</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-MyMovieApp.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6DF71F8C0416EA1710ABA662C0981567</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>libHCSStarRatingView.a</string>
+			<key>path</key>
+			<string>libHCSStarRatingView.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>6F9192691E8CED6553C0BBC427D0D81F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Pods-MyMovieApp-acknowledgements.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>73F98910D292B3BF76D2A288D2012EC5</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>AF2917327A6C403182A7D19EF7AE8BDB</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>PRODUCT_NAME</key>
+				<string>Assets</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>bundle</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>773E0A5F4F0E5278EC7A2A091122F8C8</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>9D6994988CEA875B7C6DBEC1C4619504</string>
+			<key>remoteInfo</key>
+			<string>youtube-ios-player-helper</string>
+		</dict>
+		<key>791BD49D4EB47DB78424E3DEFDD9C7A4</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>libPods-MyMovieApp.a</string>
+			<key>path</key>
+			<string>libPods-MyMovieApp.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>7D799D472CEC5571DF7F2FE142727EF6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HCSStarRatingView.h</string>
+			<key>path</key>
+			<string>HCSStarRatingView/HCSStarRatingView.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7DB346D0F39D3F0E887471402A8071AB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
+				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
+				<string>DBF7C1756E580E77AA7B9B4ED1E3E1B6</string>
+				<string>2439CFBFFA26FBCE2A9A8EB787727CF9</string>
+				<string>0F40911BDE036479FCA93B9620202D6B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>82BFA946FFD89BD11B6A7FCAF62E963A</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>32FB460B4114291E8D944FF2A0E8F8B3</string>
+			<key>remoteInfo</key>
+			<string>youtube-ios-player-helper-Assets</string>
+		</dict>
+		<key>8352B5E0308A4391AF6DF2B799D3C4F5</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>B77D82BE92B4EA1E41E4A79A4A2AE4C6</string>
+			<key>buildPhases</key>
+			<array>
+				<string>BD0AFFE6D485C5AEF8819BF09282C9A7</string>
+				<string>9E9B5DCE2E20BFC1EC5E42C02F230902</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>C102FB98D51055F88E0B94AE36AFF062</string>
+				<string>3EA8DC713B1A07B9E95582335A8E15EC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods-MyMovieApp</string>
+			<key>productName</key>
+			<string>Pods-MyMovieApp</string>
+			<key>productReference</key>
+			<string>791BD49D4EB47DB78424E3DEFDD9C7A4</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>83A5C986267385BBCA353159C39D7579</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-MyMovieApp-frameworks.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>871E497DD2852655E28E0F650D7E7C46</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>D1BFEBE4A64625686A53736474D82AB1</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>97F3FDE22E7855C7CE43DC047A595724</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3E4E89230EF59BC255123B67864ACF77</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9D512BF26345F13B292CBE1EE7023AAA</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>AF2917327A6C403182A7D19EF7AE8BDB</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/youtube-ios-player-helper/youtube-ios-player-helper-prefix.pch</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PRIVATE_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>9D6994988CEA875B7C6DBEC1C4619504</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>3290515B8AC6A8F17EC6A30D18DD8561</string>
+			<key>buildPhases</key>
+			<array>
+				<string>3BC8CF97B14255AFAAE0BF12C4F10242</string>
+				<string>B77B28321D11EB100868DE56588D893A</string>
+				<string>E6DEFFF1ADC8D6E6F328CE43A3F4FFD9</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>A3119549D0EEED0F34F1F1E3EF0504DE</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>youtube-ios-player-helper</string>
+			<key>productName</key>
+			<string>youtube-ios-player-helper</string>
+			<key>productReference</key>
+			<string>4A5DE4E6300FA60334FC21C38AA927EE</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>9E9B5DCE2E20BFC1EC5E42C02F230902</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>4032BA44561C3C9E02DA447E18F68922</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>A3119549D0EEED0F34F1F1E3EF0504DE</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>youtube-ios-player-helper-Assets</string>
+			<key>target</key>
+			<string>32FB460B4114291E8D944FF2A0E8F8B3</string>
+			<key>targetProxy</key>
+			<string>82BFA946FFD89BD11B6A7FCAF62E963A</string>
+		</dict>
+		<key>A693E526D4075F8DD754D41D266686C7</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>AF2917327A6C403182A7D19EF7AE8BDB</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/youtube-ios-player-helper/youtube-ios-player-helper-prefix.pch</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PRIVATE_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>A8488902FAD1650405BAE38299A468E3</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>4A8497AB8C46DB052AC26A27ADDD5CE1</string>
+			<key>buildPhases</key>
+			<array>
+				<string>AC5AB07D1EB751242083E50A77D446A7</string>
+				<string>20F0806A731540D229D73F184327B3BC</string>
+				<string>B77BB741E3CE806DD8CAB35A8136B6F8</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>HCSStarRatingView</string>
+			<key>productName</key>
+			<string>HCSStarRatingView</string>
+			<key>productReference</key>
+			<string>6DF71F8C0416EA1710ABA662C0981567</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>AC5AB07D1EB751242083E50A77D446A7</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>B0E1075BE75407A436FD465B1F7B5FDC</string>
+				<string>D896FE6B8AE200AB403BB94EE4A2A22A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>AF2917327A6C403182A7D19EF7AE8BDB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>youtube-ios-player-helper.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B0E1075BE75407A436FD465B1F7B5FDC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>EDF8C6443C8FCA89A327E4FC416EDE95</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B0E15C198DAB9A8D0E7A9749C7CF0A33</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>AF2917327A6C403182A7D19EF7AE8BDB</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>PRODUCT_NAME</key>
+				<string>Assets</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>bundle</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>B77B28321D11EB100868DE56588D893A</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>97F3FDE22E7855C7CE43DC047A595724</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>B77BB741E3CE806DD8CAB35A8136B6F8</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>1B06D5DD38CA65C00D9D066754F62699</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>B77D82BE92B4EA1E41E4A79A4A2AE4C6</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>871E497DD2852655E28E0F650D7E7C46</string>
+				<string>FE96D878CB974948B06EAFFAE80AA870</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>BA6428E9F66FD5A23C0A2E06ED26CD2F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>name</key>
+			<string>Podfile</string>
+			<key>path</key>
+			<string>../Podfile</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.ruby</string>
+		</dict>
+		<key>BB34BE7A8768B8CD6E1017E7C14A81BA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E63A0C2807E22A22C5D769B35FA6E0FA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>BC3CA7F9E30CC8F7E2DD044DD34432FC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BF6342C8B29F4CEEA088EFF7AB4DE362</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BC7208EF41283EEA17E70D3BF5F2BB28</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>B0E15C198DAB9A8D0E7A9749C7CF0A33</string>
+				<string>73F98910D292B3BF76D2A288D2012EC5</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>BD0AFFE6D485C5AEF8819BF09282C9A7</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>10A6F6D0DBD2D155E0A6C2FC9C52E0E3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>BF6342C8B29F4CEEA088EFF7AB4DE362</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>3E4E89230EF59BC255123B67864ACF77</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>iOS</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C102FB98D51055F88E0B94AE36AFF062</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>HCSStarRatingView</string>
+			<key>target</key>
+			<string>A8488902FAD1650405BAE38299A468E3</string>
+			<key>targetProxy</key>
+			<string>0F6DA524A1CB31719338E458405DBB20</string>
+		</dict>
+		<key>C3774A2A58741071A8889A77A11427C9</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>AF2917327A6C403182A7D19EF7AE8BDB</string>
+				<string>4F75671B9D7D01075AD8B02491A89E4C</string>
+				<string>F8E210D8ECEF5B1713198B6FC020970B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/youtube-ios-player-helper</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D1BFEBE4A64625686A53736474D82AB1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-MyMovieApp.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D41D8CD98F00B204E9800998ECF8427E</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastSwiftUpdateCheck</key>
+				<string>0700</string>
+				<key>LastUpgradeCheck</key>
+				<string>0700</string>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>2D8E8EC45A3A1A1D94AE762CB5028504</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+			</array>
+			<key>mainGroup</key>
+			<string>7DB346D0F39D3F0E887471402A8071AB</string>
+			<key>productRefGroup</key>
+			<string>2439CFBFFA26FBCE2A9A8EB787727CF9</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>A8488902FAD1650405BAE38299A468E3</string>
+				<string>8352B5E0308A4391AF6DF2B799D3C4F5</string>
+				<string>9D6994988CEA875B7C6DBEC1C4619504</string>
+				<string>32FB460B4114291E8D944FF2A0E8F8B3</string>
+			</array>
+		</dict>
+		<key>D863288940A816D1A91DC18BEAF7519C</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D896FE6B8AE200AB403BB94EE4A2A22A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6892C2AC3D7B3E39689F34572EBC7DC4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>DBF7C1756E580E77AA7B9B4ED1E3E1B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>DCE1A432BE108E66CC6A8EFE6A6B6DC1</string>
+				<string>4CD971554DE22A3C95B8E5070ACBD088</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>DCE1A432BE108E66CC6A8EFE6A6B6DC1</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>7D799D472CEC5571DF7F2FE142727EF6</string>
+				<string>6892C2AC3D7B3E39689F34572EBC7DC4</string>
+				<string>E533C41226844292CF6A01E75F3CBF65</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>HCSStarRatingView</string>
+			<key>path</key>
+			<string>HCSStarRatingView</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E3ADB57891E9730A785A396819A8DEB9</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Pods-MyMovieApp-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E533C41226844292CF6A01E75F3CBF65</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5D3C87F2A1B5733D44716C03B49CC50A</string>
+				<string>EDF8C6443C8FCA89A327E4FC416EDE95</string>
+				<string>F15D12222C36AF8617F6DE96B44C626B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/HCSStarRatingView</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E63A0C2807E22A22C5D769B35FA6E0FA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YTPlayerView.h</string>
+			<key>path</key>
+			<string>Classes/YTPlayerView.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E6DEFFF1ADC8D6E6F328CE43A3F4FFD9</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>BB34BE7A8768B8CD6E1017E7C14A81BA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E8F7F78D6100DE30FFA04C2C6ED303A1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4F75671B9D7D01075AD8B02491A89E4C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>EDF8C6443C8FCA89A327E4FC416EDE95</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>HCSStarRatingView-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F15D12222C36AF8617F6DE96B44C626B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>HCSStarRatingView-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F8E210D8ECEF5B1713198B6FC020970B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>youtube-ios-player-helper-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FE96D878CB974948B06EAFFAE80AA870</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>69505CD65E5BB8E11FC0BF7D6DCDBB70</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>D41D8CD98F00B204E9800998ECF8427E</string>
+</dict>
+</plist>

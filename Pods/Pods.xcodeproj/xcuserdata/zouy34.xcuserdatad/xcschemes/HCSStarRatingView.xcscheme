@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '187C585C6A5013635A236C73'
-               BlueprintName = 'youtube-ios-player-helper'
+               BlueprintIdentifier = 'FA349192B23E8577C1D99F59'
+               BlueprintName = 'HCSStarRatingView'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libyoutube-ios-player-helper.a'>
+               BuildableName = 'libHCSStarRatingView.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

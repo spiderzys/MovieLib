@@ -5,6 +5,6 @@
 # use_frameworks!
 
 target 'MyMovieApp' do
-    pod 'NXOAuth2Client', '~> 1.2.8'
    pod  "youtube-ios-player-helper", "~> 0.1.4"
+   pod "HCSStarRatingView", "~> 1.4.5"
 end

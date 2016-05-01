@@ -1,13 +1,13 @@
 PODS:
-  - NXOAuth2Client (1.2.8)
+  - HCSStarRatingView (1.4.5)
   - youtube-ios-player-helper (0.1.5)
 
 DEPENDENCIES:
-  - NXOAuth2Client (~> 1.2.8)
+  - HCSStarRatingView (~> 1.4.5)
   - youtube-ios-player-helper (~> 0.1.4)
 
 SPEC CHECKSUMS:
-  NXOAuth2Client: 98c4d4c594edd2b289cfc34a8928653e1dab7adf
+  HCSStarRatingView: bff3f89314d3b5013ce826ea11897d3129ff6b8c
   youtube-ios-player-helper: 8706bb155ffee74fbe5f2f5cf41c2dafe60dc155
 
 COCOAPODS: 0.39.0
