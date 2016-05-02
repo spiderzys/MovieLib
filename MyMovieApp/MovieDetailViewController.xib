@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUC-V7-FMC">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUC-V7-FMC">
                     <rect key="frame" x="0.0" y="255" width="600" height="345"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="textColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -27,6 +27,9 @@
                     <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                         <rect key="frame" x="0.0" y="451" width="800" height="349"/>
                     </variation>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="M4e-js-ahg"/>
+                    </connections>
                 </textView>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Tg-W9-fj9">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>

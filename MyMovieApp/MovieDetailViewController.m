@@ -8,7 +8,9 @@
 
 #import "MovieDetailViewController.h"
 #import "MovieBackdropCollectionViewCell.h"
-
+#import "MovieMediaViewController.h"
+static NSDictionary *movie;
+static NSDictionary *attribute;
 @interface MovieDetailViewController ()
 
 @end
@@ -17,10 +19,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    attribute = _movieInfo.typingAttributes;
     self.backImageView =  [[UIImageView alloc]initWithFrame:self.view.frame];
     [self.backImageView setContentMode:UIViewContentModeScaleAspectFill];
     self.backImageView.clipsToBounds = YES;
     self.backImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    
     self.backImageView.alpha = 0.2;
     [self.view addSubview:self.backImageView];
     [self.view sendSubviewToBack:self.backImageView];
@@ -37,9 +41,9 @@
     
 }
 
--(void)loadDataFromMovie:(NSDictionary*)movie{
+-(void)loadDataFromMovie:(NSDictionary*)movieDic{
    
-    
+    movie = movieDic;
     NSDictionary *genreDic = [[NSDictionary alloc] initWithContentsOfFile: self.genreResourcePath];
     NSArray *genre_ids = [movie valueForKey:@"genre_ids"];
     NSString *label = @"Label: ";
@@ -91,23 +95,19 @@
         info = [NSString stringWithFormat:@"%@\n%@\nRelease Date: %@      Mark: %.1f\nCast: %@ \n\nOverview:\n%@ ",title, label, release_date, mark,showCast, overview];
         
     }
-    NSString *reviewRequestString = [NSString stringWithFormat:@"%@%@/reviews?%@",movieWeb,idn,APIKey];
-    NSArray *reviewList = [self getDataFromUrl:[NSURL URLWithString:reviewRequestString] withKey:@"results" LimitPages:1];
-    NSString *reviewString = @"\n\nReview:\n";
-    if(reviewList.count==0){
-        reviewString = [reviewString stringByAppendingString:@"N/A"];
-    }
-    else{
-        for (NSDictionary *reviewDic in reviewList) {
-            NSString *author = [reviewDic valueForKey:@"author"];
-            NSString *content = [reviewDic valueForKey:@"content"];
-            reviewString = [NSString stringWithFormat:@"%@\n%@:\n%@\n(End)\n",reviewString,author,content];
-        }
-    }
-    reviewString = @"";
-    info = [info stringByAppendingString:reviewString];
+    
 
-    [_movieInfo setText:info];
+    
+    
+    NSMutableAttributedString *attributedInfo = [[NSMutableAttributedString alloc]initWithString:info attributes:attribute];
+    [attributedInfo addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:22] range:NSMakeRange(0, title.length)];
+    [attributedInfo addAttribute: NSLinkAttributeName value: @"" range: NSMakeRange(0,title.length)];
+    [_movieInfo setAttributedText:attributedInfo];
+    
+
+
+    
+    
    
 
     //https://api.themoviedb.org/3/movie/id/images?api_key=3c9140cda64a622c6cb5feb6c2689164
@@ -197,6 +197,24 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _movieImagesDicArray.count;
 }
+
+
+- (void)textViewDidChangeSelection:(UITextView *)textView {
+    if(NSEqualRanges(textView.selectedRange, NSMakeRange(0, 0)) == NO) {
+        textView.selectedRange = NSMakeRange(0, 0);
+    }
+}
+
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRang{
+    
+    MovieMediaViewController *mediaViewController = [[MovieMediaViewController alloc]initWithNibName:@"MovieMediaViewController" bundle:nil movieDic:movie];
+    [self presentViewController:mediaViewController animated:YES completion:nil];
+    
+    return NO;
+}
+
+
 
 /*
  #pragma mark - Navigation

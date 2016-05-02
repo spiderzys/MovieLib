@@ -138,6 +138,7 @@ static CGRect NALabelRect;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *collectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:cell forIndexPath:indexPath];
     if(collectionViewCell.subviews.count>1){
+        [_loadingIndicator stopAnimating];
         return collectionViewCell;
     }
     float collectionViewHeight = collectionViewCell.bounds.size.height;
@@ -151,6 +152,7 @@ static CGRect NALabelRect;
         if(_tailerArray.count==0){
             
             [collectionViewCell addSubview:[self NALabel]];
+             [_loadingIndicator stopAnimating];
         }
         else{
             float tralierWidth = collectionViewHeight*trailerRatio;
@@ -265,6 +267,7 @@ static CGRect NALabelRect;
             _loadingIndicator.color = _tintColor;
             _loadingIndicator.center = CGPointMake(label.frame.size.width/2, label.frame.size.height/2);
             NSLog(@"%@,%@",NSStringFromCGSize(NALabelSize),NSStringFromCGRect(NALabelRect));
+            _loadingIndicator.hidesWhenStopped = YES;
             [label addSubview:_loadingIndicator];
             [_loadingIndicator startAnimating];
         }
