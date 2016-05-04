@@ -16,26 +16,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    _activityIndicator.color = [UIColor blackColor];
+  
+    _ratingView.value = 2;
     
-    _activityIndicator.center = CGPointMake(50, 50);
-    _activityIndicator.center = CGPointMake(_testView.frame.size.width/2,_testView.frame.size.height/2);
-  //  _activityIndicator.center = _testView.center;
-   // _activityIndicator.hidesWhenStopped = NO;
-    NSLog(@"%@",_activityIndicator.description);
-    [_testView addSubview:_activityIndicator];
-    [_activityIndicator startAnimating];
     
-    [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(stop) userInfo:nil repeats:NO];
+    
+}
 
-    
-    
-    
-}
--(void)stop{
-    [_activityIndicator stopAnimating];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

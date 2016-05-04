@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HCSStarRatingView.h"
 @interface UserMovieCollectionViewCell : UICollectionViewCell
+
+@property (weak, nonatomic) IBOutlet HCSStarRatingView *ratingView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
 @end

@@ -10,25 +10,10 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
-		<key>027C73147152DB301C568CCEDBE3BB2D</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>Assets.bundle</string>
-			<key>path</key>
-			<string>Assets.bundle</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
 		<key>0794F039E478C9D6CCB28856058610C4</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>5D3C87F2A1B5733D44716C03B49CC50A</string>
+			<string>98CE330CF81AD9FDBA295F124BCF52A0</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
@@ -62,7 +47,7 @@
 		<key>09500E7502A8A2DE0BF55ECD3D952CBD</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>5D3C87F2A1B5733D44716C03B49CC50A</string>
+			<string>98CE330CF81AD9FDBA295F124BCF52A0</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
@@ -92,6 +77,34 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Debug</string>
+		</dict>
+		<key>0AD4E2615B9A2A129886EBCD165447A0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>HCSStarRatingView-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0B955694052A62DA1A4D8C9A049D8890</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HCSStarRatingView.m</string>
+			<key>path</key>
+			<string>HCSStarRatingView/HCSStarRatingView.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>0F40911BDE036479FCA93B9620202D6B</key>
 		<dict>
@@ -139,25 +152,10 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>11046853A0308DBF95F76BCAC311979C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>YTPlayerView.m</string>
-			<key>path</key>
-			<string>Classes/YTPlayerView.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>1B06D5DD38CA65C00D9D066754F62699</key>
 		<dict>
 			<key>fileRef</key>
-			<string>7D799D472CEC5571DF7F2FE142727EF6</string>
+			<string>327616E5469B51BEBF015D99EFD10AB5</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -193,33 +191,6 @@
 			<string>Pods-MyMovieApp-resources.sh</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2439CFBFFA26FBCE2A9A8EB787727CF9</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>027C73147152DB301C568CCEDBE3BB2D</string>
-				<string>6DF71F8C0416EA1710ABA662C0981567</string>
-				<string>791BD49D4EB47DB78424E3DEFDD9C7A4</string>
-				<string>4A5DE4E6300FA60334FC21C38AA927EE</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>27DCBDB7AE10E716F0E9D9003FFD0656</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
 		</dict>
 		<key>2B389FAB51F6EEA43F72CA7BDC8E8E28</key>
 		<dict>
@@ -308,6 +279,38 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
+		<key>309EAFD35D92C2738CF8D08FD341232F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>98CE330CF81AD9FDBA295F124BCF52A0</string>
+				<string>38B51F2879649A8E5EB886DC8A578B2E</string>
+				<string>0AD4E2615B9A2A129886EBCD165447A0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/HCSStarRatingView</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>327616E5469B51BEBF015D99EFD10AB5</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HCSStarRatingView.h</string>
+			<key>path</key>
+			<string>HCSStarRatingView/HCSStarRatingView.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>3290515B8AC6A8F17EC6A30D18DD8561</key>
 		<dict>
 			<key>buildConfigurations</key>
@@ -322,30 +325,18 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>32FB460B4114291E8D944FF2A0E8F8B3</key>
+		<key>38B51F2879649A8E5EB886DC8A578B2E</key>
 		<dict>
-			<key>buildConfigurationList</key>
-			<string>BC7208EF41283EEA17E70D3BF5F2BB28</string>
-			<key>buildPhases</key>
-			<array>
-				<string>27DCBDB7AE10E716F0E9D9003FFD0656</string>
-				<string>4CAF0E31EEB1F1EA6B168861F43464CC</string>
-				<string>D863288940A816D1A91DC18BEAF7519C</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>youtube-ios-player-helper-Assets</string>
-			<key>productName</key>
-			<string>youtube-ios-player-helper-Assets</string>
-			<key>productReference</key>
-			<string>027C73147152DB301C568CCEDBE3BB2D</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>HCSStarRatingView-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>3BC8CF97B14255AFAAE0BF12C4F10242</key>
 		<dict>
@@ -392,20 +383,18 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>4A5DE4E6300FA60334FC21C38AA927EE</key>
+		<key>41E57418B5D6E64CEBD8F2358D7E9EA2</key>
 		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
+			<key>children</key>
+			<array>
+				<string>9F010B2C1AA767E4B33ED69DDAD8549D</string>
+			</array>
 			<key>isa</key>
-			<string>PBXFileReference</string>
+			<string>PBXGroup</string>
 			<key>name</key>
-			<string>libyoutube-ios-player-helper.a</string>
-			<key>path</key>
-			<string>libyoutube-ios-player-helper.a</string>
+			<string>Resources</string>
 			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>4A8497AB8C46DB052AC26A27ADDD5CE1</key>
 		<dict>
@@ -421,46 +410,20 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>4CAF0E31EEB1F1EA6B168861F43464CC</key>
+		<key>59811F863C0AF3CA94F47877EF613E5E</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>4CD971554DE22A3C95B8E5070ACBD088</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>E63A0C2807E22A22C5D769B35FA6E0FA</string>
-				<string>11046853A0308DBF95F76BCAC311979C</string>
-				<string>C3774A2A58741071A8889A77A11427C9</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>youtube-ios-player-helper</string>
-			<key>path</key>
-			<string>youtube-ios-player-helper</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4F75671B9D7D01075AD8B02491A89E4C</key>
-		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
 			<key>includeInIndex</key>
-			<string>1</string>
+			<string>0</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>libyoutube-ios-player-helper.a</string>
 			<key>path</key>
-			<string>youtube-ios-player-helper-dummy.m</string>
+			<string>libyoutube-ios-player-helper.a</string>
 			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>59F9C98973BD9CBE7E152463CBEC2B79</key>
 		<dict>
@@ -551,23 +514,25 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>5D3C87F2A1B5733D44716C03B49CC50A</key>
+		<key>5B4E5E17436518AD0449BE7FFDA41C5D</key>
 		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
 			<key>includeInIndex</key>
-			<string>1</string>
+			<string>0</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>libHCSStarRatingView.a</string>
 			<key>path</key>
-			<string>HCSStarRatingView.xcconfig</string>
+			<string>libHCSStarRatingView.a</string>
 			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>5F546575C7B0A8231E934FC3DCEF5BD8</key>
 		<dict>
 			<key>fileRef</key>
-			<string>11046853A0308DBF95F76BCAC311979C</string>
+			<string>862E2555F0B73591A426D5C390FAE460</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -577,21 +542,6 @@
 			<string>3E4E89230EF59BC255123B67864ACF77</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>6892C2AC3D7B3E39689F34572EBC7DC4</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HCSStarRatingView.m</string>
-			<key>path</key>
-			<string>HCSStarRatingView/HCSStarRatingView.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>69505CD65E5BB8E11FC0BF7D6DCDBB70</key>
 		<dict>
@@ -606,21 +556,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>6DF71F8C0416EA1710ABA662C0981567</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>libHCSStarRatingView.a</string>
-			<key>path</key>
-			<string>libHCSStarRatingView.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
 		<key>6F9192691E8CED6553C0BBC427D0D81F</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -633,28 +568,6 @@
 			<string>Pods-MyMovieApp-acknowledgements.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>73F98910D292B3BF76D2A288D2012EC5</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>AF2917327A6C403182A7D19EF7AE8BDB</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>Assets</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>bundle</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
 		</dict>
 		<key>773E0A5F4F0E5278EC7A2A091122F8C8</key>
 		<dict>
@@ -669,44 +582,14 @@
 			<key>remoteInfo</key>
 			<string>youtube-ios-player-helper</string>
 		</dict>
-		<key>791BD49D4EB47DB78424E3DEFDD9C7A4</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>libPods-MyMovieApp.a</string>
-			<key>path</key>
-			<string>libPods-MyMovieApp.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>7D799D472CEC5571DF7F2FE142727EF6</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HCSStarRatingView.h</string>
-			<key>path</key>
-			<string>HCSStarRatingView/HCSStarRatingView.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>7DB346D0F39D3F0E887471402A8071AB</key>
 		<dict>
 			<key>children</key>
 			<array>
 				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
 				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
-				<string>DBF7C1756E580E77AA7B9B4ED1E3E1B6</string>
-				<string>2439CFBFFA26FBCE2A9A8EB787727CF9</string>
+				<string>7E7611F3378782C867E1A441AA89387C</string>
+				<string>DEBEF520696F7B864790ED7546CCDCDF</string>
 				<string>0F40911BDE036479FCA93B9620202D6B</string>
 			</array>
 			<key>isa</key>
@@ -714,18 +597,32 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>82BFA946FFD89BD11B6A7FCAF62E963A</key>
+		<key>7E7611F3378782C867E1A441AA89387C</key>
 		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>children</key>
+			<array>
+				<string>993A8152D7129C0B3801BCC87818E38F</string>
+				<string>CEA773C96CD0D6261654E8A49A386444</string>
+			</array>
 			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7F84A8F06A89F89D34F81DC1BDC4F174</key>
+		<dict>
+			<key>includeInIndex</key>
 			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>32FB460B4114291E8D944FF2A0E8F8B3</string>
-			<key>remoteInfo</key>
-			<string>youtube-ios-player-helper-Assets</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>youtube-ios-player-helper.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>8352B5E0308A4391AF6DF2B799D3C4F5</key>
 		<dict>
@@ -750,7 +647,7 @@
 			<key>productName</key>
 			<string>Pods-MyMovieApp</string>
 			<key>productReference</key>
-			<string>791BD49D4EB47DB78424E3DEFDD9C7A4</string>
+			<string>B750A1BE393449F465602455D5173CEB</string>
 			<key>productType</key>
 			<string>com.apple.product-type.library.static</string>
 		</dict>
@@ -764,6 +661,21 @@
 			<string>text.script.sh</string>
 			<key>path</key>
 			<string>Pods-MyMovieApp-frameworks.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>862E2555F0B73591A426D5C390FAE460</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YTPlayerView.m</string>
+			<key>path</key>
+			<string>Classes/YTPlayerView.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -799,6 +711,21 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
+		<key>96AC9A323CAAFFBE6A1D62DF54869AE2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YTPlayerView.h</string>
+			<key>path</key>
+			<string>Classes/YTPlayerView.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>97F3FDE22E7855C7CE43DC047A595724</key>
 		<dict>
 			<key>fileRef</key>
@@ -806,10 +733,40 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>98CE330CF81AD9FDBA295F124BCF52A0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>HCSStarRatingView.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>993A8152D7129C0B3801BCC87818E38F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>327616E5469B51BEBF015D99EFD10AB5</string>
+				<string>0B955694052A62DA1A4D8C9A049D8890</string>
+				<string>309EAFD35D92C2738CF8D08FD341232F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>HCSStarRatingView</string>
+			<key>path</key>
+			<string>HCSStarRatingView</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>9D512BF26345F13B292CBE1EE7023AAA</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>AF2917327A6C403182A7D19EF7AE8BDB</string>
+			<string>7F84A8F06A89F89D34F81DC1BDC4F174</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
@@ -853,9 +810,7 @@
 			<key>buildRules</key>
 			<array/>
 			<key>dependencies</key>
-			<array>
-				<string>A3119549D0EEED0F34F1F1E3EF0504DE</string>
-			</array>
+			<array/>
 			<key>isa</key>
 			<string>PBXNativeTarget</string>
 			<key>name</key>
@@ -863,7 +818,7 @@
 			<key>productName</key>
 			<string>youtube-ios-player-helper</string>
 			<key>productReference</key>
-			<string>4A5DE4E6300FA60334FC21C38AA927EE</string>
+			<string>59811F863C0AF3CA94F47877EF613E5E</string>
 			<key>productType</key>
 			<string>com.apple.product-type.library.static</string>
 		</dict>
@@ -880,21 +835,25 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>A3119549D0EEED0F34F1F1E3EF0504DE</key>
+		<key>9F010B2C1AA767E4B33ED69DDAD8549D</key>
 		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXTargetDependency</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.plug-in</string>
 			<key>name</key>
-			<string>youtube-ios-player-helper-Assets</string>
-			<key>target</key>
-			<string>32FB460B4114291E8D944FF2A0E8F8B3</string>
-			<key>targetProxy</key>
-			<string>82BFA946FFD89BD11B6A7FCAF62E963A</string>
+			<string>Assets.bundle</string>
+			<key>path</key>
+			<string>youtube-ios-player-helper/Assets.bundle</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>A693E526D4075F8DD754D41D266686C7</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>AF2917327A6C403182A7D19EF7AE8BDB</string>
+			<string>7F84A8F06A89F89D34F81DC1BDC4F174</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
@@ -946,7 +905,7 @@
 			<key>productName</key>
 			<string>HCSStarRatingView</string>
 			<key>productReference</key>
-			<string>6DF71F8C0416EA1710ABA662C0981567</string>
+			<string>5B4E5E17436518AD0449BE7FFDA41C5D</string>
 			<key>productType</key>
 			<string>com.apple.product-type.library.static</string>
 		</dict>
@@ -964,47 +923,40 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>AF2917327A6C403182A7D19EF7AE8BDB</key>
+		<key>B0E1075BE75407A436FD465B1F7B5FDC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>38B51F2879649A8E5EB886DC8A578B2E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B2D12FC709F51EAFF15043D8645B2F3D</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
+			<string>sourcecode.c.objc</string>
 			<key>path</key>
-			<string>youtube-ios-player-helper.xcconfig</string>
+			<string>youtube-ios-player-helper-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>B0E1075BE75407A436FD465B1F7B5FDC</key>
+		<key>B750A1BE393449F465602455D5173CEB</key>
 		<dict>
-			<key>fileRef</key>
-			<string>EDF8C6443C8FCA89A327E4FC416EDE95</string>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>B0E15C198DAB9A8D0E7A9749C7CF0A33</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>AF2917327A6C403182A7D19EF7AE8BDB</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>Assets</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>bundle</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
+			<string>PBXFileReference</string>
 			<key>name</key>
-			<string>Debug</string>
+			<string>libPods-MyMovieApp.a</string>
+			<key>path</key>
+			<string>libPods-MyMovieApp.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>B77B28321D11EB100868DE56588D893A</key>
 		<dict>
@@ -1066,7 +1018,7 @@
 		<key>BB34BE7A8768B8CD6E1017E7C14A81BA</key>
 		<dict>
 			<key>fileRef</key>
-			<string>E63A0C2807E22A22C5D769B35FA6E0FA</string>
+			<string>96AC9A323CAAFFBE6A1D62DF54869AE2</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -1089,20 +1041,6 @@
 			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BC7208EF41283EEA17E70D3BF5F2BB28</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>B0E15C198DAB9A8D0E7A9749C7CF0A33</string>
-				<string>73F98910D292B3BF76D2A288D2012EC5</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
 		</dict>
 		<key>BD0AFFE6D485C5AEF8819BF09282C9A7</key>
 		<dict>
@@ -1141,20 +1079,21 @@
 			<key>targetProxy</key>
 			<string>0F6DA524A1CB31719338E458405DBB20</string>
 		</dict>
-		<key>C3774A2A58741071A8889A77A11427C9</key>
+		<key>CEA773C96CD0D6261654E8A49A386444</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>AF2917327A6C403182A7D19EF7AE8BDB</string>
-				<string>4F75671B9D7D01075AD8B02491A89E4C</string>
-				<string>F8E210D8ECEF5B1713198B6FC020970B</string>
+				<string>96AC9A323CAAFFBE6A1D62DF54869AE2</string>
+				<string>862E2555F0B73591A426D5C390FAE460</string>
+				<string>41E57418B5D6E64CEBD8F2358D7E9EA2</string>
+				<string>DE95E1458C8D961CF4F39F714AAB17F5</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Support Files</string>
+			<string>youtube-ios-player-helper</string>
 			<key>path</key>
-			<string>../Target Support Files/youtube-ios-player-helper</string>
+			<string>youtube-ios-player-helper</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1197,7 +1136,7 @@
 			<key>mainGroup</key>
 			<string>7DB346D0F39D3F0E887471402A8071AB</string>
 			<key>productRefGroup</key>
-			<string>2439CFBFFA26FBCE2A9A8EB787727CF9</string>
+			<string>DEBEF520696F7B864790ED7546CCDCDF</string>
 			<key>projectDirPath</key>
 			<string></string>
 			<key>projectReferences</key>
@@ -1209,55 +1148,57 @@
 				<string>A8488902FAD1650405BAE38299A468E3</string>
 				<string>8352B5E0308A4391AF6DF2B799D3C4F5</string>
 				<string>9D6994988CEA875B7C6DBEC1C4619504</string>
-				<string>32FB460B4114291E8D944FF2A0E8F8B3</string>
 			</array>
-		</dict>
-		<key>D863288940A816D1A91DC18BEAF7519C</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
 		</dict>
 		<key>D896FE6B8AE200AB403BB94EE4A2A22A</key>
 		<dict>
 			<key>fileRef</key>
-			<string>6892C2AC3D7B3E39689F34572EBC7DC4</string>
+			<string>0B955694052A62DA1A4D8C9A049D8890</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>DBF7C1756E580E77AA7B9B4ED1E3E1B6</key>
+		<key>DE95E1458C8D961CF4F39F714AAB17F5</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>DCE1A432BE108E66CC6A8EFE6A6B6DC1</string>
-				<string>4CD971554DE22A3C95B8E5070ACBD088</string>
+				<string>7F84A8F06A89F89D34F81DC1BDC4F174</string>
+				<string>B2D12FC709F51EAFF15043D8645B2F3D</string>
+				<string>DF94A52A10713F10F7D7D2AD17C41D0C</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Pods</string>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/youtube-ios-player-helper</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>DCE1A432BE108E66CC6A8EFE6A6B6DC1</key>
+		<key>DEBEF520696F7B864790ED7546CCDCDF</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>7D799D472CEC5571DF7F2FE142727EF6</string>
-				<string>6892C2AC3D7B3E39689F34572EBC7DC4</string>
-				<string>E533C41226844292CF6A01E75F3CBF65</string>
+				<string>5B4E5E17436518AD0449BE7FFDA41C5D</string>
+				<string>B750A1BE393449F465602455D5173CEB</string>
+				<string>59811F863C0AF3CA94F47877EF613E5E</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>HCSStarRatingView</string>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>DF94A52A10713F10F7D7D2AD17C41D0C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
 			<key>path</key>
-			<string>HCSStarRatingView</string>
+			<string>youtube-ios-player-helper-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1271,38 +1212,6 @@
 			<string>sourcecode.c.objc</string>
 			<key>path</key>
 			<string>Pods-MyMovieApp-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>E533C41226844292CF6A01E75F3CBF65</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5D3C87F2A1B5733D44716C03B49CC50A</string>
-				<string>EDF8C6443C8FCA89A327E4FC416EDE95</string>
-				<string>F15D12222C36AF8617F6DE96B44C626B</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>../Target Support Files/HCSStarRatingView</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>E63A0C2807E22A22C5D769B35FA6E0FA</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>YTPlayerView.h</string>
-			<key>path</key>
-			<string>Classes/YTPlayerView.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1322,48 +1231,9 @@
 		<key>E8F7F78D6100DE30FFA04C2C6ED303A1</key>
 		<dict>
 			<key>fileRef</key>
-			<string>4F75671B9D7D01075AD8B02491A89E4C</string>
+			<string>B2D12FC709F51EAFF15043D8645B2F3D</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>EDF8C6443C8FCA89A327E4FC416EDE95</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>HCSStarRatingView-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>F15D12222C36AF8617F6DE96B44C626B</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>HCSStarRatingView-prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>F8E210D8ECEF5B1713198B6FC020970B</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>youtube-ios-player-helper-prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>FE96D878CB974948B06EAFFAE80AA870</key>
 		<dict>

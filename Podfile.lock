@@ -1,6 +1,6 @@
 PODS:
   - HCSStarRatingView (1.4.5)
-  - youtube-ios-player-helper (0.1.5)
+  - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
   - HCSStarRatingView (~> 1.4.5)
@@ -8,6 +8,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   HCSStarRatingView: bff3f89314d3b5013ce826ea11897d3129ff6b8c
-  youtube-ios-player-helper: 8706bb155ffee74fbe5f2f5cf41c2dafe60dc155
+  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
 COCOAPODS: 0.39.0

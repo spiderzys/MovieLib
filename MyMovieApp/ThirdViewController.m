@@ -31,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     self.userResourcePath = [basePath stringByAppendingPathComponent:@"user.plist"];
@@ -47,17 +48,20 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                   willDecelerate:(BOOL)decelerate{
-    
-    if (scrollView.contentOffset.y < 0) {
-        
+   
+    if (scrollView.contentOffset.y < -30) {
+         [_loadingActivityIndicator startAnimating];
         if([self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]){
+            
             
             scrollView.scrollEnabled = NO;
             [self initRatingListFromUrl: [NSURL URLWithString:_ratingRequestString]];
             [self reloadRatingList];
+            
             scrollView.scrollEnabled = YES;
+            
         }
-        
+        [_loadingActivityIndicator stopAnimating];
     }
 }
 
@@ -152,6 +156,12 @@
     
     
     NSString *poster_path = [movie valueForKey:@"poster_path"];
+    CGFloat vote_average = [[movie valueForKey:@"vote_average"]floatValue];
+    
+    customCell.ratingView.maximumValue = 10;
+    customCell.ratingView.value = vote_average;
+    
+    
     poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
@@ -186,7 +196,7 @@
 }
 
 -(void)initRatingListFromUrl:(NSURL*)url{
-    NSDate *start = [NSDate date];
+    
     
     
     NSArray *ratedList = [self getDataFromUrl:url withKey:@"results" LimitPages:0];
@@ -237,10 +247,7 @@
     _needRatingMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     
     
-    NSDate *methodFinish = [NSDate date];
-    NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start];
-    
-    NSLog(@"Execution Time: %f", executionTime);
+   
     
 }
 -(NSMutableArray*)nonRatedListFrom:(NSArray*)temp ExcludingRatedList:(NSArray*)ratedList{
@@ -300,11 +307,10 @@
 
 -(void)reloadRatingList{
     [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
-        [_loadingActivityIndicator startAnimating];
-        _userMovieCollectionView.hidden = YES;
+        
         [_userMovieCollectionView reloadData];
         _userMovieCollectionView.hidden = NO;
-        [_loadingActivityIndicator startAnimating];
+        
        
     }];
 }
@@ -312,7 +318,7 @@
 
 
 -(BOOL)trySessionId:(NSString*)sessionId username:(NSString*)username{
-    
+    [_loadingActivityIndicator startAnimating];
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     _ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
     NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:_ratingRequestString]];
@@ -333,7 +339,7 @@
         dispatch_semaphore_signal(semaphore);
     }]resume];
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    
+    [_loadingActivityIndicator stopAnimating];
     return self.sessionIdOk;
     
 }

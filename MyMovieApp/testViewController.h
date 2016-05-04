@@ -7,9 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "HCSStarRatingView.h"
 
 @interface testViewController : ViewController
 @property (nonatomic,retain) UIActivityIndicatorView *activityIndicator;
-@property (weak, nonatomic) IBOutlet UIView *testView;
+
+@property (weak, nonatomic) IBOutlet HCSStarRatingView *ratingView;
 
 @end

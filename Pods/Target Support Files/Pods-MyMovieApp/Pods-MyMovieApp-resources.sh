@@ -58,10 +58,10 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "${BUILT_PRODUCTS_DIR}/Assets.bundle"
+  install_resource "youtube-ios-player-helper/youtube-ios-player-helper/Assets.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "${BUILT_PRODUCTS_DIR}/Assets.bundle"
+  install_resource "youtube-ios-player-helper/youtube-ios-player-helper/Assets.bundle"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
