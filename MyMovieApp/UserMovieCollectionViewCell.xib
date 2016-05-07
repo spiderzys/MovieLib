@@ -19,8 +19,8 @@
                     </imageView>
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k1z-4D-51Z" customClass="HCSStarRatingView">
                         <rect key="frame" x="0.0" y="110" width="90" height="10"/>
-                        <color key="backgroundColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="1" green="0.80970532490000002" blue="0.28329452519999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="QSc-IA-IEd"/>
                         </constraints>
@@ -30,7 +30,7 @@
                                 <real key="value" value="0.0"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
-                                <integer key="value" value="10"/>
+                                <integer key="value" value="5"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
                                 <real key="value" value="0.0"/>

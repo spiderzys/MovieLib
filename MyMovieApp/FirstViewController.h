@@ -9,8 +9,9 @@
 
 #import "ViewController.h"
 #import "AppDelegate.h"
-
-@interface FirstViewController : ViewController
+#import "RegViewController.h"
+#import "LoginAlertController.h"
+@interface FirstViewController : ViewController <UIAlertControllerDelegate, UIRegVuewControllerDelegate>
 
 
 

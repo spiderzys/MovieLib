@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _ratingView.emptyStarImage = [UIImage new];    // Initialization code
+    // Initialization code
 }
 
 @end

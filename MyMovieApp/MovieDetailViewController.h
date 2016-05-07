@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
+#import "HCSStarRatingView.h"
+#import "RegViewController.h"
+#import "LoginAlertController.h"
 
-@interface MovieDetailViewController : ViewController
+@interface MovieDetailViewController : ViewController <UIAlertControllerDelegate, UIRegVuewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *movieBackdropCollectionView;
 
+@property (weak, nonatomic) IBOutlet HCSStarRatingView *ratingView;
 
 @property (weak, nonatomic) IBOutlet UITextView *movieInfo;
 

@@ -18,7 +18,6 @@
 
 @interface ViewController : UIViewController
 @property UIImageView *backImageView;
-@property BOOL sessionIdOk;
 @property NSString* userResourcePath;
 @property NSString* genreResourcePath;
 -(NSArray*)getDataFromUrl:(NSURL*)url withKey:(NSString*) key LimitPages:(int)max;
@@ -31,4 +30,5 @@
 -(void)playTrailer:(NSNumber*)idn;
 -(void)singleOptionAlertWithMessage:(NSString *)message;
 -(void)updateGenre;
+-(void)rateMovieWithId:(NSString*)idn Rate:(float)mark;
 @end

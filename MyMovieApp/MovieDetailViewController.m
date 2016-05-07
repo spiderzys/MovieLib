@@ -9,17 +9,90 @@
 #import "MovieDetailViewController.h"
 #import "MovieBackdropCollectionViewCell.h"
 #import "MovieMediaViewController.h"
+#import "AppDelegate.h"
 static NSDictionary *movie;
-static NSDictionary *attribute;
 @interface MovieDetailViewController ()
 
 @end
 
 @implementation MovieDetailViewController
 
+//------------------------------------login for rating-------------------------------
+
+-(void)signIn{
+    LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Registration and sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    alertController.delegate = self;
+    [self presentViewController:alertController animated:YES completion:^{
+        
+    }];
+    
+    
+}
+
+- (void)didDismissAlertControllerButtonTapped:(NSInteger)buttonTapped{
+    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    if(buttonTapped==cancel){
+    }
+    else if(buttonTapped ==signIn){
+        if(delegate.sessionId){
+            
+            [self showRatingSuccess];
+           
+        }
+        else{
+            LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Username and Password do not match!" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            
+            
+            alertController.delegate = self;
+            [self presentViewController:alertController animated:YES completion:^{}];
+        }
+    }
+    else{
+        RegViewController *regController =  [[RegViewController alloc]initWithNibName:@"RegViewController" bundle:nil];
+        regController.delegate = self;
+        NSURLRequest *registerRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:regRequestUrl]];
+        [self presentViewController:regController animated:YES completion:^{
+            [regController.webView loadRequest:registerRequest];
+        }];
+        
+    }
+}
+
+
+
+-(void)didDismissRegViewController{
+    [self signIn];
+}
+
+
+- (IBAction)rateMovie:(id)sender {
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    if(delegate.sessionId){
+        
+        [self showRatingSuccess];
+        
+    }
+    else{
+        [self signIn];
+    }
+}
+
+-(void)showRatingSuccess{
+    [self rateMovieWithId:[movie valueForKey:@"id"] Rate:_ratingView.value*2];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Thanks for your rating" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alertController animated:YES completion:^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+}
+
+
+//----------------------------major-------------------------------------
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    attribute = _movieInfo.typingAttributes;
     self.backImageView =  [[UIImageView alloc]initWithFrame:self.view.frame];
     [self.backImageView setContentMode:UIViewContentModeScaleAspectFill];
     self.backImageView.clipsToBounds = YES;
@@ -44,6 +117,7 @@ static NSDictionary *attribute;
 -(void)loadDataFromMovie:(NSDictionary*)movieDic{
    
     movie = movieDic;
+
     NSDictionary *genreDic = [[NSDictionary alloc] initWithContentsOfFile: self.genreResourcePath];
     NSArray *genre_ids = [movie valueForKey:@"genre_ids"];
     NSString *label = @"Label: ";
@@ -58,7 +132,7 @@ static NSDictionary *attribute;
     float mark = [[movie valueForKey:@"vote_average" ]floatValue];
     NSString *title = [movie  valueForKey:@"title"];
     self.navigationBar.topItem.title = title;
-    
+    [_titleLabel setText:title];
     
     NSString *release_date = [movie  valueForKey:@"release_date"];
     
@@ -88,24 +162,34 @@ static NSDictionary *attribute;
     
     NSString *info = @"";
     if(mark==0){
-        info = [NSString stringWithFormat:@"%@\n%@\nRelease Date: %@      Mark: N/A\nCast: %@  \n\nOverview:\n%@ ",title,label, release_date,showCast, overview];
+        info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Rate: N/A\nCast: %@  \n\nOverview:\n%@ ",label, release_date,showCast, overview];
         
     }
     else{
-        info = [NSString stringWithFormat:@"%@\n%@\nRelease Date: %@      Mark: %.1f\nCast: %@ \n\nOverview:\n%@ ",title, label, release_date, mark,showCast, overview];
+        info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Rate: %.1f\nCast: %@ \n\nOverview:\n%@ ", label, release_date, mark,showCast, overview];
         
     }
-    
+    NSString *reviewRequestString = [NSString stringWithFormat:@"%@%@/reviews?%@",movieWeb,idn,APIKey];
+    NSArray *reviewList = [self getDataFromUrl:[NSURL URLWithString:reviewRequestString] withKey:@"results" LimitPages:1];
+    NSString *reviewString = @"\n\nReview:\n";
+    NSUInteger reviewLength = reviewString.length;
+    if(reviewList.count>0){
+        
+        for (NSDictionary *reviewDic in reviewList) {
+            NSString *author = [reviewDic valueForKey:@"author"];
+            NSString *content = [reviewDic valueForKey:@"content"];
+            reviewString = [NSString stringWithFormat:@"%@\n%@:\n%@\n(End)\n\n",reviewString,author,content];
+        }
+    }
+    if(reviewString.length>reviewLength){
+        info = [info stringByAppendingString:reviewString];
+    }
 
+    [_movieInfo setText:info];
+    NSLog(@"%@",_movieInfo.tintColor);
     
-    
-    NSMutableAttributedString *attributedInfo = [[NSMutableAttributedString alloc]initWithString:info attributes:attribute];
-    [attributedInfo addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:22] range:NSMakeRange(0, title.length)];
-    [attributedInfo addAttribute: NSLinkAttributeName value: @"" range: NSMakeRange(0,title.length)];
-    [_movieInfo setAttributedText:attributedInfo];
-    
-
-
+    [_ratingView setValue:mark/2];
+    [_ratingView setAccurateHalfStars:NO];
     
     
    
@@ -199,21 +283,13 @@ static NSDictionary *attribute;
 }
 
 
-- (void)textViewDidChangeSelection:(UITextView *)textView {
-    if(NSEqualRanges(textView.selectedRange, NSMakeRange(0, 0)) == NO) {
-        textView.selectedRange = NSMakeRange(0, 0);
-    }
-}
 
 
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRang{
-    
+
+- (IBAction)showMedia:(id)sender {
     MovieMediaViewController *mediaViewController = [[MovieMediaViewController alloc]initWithNibName:@"MovieMediaViewController" bundle:nil movieDic:movie];
     [self presentViewController:mediaViewController animated:YES completion:nil];
-    
-    return NO;
 }
-
 
 
 /*

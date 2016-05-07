@@ -16,9 +16,55 @@ static NSDictionary *attribute;
 @implementation FirstViewController
 @synthesize backImageView;
 
+//------------------------------------login for rating-------------------------------
+
+-(void)signIn{
+    LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Registration and sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    alertController.delegate = self;
+    [self presentViewController:alertController animated:YES completion:^{
+        
+    }];
+    
+    
+}
+
+- (void)didDismissAlertControllerButtonTapped:(NSInteger)buttonTapped{
+    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    if(buttonTapped==cancel){
+    }
+    else if(buttonTapped ==signIn){
+        if(delegate.sessionId){
+            
+        }
+        else{
+            LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Username and Password do not match!" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            
+            
+            alertController.delegate = self;
+            [self presentViewController:alertController animated:YES completion:^{}];
+        }
+    }
+    else{
+        RegViewController *regController =  [[RegViewController alloc]initWithNibName:@"RegViewController" bundle:nil];
+        regController.delegate = self;
+        NSURLRequest *registerRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:regRequestUrl]];
+        [self presentViewController:regController animated:YES completion:^{
+            [regController.webView loadRequest:registerRequest];
+        }];
+        
+        
+        
+    }
+}
+
+-(void)didDismissRegViewController{
+    [self signIn];
+}
 
 
-
+//----------------------------major-------------------------------------
 
 -(void)loadView{
     [super loadView];
@@ -70,64 +116,14 @@ static NSDictionary *attribute;
 }
 
 
-#pragma -mark ---  delegate method for scrollview
 
-
--(void)autoScroll:(NSNumber*)autoScrollVelocity{
-    [_autoScrollTimer invalidate];
-    _autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimer:) userInfo:autoScrollVelocity repeats:YES];
-}
-
-
-
--(void)loadScrollView{
-    [_loadingActivityIndicator startAnimating];
-    [[_moviePostImage subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
-    _scrollWeight = 0;
-    _selectedMovie = 0;
-    _connected = [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]];
-    
-    if(_connected){
-        [self updateGenre];
-        [self loadFromAPI];
-        
-    }
-    else{
-        [self loadFromCoreData];
-        
-        
-    }
-    if(_playingMoviesRequestResult.count>0){
-        [self showInfo:0];
-    }
-    else{
-        [self singleOptionAlertWithMessage:@"No networkd detected, for the usage for the first time, please connect network"];
-    }
-    
-    
-    
-}
-
-
-- (void)onTimer:(NSTimer*)timer {
-    
-    
-    
-    
-    float velocity = [[timer userInfo] floatValue];
-    //This makes the scrollView scroll to the desired position
-    if(velocity+_moviePostImage.contentOffset.x+self.view.bounds.size.width<_scrollWeight & velocity+_moviePostImage.contentOffset.x>0){
-        
-        [_moviePostImage setContentOffset: CGPointMake(velocity+_moviePostImage.contentOffset.x,0) animated:YES];
-    }
-}
 
 
 -(void)loadFromCoreData{
     
     
     [self loadMovieFromCoreData];
-    
+
     _moviePostImage.contentSize = CGSizeMake(_playingMoviesRequestResult.count*(_moviePostImage.bounds.size.height*posterRatio+scrollViewContentGap), _moviePostImage.bounds.size.height);
     for (int i = 0;i<_playingMoviesRequestResult.count;i++) {
         Movie *movie = _playingMoviesRequestResult[i];
@@ -327,17 +323,7 @@ static NSDictionary *attribute;
 -(void)showInfoFromCoreData:(long)num{
     Movie *movie =_playingMoviesRequestResult[num];
     float mark = [movie.vote_average floatValue];
-    /*  NSString *castList = movie.cast;
-     NSArray *castArray = [castList componentsSeparatedByString:@","];
-     NSString *showCast = @"";
-     for (NSString *name in castArray) {
-     showCast = [showCast stringByAppendingString:name];
-     if (showCast.length>maxCastLengthForDisplay) {
-     break;
-     }
-     }
-     */
-    [self.backImageView setImage:[UIImage imageWithData: movie.posterData]];
+      [self.backImageView setImage:[UIImage imageWithData: movie.posterData]];
     if(mark==0){
         //@"%@\nRelease Date: %@      Mark: N/A\nCast: %@\n\n%@
         NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A: \n\n%@ ",movie.title, movie.release_date,
@@ -397,7 +383,7 @@ static NSDictionary *attribute;
         NSString *reviewRequestString = [NSString stringWithFormat:@"%@%@/reviews?%@",movieWeb,idn,APIKey];
         NSArray *reviewList = [self getDataFromUrl:[NSURL URLWithString:reviewRequestString] withKey:@"results" LimitPages:1];
         NSString *reviewString = @"\n\nReview:\n";
-        int reviewLength = reviewString.length;
+        NSUInteger reviewLength = reviewString.length;
         if(reviewList.count>0){
             
             for (NSDictionary *reviewDic in reviewList) {
@@ -410,7 +396,7 @@ static NSDictionary *attribute;
             info = [info stringByAppendingString:reviewString];
         }
         NSMutableAttributedString *attributedInfo = [[NSMutableAttributedString alloc]initWithString:info attributes:attribute];
-        [attributedInfo addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:22] range:NSMakeRange(0, title.length)];
+        [attributedInfo addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:NSMakeRange(0, title.length)];
         [attributedInfo addAttribute: NSLinkAttributeName value: @"" range: NSMakeRange(0,title.length)];
         [_movieInfo setAttributedText:attributedInfo];
         
@@ -442,57 +428,13 @@ static NSDictionary *attribute;
         UIImageView *imageView = (UIImageView*)[self.view viewWithTag:tag];
         UIImageView *view = [[UIImageView alloc]initWithFrame:PresentViewFrame];
         [view setContentMode:UIViewContentModeCenter];
-        // PresentViewController *presentController = [[PresentViewController alloc]init];
         PresentViewController *presentController = [[PresentViewController alloc]init];
-        //    UITabBarController *tab = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateInitialViewController]
         [presentController.view addSubview:view];
         [presentController addButton];
         view.image= imageView.image;
         [self presentViewController:presentController animated:YES completion:nil];
         
     }
-}
-
-
-
--(void)viewDidDisappear:(BOOL)animated{
-    [_autoScrollTimer invalidate];
-    [super viewDidDisappear:animated];
-    
-}
-
-
-
--(void)setImageViewWithTag:(long)tag{
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(_scrollWeight, 0,_moviePostImage.bounds.size.height*posterRatio, _moviePostImage.bounds.size.height)];
-    imageView.tag = 20+tag;
-    [imageView setContentMode:UIViewContentModeScaleAspectFill];
-    [imageView setClipsToBounds:YES];
-    [_moviePostImage addSubview:imageView];
-    _scrollWeight = _moviePostImage.bounds.size.height*posterRatio+_scrollWeight+scrollViewContentGap;
-    
-    //  imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    
-}
-
--(void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    
-    /*
-     
-     _scrollWeight = 0;
-     for(int i=0;i<_result.count;i++){
-     UIImageView *imageView = (UIImageView*)[self.view viewWithTag:i+20];
-     [imageView setFrame:CGRectMake( _scrollWeight, 0,_moviePostImage.bounds.size.height*posterRatio, _moviePostImage.bounds.size.height)];
-     _scrollWeight = _moviePostImage.bounds.size.height*posterRatio+_scrollWeight;
-     }
-     [_moviePostImage setContentSize:CGSizeMake(_scrollWeight, _moviePostImage.bounds.size.height)];
-     
-     [self showInfo:_selectedMovie];
-     NSLog(@"%f,%f",_movieInfo.bounds.size.height, _moviePostImage.frame.size.height);
-     */
-    [_movieInfo setContentOffset:CGPointZero animated:NO];
-    // [_moviePostImage setContentOffset:CGPointMake(_selectedMovie*(scrollViewContentGap+_moviePostImage.bounds.size.height*posterRatio), 0) animated:YES];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRang{
@@ -503,10 +445,83 @@ static NSDictionary *attribute;
     return NO;
 }
 
-- (void)textViewDidChangeSelection:(UITextView *)textView {
-    if(NSEqualRanges(textView.selectedRange, NSMakeRange(0, 0)) == NO) {
-        textView.selectedRange = NSMakeRange(0, 0);
+-(void)setImageViewWithTag:(long)tag{
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(_scrollWeight, 0,_moviePostImage.bounds.size.height*posterRatio, _moviePostImage.bounds.size.height)];
+    imageView.tag = 20+tag;
+    [imageView setContentMode:UIViewContentModeScaleAspectFill];
+    [imageView setClipsToBounds:YES];
+    [_moviePostImage addSubview:imageView];
+    _scrollWeight = _moviePostImage.bounds.size.height*posterRatio+_scrollWeight+scrollViewContentGap;
+    
+}
+
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [_autoScrollTimer invalidate];
+    [super viewDidDisappear:animated];
+    
+}
+
+
+
+
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    
+       [_movieInfo setContentOffset:CGPointZero animated:NO];
+   
+}
+
+
+
+#pragma -mark ---  delegate method for scrollview
+
+
+-(void)autoScroll:(NSNumber*)autoScrollVelocity{
+    [_autoScrollTimer invalidate];
+    _autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimer:) userInfo:autoScrollVelocity repeats:YES];
+}
+
+
+
+-(void)loadScrollView{
+    [_loadingActivityIndicator startAnimating];
+    [[_moviePostImage subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
+    _scrollWeight = 0;
+    _selectedMovie = 0;
+    _connected = [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]];
+    
+    if(_connected){
+        [self updateGenre];
+        [self loadFromAPI];
+        
+    }
+    else{
+        [self loadFromCoreData];
+        
+        
+    }
+    if(_playingMoviesRequestResult.count>0){
+        [self showInfo:0];
+    }
+    else{
+        [self singleOptionAlertWithMessage:@"No networkd detected, for the usage for the first time, please connect network"];
+    }
+    
+    
+    
+}
+
+
+- (void)onTimer:(NSTimer*)timer {
+    
+    float velocity = [[timer userInfo] floatValue];
+    //This makes the scrollView scroll to the desired position
+    if(velocity+_moviePostImage.contentOffset.x+self.view.bounds.size.width<_scrollWeight & velocity+_moviePostImage.contentOffset.x>0){
+        
+        [_moviePostImage setContentOffset: CGPointMake(velocity+_moviePostImage.contentOffset.x,0) animated:YES];
     }
 }
+
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "AppDelegate.h"
 @interface ViewController ()
 
 @end
@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    _sessionIdOk = NO;
+    
     
     // Do any additional setup after loading the view.
 }
@@ -39,40 +39,6 @@
     }
     [genreDic writeToFile: self.genreResourcePath atomically:YES];
     
-   
-}
-
-
-
--(BOOL)trySessionId:(NSString*)sessionId username:(NSString*)username{
-    
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    NSString* ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
-    NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:ratingRequestString]];
-    [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
-        NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        if([rateResult objectForKey:@"results"]){
-           
-            _sessionIdOk = YES;
-            
-        }
-        else{
-            _sessionIdOk = NO;
-        }
-        dispatch_semaphore_signal(semaphore);
-    }]resume];
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    
-    return _sessionIdOk;
-}
-
--(void)tryLogin{
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_userResourcePath];
-    NSString *username = [dict valueForKey:@"username"];
-    NSString *session_id = [dict valueForKey:@"session_id"];
-    if([self trySessionId:session_id username:username]){
-        
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -124,10 +90,9 @@
                 NSMutableArray *temp =[dataDic objectForKey:key];
                 [result addObjectsFromArray:temp];
             }
-          //   NSLog(@"%d",i);
+
         }
        
-        
     }
     return result;
     
@@ -184,7 +149,8 @@
 
 
 -(void)rateMovieWithId:(NSString*)idn Rate:(float)mark{
-    NSString *rateRequstString = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/%@/rating?",idn];
+    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    NSString *rateRequstString = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/%@/rating?%@&session_id=%@",idn,APIKey,delegate.sessionId];
     NSURL *URL = [NSURL URLWithString:rateRequstString];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
@@ -198,19 +164,12 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      
+                                
                                       if (error) {
                                           // Handle error...
                                           return;
                                       }
-                                      
-                                      if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                          NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
-                                          NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
-                                      }
-                                      
-                                      NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                      NSLog(@"Response Body:\n%@\n", body);
+                                    
                                   }];
     [task resume];
 }

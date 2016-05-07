@@ -8,10 +8,13 @@
 
 
 #import "ThirdViewController.h"
-#import "RegViewController.h"
 #import "UserMovieCollectionViewCell.h"
 #import "UserMovieCollectionHeaderView.h"
 #import "MovieDetailViewController.h"
+#import "AppDelegate.h"
+
+
+
 @interface ThirdViewController ()
 
 @end
@@ -20,26 +23,24 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    
     if([self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]){
-        [self tryLogin];
+        if(!_needRatingMovieList){
+            [self tryLogin];
+        }
     }
-    
-    
-    
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-    self.userResourcePath = [basePath stringByAppendingPathComponent:@"user.plist"];
+    [self resetRatingList];
     [[_userLabel layer] setCornerRadius:10.0f];
     [[_userLabel layer] setMasksToBounds:YES];
+    
     _headTitleArray = @[@"Movies you Rated higher:",@"Approximate rate:",@"Movies you Rated lower:",@"Do the following movies deserve high rates indeed?",@"The following movies are terrible! Do you agree?",@"Few comments for these. Could you contribute?"];
     [_userMovieCollectionView registerNib:[UINib nibWithNibName:@"UserMovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
-    self.sessionIdOk = NO;
+    
 }
 
 
@@ -76,11 +77,11 @@
         }
         else if (indexPath.section==1) {
             
-            movie = [_lowerRatingList objectAtIndex:indexPath.row];
+            movie = [_approxRatingList objectAtIndex:indexPath.row];
         }
         else if (indexPath.section==2) {
             
-            movie = [_approxRatingList objectAtIndex:indexPath.row];
+            movie = [_lowerRatingList objectAtIndex:indexPath.row];
         }
         else if (indexPath.section==3) {
             
@@ -94,7 +95,7 @@
            
             movie = [_needRatingMovieList objectAtIndex:indexPath.row];
         }
-         [viewController loadDataFromMovie:movie];
+        [viewController loadDataFromMovie:movie];
     }];
     
     
@@ -154,14 +155,22 @@
         movie = [_needRatingMovieList objectAtIndex:indexPath.row];
     }
     
+    CGFloat rating = [[movie valueForKey:@"rating"]floatValue];
+    
+    customCell.ratingView.value = rating/2;
+    if(customCell.ratingView.value==0){
+        customCell.ratingView.backgroundColor = _userLabel.backgroundColor;
+        customCell.ratingView.value = [[movie valueForKey:@"vote_average"]floatValue]/2;
+        if(customCell.ratingView.value==0){
+             customCell.ratingView.backgroundColor = [UIColor whiteColor];
+        }
+    }
+    else{
+        customCell.ratingView.backgroundColor = _userLabel.tintColor;
+    }
+    
     
     NSString *poster_path = [movie valueForKey:@"poster_path"];
-    CGFloat vote_average = [[movie valueForKey:@"vote_average"]floatValue];
-    
-    customCell.ratingView.maximumValue = 10;
-    customCell.ratingView.value = vote_average;
-    
-    
     poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
@@ -224,6 +233,8 @@
         
         
     }
+    
+    NSLog(@"%@",_approxRatingList);
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy"];
     NSString *yearString = [formatter stringFromDate:[NSDate date]];
@@ -231,13 +242,13 @@
     
     
     NSString *niceMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.gte=8&sort_by=vote_average.desc&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
-    NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:niceMovieRequestString] withKey:@"results" LimitPages:0];
+    NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:niceMovieRequestString] withKey:@"results" LimitPages:1];
     _niceMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     
     
     
     NSString *badMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.lte=3&sort_by=vote_average.desc&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
-    temp = [self getDataFromUrl:[NSURL URLWithString:badMovieRequestString] withKey:@"results" LimitPages:0];
+    temp = [self getDataFromUrl:[NSURL URLWithString:badMovieRequestString] withKey:@"results" LimitPages:1];
     _badMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     
     
@@ -259,6 +270,7 @@
         for (NSDictionary *ratedMovie in ratedList) {
             if([movie isEqualToDictionary:ratedMovie]){
                 [nonRatedList removeObject:movie];
+                break;
             }
         }
         
@@ -293,12 +305,16 @@
 
 
 -(void)tryLogin{
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile: self.userResourcePath];
-    NSString *username = [dict valueForKey:@"username"];
-    NSString *session_id = [dict valueForKey:@"session_id"];
-    if([self trySessionId:session_id username:username]){
-        
-        _userLabel.text = username;
+    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+
+    
+    if(delegate.sessionId){
+        if([self loadRatingDataWithSession:delegate.sessionId username:delegate.username]){
+            _userLabel.text = delegate.username;
+        }
+        else{
+            [self signIn];
+        }
     }
     else{
         [self signIn];
@@ -317,155 +333,118 @@
 
 
 
--(BOOL)trySessionId:(NSString*)sessionId username:(NSString*)username{
+-(BOOL)loadRatingDataWithSession:(NSString*)sessionId username:(NSString*)username{
     [_loadingActivityIndicator startAnimating];
+    
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     _ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
     NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:_ratingRequestString]];
     [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
+        
         NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         if([rateResult objectForKey:@"results"]){
-            if(self.sessionIdOk == NO){
+            
                 
                 [self initRatingListFromUrl:[NSURL URLWithString:_ratingRequestString]];
                 [self reloadRatingList];
-            }
-            self.sessionIdOk = YES;
+            
+           
             
         }
         else{
-            self.sessionIdOk = NO;
+            AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+            delegate.username = nil;
+            delegate.sessionId = nil;
+            
         }
-        dispatch_semaphore_signal(semaphore);
+                dispatch_semaphore_signal(semaphore);
     }]resume];
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     [_loadingActivityIndicator stopAnimating];
-    return self.sessionIdOk;
+    if(_needRatingMovieList){
+        return YES;
+    }
+    else{
+        return NO;
+    }
     
 }
 
-
+//------------------------------login---------------------
 
 
 
 -(void)signIn{
+    LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Registration and sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
+   
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Registration and sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    alertController.view.tintColor = [UIColor blackColor] ;//_userLabel.backgroundColor;
-    UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"sign in" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        
-        UITextField *usernameField = alertController.textFields.firstObject;
-        UITextField *passwordField = alertController.textFields.lastObject;
-        NSString* username = usernameField.text;
-        NSString* password = passwordField.text;
-        [self loginWithUsername:username Password:password];
+    alertController.delegate = self;
+    [self presentViewController:alertController animated:YES completion:^{
+       
     }];
     
-    UIAlertAction *regAction = [UIAlertAction actionWithTitle:@"sign up" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    
+}
+
+- (void)didDismissAlertControllerButtonTapped:(NSInteger)buttonTapped{
+    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    if(buttonTapped==cancel){
+        [self.tabBarController setSelectedIndex:0];
+    }
+    else if(buttonTapped ==signIn){
+           if(delegate.sessionId){
+           [self loadRatingDataWithSession:delegate.sessionId username:delegate.username];
+        }
+        else{
+            LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Username and Password do not match!" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            
+            
+            alertController.delegate = self;
+            [self presentViewController:alertController animated:YES completion:^{}];
+        }
+    }
+    else{
         RegViewController *regController =  [[RegViewController alloc]initWithNibName:@"RegViewController" bundle:nil];
+        regController.delegate = self;
         NSURLRequest *registerRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:regRequestUrl]];
         [self presentViewController:regController animated:YES completion:^{
             [regController.webView loadRequest:registerRequest];
         }];
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        [self.tabBarController setSelectedIndex:0];
-    }];
-    [alertController addAction:loginAction];
-    [alertController addAction:regAction];
-    [alertController addAction:cancelAction];
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *usernameField){
-        [usernameField setPlaceholder:@"username"];}];
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *passwordField){
-        [passwordField setPlaceholder:@"password"];
-        [passwordField setSecureTextEntry:YES];
-    }];
-    [self presentViewController:alertController animated:YES completion:nil];
-    
-    
-    
-}
+        
+       
 
--(void)loginWithUsername:(NSString*)username Password:(NSString*)password{
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    NSString *requestString = [NSString stringWithFormat:@"%@?%@",tokenRequestUrl,APIKey];;
-    NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:requestString]];
-    [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
-        NSDictionary *dataDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        
-        NSNumber *requestResult = [dataDic valueForKey:@"success"];
-        if ([requestResult intValue]==1) {
-            NSString* requestToken = [dataDic valueForKey:@"request_token"];
-            NSString* login = [NSString stringWithFormat:@"https://api.themoviedb.org/3/authentication/token/validate_with_login?%@&request_token=%@&username=%@&password=%@",APIKey,requestToken,username,password];
-            NSURLRequest *loginRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:login]];
-            [[[NSURLSession sharedSession] dataTaskWithRequest:loginRequest completionHandler:^(NSData *data2,NSURLResponse *response,NSError *error){
-                NSString *session = [NSString stringWithFormat:@"%@?%@&request_token=%@",sessionRequestUrl,APIKey,requestToken];
-                NSURLRequest *sessionRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:session]];
-                [[[NSURLSession sharedSession] dataTaskWithRequest:sessionRequest completionHandler:^(NSData *data3,NSURLResponse *response,NSError *error){
-                    NSDictionary *sessionResult = [NSJSONSerialization JSONObjectWithData:data3 options:0 error:nil];
-                    if([sessionResult valueForKey:@"session_id"]){
-                        _session_id = [sessionResult valueForKey:@"session_id"];
-                    }
-                    else{
-                        _session_id = nil;
-                    }
-                    dispatch_semaphore_signal(semaphore);
-                }]resume];
-            }]resume];
-        }
-        
-    }]resume];
-    
-    dispatch_semaphore_wait(semaphore, 3);
-    if(_session_id){
-        _userLabel.text = username;
-        [self trySessionId:_session_id username:username];
-        [self updateSessionId:_session_id username:username];
-        
-    }
-    else{
-        UIAlertController *loginFailAlert = [UIAlertController alertControllerWithTitle:nil message:@"login failed, please check your input" preferredStyle:UIAlertControllerStyleActionSheet];
-        [self presentViewController:loginFailAlert animated:YES completion:nil];
-        [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(loginFailWithAlert:) userInfo:loginFailAlert repeats:NO];
-        
     }
 }
 
--(void)loginFailWithAlert:(NSTimer*)Timer{
-    UIAlertController* loginFailAlert = [Timer userInfo];
-    [loginFailAlert dismissViewControllerAnimated:YES completion:^{
-        [self signIn];
-    }];
+-(void)didDismissRegViewController{
+    [self signIn];
 }
+
+
 
 -(void)clearSessionId{
     NSString *path = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
     [dict setValue:@"" forKey:@"session_id"];
     [dict setValue:@"" forKey:@"username"];
-    [dict writeToFile: self.userResourcePath atomically:YES];
+    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    delegate.sessionId = nil;
+    [dict writeToFile: delegate.userResourcePath atomically:YES];
     
 }
 
 
--(void)updateSessionId:(NSString*)session_id username:(NSString*)username{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    [dict setValue:session_id forKey:@"session_id"];
-    [dict setValue:username forKey:@"username"];
-    [dict writeToFile: self.userResourcePath atomically:YES];
-}
+
+
 
 - (IBAction)setting:(id)sender {
 }
 
 - (IBAction)logout:(id)sender {
-    _session_id = nil;
     [self clearSessionId];
     [self resetRatingList];
     _userLabel.text = @"Guest";
     [self.tabBarController setSelectedIndex:0];
-    self.sessionIdOk = NO;
     [_userMovieCollectionView reloadData];
 }
 

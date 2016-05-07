@@ -207,7 +207,6 @@ static CGRect NALabelRect;
             [collectionViewCell addSubview:[self NALabel]];
             return collectionViewCell;
         }
-        NSLog(@"%d",imageArray.count);
         
         mediaScrollView.contentSize = CGSizeMake(imageArray.count*(imageWidth+scrollViewContentGap),collectionViewHeight);
         [collectionViewCell addSubview:mediaScrollView];

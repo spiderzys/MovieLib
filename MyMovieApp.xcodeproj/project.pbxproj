@@ -33,6 +33,7 @@
 		698006DB1C3CC8B400A1494B /* PresentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698006DA1C3CC8B400A1494B /* PresentViewController.m */; };
 		698F02EA1CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 698F02E91CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib */; };
 		699AB2F81C3E3D170066A6C0 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699AB2F71C3E3D170066A6C0 /* ThirdViewController.m */; };
+		69E002DA1CDAF45500F5DBDA /* LoginAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E002D81CDAF45500F5DBDA /* LoginAlertController.m */; };
 		69F580901BC7396900656024 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F5808F1BC7396900656024 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		69F580931BC73CA100656024 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F580921BC73CA100656024 /* MobileCoreServices.framework */; };
 		69F580951BC73CB300656024 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F580941BC73CB300656024 /* CoreGraphics.framework */; };
@@ -90,6 +91,8 @@
 		698F02E91CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieBackdropCollectionViewCell.xib; sourceTree = "<group>"; };
 		699AB2F61C3E3D170066A6C0 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
 		699AB2F71C3E3D170066A6C0 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		69E002D71CDAF45500F5DBDA /* LoginAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAlertController.h; sourceTree = "<group>"; };
+		69E002D81CDAF45500F5DBDA /* LoginAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAlertController.m; sourceTree = "<group>"; };
 		69F5808E1BC7396900656024 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		69F5808F1BC7396900656024 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		69F580921BC73CA100656024 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -185,6 +188,8 @@
 				6946E5CC1CB31E96007546ED /* SearchResultTableViewCell.xib */,
 				699AB2F61C3E3D170066A6C0 /* ThirdViewController.h */,
 				699AB2F71C3E3D170066A6C0 /* ThirdViewController.m */,
+				69E002D71CDAF45500F5DBDA /* LoginAlertController.h */,
+				69E002D81CDAF45500F5DBDA /* LoginAlertController.m */,
 				69466A301CC70925002B95B6 /* UserMovieCollectionHeaderView.h */,
 				69466A311CC70925002B95B6 /* UserMovieCollectionHeaderView.m */,
 				6916137A1CC5F78F0075A55A /* UserMovieCollectionViewCell.h */,
@@ -377,6 +382,7 @@
 				69FCCCC31CCF483D0067420B /* MovieMediaViewController.m in Sources */,
 				69F580901BC7396900656024 /* Reachability.m in Sources */,
 				690D58521BC0962200406ADA /* SecondViewController.m in Sources */,
+				69E002DA1CDAF45500F5DBDA /* LoginAlertController.m in Sources */,
 				6916137D1CC5F78F0075A55A /* UserMovieCollectionViewCell.m in Sources */,
 				690D584C1BC0962200406ADA /* AppDelegate.m in Sources */,
 				698006DB1C3CC8B400A1494B /* PresentViewController.m in Sources */,

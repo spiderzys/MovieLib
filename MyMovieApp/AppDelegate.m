@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "Constant.h"
 @interface AppDelegate ()
 
 @end
@@ -17,19 +17,55 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    _userResourcePath = [basePath stringByAppendingPathComponent:@"user.plist"];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_userResourcePath];
+    _sessionId = [dict valueForKey:@"session_id"];
+    _username = [dict valueForKey:@"username"];
     
-    
-    //UITabBarController *tab = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateInitialViewController];
-   // UIViewController *view = [tab.viewControllers objectAtIndex:0];
-    //view.tabBarItem.image = [[UIImage imageNamed:@"News"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     [self managedObjectModel];
-       
     [self persistentStoreCoordinator];
     NSAssert([self managedObjectContext]!=nil, @"cannot crate manageobjectcontext");
-
+    
+    
+    
+    
     return YES;
 }
+
+-(void)loadRatingDataWithSession:(NSString*)sessionId username:(NSString*)username{
+    
+   // dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    NSString* ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
+    NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:ratingRequestString]];
+    [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
+        
+        NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        if(![rateResult objectForKey:@"results"]){
+            _username = nil;
+            _sessionId = nil;
+        }
+  //      dispatch_semaphore_signal(semaphore);
+    }]resume];
+ //   dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    
+}
+
+
+
+-(void)updateSessionId:(NSString*)session_id username:(NSString*)username{
+
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_userResourcePath];
+    [dict setValue:session_id forKey:@"session_id"];
+    [dict setValue:username forKey:@"username"];
+    [dict writeToFile: _userResourcePath atomically:YES];
+}
+
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

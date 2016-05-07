@@ -84,7 +84,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sAg-EW-CCU">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sAg-EW-CCU">
                                 <rect key="frame" x="290" y="146" width="20" height="20"/>
                                 <color key="color" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -110,13 +110,6 @@
                                     <action selector="logout:" destination="kMB-Vf-l3z" eventType="touchUpInside" id="dw4-4q-lrn"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOo-dq-Nw8">
-                                <rect key="frame" x="90" y="106" width="420" height="30"/>
-                                <color key="backgroundColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="DVz-3n-y3c">
                                 <rect key="frame" x="0.0" y="20" width="600" height="86"/>
                                 <constraints>
@@ -138,12 +131,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gga-8V-KCS">
-                                            <rect key="frame" x="0.0" y="0.0" width="592" height="30"/>
+                                            <rect key="frame" x="0.0" y="-2" width="592" height="32"/>
                                             <color key="backgroundColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" none="YES"/>
                                             </accessibility>
-                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
+                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -153,7 +146,7 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="Gga-8V-KCS" secondAttribute="trailing" constant="-8" id="Ja4-Dc-mlF"/>
                                         <constraint firstItem="Gga-8V-KCS" firstAttribute="leading" secondItem="H0h-jo-YWy" secondAttribute="leadingMargin" constant="-8" id="Px1-Mj-DI0"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Gga-8V-KCS" secondAttribute="bottom" constant="-8" id="YL7-KM-72v"/>
-                                        <constraint firstItem="Gga-8V-KCS" firstAttribute="top" secondItem="H0h-jo-YWy" secondAttribute="topMargin" constant="-8" id="v01-6Q-htw"/>
+                                        <constraint firstItem="Gga-8V-KCS" firstAttribute="top" secondItem="H0h-jo-YWy" secondAttribute="topMargin" constant="-10" id="v01-6Q-htw"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="headerLabel" destination="Gga-8V-KCS" id="1cL-WR-Sc7"/>
@@ -164,6 +157,13 @@
                                     <outlet property="delegate" destination="kMB-Vf-l3z" id="Rex-5P-Kt5"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOo-dq-Nw8">
+                                <rect key="frame" x="90" y="106" width="420" height="30"/>
+                                <color key="backgroundColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

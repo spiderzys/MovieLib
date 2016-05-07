@@ -9,21 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
 #import "HCSStarRatingView.h"
-@interface ThirdViewController : ViewController <UIScrollViewDelegate>
+#import "LoginAlertController.h"
+#import "RegViewController.h"
+@interface ThirdViewController : ViewController <UIScrollViewDelegate,UIAlertControllerDelegate,UIRegVuewControllerDelegate>
 
 
 
-@property NSString* session_id;
 
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
 
-
 @property (weak, nonatomic) IBOutlet UICollectionView *userMovieCollectionView;
 
-
 @property NSArray* headTitleArray;
-
-//@property NSMutableArray *ratingList;
 
 @property NSMutableArray *higherRatingList;
 
@@ -40,7 +37,6 @@
 @property NSString *ratingRequestString;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivityIndicator;
-
 
 
 @end
