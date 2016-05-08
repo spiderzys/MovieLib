@@ -28,6 +28,12 @@
 
 @property NSArray *movieImagesDicArray;
 
+@property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
+
+//@property (weak, nonatomic) IBOutlet UILabel *playLengthLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *rateLabel;
+
 -(void)loadDataFromMovie:(NSDictionary*)movie;
 
 

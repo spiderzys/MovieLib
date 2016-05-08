@@ -16,6 +16,8 @@ static NSDictionary *attribute;
 @implementation FirstViewController
 @synthesize backImageView;
 
+
+
 //------------------------------------login for rating-------------------------------
 
 -(void)signIn{
@@ -74,17 +76,17 @@ static NSDictionary *attribute;
 
 - (void)viewDidLoad {
     
+    
+    
     [super viewDidLoad];
-    NSLog(@"%@",NSStringFromCGRect(self.view.frame));
+    
     attribute = _movieInfo.typingAttributes;
-    self.tabBarItem.image = [[UIImage imageNamed:@"News"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    self.tabBarItem.selectedImage = self.tabBarItem.image;
     UITabBarController *tab = self.tabBarController;
     [tab.tabBar setBackgroundImage:[[UIImage alloc] init]];
     [tab.tabBar setShadowImage:[[UIImage alloc] init]];
     tab.tabBar.backgroundColor = [UIColor clearColor];
     SecondViewController *second= [tab.viewControllers objectAtIndex:1];
-    second.tabBarItem.image = [[UIImage imageNamed:@"Comments"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //second.tabBarItem.image = [[UIImage imageNamed:@"Comments"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     second.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
     _delegate = [UIApplication sharedApplication].delegate;
     self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
@@ -211,7 +213,7 @@ static NSDictionary *attribute;
 -(void)loadMovieFromNet{
     
     
-    NSString *playingMovie = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc",nowPlayWeb,APIKey];
+    NSString *playingMovie = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=EN",nowPlayWeb,APIKey];
     NSLog(@"%@",playingMovie);
     _playingMoviesRequestResult = [self getDataFromUrl:[NSURL URLWithString:playingMovie] withKey:@"results" LimitPages:maxNumberPagesOfScrollView];
     if (_playingMoviesRequestResult  == nil || _playingMoviesRequestResult.count==0) {

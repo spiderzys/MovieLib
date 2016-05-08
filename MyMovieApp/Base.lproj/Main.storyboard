@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--First View Controller-->
+        <!--movie-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" sceneMemberID="viewController">
@@ -58,7 +58,7 @@
                             <constraint firstItem="27f-H0-V5i" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="yAF-EW-j7M"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="recents" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="movie" image="movie" id="acW-dT-cKf"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
@@ -72,7 +72,7 @@
             </objects>
             <point key="canvasLocation" x="814" y="-288"/>
         </scene>
-        <!--Third View Controller-->
+        <!--Profile-->
         <scene sceneID="hLN-Vb-anR">
             <objects>
                 <viewController id="kMB-Vf-l3z" customClass="ThirdViewController" sceneMemberID="viewController">
@@ -84,7 +84,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sAg-EW-CCU">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sAg-EW-CCU">
                                 <rect key="frame" x="290" y="146" width="20" height="20"/>
                                 <color key="color" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -188,7 +188,7 @@
                             <constraint firstItem="KFm-yA-2hQ" firstAttribute="height" secondItem="LnF-yJ-thy" secondAttribute="height" id="zZf-hn-ybs"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="Pxq-m0-iaj"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="user_male_circle" id="Pxq-m0-iaj"/>
                     <connections>
                         <outlet property="loadingActivityIndicator" destination="sAg-EW-CCU" id="Dh4-CU-ESc"/>
                         <outlet property="userLabel" destination="rOo-dq-Nw8" id="gRz-vU-xTW"/>
@@ -356,6 +356,13 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -371,5 +378,8 @@
     </scenes>
     <resources>
         <image name="logo.png" width="280" height="40"/>
+        <image name="movie" width="25" height="25"/>
+        <image name="user_male_circle" width="25" height="25"/>
     </resources>
+    <color key="tintColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -51,7 +51,7 @@
                   willDecelerate:(BOOL)decelerate{
    
     if (scrollView.contentOffset.y < -30) {
-         [_loadingActivityIndicator startAnimating];
+        [self.view bringSubviewToFront:_loadingActivityIndicator];
         if([self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]){
             
             
@@ -62,7 +62,7 @@
             scrollView.scrollEnabled = YES;
             
         }
-        [_loadingActivityIndicator stopAnimating];
+      //  [_loadingActivityIndicator stopAnimating];
     }
 }
 
@@ -136,39 +136,43 @@
     UserMovieCollectionViewCell * customCell = [_userMovieCollectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     NSDictionary *movie;
     if (indexPath.section==0) {
+        
         movie = [_higherRatingList objectAtIndex:indexPath.row];
+        customCell.userRatingView.value =[[movie valueForKey:@"rating"]floatValue]/2;
+        customCell.userRatingView.hidden = NO;
     }
     else if (indexPath.section == 1) {
+        
         movie = [_approxRatingList objectAtIndex:indexPath.row];
+        customCell.userRatingView.value =[[movie valueForKey:@"rating"]floatValue]/2;
+        customCell.userRatingView.hidden = NO;
     }
     else if (indexPath.section == 2) {
+        
         movie = [_lowerRatingList objectAtIndex:indexPath.row];
+        customCell.userRatingView.value =[[movie valueForKey:@"rating"]floatValue]/2;
+        customCell.userRatingView.hidden = NO;
     }
     
     else if (indexPath.section == 3) {
+        
         movie = [_niceMovieList objectAtIndex:indexPath.row];
+        customCell.userRatingView.hidden = YES;
     }
     else if (indexPath.section == 4) {
+        
         movie = [_badMovieList objectAtIndex:indexPath.row];
+        customCell.userRatingView.hidden = YES;
     }
     else if (indexPath.section == 5) {
+        
         movie = [_needRatingMovieList objectAtIndex:indexPath.row];
+        customCell.userRatingView.hidden = YES;
     }
     
-    CGFloat rating = [[movie valueForKey:@"rating"]floatValue];
     
-    customCell.ratingView.value = rating/2;
-    if(customCell.ratingView.value==0){
-        customCell.ratingView.backgroundColor = _userLabel.backgroundColor;
-        customCell.ratingView.value = [[movie valueForKey:@"vote_average"]floatValue]/2;
-        if(customCell.ratingView.value==0){
-             customCell.ratingView.backgroundColor = [UIColor whiteColor];
-        }
-    }
-    else{
-        customCell.ratingView.backgroundColor = _userLabel.tintColor;
-    }
-    
+    customCell.ratingView.value = [[movie valueForKey:@"vote_average"]floatValue]/2;
+    customCell.ratingView.hidden = (customCell.ratingView.value==0)?YES:NO;
     
     NSString *poster_path = [movie valueForKey:@"poster_path"];
     poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
@@ -234,27 +238,33 @@
         
     }
     
-    NSLog(@"%@",_approxRatingList);
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy"];
     NSString *yearString = [formatter stringFromDate:[NSDate date]];
     
     
     
-    NSString *niceMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.gte=8&sort_by=vote_average.desc&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
+    NSString *niceMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.gte=7.5&sort_by=popularity.desc&language=EN&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
     NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:niceMovieRequestString] withKey:@"results" LimitPages:1];
+    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
+   
     _niceMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     
     
     
-    NSString *badMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.lte=3&sort_by=vote_average.desc&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
+    NSString *badMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.lte=2.5&sort_by=popularity.desc&language=EN&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
     temp = [self getDataFromUrl:[NSURL URLWithString:badMovieRequestString] withKey:@"results" LimitPages:1];
+    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
     _badMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     
     
     
-    NSString *needRatingMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&sort_by=popularity.desc&vote_count.lte=10",movieDiscoverWeb,APIKey,yearString];
+    NSString *needRatingMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&sort_by=popularity.desc&vote_count.lte=10&language=EN",movieDiscoverWeb,APIKey,yearString];
     temp = [self getDataFromUrl:[NSURL URLWithString:needRatingMovieRequestString] withKey:@"results" LimitPages:1];
+    if(temp.count>10){
+    temp = [temp subarrayWithRange:NSMakeRange(0, 10)];
+    }
+    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
     _needRatingMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     
     
@@ -334,7 +344,7 @@
 
 
 -(BOOL)loadRatingDataWithSession:(NSString*)sessionId username:(NSString*)username{
-    [_loadingActivityIndicator startAnimating];
+   // [_loadingActivityIndicator startAnimating];
     
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     _ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
@@ -360,6 +370,7 @@
                 dispatch_semaphore_signal(semaphore);
     }]resume];
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
     [_loadingActivityIndicator stopAnimating];
     if(_needRatingMovieList){
         return YES;

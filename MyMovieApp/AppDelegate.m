@@ -27,7 +27,7 @@
     
     [self managedObjectModel];
     [self persistentStoreCoordinator];
-    NSAssert([self managedObjectContext]!=nil, @"cannot crate manageobjectcontext");
+    NSAssert([self managedObjectContext]!=nil, @"cannot create manageobjectcontext");
     
     
     

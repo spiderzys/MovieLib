@@ -14,15 +14,37 @@
                 <rect key="frame" x="0.0" y="0.0" width="90" height="120"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Qa-ZQ-ROB">
-                        <rect key="frame" x="0.0" y="0.0" width="90" height="110"/>
+                        <rect key="frame" x="0.0" y="0.0" width="90" height="120"/>
                         <color key="backgroundColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mWx-61-yM2" customClass="HCSStarRatingView">
+                        <rect key="frame" x="0.0" y="102" width="90" height="10"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="0.80970532490000002" blue="0.28329452519999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="K1Q-K3-fbM"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="continuous" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="spacing">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="accurateHalfStars" value="YES"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k1z-4D-51Z" customClass="HCSStarRatingView">
                         <rect key="frame" x="0.0" y="110" width="90" height="10"/>
-                        <color key="backgroundColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="10" id="QSc-IA-IEd"/>
+                            <constraint firstAttribute="height" constant="10" id="lRT-bt-dQ4"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="continuous" value="YES"/>
@@ -43,18 +65,22 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="k1z-4D-51Z" secondAttribute="bottom" id="69g-Fi-KhG"/>
-                <constraint firstAttribute="trailing" secondItem="k1z-4D-51Z" secondAttribute="trailing" id="CYi-O1-Xlq"/>
+                <constraint firstItem="mWx-61-yM2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="5s7-kt-td3"/>
+                <constraint firstItem="k1z-4D-51Z" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9kW-mR-j8K"/>
+                <constraint firstAttribute="trailing" secondItem="mWx-61-yM2" secondAttribute="trailing" id="GCa-DW-Fw2"/>
                 <constraint firstAttribute="trailing" secondItem="5Qa-ZQ-ROB" secondAttribute="trailing" id="TQg-Cc-4rT"/>
                 <constraint firstItem="5Qa-ZQ-ROB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Y4N-kt-mCN"/>
-                <constraint firstItem="k1z-4D-51Z" firstAttribute="top" secondItem="5Qa-ZQ-ROB" secondAttribute="bottom" id="cCO-5Q-htB"/>
-                <constraint firstItem="k1z-4D-51Z" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="kQW-cY-T3P"/>
+                <constraint firstAttribute="bottom" secondItem="k1z-4D-51Z" secondAttribute="bottom" id="fOo-uO-TJy"/>
+                <constraint firstAttribute="trailing" secondItem="k1z-4D-51Z" secondAttribute="trailing" id="qeE-3E-Yuj"/>
+                <constraint firstItem="k1z-4D-51Z" firstAttribute="top" secondItem="mWx-61-yM2" secondAttribute="bottom" id="tuB-Dg-mlq"/>
+                <constraint firstAttribute="bottom" secondItem="5Qa-ZQ-ROB" secondAttribute="bottom" id="yTC-k1-uVx"/>
                 <constraint firstItem="5Qa-ZQ-ROB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zST-hy-eBe"/>
             </constraints>
             <size key="customSize" width="70" height="80"/>
             <connections>
                 <outlet property="cellImageView" destination="5Qa-ZQ-ROB" id="pUw-2X-JsS"/>
                 <outlet property="ratingView" destination="k1z-4D-51Z" id="QDr-Eb-GZk"/>
+                <outlet property="userRatingView" destination="mWx-61-yM2" id="nSm-5T-naL"/>
             </connections>
             <point key="canvasLocation" x="227" y="175"/>
         </collectionViewCell>

@@ -81,8 +81,10 @@ static NSDictionary *movie;
 
 -(void)showRatingSuccess{
     [self rateMovieWithId:[movie valueForKey:@"id"] Rate:_ratingView.value*2];
+    _ratingView.tintColor = [UIColor orangeColor];
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Thanks for your rating" message:nil preferredStyle:UIAlertControllerStyleAlert];
     [self presentViewController:alertController animated:YES completion:^{
+        [NSThread sleepForTimeInterval:0.8];
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }
@@ -135,6 +137,16 @@ static NSDictionary *movie;
     [_titleLabel setText:title];
     
     NSString *release_date = [movie  valueForKey:@"release_date"];
+    [_releaseDateLabel setText:release_date];
+    NSInteger vote_count = [[movie valueForKey:@"vote_count"]integerValue];
+    if(vote_count==0){
+        [_rateLabel setText:@"N/A"];
+    }
+    else{
+        [_rateLabel setText:[NSString stringWithFormat: @"%@ (%ld)",[movie valueForKey:@"vote_average"],(long)vote_count]];
+    }
+    
+    
     
     NSString *overview = [movie  valueForKey:@"overview"];
     
@@ -162,14 +174,18 @@ static NSDictionary *movie;
     
     NSString *info = @"";
     if(mark==0){
-        info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Rate: N/A\nCast: %@  \n\nOverview:\n%@ ",label, release_date,showCast, overview];
+        info = [NSString stringWithFormat:@"Cast: %@  \n\nOverview:\n%@ ",showCast, overview];
         
     }
     else{
-        info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Rate: %.1f\nCast: %@ \n\nOverview:\n%@ ", label, release_date, mark,showCast, overview];
+        info = [NSString stringWithFormat:@"Cast: %@ \n\nOverview:\n%@ ", showCast, overview];
         
     }
+  
+    
+    
     NSString *reviewRequestString = [NSString stringWithFormat:@"%@%@/reviews?%@",movieWeb,idn,APIKey];
+    
     NSArray *reviewList = [self getDataFromUrl:[NSURL URLWithString:reviewRequestString] withKey:@"results" LimitPages:1];
     NSString *reviewString = @"\n\nReview:\n";
     NSUInteger reviewLength = reviewString.length;
