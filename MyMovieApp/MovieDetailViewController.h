@@ -14,11 +14,11 @@
 
 @interface MovieDetailViewController : ViewController <UIAlertControllerDelegate, UIRegVuewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 
 @property (weak, nonatomic) IBOutlet UICollectionView *movieBackdropCollectionView;
 
-@property (weak, nonatomic) IBOutlet HCSStarRatingView *ratingView;
+
 
 @property (weak, nonatomic) IBOutlet UITextView *movieInfo;
 
@@ -28,9 +28,13 @@
 
 @property NSArray *movieImagesDicArray;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
 
 //@property (weak, nonatomic) IBOutlet UILabel *playLengthLabel;
+@property (weak, nonatomic) IBOutlet HCSStarRatingView *ratingView;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *rateLabel;
 

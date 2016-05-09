@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "RegViewController.h"
+#import "HCSStarRatingView.h"
 #import "LoginAlertController.h"
 @interface FirstViewController : ViewController <UIAlertControllerDelegate, UIRegVuewControllerDelegate>
 
@@ -23,10 +24,19 @@
 @property NSArray *playingMoviesRequestResult;
 @property long selectedMovie;
 @property BOOL connected;
-@property AppDelegate *delegate;
 @property NSTimer* autoScrollTimer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivityIndicator;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
+@property AppDelegate *delegate;
+//@property (weak, nonatomic) IBOutlet UILabel *playLengthLabel;
+@property (weak, nonatomic) IBOutlet HCSStarRatingView *ratingView;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *rateLabel;
 
 @end
 

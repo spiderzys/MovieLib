@@ -37,7 +37,7 @@ static NSDictionary *movie;
     }
     else if(buttonTapped ==signIn){
         if(delegate.sessionId){
-            
+        
             [self showRatingSuccess];
            
         }
@@ -68,6 +68,7 @@ static NSDictionary *movie;
 
 
 - (IBAction)rateMovie:(id)sender {
+    _ratingView.userInteractionEnabled = NO;
     AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     if(delegate.sessionId){
         
@@ -77,6 +78,7 @@ static NSDictionary *movie;
     else{
         [self signIn];
     }
+    _ratingView.userInteractionEnabled = YES;
 }
 
 -(void)showRatingSuccess{
@@ -95,6 +97,7 @@ static NSDictionary *movie;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.modalTransitionStyle = UIModalTransitionStylePartialCurl;
     self.backImageView =  [[UIImageView alloc]initWithFrame:self.view.frame];
     [self.backImageView setContentMode:UIViewContentModeScaleAspectFill];
     self.backImageView.clipsToBounds = YES;
@@ -181,11 +184,8 @@ static NSDictionary *movie;
         info = [NSString stringWithFormat:@"Cast: %@ \n\nOverview:\n%@ ", showCast, overview];
         
     }
-  
-    
     
     NSString *reviewRequestString = [NSString stringWithFormat:@"%@%@/reviews?%@",movieWeb,idn,APIKey];
-    
     NSArray *reviewList = [self getDataFromUrl:[NSURL URLWithString:reviewRequestString] withKey:@"results" LimitPages:1];
     NSString *reviewString = @"\n\nReview:\n";
     NSUInteger reviewLength = reviewString.length;
@@ -205,7 +205,7 @@ static NSDictionary *movie;
     NSLog(@"%@",_movieInfo.tintColor);
     
     [_ratingView setValue:mark/2];
-    [_ratingView setAccurateHalfStars:NO];
+    
     
     
    

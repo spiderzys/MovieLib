@@ -34,6 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self resetRatingList];
     [[_userLabel layer] setCornerRadius:10.0f];
     [[_userLabel layer] setMasksToBounds:YES];

@@ -176,7 +176,7 @@
 
 
 
--(void)playTrailer:(NSNumber*)idn{
+/*-(void)playTrailer:(NSNumber*)idn{
     
     NSString *videoInquery = [NSString stringWithFormat:@"%@%@/videos?%@",movieWeb,idn,APIKey];
     NSArray *videoResult = [self getDataFromUrl:[NSURL URLWithString:videoInquery] withKey:@"results" LimitPages:0];
@@ -192,7 +192,6 @@
                 YTPlayerView *player = [[YTPlayerView alloc]initWithFrame:PresentViewFrame];
                 player.center = presentController.view.center;
                 [presentController.view addSubview: player];
-                [presentController addButton];
                 [self presentViewController:presentController animated:YES completion:nil];
                 NSString *playId = [result objectForKey:@"key"];
                 [player loadWithVideoId:playId];
@@ -203,7 +202,7 @@
     }
     
 }
-
+*/
 
 -(void)singleOptionAlertWithMessage:(NSString *)message{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Alert" message:message preferredStyle:UIAlertControllerStyleAlert];

@@ -16,11 +16,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
-    _ratingView.value = 2;
+   
     
     
     
+    
+}
+- (IBAction)changeValue:(id)sender {
+   
+    NSLog(@"%f",_ratingView.value);
+    _ratingView.userInteractionEnabled = NO;
+    [_ratingView setAccurateHalfStars:NO];
+    _ratingView.userInteractionEnabled = YES;
 }
 
 

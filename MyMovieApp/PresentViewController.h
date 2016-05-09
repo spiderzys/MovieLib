@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PresentViewController : UIViewController
--(void)addButton;
+@property (weak, nonatomic) IBOutlet UIImageView *backImageView;
+
 @end

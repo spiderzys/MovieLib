@@ -19,32 +19,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-   // self.title = @"!!!!!!!!";
-        //UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithTitle:@"done" style:UIBarButtonItemStyleDone target:self action:@selector(leavePage)];
-    //NSLog(@"%@",self.navigationItem.leftBarButtonItem.possibleTitles);
-    
-    // Do any additional setup after loading the view.
-}
-
--(void)addButton{
-    
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 10, 40, 20)];
-    
-    [button addTarget:self action:@selector(leavePage) forControlEvents:UIControlEventTouchDown];
-    [button setTitle:@"back" forState:UIControlStateNormal];
-    //button.tintColor = [UIColor blueColor];
-    [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [self.view addSubview:button];
+    self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 
 }
 
+- (IBAction)leavePage:(id)sender {
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-   }
-
--(void)leavePage{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

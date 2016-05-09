@@ -12,7 +12,7 @@
 @interface FirstViewController ()
 
 @end
-static NSDictionary *attribute;
+
 @implementation FirstViewController
 @synthesize backImageView;
 
@@ -27,6 +27,7 @@ static NSDictionary *attribute;
     alertController.delegate = self;
     [self presentViewController:alertController animated:YES completion:^{
         
+        
     }];
     
     
@@ -34,10 +35,13 @@ static NSDictionary *attribute;
 
 - (void)didDismissAlertControllerButtonTapped:(NSInteger)buttonTapped{
     AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    
     if(buttonTapped==cancel){
     }
     else if(buttonTapped ==signIn){
         if(delegate.sessionId){
+            
+            [self showRatingSuccess];
             
         }
         else{
@@ -56,13 +60,38 @@ static NSDictionary *attribute;
             [regController.webView loadRequest:registerRequest];
         }];
         
-        
-        
     }
 }
 
+
+
 -(void)didDismissRegViewController{
     [self signIn];
+}
+
+
+- (IBAction)rateMovie:(id)sender {
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    if(delegate.sessionId){
+        
+        [self showRatingSuccess];
+        
+    }
+    else{
+        [self signIn];
+    }
+}
+
+-(void)showRatingSuccess{
+    NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:_selectedMovie];
+    [self rateMovieWithId:[movie valueForKey:@"id"] Rate:_ratingView.value*2];
+    _ratingView.tintColor = [UIColor orangeColor];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Thanks for your rating" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    alertController.view.tintColor = [UIColor purpleColor];
+    [self presentViewController:alertController animated:YES completion:^{
+        [NSThread sleepForTimeInterval:0.8];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 
@@ -80,7 +109,7 @@ static NSDictionary *attribute;
     
     [super viewDidLoad];
     
-    attribute = _movieInfo.typingAttributes;
+    
     UITabBarController *tab = self.tabBarController;
     [tab.tabBar setBackgroundImage:[[UIImage alloc] init]];
     [tab.tabBar setShadowImage:[[UIImage alloc] init]];
@@ -89,6 +118,8 @@ static NSDictionary *attribute;
     //second.tabBarItem.image = [[UIImage imageNamed:@"Comments"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     second.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
     _delegate = [UIApplication sharedApplication].delegate;
+    _delegate.window.tintColor = _ratingView.tintColor;
+    
     self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
     self.backImageView.alpha = 0.2;
     [self.backImageView setContentMode:UIViewContentModeScaleAspectFill];
@@ -125,7 +156,7 @@ static NSDictionary *attribute;
     
     
     [self loadMovieFromCoreData];
-
+    
     _moviePostImage.contentSize = CGSizeMake(_playingMoviesRequestResult.count*(_moviePostImage.bounds.size.height*posterRatio+scrollViewContentGap), _moviePostImage.bounds.size.height);
     for (int i = 0;i<_playingMoviesRequestResult.count;i++) {
         Movie *movie = _playingMoviesRequestResult[i];
@@ -240,11 +271,13 @@ static NSDictionary *attribute;
             NSString *release_date =[temp valueForKey:@"release_date"];
             
             NSString *poster_path = [temp valueForKey:@"poster_path"];
+            NSNumber *vote_count = [temp valueForKey:@"vote_count"];
             poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
             NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                         idn, @"id",
                                         title, @"title",
                                         // cast, @"cast",
+                                        vote_count, @"vote_count",
                                         poster_path, @"poster_path",
                                         release_date, @"release_date",
                                         vote_average, @"vote_average",
@@ -298,6 +331,7 @@ static NSDictionary *attribute;
     movie.release_date =[temp valueForKey:@"release_date"];
     
     movie.posterData = [temp valueForKey:@"poster_data"];
+    movie.vote_count = [temp valueForKey:@"vote_count"];
     
     [_delegate saveContext];
     
@@ -317,26 +351,32 @@ static NSDictionary *attribute;
     [imageView addGestureRecognizer:singleTap];
     [imageView addGestureRecognizer:doubleTap];
     imageView.userInteractionEnabled = YES;
-    // [_moviePostImage addSubview:imageView];
-    
     imageView.backgroundColor = [UIColor grayColor];
 }
 
 -(void)showInfoFromCoreData:(long)num{
     Movie *movie =_playingMoviesRequestResult[num];
+    NSString *title = [movie  valueForKey:@"title"];
+    [_titleLabel setText:title];
     float mark = [movie.vote_average floatValue];
-      [self.backImageView setImage:[UIImage imageWithData: movie.posterData]];
-    if(mark==0){
-        //@"%@\nRelease Date: %@      Mark: N/A\nCast: %@\n\n%@
-        NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: N/A: \n\n%@ ",movie.title, movie.release_date,
-                          //showCast,
-                          movie.overview];
-        [_movieInfo setText:info];
+    [self.backImageView setImage:[UIImage imageWithData: movie.posterData]];
+    
+    
+    NSString *info =[NSString stringWithFormat:@"Overview:\n%@ ", movie.overview];
+    if(movie.vote_count.integerValue==0){
+        [_rateLabel setText:@"N/A"];
     }
     else{
-        NSString *info = [NSString stringWithFormat:@"%@\nRelease Date: %@      Mark: %.1f \n\n%@ ",movie.title, movie.release_date, mark, movie.overview];
-        [_movieInfo setText:info];
+        [_rateLabel setText:[NSString stringWithFormat: @"%f (%@)",mark,movie.vote_count]];
     }
+    [_movieInfo setText:info];
+    
+    
+    [_ratingView setValue:mark/2];
+    
+    
+    
+    
     
     _selectedMovie = num;
     
@@ -345,16 +385,38 @@ static NSDictionary *attribute;
     
     
     if(_connected){
-        NSDictionary *temp = [_playingMoviesRequestResult objectAtIndex:num];
-        float mark = [[temp valueForKey:@"vote_average" ]floatValue];
-        NSString *title = [temp valueForKey:@"title"];
-        NSString *release_date = [temp valueForKey:@"release_date"];
+        NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:num];
+        NSDictionary *genreDic = [[NSDictionary alloc] initWithContentsOfFile: self.genreResourcePath];
+        NSArray *genre_ids = [movie valueForKey:@"genre_ids"];
+        NSString *label = @"Label: ";
+        for (NSNumber* genreIdn in genre_ids) {
+            NSString *genreId = genreIdn.description;
+            NSString *genreName = [genreDic valueForKey:genreId];
+            label = [NSString stringWithFormat:@"%@%@  ",label,genreName];
+        }
         
-        NSString *overview = [temp valueForKey:@"overview"];
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[temp valueForKey:@"poster_path"]]];
+        
+        
+        float mark = [[movie valueForKey:@"vote_average" ]floatValue];
+        NSString *title = [movie  valueForKey:@"title"];
+        [_titleLabel setText:title];
+        
+        NSString *release_date = [movie  valueForKey:@"release_date"];
+        [_releaseDateLabel setText:release_date];
+        NSInteger vote_count = [[movie valueForKey:@"vote_count"]integerValue];
+        if(vote_count==0){
+            [_rateLabel setText:@"N/A"];
+        }
+        else{
+            [_rateLabel setText:[NSString stringWithFormat: @"%@ (%ld)",[movie valueForKey:@"vote_average"],(long)vote_count]];
+        }
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[movie valueForKey:@"poster_path"]]];
         [self.backImageView setImage:[UIImage imageWithData: data]];
         
-        NSString *idn = [temp valueForKey:@"id"];
+        
+        NSString *overview = [movie  valueForKey:@"overview"];
+        
+        NSString *idn = [movie  valueForKey:@"id"];
         NSString *showCast = @"";
         //  /*
         NSString *castRequestString = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
@@ -373,15 +435,11 @@ static NSDictionary *attribute;
                 break;
             }
         }
-        NSString *info;
-        if(mark==0){
-            info = [NSString stringWithFormat:@"%@\n\nRelease Date: %@      Mark: N/A\nCast: %@  \n\nOverview:\n%@ ",title, release_date,showCast, overview];
-            
-        }
-        else{
-            info = [NSString stringWithFormat:@"%@\n\nRelease Date: %@      Mark: %.1f\nCast: %@ \n\nOverview:\n%@ ",title, release_date, mark,showCast, overview];
-            
-        }
+        
+        
+        
+        NSString *info = [NSString stringWithFormat:@"Cast: %@ \n\nOverview:\n%@ ", showCast, overview];
+        
         NSString *reviewRequestString = [NSString stringWithFormat:@"%@%@/reviews?%@",movieWeb,idn,APIKey];
         NSArray *reviewList = [self getDataFromUrl:[NSURL URLWithString:reviewRequestString] withKey:@"results" LimitPages:1];
         NSString *reviewString = @"\n\nReview:\n";
@@ -391,16 +449,18 @@ static NSDictionary *attribute;
             for (NSDictionary *reviewDic in reviewList) {
                 NSString *author = [reviewDic valueForKey:@"author"];
                 NSString *content = [reviewDic valueForKey:@"content"];
-                reviewString = [NSString stringWithFormat:@"%@\n%@:\n%@\n(End)\n",reviewString,author,content];
+                reviewString = [NSString stringWithFormat:@"%@\n%@:\n%@\n(End)\n\n",reviewString,author,content];
             }
         }
         if(reviewString.length>reviewLength){
             info = [info stringByAppendingString:reviewString];
         }
-        NSMutableAttributedString *attributedInfo = [[NSMutableAttributedString alloc]initWithString:info attributes:attribute];
-        [attributedInfo addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:NSMakeRange(0, title.length)];
-        [attributedInfo addAttribute: NSLinkAttributeName value: @"" range: NSMakeRange(0,title.length)];
-        [_movieInfo setAttributedText:attributedInfo];
+        
+        [_movieInfo setText:info];
+        
+        
+        [_ratingView setValue:mark/2];
+        
         
         _selectedMovie = num;
         
@@ -424,18 +484,16 @@ static NSDictionary *attribute;
 
 - (void)handleTap2:(UITapGestureRecognizer *)sender
 {
-    if (sender.state == UIGestureRecognizerStateEnded)
-    {
-        long tag= sender.view.tag;
-        UIImageView *imageView = (UIImageView*)[self.view viewWithTag:tag];
-        UIImageView *view = [[UIImageView alloc]initWithFrame:PresentViewFrame];
-        [view setContentMode:UIViewContentModeCenter];
-        PresentViewController *presentController = [[PresentViewController alloc]init];
-        [presentController.view addSubview:view];
-        [presentController addButton];
-        view.image= imageView.image;
-        [self presentViewController:presentController animated:YES completion:nil];
-        
+    if (sender.state == UIGestureRecognizerStateEnded){
+    
+        UIImageView *imageView = (UIImageView*)sender.view;
+        if(imageView.image){
+            
+            PresentViewController *presentController = [[PresentViewController alloc]initWithNibName:@"PresentViewController" bundle:nil];
+            [self presentViewController:presentController animated:YES completion:^{
+                presentController.backImageView.image = imageView.image;
+            }];
+        }
     }
 }
 
@@ -470,8 +528,8 @@ static NSDictionary *attribute;
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     
-       [_movieInfo setContentOffset:CGPointZero animated:NO];
-   
+    [_movieInfo setContentOffset:CGPointZero animated:NO];
+    
 }
 
 
@@ -524,6 +582,15 @@ static NSDictionary *attribute;
         [_moviePostImage setContentOffset: CGPointMake(velocity+_moviePostImage.contentOffset.x,0) animated:YES];
     }
 }
+
+- (IBAction)showMedia:(id)sender {
+    NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:_selectedMovie];
+    MovieMediaViewController *mediaViewController = [[MovieMediaViewController alloc]initWithNibName:@"MovieMediaViewController" bundle:nil movieDic:movie];
+    [self presentViewController:mediaViewController animated:YES completion:nil];
+}
+
+
+
 
 
 @end

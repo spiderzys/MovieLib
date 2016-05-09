@@ -27,7 +27,7 @@
 -(void)netAlert;
 -(NSString*)getCastFromUrl:(NSURL*) url;
 -(void)showPoster:(UITapGestureRecognizer *)sender;
--(void)playTrailer:(NSNumber*)idn;
+//-(void)playTrailer:(NSNumber*)idn;
 -(void)singleOptionAlertWithMessage:(NSString *)message;
 -(void)updateGenre;
 -(void)rateMovieWithId:(NSString*)idn Rate:(float)mark;

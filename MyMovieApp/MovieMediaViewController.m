@@ -27,6 +27,7 @@ static CGRect NALabelRect;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     _tintColor = self.navigationItem.leftBarButtonItem.tintColor;
     [_navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     _navigationBar.shadowImage = [UIImage new];
@@ -206,7 +207,12 @@ static CGRect NALabelRect;
         [collectionViewCell addSubview:mediaScrollView];
         for (int i = 0; i<imageArray.count; i++) {
             UIImageView* mediaImageView = [[UIImageView alloc]initWithFrame:CGRectMake(i*(imageWidth+scrollViewContentGap),0,imageWidth,collectionViewHeight)];
-            
+            mediaImageView.tag = indexPath.section*1000+i;
+            UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        
+            singleTap.numberOfTapsRequired=1;
+            [mediaImageView addGestureRecognizer:singleTap];
+            mediaImageView.userInteractionEnabled = YES;
             [mediaImageView setContentMode:UIViewContentModeScaleAspectFit];
             [mediaImageView setClipsToBounds:YES];
             [mediaScrollView addSubview:mediaImageView];
@@ -236,7 +242,20 @@ static CGRect NALabelRect;
     return collectionViewCell;
 }
 
-
+- (void)handleTap:(UITapGestureRecognizer *)sender {
+    UIImageView *imageView = (UIImageView*)sender.view;
+    if(imageView.image){
+        
+        PresentViewController *presentController = [[PresentViewController alloc]initWithNibName:@"PresentViewController" bundle:nil];
+        
+        [self presentViewController:presentController animated:YES completion:^{
+            
+            presentController.backImageView.image = imageView.image;
+       //     if(imageView.tag>=1000) presentController.backImageView.transform = CGAffineTransformMakeRotation(M_PI/2);
+            
+        }];
+    }
+}
 
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -275,9 +294,6 @@ static CGRect NALabelRect;
 }
 
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@",indexPath);
-}
 
 
 

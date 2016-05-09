@@ -20,4 +20,5 @@
 @dynamic vote_average;
 @dynamic idn;
 @dynamic cast;
+@dynamic vote_count;
 @end

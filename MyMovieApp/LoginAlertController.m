@@ -19,7 +19,6 @@ static AppDelegate  *delegate;
 
 
 
-
 - (void)viewDidLoad {
     
     [self addTextFieldWithConfigurationHandler:^(UITextField *usernameField){[usernameField setPlaceholder:@"username"];}];
@@ -35,15 +34,19 @@ static AppDelegate  *delegate;
         NSString* username = usernameField.text;
         NSString* password = passwordField.text;
         [self loginWithUsername:username Password:password];
-         [self.delegate didDismissAlertControllerButtonTapped:signIn];
+        [self.delegate didDismissAlertControllerButtonTapped:signIn];
         
        
     }];
     
+   
     UIAlertAction *regAction = [UIAlertAction actionWithTitle:@"sign up" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        
          [self.delegate didDismissAlertControllerButtonTapped:signUp];
        
     }];
+  
+    
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         [self.delegate didDismissAlertControllerButtonTapped:cancel];
         
@@ -54,10 +57,16 @@ static AppDelegate  *delegate;
     [self addAction:regAction];
     [self addAction:cancelAction];
     
-   
+
 
     
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    self.view.tintColor = [[[UIApplication sharedApplication]delegate]window].tintColor;
+
+    [super viewWillAppear:animated];
 }
 
 
@@ -102,9 +111,8 @@ static AppDelegate  *delegate;
 -(void)updateSessionId:(NSString*)session_id username:(NSString*)username{
     
     AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:delegate.userResourcePath];
-    [dict setValue:session_id forKey:@"session_id"];
-    [dict setValue:username forKey:@"username"];
+    NSDictionary *dict = @{@"session_id":session_id,@"username":username};
+   
     [dict writeToFile: delegate.userResourcePath atomically:YES];
 }
 

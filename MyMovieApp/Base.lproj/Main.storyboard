@@ -34,7 +34,7 @@
                                 <color key="color" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faK-my-Dut">
-                                <rect key="frame" x="0.0" y="220" width="600" height="331"/>
+                                <rect key="frame" x="0.0" y="280" width="600" height="271"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
@@ -43,18 +43,106 @@
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="jq6-yb-bEo"/>
                                 </connections>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNZ-DX-Rym">
+                                <rect key="frame" x="315" y="270" width="255" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mgg-Tc-VmQ">
+                                <rect key="frame" x="35" y="260" width="255" height="20"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="christmas_star" translatesAutoresizingMaskIntoConstraints="NO" id="K0U-pm-TVz">
+                                <rect key="frame" x="290" y="260" width="20" height="20"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFm-jk-HZC">
+                                <rect key="frame" x="570" y="260" width="20" height="20"/>
+                                <state key="normal" image="movie-1"/>
+                                <connections>
+                                    <action selector="showMedia:" destination="9pv-A4-QxB" eventType="touchUpInside" id="3AF-Nb-Hy0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="USM-tR-qXF">
+                                <rect key="frame" x="10" y="220" width="0.0" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fwQ-6t-a41"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica-BoldOblique" family="Helvetica" pointSize="25"/>
+                                <color key="textColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tear_off_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="6iW-aK-IAr">
+                                <rect key="frame" x="10" y="260" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="6ig-bR-2hu"/>
+                                    <constraint firstAttribute="width" secondItem="6iW-aK-IAr" secondAttribute="height" multiplier="1:1" id="JW3-vO-LBn"/>
+                                    <constraint firstAttribute="width" constant="25" id="Nd2-IN-v8P"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Nd2-IN-v8P"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIY-yY-hmz" customClass="HCSStarRatingView">
+                                <rect key="frame" x="15" y="220" width="100" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="4Vl-Zr-Aei"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="accurateHalfStars" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="rateMovie:" destination="9pv-A4-QxB" eventType="valueChanged" id="i7L-Vf-nHq"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="RFm-jk-HZC" firstAttribute="width" secondItem="K0U-pm-TVz" secondAttribute="width" id="00B-OG-aYp"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="faK-my-Dut" secondAttribute="bottom" id="0gE-Nh-u3o"/>
+                            <constraint firstItem="MIY-yY-hmz" firstAttribute="height" secondItem="USM-tR-qXF" secondAttribute="height" id="1rP-3C-VUx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="faK-my-Dut" secondAttribute="trailing" constant="-20" id="5uQ-ON-qrm"/>
-                            <constraint firstItem="faK-my-Dut" firstAttribute="top" secondItem="27f-H0-V5i" secondAttribute="bottom" id="5xC-kb-p6O"/>
+                            <constraint firstItem="Mgg-Tc-VmQ" firstAttribute="height" secondItem="6iW-aK-IAr" secondAttribute="height" id="66Y-6s-Gtt"/>
+                            <constraint firstItem="RFm-jk-HZC" firstAttribute="leading" secondItem="RNZ-DX-Rym" secondAttribute="trailing" id="6fo-bL-zfr"/>
+                            <constraint firstItem="Mgg-Tc-VmQ" firstAttribute="leading" secondItem="6iW-aK-IAr" secondAttribute="trailing" constant="5" id="75P-QH-vJN"/>
+                            <constraint firstItem="K0U-pm-TVz" firstAttribute="leading" secondItem="Mgg-Tc-VmQ" secondAttribute="trailing" id="7iR-mn-wUR"/>
+                            <constraint firstItem="RNZ-DX-Rym" firstAttribute="centerY" secondItem="Mgg-Tc-VmQ" secondAttribute="centerY" id="Aew-fi-U3x"/>
+                            <constraint firstItem="RNZ-DX-Rym" firstAttribute="leading" secondItem="K0U-pm-TVz" secondAttribute="trailing" constant="5" id="CAl-wo-Ggn"/>
+                            <constraint firstItem="RFm-jk-HZC" firstAttribute="centerY" secondItem="RNZ-DX-Rym" secondAttribute="centerY" id="EFQ-L5-1lb"/>
+                            <constraint firstItem="RFm-jk-HZC" firstAttribute="height" secondItem="K0U-pm-TVz" secondAttribute="height" id="GIU-Jo-TAp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RFm-jk-HZC" secondAttribute="trailing" constant="-10" id="KPg-hm-CC2"/>
+                            <constraint firstItem="6iW-aK-IAr" firstAttribute="top" secondItem="USM-tR-qXF" secondAttribute="bottom" id="PUu-eE-std"/>
+                            <constraint firstItem="faK-my-Dut" firstAttribute="top" secondItem="6iW-aK-IAr" secondAttribute="bottom" id="Peo-Hz-PDQ"/>
                             <constraint firstItem="faK-my-Dut" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="Pkn-Fj-o9H"/>
+                            <constraint firstItem="K0U-pm-TVz" firstAttribute="centerY" secondItem="6iW-aK-IAr" secondAttribute="centerY" id="Sg2-wa-nHc"/>
                             <constraint firstItem="DUz-M5-Vqy" firstAttribute="top" secondItem="27f-H0-V5i" secondAttribute="bottom" id="SoQ-YC-O87"/>
+                            <constraint firstItem="6iW-aK-IAr" firstAttribute="centerY" secondItem="Mgg-Tc-VmQ" secondAttribute="centerY" id="UkT-5J-zyN"/>
+                            <constraint firstItem="K0U-pm-TVz" firstAttribute="width" secondItem="6iW-aK-IAr" secondAttribute="width" id="a4U-r3-1HA"/>
+                            <constraint firstItem="USM-tR-qXF" firstAttribute="centerY" secondItem="MIY-yY-hmz" secondAttribute="centerY" id="ade-r1-mka"/>
+                            <constraint firstItem="6iW-aK-IAr" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-10" id="at9-ku-LBT"/>
                             <constraint firstItem="DUz-M5-Vqy" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="hVR-HB-3mO"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="MIY-yY-hmz" secondAttribute="trailing" constant="-10" id="i2l-vQ-dUt"/>
+                            <constraint firstItem="USM-tR-qXF" firstAttribute="top" secondItem="27f-H0-V5i" secondAttribute="bottom" id="jul-2v-XLo"/>
+                            <constraint firstItem="USM-tR-qXF" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-10" id="nWC-gK-DZv"/>
+                            <constraint firstItem="MIY-yY-hmz" firstAttribute="leading" secondItem="USM-tR-qXF" secondAttribute="trailing" constant="5" id="p0l-aS-hMf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="27f-H0-V5i" secondAttribute="trailing" constant="-20" id="r27-aZ-323"/>
                             <constraint firstItem="27f-H0-V5i" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="sS5-JJ-guX"/>
+                            <constraint firstItem="K0U-pm-TVz" firstAttribute="height" secondItem="6iW-aK-IAr" secondAttribute="height" id="vxW-hV-p14"/>
+                            <constraint firstItem="RNZ-DX-Rym" firstAttribute="width" secondItem="Mgg-Tc-VmQ" secondAttribute="width" id="vyh-uQ-wWY"/>
                             <constraint firstItem="27f-H0-V5i" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="yAF-EW-j7M"/>
                         </constraints>
                     </view>
@@ -66,6 +154,10 @@
                         <outlet property="loadingActivityIndicator" destination="DUz-M5-Vqy" id="9fn-40-FNp"/>
                         <outlet property="movieInfo" destination="faK-my-Dut" id="25c-c9-ofE"/>
                         <outlet property="moviePostImage" destination="27f-H0-V5i" id="EfF-rY-FmU"/>
+                        <outlet property="rateLabel" destination="RNZ-DX-Rym" id="8Mx-n2-mtX"/>
+                        <outlet property="ratingView" destination="MIY-yY-hmz" id="11r-ii-BzO"/>
+                        <outlet property="releaseDateLabel" destination="Mgg-Tc-VmQ" id="u9D-42-wPM"/>
+                        <outlet property="titleLabel" destination="USM-tR-qXF" id="3Fq-06-Cdo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -323,13 +415,17 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                        <real key="value" value="2"/>
+                                        <real key="value" value="1.7"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="spacing">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="accurateHalfStars" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="changeValue:" destination="v1Z-8Q-Dga" eventType="valueChanged" id="7E9-5S-GtO"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -377,8 +473,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="christmas_star" width="24" height="24"/>
         <image name="logo.png" width="280" height="40"/>
         <image name="movie" width="25" height="25"/>
+        <image name="movie-1" width="24" height="24"/>
+        <image name="tear_off_calendar" width="24" height="24"/>
         <image name="user_male_circle" width="25" height="25"/>
     </resources>
     <color key="tintColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>

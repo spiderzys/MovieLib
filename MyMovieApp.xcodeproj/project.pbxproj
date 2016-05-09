@@ -23,6 +23,7 @@
 		6946E5CD1CB31E96007546ED /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6946E5CC1CB31E96007546ED /* SearchResultTableViewCell.xib */; };
 		6946E5D01CB330F0007546ED /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6946E5CF1CB330F0007546ED /* SearchResultTableViewCell.m */; };
 		6948B02B1CCD93D80072565F /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6948B02A1CCD93D80072565F /* testViewController.m */; };
+		694D776B1CE0473200A1A4F5 /* PresentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 694D776A1CE0473200A1A4F5 /* PresentViewController.xib */; };
 		695FC7F41C3A1B2900AA5B24 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695FC7F31C3A1B2900AA5B24 /* ViewController.m */; };
 		6965FFC61CBF1883009D9AB0 /* user.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6965FFC51CBF1883009D9AB0 /* user.plist */; };
 		6965FFD41CBF4B72009D9AB0 /* RegViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6965FFD21CBF4B72009D9AB0 /* RegViewController.m */; };
@@ -76,6 +77,7 @@
 		6946E5CF1CB330F0007546ED /* SearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultTableViewCell.m; sourceTree = "<group>"; };
 		6948B0291CCD93D80072565F /* testViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
 		6948B02A1CCD93D80072565F /* testViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
+		694D776A1CE0473200A1A4F5 /* PresentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresentViewController.xib; sourceTree = "<group>"; };
 		695FC7F21C3A1B2900AA5B24 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		695FC7F31C3A1B2900AA5B24 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		695FC7FB1C3A5CDF00AA5B24 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -197,6 +199,7 @@
 				6916137C1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib */,
 				698006D91C3CC8B400A1494B /* PresentViewController.h */,
 				698006DA1C3CC8B400A1494B /* PresentViewController.m */,
+				694D776A1CE0473200A1A4F5 /* PresentViewController.xib */,
 				6925B9231CB49BAB0023EDCC /* MovieDetailViewController.h */,
 				6925B9241CB49BAB0023EDCC /* MovieDetailViewController.m */,
 				6925B9251CB49BAB0023EDCC /* MovieDetailViewController.xib */,
@@ -314,6 +317,7 @@
 				69F8F10E1C3A764100438350 /* Assets.bundle in Resources */,
 				690D585A1BC0962200406ADA /* LaunchScreen.storyboard in Resources */,
 				690D58571BC0962200406ADA /* Assets.xcassets in Resources */,
+				694D776B1CE0473200A1A4F5 /* PresentViewController.xib in Resources */,
 				6965FFD51CBF4B72009D9AB0 /* RegViewController.xib in Resources */,
 				6977C4F81CCC5D3900DE1188 /* genre.plist in Resources */,
 				698F02EA1CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib in Resources */,

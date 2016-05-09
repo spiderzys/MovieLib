@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="MmA-GL-ECG">
-                    <rect key="frame" x="-16" y="55" width="632" height="545"/>
+                    <rect key="frame" x="-16" y="44" width="632" height="556"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JsI-9e-Jxi">
                         <size key="itemSize" width="50" height="50"/>
@@ -29,18 +29,18 @@
                     </collectionViewFlowLayout>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="XYj-4d-K8K"/>
-                        <outlet property="delegate" destination="-1" id="Aj0-NB-nGc"/>
+                        <outlet property="delegate" destination="-1" id="RAb-wT-9Vx"/>
                     </connections>
                 </collectionView>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NOn-77-YO3">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="55" id="x62-t9-FYA"/>
+                        <constraint firstAttribute="height" constant="44" id="x62-t9-FYA"/>
                     </constraints>
                     <color key="tintColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <textAttributes key="titleTextAttributes">
-                        <fontDescription key="fontDescription" type="italicSystem" pointSize="24"/>
+                        <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
                         <color key="textColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </textAttributes>
                     <items>
