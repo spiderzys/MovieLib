@@ -17,20 +17,26 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ZE-G7-qm9">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="uQO-4G-XdF"/>
+                    </constraints>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </textAttributes>
                     <items>
-                        <navigationItem id="geP-Ke-mc3">
+                        <navigationItem title="themoviedb.org" id="geP-Ke-mc3">
                             <barButtonItem key="leftBarButtonItem" systemItem="reply" id="3Xg-cX-03u">
                                 <color key="tintColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <action selector="back:" destination="-1" id="9ls-gM-4Hw"/>
+                                    <action selector="dismiss:" destination="-1" id="Mnv-aL-ZDF"/>
                                 </connections>
                             </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>
                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l0I-ul-eak">
-                    <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                    <rect key="frame" x="0.0" y="55" width="600" height="545"/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                 </webView>
             </subviews>

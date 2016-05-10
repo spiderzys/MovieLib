@@ -115,17 +115,18 @@
     [tab.tabBar setShadowImage:[[UIImage alloc] init]];
     tab.tabBar.backgroundColor = [UIColor clearColor];
     SecondViewController *second= [tab.viewControllers objectAtIndex:1];
-    //second.tabBarItem.image = [[UIImage imageNamed:@"Comments"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     second.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
+    
     _delegate = [UIApplication sharedApplication].delegate;
     _delegate.window.tintColor = _ratingView.tintColor;
     
     self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
-    self.backImageView.alpha = 0.2;
+    
     [self.backImageView setContentMode:UIViewContentModeScaleAspectFill];
     self.backImageView.clipsToBounds = YES;
     self.backImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.backImageView];
+    self.backImageView.alpha = 0.2;
     [self.view sendSubviewToBack:self.backImageView];
     
 }
@@ -217,6 +218,7 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self setImageWithTag:i WithData:data];
                         if(i==6){
+                           
                             [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
                             [_loadingActivityIndicator stopAnimating];
                         }
@@ -245,7 +247,7 @@
     
     
     NSString *playingMovie = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=EN",nowPlayWeb,APIKey];
-    NSLog(@"%@",playingMovie);
+    
     _playingMoviesRequestResult = [self getDataFromUrl:[NSURL URLWithString:playingMovie] withKey:@"results" LimitPages:maxNumberPagesOfScrollView];
     if (_playingMoviesRequestResult  == nil || _playingMoviesRequestResult.count==0) {
         
@@ -295,23 +297,23 @@
 
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-    
-    if (velocity.x>0){
-        [self autoScroll:[NSNumber numberWithFloat:scrollVelocity]];
+    if(scrollView == _moviePostImage ){
+        if (velocity.x>0){
+            [self autoScroll:[NSNumber numberWithFloat:scrollVelocity]];
+        }
+        else{
+            [self autoScroll:[NSNumber numberWithFloat:-1*scrollVelocity]];
+        }
+        
+        
+        
+        
+        if ((scrollView.contentOffset.x < -50) & [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]) {
+            scrollView.scrollEnabled = NO;
+            [self loadScrollView];
+            scrollView.scrollEnabled = YES;
+        }
     }
-    else{
-        [self autoScroll:[NSNumber numberWithFloat:-1*scrollVelocity]];
-    }
-    
-    
-    
-    
-    if ((scrollView.contentOffset.x < -50) & [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]) {
-        scrollView.scrollEnabled = NO;
-        [self loadScrollView];
-        scrollView.scrollEnabled = YES;
-    }
-    
 }
 
 
@@ -485,7 +487,7 @@
 - (void)handleTap2:(UITapGestureRecognizer *)sender
 {
     if (sender.state == UIGestureRecognizerStateEnded){
-    
+        
         UIImageView *imageView = (UIImageView*)sender.view;
         if(imageView.image){
             
@@ -561,6 +563,7 @@
         
         
     }
+
     if(_playingMoviesRequestResult.count>0){
         [self showInfo:0];
     }

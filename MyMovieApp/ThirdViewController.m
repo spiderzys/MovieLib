@@ -12,7 +12,7 @@
 #import "UserMovieCollectionHeaderView.h"
 #import "MovieDetailViewController.h"
 #import "AppDelegate.h"
-
+#import "AboutTableViewController.h"
 
 
 @interface ThirdViewController ()
@@ -50,7 +50,7 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                   willDecelerate:(BOOL)decelerate{
-   
+    
     if (scrollView.contentOffset.y < -30) {
         [self.view bringSubviewToFront:_loadingActivityIndicator];
         if([self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]){
@@ -63,7 +63,7 @@
             scrollView.scrollEnabled = YES;
             
         }
-      //  [_loadingActivityIndicator stopAnimating];
+        //  [_loadingActivityIndicator stopAnimating];
     }
 }
 
@@ -93,14 +93,14 @@
             movie = [_badMovieList objectAtIndex:indexPath.row];
         }
         else{
-           
+            
             movie = [_needRatingMovieList objectAtIndex:indexPath.row];
         }
         [viewController loadDataFromMovie:movie];
     }];
     
     
-   
+    
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -236,7 +236,6 @@
             [_approxRatingList addObject:movie];
         }
         
-        
     }
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -248,7 +247,7 @@
     NSString *niceMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.gte=7.5&sort_by=popularity.desc&language=EN&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
     NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:niceMovieRequestString] withKey:@"results" LimitPages:1];
     temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
-   
+    
     _niceMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     
     
@@ -263,13 +262,10 @@
     NSString *needRatingMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&sort_by=popularity.desc&vote_count.lte=10&language=EN",movieDiscoverWeb,APIKey,yearString];
     temp = [self getDataFromUrl:[NSURL URLWithString:needRatingMovieRequestString] withKey:@"results" LimitPages:1];
     if(temp.count>10){
-    temp = [temp subarrayWithRange:NSMakeRange(0, 10)];
+        temp = [temp subarrayWithRange:NSMakeRange(0, 10)];
     }
     temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
     _needRatingMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
-    
-    
-   
     
 }
 -(NSMutableArray*)nonRatedListFrom:(NSArray*)temp ExcludingRatedList:(NSArray*)ratedList{
@@ -284,7 +280,6 @@
                 break;
             }
         }
-        
         
     }
     return nonRatedList;
@@ -317,7 +312,7 @@
 
 -(void)tryLogin{
     AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
-
+    
     
     if(delegate.sessionId){
         if([self loadRatingDataWithSession:delegate.sessionId username:delegate.username]){
@@ -338,14 +333,13 @@
         [_userMovieCollectionView reloadData];
         _userMovieCollectionView.hidden = NO;
         
-       
     }];
 }
 
 
 
 -(BOOL)loadRatingDataWithSession:(NSString*)sessionId username:(NSString*)username{
-   // [_loadingActivityIndicator startAnimating];
+    // [_loadingActivityIndicator startAnimating];
     
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     _ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
@@ -355,11 +349,9 @@
         NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         if([rateResult objectForKey:@"results"]){
             
-                
-                [self initRatingListFromUrl:[NSURL URLWithString:_ratingRequestString]];
-                [self reloadRatingList];
             
-           
+            [self initRatingListFromUrl:[NSURL URLWithString:_ratingRequestString]];
+            [self reloadRatingList];
             
         }
         else{
@@ -368,7 +360,7 @@
             delegate.sessionId = nil;
             
         }
-                dispatch_semaphore_signal(semaphore);
+        dispatch_semaphore_signal(semaphore);
     }]resume];
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     
@@ -388,11 +380,11 @@
 
 -(void)signIn{
     LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Registration and sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
-   
+    
     
     alertController.delegate = self;
     [self presentViewController:alertController animated:YES completion:^{
-       
+        
     }];
     
     
@@ -404,8 +396,8 @@
         [self.tabBarController setSelectedIndex:0];
     }
     else if(buttonTapped ==signIn){
-           if(delegate.sessionId){
-           [self loadRatingDataWithSession:delegate.sessionId username:delegate.username];
+        if(delegate.sessionId){
+            [self loadRatingDataWithSession:delegate.sessionId username:delegate.username];
         }
         else{
             LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Username and Password do not match!" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -423,8 +415,8 @@
             [regController.webView loadRequest:registerRequest];
         }];
         
-       
-
+        
+        
     }
 }
 
@@ -450,6 +442,8 @@
 
 
 - (IBAction)setting:(id)sender {
+    AboutTableViewController *aboutTableViewController = [[AboutTableViewController alloc]initWithNibName:@"AboutTableViewController" bundle:nil];
+    [self presentViewController:aboutTableViewController animated:YES completion:nil];
 }
 
 - (IBAction)logout:(id)sender {

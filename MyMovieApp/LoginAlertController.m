@@ -7,7 +7,6 @@
 //
 
 #import "LoginAlertController.h"
-#import "RegViewController.h"
 #import "Constant.h"
 #import "AppDelegate.h"
 static AppDelegate  *delegate;

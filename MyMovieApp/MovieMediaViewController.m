@@ -27,6 +27,7 @@ static CGRect NALabelRect;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     _tintColor = self.navigationItem.leftBarButtonItem.tintColor;
     [_navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -278,7 +279,6 @@ static CGRect NALabelRect;
             _loadingIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             _loadingIndicator.color = _tintColor;
             _loadingIndicator.center = CGPointMake(label.frame.size.width/2, label.frame.size.height/2);
-            NSLog(@"%@,%@",NSStringFromCGSize(NALabelSize),NSStringFromCGRect(NALabelRect));
             _loadingIndicator.hidesWhenStopped = YES;
             [label addSubview:_loadingIndicator];
             [_loadingIndicator startAnimating];

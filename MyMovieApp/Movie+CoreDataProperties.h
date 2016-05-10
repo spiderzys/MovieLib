@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *idn;
 @property (nullable, nonatomic, retain) NSString *cast;
 @property (nullable, nonatomic, retain) NSNumber *vote_count;
+@property (nullable, nonatomic, retain) NSNumber *length;
 @end
 
 NS_ASSUME_NONNULL_END

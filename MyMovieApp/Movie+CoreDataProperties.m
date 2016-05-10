@@ -21,4 +21,5 @@
 @dynamic idn;
 @dynamic cast;
 @dynamic vote_count;
+@dynamic length;
 @end

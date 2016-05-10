@@ -24,6 +24,10 @@
 		6946E5D01CB330F0007546ED /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6946E5CF1CB330F0007546ED /* SearchResultTableViewCell.m */; };
 		6948B02B1CCD93D80072565F /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6948B02A1CCD93D80072565F /* testViewController.m */; };
 		694D776B1CE0473200A1A4F5 /* PresentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 694D776A1CE0473200A1A4F5 /* PresentViewController.xib */; };
+		694D776F1CE05FB900A1A4F5 /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 694D776D1CE05FB900A1A4F5 /* AboutTableViewController.m */; };
+		694D77701CE05FB900A1A4F5 /* AboutTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 694D776E1CE05FB900A1A4F5 /* AboutTableViewController.xib */; };
+		695F0F871CE1A37F00715526 /* LicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695F0F851CE1A37F00715526 /* LicenseViewController.m */; };
+		695F0F881CE1A37F00715526 /* LicenseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 695F0F861CE1A37F00715526 /* LicenseViewController.xib */; };
 		695FC7F41C3A1B2900AA5B24 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695FC7F31C3A1B2900AA5B24 /* ViewController.m */; };
 		6965FFC61CBF1883009D9AB0 /* user.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6965FFC51CBF1883009D9AB0 /* user.plist */; };
 		6965FFD41CBF4B72009D9AB0 /* RegViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6965FFD21CBF4B72009D9AB0 /* RegViewController.m */; };
@@ -78,6 +82,12 @@
 		6948B0291CCD93D80072565F /* testViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
 		6948B02A1CCD93D80072565F /* testViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
 		694D776A1CE0473200A1A4F5 /* PresentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresentViewController.xib; sourceTree = "<group>"; };
+		694D776C1CE05FB900A1A4F5 /* AboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewController.h; sourceTree = "<group>"; };
+		694D776D1CE05FB900A1A4F5 /* AboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewController.m; sourceTree = "<group>"; };
+		694D776E1CE05FB900A1A4F5 /* AboutTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutTableViewController.xib; sourceTree = "<group>"; };
+		695F0F841CE1A37F00715526 /* LicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicenseViewController.h; sourceTree = "<group>"; };
+		695F0F851CE1A37F00715526 /* LicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LicenseViewController.m; sourceTree = "<group>"; };
+		695F0F861CE1A37F00715526 /* LicenseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LicenseViewController.xib; sourceTree = "<group>"; };
 		695FC7F21C3A1B2900AA5B24 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		695FC7F31C3A1B2900AA5B24 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		695FC7FB1C3A5CDF00AA5B24 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -211,6 +221,12 @@
 				6965FFD11CBF4B72009D9AB0 /* RegViewController.h */,
 				6965FFD21CBF4B72009D9AB0 /* RegViewController.m */,
 				6965FFD31CBF4B72009D9AB0 /* RegViewController.xib */,
+				694D776C1CE05FB900A1A4F5 /* AboutTableViewController.h */,
+				694D776D1CE05FB900A1A4F5 /* AboutTableViewController.m */,
+				694D776E1CE05FB900A1A4F5 /* AboutTableViewController.xib */,
+				695F0F841CE1A37F00715526 /* LicenseViewController.h */,
+				695F0F851CE1A37F00715526 /* LicenseViewController.m */,
+				695F0F861CE1A37F00715526 /* LicenseViewController.xib */,
 				690D58561BC0962200406ADA /* Assets.xcassets */,
 				690D58581BC0962200406ADA /* LaunchScreen.storyboard */,
 				6965FFC51CBF1883009D9AB0 /* user.plist */,
@@ -312,7 +328,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				695F0F881CE1A37F00715526 /* LicenseViewController.xib in Resources */,
 				69FCCCC41CCF483D0067420B /* MovieMediaViewController.xib in Resources */,
+				694D77701CE05FB900A1A4F5 /* AboutTableViewController.xib in Resources */,
 				6946E5CD1CB31E96007546ED /* SearchResultTableViewCell.xib in Resources */,
 				69F8F10E1C3A764100438350 /* Assets.bundle in Resources */,
 				690D585A1BC0962200406ADA /* LaunchScreen.storyboard in Resources */,
@@ -390,11 +408,13 @@
 				6916137D1CC5F78F0075A55A /* UserMovieCollectionViewCell.m in Sources */,
 				690D584C1BC0962200406ADA /* AppDelegate.m in Sources */,
 				698006DB1C3CC8B400A1494B /* PresentViewController.m in Sources */,
+				694D776F1CE05FB900A1A4F5 /* AboutTableViewController.m in Sources */,
 				690D584F1BC0962200406ADA /* FirstViewController.m in Sources */,
 				6965FFD41CBF4B72009D9AB0 /* RegViewController.m in Sources */,
 				699AB2F81C3E3D170066A6C0 /* ThirdViewController.m in Sources */,
 				6925B9261CB49BAB0023EDCC /* MovieDetailViewController.m in Sources */,
 				69F5809B1BC7487300656024 /* Constant.m in Sources */,
+				695F0F871CE1A37F00715526 /* LicenseViewController.m in Sources */,
 				695FC7F41C3A1B2900AA5B24 /* ViewController.m in Sources */,
 				6948B02B1CCD93D80072565F /* testViewController.m in Sources */,
 				69027DE61CC9F2A900DD6C3A /* MovieBackdropCollectionViewCell.m in Sources */,

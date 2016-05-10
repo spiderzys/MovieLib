@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LicenseViewController">
+            <connections>
+                <outlet property="licenseTextView" destination="Z2S-q0-NYi" id="1qu-gX-CSn"/>
+                <outlet property="navigationBar" destination="Zqb-Ua-CAz" id="lle-nA-fsX"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Z2S-q0-NYi">
+                    <rect key="frame" x="0.0" y="55" width="600" height="545"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zqb-Ua-CAz">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="wRl-FL-Niw"/>
+                    </constraints>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem id="oxB-Nq-aJE">
+                            <barButtonItem key="leftBarButtonItem" systemItem="reply" id="mXa-NJ-E6G">
+                                <color key="tintColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="dismiss:" destination="-1" id="00J-9d-nB7"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Z2S-q0-NYi" secondAttribute="trailing" id="0xT-Ox-ms0"/>
+                <constraint firstItem="Z2S-q0-NYi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="61Y-6n-Mru"/>
+                <constraint firstAttribute="bottom" secondItem="Z2S-q0-NYi" secondAttribute="bottom" id="JRU-9p-9Pf"/>
+                <constraint firstItem="Zqb-Ua-CAz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SSY-Uk-vVS"/>
+                <constraint firstAttribute="trailing" secondItem="Zqb-Ua-CAz" secondAttribute="trailing" id="cML-2n-TZu"/>
+                <constraint firstItem="Zqb-Ua-CAz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pNV-gj-dGm"/>
+                <constraint firstItem="Z2S-q0-NYi" firstAttribute="top" secondItem="Zqb-Ua-CAz" secondAttribute="bottom" id="rA7-Ix-BYw"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

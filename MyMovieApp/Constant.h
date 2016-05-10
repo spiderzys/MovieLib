@@ -34,4 +34,5 @@ extern float scrollVelocity;
 extern CGFloat backdropRatio;
 extern CGFloat trailerRatio;
 extern NSString * const youtubeWeb;
+
 #endif /* Constant_h */

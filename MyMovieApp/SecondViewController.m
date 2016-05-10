@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [_searchResultTableView registerNib:[UINib nibWithNibName:@"SearchResultTableViewCell" bundle:nil] forCellReuseIdentifier:@"SearchResultTableViewCell"];
+   // [_searchResultTableView registerNib:[UINib nibWithNibName:@"SearchResultTableViewCell" bundle:nil] forCellReuseIdentifier:@"SearchResultTableViewCell"];
     self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
     
     [self.view addSubview:self.backImageView];
@@ -165,8 +165,10 @@
     
     SearchResultTableViewCell *customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
     if (!customCell) {
-    
-        customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
+        
+        //customCell =[_searchResultTableView  dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
+         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SearchResultTableViewCell" owner:self options:nil];
+        customCell = [nib objectAtIndex:0];
     }
     
     

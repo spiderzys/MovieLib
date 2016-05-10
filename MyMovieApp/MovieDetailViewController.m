@@ -28,7 +28,6 @@ static NSDictionary *movie;
         
     }];
     
-    
 }
 
 - (void)didDismissAlertControllerButtonTapped:(NSInteger)buttonTapped{
@@ -59,7 +58,6 @@ static NSDictionary *movie;
         
     }
 }
-
 
 
 -(void)didDismissRegViewController{
@@ -173,8 +171,6 @@ static NSDictionary *movie;
         }
     }
     
-    
-    
     NSString *info = @"";
     if(mark==0){
         info = [NSString stringWithFormat:@"Cast: %@  \n\nOverview:\n%@ ",showCast, overview];
@@ -207,9 +203,6 @@ static NSDictionary *movie;
     [_ratingView setValue:mark/2];
     
     
-    
-   
-
     //https://api.themoviedb.org/3/movie/id/images?api_key=3c9140cda64a622c6cb5feb6c2689164
     NSString *movieImagesString = [NSString stringWithFormat:@"%@%@/images?%@",movieImageUrl,[movie valueForKey:@"id"],APIKey];
     NSData *moviesImagesData = [NSData dataWithContentsOfURL:[NSURL URLWithString:movieImagesString]];
@@ -223,12 +216,6 @@ static NSDictionary *movie;
             poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
             self.backImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:poster_path]]];
             NSLog(@"%@",self.backImageView.description);
-            /*
-            [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:[movie valueForKey:@"poster_path"]] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                self.backImageView.image = [UIImage imageWithData:data];
-                NSLog(@"%@",self.backImageView.description);
-          
-            }]; */
         }
         
         
@@ -284,7 +271,6 @@ static NSDictionary *movie;
     }];
     
     [task resume];
-    
     
     return customCell;
 }

@@ -1,18 +1,18 @@
 //
-//  RegController.m
+//  licenseViewController.m
 //  MyMovieApp
 //
-//  Created by YANGSHENG ZOU on 2016-04-13.
+//  Created by YANGSHENG ZOU on 2016-05-10.
 //  Copyright © 2016 YANGSHENG ZOU. All rights reserved.
 //
 
-#import "RegViewController.h"
+#import "LicenseViewController.h"
 
-@interface RegViewController ()
+@interface LicenseViewController ()
 
 @end
 
-@implementation RegViewController
+@implementation LicenseViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,10 +22,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)dismiss:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{}];
-    
 }
 
 /*
@@ -37,5 +33,13 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)dismiss:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    
+    [_licenseTextView setContentOffset:CGPointZero animated:NO];
+}
 @end
