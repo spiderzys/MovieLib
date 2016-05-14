@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import "AboutTableViewController.h"
 
+static NSArray* contentArray;
 
 @interface ThirdViewController ()
 
@@ -29,13 +30,18 @@
             [self tryLogin];
         }
     }
+    else{
+        [super netAlert];
+    }
 }
 
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
-    [self resetRatingList];
+    [super viewDidLoad];
+  
+   // [self resetRatingList];
+    
     [[_userLabel layer] setCornerRadius:10.0f];
     [[_userLabel layer] setMasksToBounds:YES];
     
@@ -69,108 +75,53 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    MovieDetailViewController *viewController = [[MovieDetailViewController alloc]initWithNibName:@"MovieDetailViewController" bundle:nil];
-    [self presentViewController:viewController animated:YES completion:^{
-        NSDictionary *movie;
-        if (indexPath.section==0) {
-            
-            movie = [_higherRatingList objectAtIndex:indexPath.row];
-        }
-        else if (indexPath.section==1) {
-            
-            movie = [_approxRatingList objectAtIndex:indexPath.row];
-        }
-        else if (indexPath.section==2) {
-            
-            movie = [_lowerRatingList objectAtIndex:indexPath.row];
-        }
-        else if (indexPath.section==3) {
-            
-            movie = [_niceMovieList objectAtIndex:indexPath.row];
-        }
-        else if (indexPath.section==4){
-            
-            movie = [_badMovieList objectAtIndex:indexPath.row];
-        }
-        else{
-            
-            movie = [_needRatingMovieList objectAtIndex:indexPath.row];
-        }
-        [viewController loadDataFromMovie:movie];
-    }];
+    NSArray *array = [contentArray objectAtIndex:indexPath.section];
+    
+    NSDictionary *movie = [array objectAtIndex:indexPath.row];
+    
+    MovieDetailViewController *viewController = [[MovieDetailViewController alloc]initWithNibName:@"MovieDetailViewController" bundle:nil movieDic:movie];
+    [self presentViewController:viewController animated:YES completion:nil];
     
     
     
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 6;
+    if(contentArray){
+        return contentArray.count;
+    }
+    return 0;
 }
 
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if (section==0) {
-        return _higherRatingList.count;
-    }
-    else if (section==1) {
-        return _approxRatingList.count;
-    }
-    else if (section==2) {
-        return _lowerRatingList.count;
-    }
-    else if (section==3) {
-        return _niceMovieList.count;
-    }
-    else if (section==4){
-        return _badMovieList.count;
+    if(contentArray){
+    NSArray *array = [contentArray objectAtIndex:section];
+    return array.count;
     }
     else{
-        return _needRatingMovieList.count;
+        return 0;
     }
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    
     UserMovieCollectionViewCell * customCell = [_userMovieCollectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    NSDictionary *movie;
-    if (indexPath.section==0) {
-        
-        movie = [_higherRatingList objectAtIndex:indexPath.row];
-        customCell.userRatingView.value =[[movie valueForKey:@"rating"]floatValue]/2;
-        customCell.userRatingView.hidden = NO;
-    }
-    else if (indexPath.section == 1) {
-        
-        movie = [_approxRatingList objectAtIndex:indexPath.row];
-        customCell.userRatingView.value =[[movie valueForKey:@"rating"]floatValue]/2;
-        customCell.userRatingView.hidden = NO;
-    }
-    else if (indexPath.section == 2) {
-        
-        movie = [_lowerRatingList objectAtIndex:indexPath.row];
-        customCell.userRatingView.value =[[movie valueForKey:@"rating"]floatValue]/2;
-        customCell.userRatingView.hidden = NO;
-    }
     
-    else if (indexPath.section == 3) {
-        
-        movie = [_niceMovieList objectAtIndex:indexPath.row];
-        customCell.userRatingView.hidden = YES;
-    }
-    else if (indexPath.section == 4) {
-        
-        movie = [_badMovieList objectAtIndex:indexPath.row];
-        customCell.userRatingView.hidden = YES;
-    }
-    else if (indexPath.section == 5) {
-        
-        movie = [_needRatingMovieList objectAtIndex:indexPath.row];
-        customCell.userRatingView.hidden = YES;
-    }
+    NSArray *array = [contentArray objectAtIndex:indexPath.section];
+    NSDictionary *movie = [array objectAtIndex:indexPath.row];
     
+    
+    if(indexPath.section<3){
+        
+        customCell.userRatingView.value =[[movie valueForKey:@"rating"]floatValue]/2;
+        customCell.userRatingView.hidden = NO;
+    }
+    else{
+        customCell.userRatingView.hidden = YES;
+    }
     
     customCell.ratingView.value = [[movie valueForKey:@"vote_average"]floatValue]/2;
     customCell.ratingView.hidden = (customCell.ratingView.value==0)?YES:NO;
@@ -202,9 +153,13 @@
     
     UserMovieCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"head" forIndexPath:indexPath];
     if(headerView){
+       
         NSString *title = [_headTitleArray objectAtIndex:indexPath.section];
-        [headerView.headerLabel setText:title];
-        
+        NSArray *array = [contentArray objectAtIndex:indexPath.section];
+        if(array.count==0){
+            title = [title stringByAppendingString:@" N/A"];
+        }
+        [headerView.headerLabel setText:title];        
     }
     return headerView;
 }
@@ -266,7 +221,7 @@
     }
     temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
     _needRatingMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
-    
+    contentArray = [NSArray arrayWithObjects:_higherRatingList,_approxRatingList,_lowerRatingList,_niceMovieList,_badMovieList,_needRatingMovieList, nil];
 }
 -(NSMutableArray*)nonRatedListFrom:(NSArray*)temp ExcludingRatedList:(NSArray*)ratedList{
     temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
@@ -303,6 +258,7 @@
     _badMovieList = nil;
     _niceMovieList = nil;
     _needRatingMovieList = nil;
+    contentArray = nil;
 }
 
 //-------------------------------------login part------------------------------------
@@ -379,7 +335,7 @@
 
 
 -(void)signIn{
-    LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Registration and sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
     
     alertController.delegate = self;
@@ -398,6 +354,7 @@
     else if(buttonTapped ==signIn){
         if(delegate.sessionId){
             [self loadRatingDataWithSession:delegate.sessionId username:delegate.username];
+             _userLabel.text = delegate.username;
         }
         else{
             LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Username and Password do not match!" message:nil preferredStyle:UIAlertControllerStyleAlert];

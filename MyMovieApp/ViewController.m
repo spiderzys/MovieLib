@@ -46,23 +46,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)showPoster:(UITapGestureRecognizer *)sender{
-    if (sender.state == UIGestureRecognizerStateEnded)
-    {
-        long tag= sender.view.tag;
-        UIImageView *imageView = (UIImageView*)[self.view viewWithTag:tag];
-        UIImageView *view = [[UIImageView alloc]initWithFrame:PresentViewFrame];
-        PresentViewController *presentController = [[PresentViewController alloc]init];
-        [presentController.view addSubview:view];
-        view.center = presentController.view.center;
-        view.image = imageView.image;
-        
-        [self presentViewController:presentController animated:YES completion:nil];
-    }
-    
-}
-
-
 
 -(NSArray*)getDataFromUrl:(NSURL*)url withKey:(NSString*) key LimitPages:(int)max{
     NSString *basic = [url absoluteString];
@@ -143,7 +126,7 @@
     
 }
 -(void)netAlert{
-    [self singleOptionAlertWithMessage:@"no network"];
+    [self singleOptionAlertWithMessage:@"No network"];
     
 }
 
@@ -169,43 +152,23 @@
                                           // Handle error...
                                           return;
                                       }
-                                    
+                                      
+                                      if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                          NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                          NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                      }
+                                      
+                                      NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      NSLog(@"Response Body:\n%@\n", body);
                                   }];
     [task resume];
 }
 
 
 
-/*-(void)playTrailer:(NSNumber*)idn{
-    
-    NSString *videoInquery = [NSString stringWithFormat:@"%@%@/videos?%@",movieWeb,idn,APIKey];
-    NSArray *videoResult = [self getDataFromUrl:[NSURL URLWithString:videoInquery] withKey:@"results" LimitPages:0];
-    if(videoResult==nil){
-        [self singleOptionAlertWithMessage:@"no connection"];
-    }
-    else{
-        for (NSDictionary *result in videoResult) {
-            
-            if ([[result objectForKey:@"site"] isEqualToString:@"YouTube"]) {
-                
-                PresentViewController *presentController = [[PresentViewController alloc]init];
-                YTPlayerView *player = [[YTPlayerView alloc]initWithFrame:PresentViewFrame];
-                player.center = presentController.view.center;
-                [presentController.view addSubview: player];
-                [self presentViewController:presentController animated:YES completion:nil];
-                NSString *playId = [result objectForKey:@"key"];
-                [player loadWithVideoId:playId];
-                return;
-            }
-        }
-        [self singleOptionAlertWithMessage:@"no trailer available"];
-    }
-    
-}
-*/
 
 -(void)singleOptionAlertWithMessage:(NSString *)message{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Alert" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message message:nil preferredStyle:UIAlertControllerStyleAlert];
     alertController.view.tintColor = [UIColor purpleColor];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         

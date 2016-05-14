@@ -144,12 +144,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    
-    MovieDetailViewController *viewController = [[MovieDetailViewController alloc]initWithNibName:@"MovieDetailViewController" bundle:nil];
-    [self presentViewController:viewController animated:YES completion:^{
-        NSDictionary *movie = [_searchResult objectAtIndex:indexPath.row];
-        [viewController loadDataFromMovie:movie];
-    }];
    
+    
+    NSDictionary *movie = [_searchResult objectAtIndex:indexPath.row];
+        
+    MovieDetailViewController *viewController = [[MovieDetailViewController alloc]initWithNibName:@"MovieDetailViewController" bundle:nil movieDic:movie];
+    [self presentViewController:viewController animated:YES completion:nil];
     
 }
 

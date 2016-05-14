@@ -26,7 +26,7 @@
 -(BOOL)connectAPI:(NSString*)web;
 -(void)netAlert;
 -(NSString*)getCastFromUrl:(NSURL*) url;
--(void)showPoster:(UITapGestureRecognizer *)sender;
+//-(void)showPoster:(UITapGestureRecognizer *)sender;
 //-(void)playTrailer:(NSNumber*)idn;
 -(void)singleOptionAlertWithMessage:(NSString *)message;
 -(void)updateGenre;

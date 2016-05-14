@@ -28,7 +28,7 @@ static CGRect NALabelRect;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+   // self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     _tintColor = self.navigationItem.leftBarButtonItem.tintColor;
     [_navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     _navigationBar.shadowImage = [UIImage new];
@@ -247,12 +247,9 @@ static CGRect NALabelRect;
     UIImageView *imageView = (UIImageView*)sender.view;
     if(imageView.image){
         
-        PresentViewController *presentController = [[PresentViewController alloc]initWithNibName:@"PresentViewController" bundle:nil];
+        PresentViewController *presentController = [[PresentViewController alloc]initWithNibName:@"PresentViewController" bundle:nil image:imageView.image];
         
         [self presentViewController:presentController animated:YES completion:^{
-            
-            presentController.backImageView.image = imageView.image;
-       //     if(imageView.tag>=1000) presentController.backImageView.transform = CGAffineTransformMakeRotation(M_PI/2);
             
         }];
     }

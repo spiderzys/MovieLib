@@ -28,15 +28,7 @@
                 <constraint firstItem="Zra-yC-Tff" firstAttribute="top" secondItem="pTc-QR-10D" secondAttribute="top" id="RbH-i7-ag9"/>
                 <constraint firstItem="Zra-yC-Tff" firstAttribute="leading" secondItem="pTc-QR-10D" secondAttribute="leading" id="ilc-7J-NFA"/>
             </constraints>
-            <connections>
-                <outletCollection property="gestureRecognizers" destination="rGy-VR-Ju4" appends="YES" id="TTx-ty-feP"/>
-            </connections>
             <point key="canvasLocation" x="297" y="384"/>
         </view>
-        <tapGestureRecognizer id="rGy-VR-Ju4">
-            <connections>
-                <action selector="leavePage:" destination="-1" id="mfW-ZG-xGU"/>
-            </connections>
-        </tapGestureRecognizer>
     </objects>
 </document>

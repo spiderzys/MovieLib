@@ -9,13 +9,14 @@
 #import "AboutTableViewController.h"
 #import "RegViewController.h"
 #import "LicenseViewController.h"
+
 static NSString *emailAddress = @"spiderzys@gmail.com";
 static NSString* about = @"about";
 static NSArray *headerStringArray;
 static NSArray *tableCellStringArray;
 static NSArray *tableCellContentArray;
-static NSArray *dataTerm;
 static NSArray *kitTerm;
+
 @interface AboutTableViewController ()
 
 @end
@@ -26,14 +27,21 @@ static NSArray *kitTerm;
 
 - (void)viewDidLoad {
     self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    NSArray* acknowledegementArray = @[@"HCSStarRatingView",@"YTPlayerView",@"Term of Use",@"Privacy Policy"];
+    NSArray* acknowledegementArray = @[@"HCSStarRatingView",@"YTPlayerView",@"Term of Use of API",@"Privacy Policy of API"];
    // NSArray* feedbackArray = @[@"Contact by email",@"Rate This App"];
     NSArray* feedbackArray = @[@"Contact by email"];
     tableCellStringArray = [NSArray arrayWithObjects:acknowledegementArray,feedbackArray, nil];
     headerStringArray = @[@"Acknowledgement",@"Feedback"];
-    dataTerm = @[@"https://www.themoviedb.org/documentation/api/terms-of-use",@"https://www.themoviedb.org/privacy-policy"];
+    NSString *termPath = [[NSBundle mainBundle]pathForResource:@"term" ofType:@"txt"];
+    NSString *termContent = [NSString stringWithContentsOfFile:termPath encoding:NSUTF8StringEncoding error:nil];
+    NSString *privacyPath = [[NSBundle mainBundle]pathForResource:@"privacy" ofType:@"txt"];
+    NSString *privacyContent = [NSString stringWithContentsOfFile:privacyPath encoding:NSUTF8StringEncoding error:nil];
+    
+   
     kitTerm =@[@"Copyright (c) 2015 Hugo Sousa\n\n Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\n THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
-        @"Copyright 2014 Google Inc. All rights reserved.\n\n Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."];
+               
+        @"Copyright 2014 Google Inc. All rights reserved.\n\n Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.",termContent,privacyContent
+               ];
     
     [super viewDidLoad];
     
@@ -68,6 +76,7 @@ static NSArray *kitTerm;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:about];
     if(!cell){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:about];
+        cell.textLabel.textColor = self.view.tintColor;
     }
     // Configure the cell...
     NSArray *array = [tableCellStringArray objectAtIndex:indexPath.section];
@@ -97,31 +106,22 @@ static NSArray *kitTerm;
         [controller setMessageBody:emailbody isHTML:NO];
         [controller setSubject:@"Feedback"];
         [controller setToRecipients:[NSArray arrayWithObject:emailAddress]];
-        controller.view.tintColor = self.navigationItem.titleView.tintColor;
+        controller.view.tintColor = self.view.tintColor;
+        
         [self presentViewController:controller animated:YES completion:nil];
         
     }
-    else if(indexPath.section==0 & indexPath.row<kitTerm.count){
+    else if(indexPath.section==0){
         
         LicenseViewController *linceseviewController = [[LicenseViewController alloc]initWithNibName:@"LicenseViewController" bundle:nil];
         NSArray *array = [tableCellStringArray objectAtIndex:indexPath.section];
-        linceseviewController.navigationBar.topItem.title = [array objectAtIndex:indexPath.row];
+                
         
         [self presentViewController:linceseviewController animated:YES completion:nil];
         [linceseviewController.licenseTextView setText:[kitTerm objectAtIndex:indexPath.row]];
+        linceseviewController.navigationBar.topItem.title = [array objectAtIndex:indexPath.row];
     }
-    else if(indexPath.section==0 & indexPath.row>=kitTerm.count){
-        
-        RegViewController *regController =  [[RegViewController alloc]initWithNibName:@"RegViewController" bundle:nil];
-     //   NSArray *array = [tableCellStringArray objectAtIndex:indexPath.section];
-        NSString *regRequestString = [dataTerm objectAtIndex:indexPath.row-kitTerm.count];
-        NSURLRequest *registerRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:regRequestString]];
-        [self presentViewController:regController animated:YES completion:^{
-            [regController.webView loadRequest:registerRequest];
-        }];
     
-    }
- 
    
 }
 

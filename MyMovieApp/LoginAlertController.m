@@ -53,7 +53,7 @@ static AppDelegate  *delegate;
     }];
    
     [self addAction:loginAction];
-    [self addAction:regAction];
+  //  [self addAction:regAction];
     [self addAction:cancelAction];
     
 

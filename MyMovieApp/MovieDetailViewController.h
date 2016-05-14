@@ -38,8 +38,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *rateLabel;
 
--(void)loadDataFromMovie:(NSDictionary*)movie;
+//-(void)loadDataFromMovie:(NSDictionary*)movie;
 
-
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil movieDic:(NSDictionary *)movie;
 
 @end

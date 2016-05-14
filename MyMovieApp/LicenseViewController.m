@@ -24,6 +24,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+
+
+-(void)viewDidLayoutSubviews{
+    [_licenseTextView setContentOffset:CGPointZero animated:NO];
+    [super viewDidLayoutSubviews];
+    
+}
+
+
 /*
 #pragma mark - Navigation
 
@@ -37,9 +48,5 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    
-    [_licenseTextView setContentOffset:CGPointZero animated:NO];
-}
+
 @end

@@ -15,6 +15,7 @@
 @interface FirstViewController : ViewController <UIAlertControllerDelegate, UIRegVuewControllerDelegate>
 
 
+@property (weak, nonatomic) IBOutlet UIButton *mediaButton;
 
 @property (weak, nonatomic) IBOutlet UITextView *movieInfo;
 @property (weak, nonatomic) IBOutlet UIScrollView *moviePostImage;

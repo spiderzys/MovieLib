@@ -22,7 +22,8 @@
 		69466A331CC70925002B95B6 /* UserMovieCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69466A311CC70925002B95B6 /* UserMovieCollectionHeaderView.m */; };
 		6946E5CD1CB31E96007546ED /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6946E5CC1CB31E96007546ED /* SearchResultTableViewCell.xib */; };
 		6946E5D01CB330F0007546ED /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6946E5CF1CB330F0007546ED /* SearchResultTableViewCell.m */; };
-		6948B02B1CCD93D80072565F /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6948B02A1CCD93D80072565F /* testViewController.m */; };
+		69496F121CE40C1000B457F7 /* term.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69496F111CE40C1000B457F7 /* term.txt */; };
+		69496F141CE40EB800B457F7 /* privacy.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69496F131CE40EB800B457F7 /* privacy.txt */; };
 		694D776B1CE0473200A1A4F5 /* PresentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 694D776A1CE0473200A1A4F5 /* PresentViewController.xib */; };
 		694D776F1CE05FB900A1A4F5 /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 694D776D1CE05FB900A1A4F5 /* AboutTableViewController.m */; };
 		694D77701CE05FB900A1A4F5 /* AboutTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 694D776E1CE05FB900A1A4F5 /* AboutTableViewController.xib */; };
@@ -67,7 +68,6 @@
 		690D58591BC0962200406ADA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		690D585B1BC0962200406ADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		690D58971BC0CDB700406ADA /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
-		690E04F61CC4BB91004F3A7D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		6916137A1CC5F78F0075A55A /* UserMovieCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMovieCollectionViewCell.h; sourceTree = "<group>"; };
 		6916137B1CC5F78F0075A55A /* UserMovieCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMovieCollectionViewCell.m; sourceTree = "<group>"; };
 		6916137C1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserMovieCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -79,8 +79,8 @@
 		6946E5CC1CB31E96007546ED /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
 		6946E5CE1CB330F0007546ED /* SearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultTableViewCell.h; sourceTree = "<group>"; };
 		6946E5CF1CB330F0007546ED /* SearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultTableViewCell.m; sourceTree = "<group>"; };
-		6948B0291CCD93D80072565F /* testViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
-		6948B02A1CCD93D80072565F /* testViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
+		69496F111CE40C1000B457F7 /* term.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = term.txt; sourceTree = "<group>"; };
+		69496F131CE40EB800B457F7 /* privacy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = privacy.txt; sourceTree = "<group>"; };
 		694D776A1CE0473200A1A4F5 /* PresentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresentViewController.xib; sourceTree = "<group>"; };
 		694D776C1CE05FB900A1A4F5 /* AboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewController.h; sourceTree = "<group>"; };
 		694D776D1CE05FB900A1A4F5 /* AboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewController.m; sourceTree = "<group>"; };
@@ -216,8 +216,6 @@
 				69027DE91CC9F30E00DD6C3A /* MovieBackdropCollectionViewCell.h */,
 				69027DE31CC9F2A900DD6C3A /* MovieBackdropCollectionViewCell.m */,
 				698F02E91CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib */,
-				6948B0291CCD93D80072565F /* testViewController.h */,
-				6948B02A1CCD93D80072565F /* testViewController.m */,
 				6965FFD11CBF4B72009D9AB0 /* RegViewController.h */,
 				6965FFD21CBF4B72009D9AB0 /* RegViewController.m */,
 				6965FFD31CBF4B72009D9AB0 /* RegViewController.xib */,
@@ -232,6 +230,8 @@
 				6965FFC51CBF1883009D9AB0 /* user.plist */,
 				690D585B1BC0962200406ADA /* Info.plist */,
 				6977C4F71CCC5D3900DE1188 /* genre.plist */,
+				69496F111CE40C1000B457F7 /* term.txt */,
+				69496F131CE40EB800B457F7 /* privacy.txt */,
 				69F580711BC738CD00656024 /* HttpRequest */,
 				690D58641BC0A8B000406ADA /* Constant */,
 				690D58471BC0962200406ADA /* Supporting Files */,
@@ -243,7 +243,6 @@
 		690D58471BC0962200406ADA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				690E04F61CC4BB91004F3A7D /* logo.png */,
 				690D58481BC0962200406ADA /* main.m */,
 			);
 			name = "Supporting Files";
@@ -301,7 +300,7 @@
 				TargetAttributes = {
 					690D58431BC0962200406ADA = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 2F3EQ3S5D4;
+						DevelopmentTeam = M9KWKR5F39;
 					};
 				};
 			};
@@ -340,8 +339,10 @@
 				6977C4F81CCC5D3900DE1188 /* genre.plist in Resources */,
 				698F02EA1CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib in Resources */,
 				6965FFC61CBF1883009D9AB0 /* user.plist in Resources */,
+				69496F121CE40C1000B457F7 /* term.txt in Resources */,
 				6925B9271CB49BAB0023EDCC /* MovieDetailViewController.xib in Resources */,
 				6916137E1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib in Resources */,
+				69496F141CE40EB800B457F7 /* privacy.txt in Resources */,
 				690D58551BC0962200406ADA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,7 +417,6 @@
 				69F5809B1BC7487300656024 /* Constant.m in Sources */,
 				695F0F871CE1A37F00715526 /* LicenseViewController.m in Sources */,
 				695FC7F41C3A1B2900AA5B24 /* ViewController.m in Sources */,
-				6948B02B1CCD93D80072565F /* testViewController.m in Sources */,
 				69027DE61CC9F2A900DD6C3A /* MovieBackdropCollectionViewCell.m in Sources */,
 				69764BC81C37844900509D09 /* MyMovieApp.xcdatamodeld in Sources */,
 				69466A331CC70925002B95B6 /* UserMovieCollectionHeaderView.m in Sources */,
@@ -464,9 +464,11 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yangsheng Zou (M9KWKR5F39)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yangsheng Zou (M9KWKR5F39)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -488,6 +490,7 @@
 				"LD_MAP_FILE_PATH[arch=*]" = "-lxml2";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "7a367159-d4e9-4e7a-9691-8068839b4a2c";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2 ";
@@ -511,9 +514,11 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yangsheng Zou (M9KWKR5F39)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yangsheng Zou (M9KWKR5F39)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -528,6 +533,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				"LD_MAP_FILE_PATH[arch=*]" = "-lxml2";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "7a367159-d4e9-4e7a-9691-8068839b4a2c";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2 ";
@@ -541,11 +547,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = MyMovieApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = zys.MyMovieApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zys.MovieLib.fresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7a367159-d4e9-4e7a-9691-8068839b4a2c";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2 ${SRCROOT}/**";
 			};
 			name = Debug;
@@ -556,11 +567,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = MyMovieApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = zys.MyMovieApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zys.MovieLib.fresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7a367159-d4e9-4e7a-9691-8068839b4a2c";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2 ${SRCROOT}/**";
 			};
 			name = Release;

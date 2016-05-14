@@ -16,6 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    for (id subview in _webView.subviews)
+        if ([[subview class] isSubclassOfClass: [UIScrollView class]])
+            ((UIScrollView *)subview).bounces = NO;
+    [self.view sendSubviewToBack:_webView];
     // Do any additional setup after loading the view from its nib.
 }
 

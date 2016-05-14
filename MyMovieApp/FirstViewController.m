@@ -21,15 +21,13 @@
 //------------------------------------login for rating-------------------------------
 
 -(void)signIn{
-    LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Registration and sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Sign-in for TMDB is needed" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
     
     alertController.delegate = self;
     [self presentViewController:alertController animated:YES completion:^{
         
-        
     }];
-    
     
 }
 
@@ -37,6 +35,7 @@
     AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
     
     if(buttonTapped==cancel){
+        [self singleOptionAlertWithMessage:@"Unsuccessful rating"];
     }
     else if(buttonTapped ==signIn){
         if(delegate.sessionId){
@@ -75,7 +74,7 @@
     if(delegate.sessionId){
         
         [self showRatingSuccess];
-        
+    
     }
     else{
         [self signIn];
@@ -83,15 +82,20 @@
 }
 
 -(void)showRatingSuccess{
+    
     NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:_selectedMovie];
     [self rateMovieWithId:[movie valueForKey:@"id"] Rate:_ratingView.value*2];
-    _ratingView.tintColor = [UIColor orangeColor];
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Thanks for your rating" message:nil preferredStyle:UIAlertControllerStyleAlert];
     alertController.view.tintColor = [UIColor purpleColor];
     [self presentViewController:alertController animated:YES completion:^{
         [NSThread sleepForTimeInterval:0.8];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [alertController dismissViewControllerAnimated:YES completion:^{
+     //   _ratingView.tintColor = [UIColor orangeColor];
+            
+        }];
     }];
+    
 }
 
 
@@ -118,7 +122,7 @@
     second.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
     
     _delegate = [UIApplication sharedApplication].delegate;
-    _delegate.window.tintColor = _ratingView.tintColor;
+    _delegate.window.tintColor = _movieInfo.textColor;
     
     self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
     
@@ -155,7 +159,8 @@
 
 -(void)loadFromCoreData{
     
-    
+    // _mediaButton.userInteractionEnabled = NO;
+    // _ratingView.userInteractionEnabled = NO;
     [self loadMovieFromCoreData];
     
     _moviePostImage.contentSize = CGSizeMake(_playingMoviesRequestResult.count*(_moviePostImage.bounds.size.height*posterRatio+scrollViewContentGap), _moviePostImage.bounds.size.height);
@@ -165,10 +170,12 @@
         [self setImageWithTag:i WithData:movie.posterData];
         
     }
-    _playingMoviesRequestResult = [NSMutableArray arrayWithCapacity:_playingMoviesRequestResult.count];
-    if (_playingMoviesRequestResult.count>0) {
-        [self netAlert];
-    }
+    [_loadingActivityIndicator stopAnimating];
+    [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
+    // _playingMoviesRequestResult = [NSMutableArray arrayWithCapacity:_playingMoviesRequestResult.count];
+    //if (_playingMoviesRequestResult.count>0) {
+    //     [self netAlert];
+    //  }
     
 }
 
@@ -201,7 +208,9 @@
 -(void)loadFromAPI{
     
     [self loadMovieFromNet];
-    if (_playingMoviesRequestResult !=nil) {
+    if (_playingMoviesRequestResult.count>0) {
+        _mediaButton.userInteractionEnabled = YES;
+        _ratingView.userInteractionEnabled = YES;
         _moviePostImage.contentSize = CGSizeMake(_playingMoviesRequestResult.count*(_moviePostImage.bounds.size.height*posterRatio+scrollViewContentGap), _moviePostImage.bounds.size.height);
         
         for (int i = 0;i<_playingMoviesRequestResult.count;i++) {
@@ -218,11 +227,11 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self setImageWithTag:i WithData:data];
                         if(i==6){
-                           
+                            
                             [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
                             [_loadingActivityIndicator stopAnimating];
                         }
-                        if(i<=30){
+                        if(i<=20){
                             [temp setObject:data forKey:@"poster_data"];
                             [self addMovieToCoreData:i];
                             
@@ -246,19 +255,21 @@
 -(void)loadMovieFromNet{
     
     
-    NSString *playingMovie = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=EN",nowPlayWeb,APIKey];
+    NSString *playingMovie = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=en-US&certification_country=US",nowPlayWeb,APIKey];
     
     _playingMoviesRequestResult = [self getDataFromUrl:[NSURL URLWithString:playingMovie] withKey:@"results" LimitPages:maxNumberPagesOfScrollView];
     if (_playingMoviesRequestResult  == nil || _playingMoviesRequestResult.count==0) {
         
         [self loadFromCoreData];
         
+        
     }
     else{
+        [_loadingActivityIndicator startAnimating];
         _playingMoviesRequestResult  = [self removeUndesiredDataFromResults:_playingMoviesRequestResult  WithNullValueForKey:@"poster_path"]; // remove movies without post.
         
         
-        //  _result  = [_result subarrayWithRange:NSMakeRange(0, MIN(30,_result .count))];
+      
         
         NSMutableArray *array = [NSMutableArray array];
         for (NSDictionary *temp in _playingMoviesRequestResult) {
@@ -320,6 +331,7 @@
 -(void)addMovieToCoreData:(int)tag{
     Movie *movie;
     movie = [_delegate createMovieObject];
+    
     NSDictionary *temp = _playingMoviesRequestResult[tag];
     movie.idn = [temp valueForKey:@"id"];
     
@@ -348,43 +360,39 @@
     imageView.image = [UIImage imageWithData:data];
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     singleTap.numberOfTapsRequired=1;
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap2:)];
-    doubleTap.numberOfTapsRequired=2;
+    // UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap2:)];
+    // doubleTap.numberOfTapsRequired=2;
     [imageView addGestureRecognizer:singleTap];
-    [imageView addGestureRecognizer:doubleTap];
+    // [imageView addGestureRecognizer:doubleTap];
     imageView.userInteractionEnabled = YES;
     imageView.backgroundColor = [UIColor grayColor];
 }
 
 -(void)showInfoFromCoreData:(long)num{
     Movie *movie =_playingMoviesRequestResult[num];
-    NSString *title = [movie  valueForKey:@"title"];
-    [_titleLabel setText:title];
+    
+    
+    [_titleLabel setText:movie.title];
     float mark = [movie.vote_average floatValue];
+    [_ratingView setValue:mark/2];
     [self.backImageView setImage:[UIImage imageWithData: movie.posterData]];
+    [_releaseDateLabel setText:movie.release_date];
     
     
-    NSString *info =[NSString stringWithFormat:@"Overview:\n%@ ", movie.overview];
     if(movie.vote_count.integerValue==0){
         [_rateLabel setText:@"N/A"];
     }
     else{
-        [_rateLabel setText:[NSString stringWithFormat: @"%f (%@)",mark,movie.vote_count]];
+        [_rateLabel setText:[NSString stringWithFormat: @"%.2f (%@)",mark/2,movie.vote_count]];
     }
-    [_movieInfo setText:info];
-    
-    
-    [_ratingView setValue:mark/2];
-    
-    
-    
+    [_movieInfo setText:movie.overview];
     
     
     _selectedMovie = num;
     
 }
 -(void)showInfo:(long)num{
-    
+    _ratingView.tintColor = _movieInfo.textColor;
     
     if(_connected){
         NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:num];
@@ -400,6 +408,7 @@
         
         
         float mark = [[movie valueForKey:@"vote_average" ]floatValue];
+        [_ratingView setValue:mark/2];
         NSString *title = [movie  valueForKey:@"title"];
         [_titleLabel setText:title];
         
@@ -410,9 +419,10 @@
             [_rateLabel setText:@"N/A"];
         }
         else{
-            [_rateLabel setText:[NSString stringWithFormat: @"%@ (%ld)",[movie valueForKey:@"vote_average"],(long)vote_count]];
+            [_rateLabel setText:[NSString stringWithFormat: @"%.2f (%ld)",mark/2,(long)vote_count]];
         }
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[movie valueForKey:@"poster_path"]]];
+        
         [self.backImageView setImage:[UIImage imageWithData: data]];
         
         
@@ -461,7 +471,7 @@
         [_movieInfo setText:info];
         
         
-        [_ratingView setValue:mark/2];
+      
         
         
         _selectedMovie = num;
@@ -477,10 +487,25 @@
 
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
-    if (sender.state == UIGestureRecognizerStateEnded & sender.view.tag-20!= _selectedMovie){
-        
-        [_autoScrollTimer invalidate];
-        [self showInfo:sender.view.tag-20];
+    if (sender.state == UIGestureRecognizerStateEnded){
+        if(sender.view.tag-20!= _selectedMovie){
+            [_autoScrollTimer invalidate];
+            [self showInfo:sender.view.tag-20];
+        }
+        else{
+            
+            
+            UIImageView *imageView = (UIImageView*)sender.view;
+            if(imageView.image){
+                
+                PresentViewController *presentController = [[PresentViewController alloc]initWithNibName:@"PresentViewController" bundle:nil image:imageView.image];
+               // presentController.backImageView.image = imageView.image;
+                [self presentViewController:presentController animated:YES completion:^{
+                                    }];
+            }
+            
+            
+        }
     }
 }
 
@@ -527,10 +552,11 @@
 
 
 
--(void)viewWillLayoutSubviews{
+-(void)viewdidLayoutSubviews{
+    [_movieInfo setContentOffset:CGPointZero animated:NO];
     [super viewWillLayoutSubviews];
     
-    [_movieInfo setContentOffset:CGPointZero animated:NO];
+ 
     
 }
 
@@ -547,7 +573,7 @@
 
 
 -(void)loadScrollView{
-    [_loadingActivityIndicator startAnimating];
+    
     [[_moviePostImage subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
     _scrollWeight = 0;
     _selectedMovie = 0;
@@ -563,12 +589,12 @@
         
         
     }
-
+    
     if(_playingMoviesRequestResult.count>0){
         [self showInfo:0];
     }
     else{
-        [self singleOptionAlertWithMessage:@"No networkd detected, for the usage for the first time, please connect network"];
+        [self singleOptionAlertWithMessage:@"No network"];
     }
     
     

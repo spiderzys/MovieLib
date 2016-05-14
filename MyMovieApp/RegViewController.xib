@@ -18,6 +18,7 @@
             <subviews>
                 <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ZE-G7-qm9">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="uQO-4G-XdF"/>
                     </constraints>
@@ -36,7 +37,7 @@
                     </items>
                 </navigationBar>
                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l0I-ul-eak">
-                    <rect key="frame" x="0.0" y="55" width="600" height="545"/>
+                    <rect key="frame" x="0.0" y="-55" width="600" height="655"/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                 </webView>
             </subviews>
@@ -45,11 +46,12 @@
                 <constraint firstAttribute="trailing" secondItem="l0I-ul-eak" secondAttribute="trailing" id="2gn-OA-waU"/>
                 <constraint firstAttribute="bottom" secondItem="l0I-ul-eak" secondAttribute="bottom" id="Ibz-tE-ZTS"/>
                 <constraint firstItem="l0I-ul-eak" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LsQ-gS-Jvu"/>
-                <constraint firstItem="l0I-ul-eak" firstAttribute="top" secondItem="5ZE-G7-qm9" secondAttribute="bottom" id="aqo-S7-eoJ"/>
+                <constraint firstItem="l0I-ul-eak" firstAttribute="top" secondItem="5ZE-G7-qm9" secondAttribute="bottom" constant="-110" id="aqo-S7-eoJ"/>
                 <constraint firstItem="5ZE-G7-qm9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eCI-vi-chO"/>
                 <constraint firstItem="5ZE-G7-qm9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="t7t-tI-4R8"/>
                 <constraint firstAttribute="trailing" secondItem="5ZE-G7-qm9" secondAttribute="trailing" id="tEb-mD-OST"/>
             </constraints>
+            <point key="canvasLocation" x="241" y="290"/>
         </view>
     </objects>
 </document>

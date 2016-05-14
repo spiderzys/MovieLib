@@ -7,26 +7,28 @@
 //
 
 #import "PresentViewController.h"
-
+static UIImage* backIamge;
 @interface PresentViewController ()
 
 @end
 
 @implementation PresentViewController
 
-
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil image: (UIImage*)image{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    backIamge = image;
+    return self;
+}
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-
+    
+    self.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    self.backImageView.image = backIamge;
 }
 
-- (IBAction)leavePage:(id)sender {
 
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 
 - (void)didReceiveMemoryWarning {

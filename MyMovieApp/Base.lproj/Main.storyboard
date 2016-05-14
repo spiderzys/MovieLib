@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--movie-->
+        <!--Showing-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" sceneMemberID="viewController">
@@ -44,7 +44,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="christmas_star" translatesAutoresizingMaskIntoConstraints="NO" id="K0U-pm-TVz">
                                 <rect key="frame" x="290" y="270" width="20" height="20"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFm-jk-HZC">
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFm-jk-HZC">
                                 <rect key="frame" x="570" y="270" width="20" height="20"/>
                                 <state key="normal" image="movie-1"/>
                                 <connections>
@@ -87,13 +87,13 @@
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="jq6-yb-bEo"/>
                                 </connections>
                             </textView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIY-yY-hmz" customClass="HCSStarRatingView">
-                                <rect key="frame" x="13" y="210" width="110" height="70"/>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIY-yY-hmz" customClass="HCSStarRatingView">
+                                <rect key="frame" x="13" y="230" width="110" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="4Vl-Zr-Aei"/>
-                                    <constraint firstAttribute="height" constant="70" id="h5x-lr-c3e"/>
+                                    <constraint firstAttribute="height" constant="40" id="h5x-lr-c3e"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
@@ -103,7 +103,7 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="accurateHalfStars" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="accurateHalfStars" value="NO"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="spacing">
                                         <real key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
@@ -119,7 +119,6 @@
                         <constraints>
                             <constraint firstItem="RFm-jk-HZC" firstAttribute="width" secondItem="K0U-pm-TVz" secondAttribute="width" id="00B-OG-aYp"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="faK-my-Dut" secondAttribute="bottom" id="0gE-Nh-u3o"/>
-                            <constraint firstItem="MIY-yY-hmz" firstAttribute="height" secondItem="USM-tR-qXF" secondAttribute="height" id="1rP-3C-VUx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="faK-my-Dut" secondAttribute="trailing" constant="-20" id="5uQ-ON-qrm"/>
                             <constraint firstItem="Mgg-Tc-VmQ" firstAttribute="height" secondItem="6iW-aK-IAr" secondAttribute="height" id="66Y-6s-Gtt"/>
                             <constraint firstItem="RFm-jk-HZC" firstAttribute="leading" secondItem="RNZ-DX-Rym" secondAttribute="trailing" id="6fo-bL-zfr"/>
@@ -129,6 +128,7 @@
                             <constraint firstItem="RNZ-DX-Rym" firstAttribute="leading" secondItem="K0U-pm-TVz" secondAttribute="trailing" constant="5" id="CAl-wo-Ggn"/>
                             <constraint firstItem="RFm-jk-HZC" firstAttribute="centerY" secondItem="RNZ-DX-Rym" secondAttribute="centerY" id="EFQ-L5-1lb"/>
                             <constraint firstItem="RFm-jk-HZC" firstAttribute="height" secondItem="K0U-pm-TVz" secondAttribute="height" id="GIU-Jo-TAp"/>
+                            <constraint firstItem="6iW-aK-IAr" firstAttribute="top" secondItem="MIY-yY-hmz" secondAttribute="bottom" id="HWI-fK-Nr2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RFm-jk-HZC" secondAttribute="trailing" constant="-10" id="KPg-hm-CC2"/>
                             <constraint firstItem="6iW-aK-IAr" firstAttribute="top" secondItem="USM-tR-qXF" secondAttribute="bottom" id="PUu-eE-std"/>
                             <constraint firstItem="faK-my-Dut" firstAttribute="top" secondItem="6iW-aK-IAr" secondAttribute="bottom" id="Peo-Hz-PDQ"/>
@@ -137,7 +137,6 @@
                             <constraint firstItem="DUz-M5-Vqy" firstAttribute="top" secondItem="27f-H0-V5i" secondAttribute="bottom" id="SoQ-YC-O87"/>
                             <constraint firstItem="6iW-aK-IAr" firstAttribute="centerY" secondItem="Mgg-Tc-VmQ" secondAttribute="centerY" id="UkT-5J-zyN"/>
                             <constraint firstItem="K0U-pm-TVz" firstAttribute="width" secondItem="6iW-aK-IAr" secondAttribute="width" id="a4U-r3-1HA"/>
-                            <constraint firstItem="USM-tR-qXF" firstAttribute="centerY" secondItem="MIY-yY-hmz" secondAttribute="centerY" id="ade-r1-mka"/>
                             <constraint firstItem="6iW-aK-IAr" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-10" id="at9-ku-LBT"/>
                             <constraint firstItem="DUz-M5-Vqy" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="hVR-HB-3mO"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="MIY-yY-hmz" secondAttribute="trailing" constant="-15" id="i2l-vQ-dUt"/>
@@ -150,18 +149,14 @@
                             <constraint firstItem="RNZ-DX-Rym" firstAttribute="width" secondItem="Mgg-Tc-VmQ" secondAttribute="width" id="vyh-uQ-wWY"/>
                             <constraint firstItem="27f-H0-V5i" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="yAF-EW-j7M"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="1rP-3C-VUx"/>
-                            </mask>
-                        </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="movie" image="movie" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Showing" image="movie" id="acW-dT-cKf"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="heightConstraint" destination="Psp-yh-MyJ" id="5Zu-Oz-5dp"/>
                         <outlet property="loadingActivityIndicator" destination="DUz-M5-Vqy" id="9fn-40-FNp"/>
+                        <outlet property="mediaButton" destination="RFm-jk-HZC" id="wgS-nT-BN0"/>
                         <outlet property="movieInfo" destination="faK-my-Dut" id="25c-c9-ofE"/>
                         <outlet property="moviePostImage" destination="27f-H0-V5i" id="EfF-rY-FmU"/>
                         <outlet property="rateLabel" destination="RNZ-DX-Rym" id="8Mx-n2-mtX"/>
@@ -215,7 +210,7 @@
                             <collectionView hidden="YES" clipsSubviews="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="c7L-My-Non">
                                 <rect key="frame" x="4" y="127" width="592" height="424"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="XEt-zP-7Pm">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="XEt-zP-7Pm">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="200" height="30"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -301,7 +296,7 @@
             </objects>
             <point key="canvasLocation" x="847" y="342"/>
         </scene>
-        <!--Second View Controller-->
+        <!--Search-->
         <scene sceneID="EJt-UF-dWw">
             <objects>
                 <viewController id="QiR-vz-U8H" customClass="SecondViewController" sceneMemberID="viewController">
@@ -319,17 +314,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="xhr-XN-fJd">
-                                <rect key="frame" x="20" y="20" width="560" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Yn4-Wl-whC"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="QiR-vz-U8H" id="9JF-Ms-odr"/>
-                                </connections>
-                            </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9XJ-Xe-vbn">
                                 <rect key="frame" x="103" y="55" width="33" height="20"/>
                                 <gestureRecognizers/>
@@ -350,6 +334,17 @@
                                     <outletCollection property="gestureRecognizers" destination="IRi-Sc-pxH" appends="YES" id="Vs6-Zw-QrF"/>
                                 </connections>
                             </label>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="xhr-XN-fJd">
+                                <rect key="frame" x="20" y="20" width="560" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Yn4-Wl-whC"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="QiR-vz-U8H" id="9JF-Ms-odr"/>
+                                </connections>
+                            </searchBar>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FCs-Db-v8q">
                                 <rect key="frame" x="0.0" y="75" width="600" height="476"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -379,7 +374,7 @@
                             <constraint firstItem="suH-vq-gAU" firstAttribute="top" secondItem="FCs-Db-v8q" secondAttribute="bottom" id="vrv-pR-ksU"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="INP-Kd-Cnl"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="search" id="INP-Kd-Cnl"/>
                     <connections>
                         <outlet property="SearchBar" destination="xhr-XN-fJd" id="paK-Nw-gVW"/>
                         <outlet property="dateLabel" destination="9XJ-Xe-vbn" id="QQ7-GW-rEs"/>
@@ -402,57 +397,6 @@
             </objects>
             <point key="canvasLocation" x="216" y="770"/>
         </scene>
-        <!--Test View Controller-->
-        <scene sceneID="56d-Xu-1rU">
-            <objects>
-                <viewController id="v1Z-8Q-Dga" customClass="testViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="eD8-GY-r14"/>
-                        <viewControllerLayoutGuide type="bottom" id="RrJ-oR-1Qe"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="TzL-K8-nbz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcc-cn-jvp" customClass="HCSStarRatingView">
-                                <rect key="frame" x="163" y="172" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                        <real key="value" value="1.7"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="spacing">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="accurateHalfStars" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="changeValue:" destination="v1Z-8Q-Dga" eventType="valueChanged" id="7E9-5S-GtO"/>
-                                </connections>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="bcc-cn-jvp" firstAttribute="centerX" secondItem="TzL-K8-nbz" secondAttribute="centerX" id="DYy-g5-KRX"/>
-                            <constraint firstItem="bcc-cn-jvp" firstAttribute="centerY" secondItem="TzL-K8-nbz" secondAttribute="centerY" id="bQN-Mi-BrW"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="Uzb-MR-e0j"/>
-                    <connections>
-                        <outlet property="ratingView" destination="bcc-cn-jvp" id="92i-X9-STn"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ona-WU-wRr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="95" y="-686"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -474,7 +418,6 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="QiR-vz-U8H" kind="relationship" relationship="viewControllers" id="iTA-t9-Tny"/>
                         <segue destination="kMB-Vf-l3z" kind="relationship" relationship="viewControllers" id="LVb-21-gmb"/>
-                        <segue destination="v1Z-8Q-Dga" kind="relationship" relationship="viewControllers" id="ra3-cn-IWz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -487,6 +430,7 @@
         <image name="logo" width="462" height="60"/>
         <image name="movie" width="25" height="25"/>
         <image name="movie-1" width="24" height="24"/>
+        <image name="search" width="26" height="26"/>
         <image name="tear_off_calendar" width="24" height="24"/>
         <image name="user_male_circle" width="25" height="25"/>
     </resources>

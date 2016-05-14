@@ -10,5 +10,5 @@
 
 @interface PresentViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *backImageView;
-
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil image: (UIImage*)image;
 @end
