@@ -154,6 +154,35 @@
 }
 
 
+-(void)loadScrollView{
+    
+    [[_moviePostImage subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
+    _scrollWeight = 0;
+    _selectedMovie = 0;
+    _connected = [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]];
+    
+    if(_connected){
+        [self updateGenre];
+        [self loadFromAPI];
+        
+    }
+    else{
+        [self loadFromCoreData];
+        
+        
+    }
+    
+    if(_playingMoviesRequestResult.count>0){
+        [self showInfo:0];
+    }
+    else{
+        [self singleOptionAlertWithMessage:@"No network"];
+    }
+    
+    
+    
+}
+
 
 
 
@@ -571,35 +600,6 @@
 }
 
 
-
--(void)loadScrollView{
-    
-    [[_moviePostImage subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
-    _scrollWeight = 0;
-    _selectedMovie = 0;
-    _connected = [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]];
-    
-    if(_connected){
-        [self updateGenre];
-        [self loadFromAPI];
-        
-    }
-    else{
-        [self loadFromCoreData];
-        
-        
-    }
-    
-    if(_playingMoviesRequestResult.count>0){
-        [self showInfo:0];
-    }
-    else{
-        [self singleOptionAlertWithMessage:@"No network"];
-    }
-    
-    
-    
-}
 
 
 - (void)onTimer:(NSTimer*)timer {
