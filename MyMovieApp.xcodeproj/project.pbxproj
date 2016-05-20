@@ -227,8 +227,8 @@
 				695F0F861CE1A37F00715526 /* LicenseViewController.xib */,
 				690D58561BC0962200406ADA /* Assets.xcassets */,
 				690D58581BC0962200406ADA /* LaunchScreen.storyboard */,
-				6965FFC51CBF1883009D9AB0 /* user.plist */,
 				690D585B1BC0962200406ADA /* Info.plist */,
+				6965FFC51CBF1883009D9AB0 /* user.plist */,
 				6977C4F71CCC5D3900DE1188 /* genre.plist */,
 				69496F111CE40C1000B457F7 /* term.txt */,
 				69496F131CE40EB800B457F7 /* privacy.txt */,
@@ -490,7 +490,7 @@
 				"LD_MAP_FILE_PATH[arch=*]" = "-lxml2";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "7a367159-d4e9-4e7a-9691-8068839b4a2c";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2 ";
@@ -533,7 +533,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				"LD_MAP_FILE_PATH[arch=*]" = "-lxml2";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "7a367159-d4e9-4e7a-9691-8068839b4a2c";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2 ";
@@ -555,7 +555,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zys.MovieLib.fresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7a367159-d4e9-4e7a-9691-8068839b4a2c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2 ${SRCROOT}/**";
 			};
@@ -575,7 +575,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zys.MovieLib.fresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7a367159-d4e9-4e7a-9691-8068839b4a2c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2 ${SRCROOT}/**";
 			};

@@ -28,8 +28,8 @@ static NSArray *kitTerm;
 - (void)viewDidLoad {
     self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     NSArray* acknowledegementArray = @[@"HCSStarRatingView",@"YTPlayerView",@"Term of Use of API",@"Privacy Policy of API"];
-   // NSArray* feedbackArray = @[@"Contact by email",@"Rate This App"];
-    NSArray* feedbackArray = @[@"Contact by email"];
+    NSArray* feedbackArray = @[@"Contact by email",@"Rate This App"];
+    //NSArray* feedbackArray = @[@"Contact by email"];
     tableCellStringArray = [NSArray arrayWithObjects:acknowledegementArray,feedbackArray, nil];
     headerStringArray = @[@"Acknowledgement",@"Feedback"];
     NSString *termPath = [[NSBundle mainBundle]pathForResource:@"term" ofType:@"txt"];
@@ -37,17 +37,17 @@ static NSArray *kitTerm;
     NSString *privacyPath = [[NSBundle mainBundle]pathForResource:@"privacy" ofType:@"txt"];
     NSString *privacyContent = [NSString stringWithContentsOfFile:privacyPath encoding:NSUTF8StringEncoding error:nil];
     
-   
+    
     kitTerm =@[@"Copyright (c) 2015 Hugo Sousa\n\n Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\n THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
                
-        @"Copyright 2014 Google Inc. All rights reserved.\n\n Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.",termContent,privacyContent
+               @"Copyright 2014 Google Inc. All rights reserved.\n\n Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.",termContent,privacyContent
                ];
     
     [super viewDidLoad];
     
     
     
-   
+    
 }
 
 
@@ -60,12 +60,12 @@ static NSArray *kitTerm;
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
+    
     return headerStringArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    
     NSArray *array = [tableCellStringArray objectAtIndex:section];
     return array.count;
     
@@ -97,7 +97,7 @@ static NSArray *kitTerm;
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   
+    
     if (indexPath.section==1 && indexPath.row==0) {
         
         MFMailComposeViewController *controller=[[MFMailComposeViewController alloc]init];
@@ -111,31 +111,42 @@ static NSArray *kitTerm;
         [self presentViewController:controller animated:YES completion:nil];
         
     }
-    else if(indexPath.section==0){
+    
+    else if(indexPath.row==1){
+        NSString *appId = @"1112858592";
+        NSString *reviewURL = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%@",appId];
         
-        LicenseViewController *linceseviewController = [[LicenseViewController alloc]initWithNibName:@"LicenseViewController" bundle:nil];
-        NSArray *array = [tableCellStringArray objectAtIndex:indexPath.section];
-                
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewURL]];
         
-        [self presentViewController:linceseviewController animated:YES completion:nil];
-        [linceseviewController.licenseTextView setText:[kitTerm objectAtIndex:indexPath.row]];
-        linceseviewController.navigationBar.topItem.title = [array objectAtIndex:indexPath.row];
     }
     
-   
+    
+    else if(indexPath.section==0){
+        if(indexPath.row==0){
+            LicenseViewController *linceseviewController = [[LicenseViewController alloc]initWithNibName:@"LicenseViewController" bundle:nil];
+            NSArray *array = [tableCellStringArray objectAtIndex:indexPath.section];
+            
+            
+            [self presentViewController:linceseviewController animated:YES completion:nil];
+            [linceseviewController.licenseTextView setText:[kitTerm objectAtIndex:indexPath.row]];
+            linceseviewController.navigationBar.topItem.title = [array objectAtIndex:indexPath.row];
+        }
+    }
+    
+    
 }
 
 -(void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

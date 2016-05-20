@@ -44,8 +44,8 @@
                         <color key="textColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </textAttributes>
                     <items>
-                        <navigationItem title="Title" id="9Tk-jr-88z">
-                            <barButtonItem key="leftBarButtonItem" systemItem="reply" id="WDc-s2-Dng">
+                        <navigationItem id="9Tk-jr-88z">
+                            <barButtonItem key="leftBarButtonItem" image="reply_arrow_filled" id="WDc-s2-Dng">
                                 <color key="tintColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="dismissController:" destination="-1" id="8PH-7Y-ggn"/>
@@ -68,4 +68,7 @@
             <point key="canvasLocation" x="312" y="334"/>
         </view>
     </objects>
+    <resources>
+        <image name="reply_arrow_filled" width="25" height="25"/>
+    </resources>
 </document>

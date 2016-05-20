@@ -10,10 +10,99 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
+		<key>006CA7289952B00BA727BEF299ECE8BD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BC6DEAAA7CDA848B481A7468AD4406B0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>01BBD248875856CD356D854C5A154E18</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HCSStarRatingView.h</string>
+			<key>path</key>
+			<string>HCSStarRatingView/HCSStarRatingView.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>02511501AFD8C946997A31E28836F135</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NSString+NXOAuth2.m</string>
+			<key>path</key>
+			<string>Sources/NSString+NXOAuth2.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0307982621563C439755B9BC0ED60A1A</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>03230A019129918BFA46065DEF7ED354</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>01BBD248875856CD356D854C5A154E18</string>
+				<string>F0C20C2A6705F1C741DC4F9CD59AD5F6</string>
+				<string>2F94674A59282D72AFD4F57819455396</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>HCSStarRatingView</string>
+			<key>path</key>
+			<string>HCSStarRatingView</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>058FDE4467CB2A16AC8D1499DE303CB8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NXOAuth2ConnectionDelegate.h</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2ConnectionDelegate.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>0794F039E478C9D6CCB28856058610C4</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>98CE330CF81AD9FDBA295F124BCF52A0</string>
+			<string>0EFCD24D8F0A0E65E3634B0330663177</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
@@ -44,10 +133,44 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
+		<key>09089A6F4CC19EE47F18AA431E44171C</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>F3C74D9A43CF5AD342B20CDFCA448B56</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/youtube-ios-player-helper/youtube-ios-player-helper-prefix.pch</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PRIVATE_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
 		<key>09500E7502A8A2DE0BF55ECD3D952CBD</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>98CE330CF81AD9FDBA295F124BCF52A0</string>
+			<string>0EFCD24D8F0A0E65E3634B0330663177</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
@@ -78,7 +201,19 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>0AD4E2615B9A2A129886EBCD165447A0</key>
+		<key>0992373E828319E84CF32CA572BA3877</key>
+		<dict>
+			<key>fileRef</key>
+			<string>703C08C15166390B864C54313AACFC18</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>09DFDB4265F8FC4FC383B9CF4202B48B</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -86,23 +221,57 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NXOAuth2FileStreamWrapper.h</string>
 			<key>path</key>
-			<string>HCSStarRatingView-prefix.pch</string>
+			<string>Sources/OAuth2Client/NXOAuth2FileStreamWrapper.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>0B955694052A62DA1A4D8C9A049D8890</key>
+		<key>0E48CD3F72B2BDF585990510F50B1391</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>E8537D6528DBCA6858859A94D97EA203</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/NXOAuth2Client/NXOAuth2Client-prefix.pch</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PRIVATE_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>0EFCD24D8F0A0E65E3634B0330663177</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HCSStarRatingView.m</string>
+			<string>text.xcconfig</string>
 			<key>path</key>
-			<string>HCSStarRatingView/HCSStarRatingView.m</string>
+			<string>HCSStarRatingView.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -119,19 +288,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>0F6DA524A1CB31719338E458405DBB20</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>A8488902FAD1650405BAE38299A468E3</string>
-			<key>remoteInfo</key>
-			<string>HCSStarRatingView</string>
-		</dict>
 		<key>1013B7ED2816B09F3F1C31B3C480E49A</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -145,17 +301,93 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>10A6F6D0DBD2D155E0A6C2FC9C52E0E3</key>
+		<key>109C16A7EBA1C87A327DCDB84FD4804A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NXOAuth2AccountStore.h</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2AccountStore.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>13223B923840F337CEB04D9F39025433</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>1CE8256D98DB010A93D98DC836716318</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>142630198A22B473722785CEC2E9ECD0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NXOAuth2AccessToken.m</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2AccessToken.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152F507C87EB48C9B2EF6E9AD288219A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>NXOAuth2Account+Private.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>197DAC88E80DED6ECE42CEB0B3F61388</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NXOAuth2AccessToken.h</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2AccessToken.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>198F8CB2EB0FD8A76BB8F827216B6B77</key>
 		<dict>
 			<key>fileRef</key>
-			<string>E3ADB57891E9730A785A396819A8DEB9</string>
+			<string>7735750B92B572FBDDE080BDEBB8A029</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
 		</dict>
 		<key>1B06D5DD38CA65C00D9D066754F62699</key>
 		<dict>
 			<key>fileRef</key>
-			<string>327616E5469B51BEBF015D99EFD10AB5</string>
+			<string>01BBD248875856CD356D854C5A154E18</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -165,6 +397,163 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>1CC5AACA78908ED08FB968E551C9E907</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6B7251BB93B716846915A668347C447B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>1CE8256D98DB010A93D98DC836716318</key>
+		<dict>
+			<key>fileRef</key>
+			<string>0307982621563C439755B9BC0ED60A1A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>1CF9F932E8F0AB335AC0C2AC96672F13</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>F3C74D9A43CF5AD342B20CDFCA448B56</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/youtube-ios-player-helper/youtube-ios-player-helper-prefix.pch</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PRIVATE_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>1D56CA0D7139A4028B93CA7E074AEDDF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>058FDE4467CB2A16AC8D1499DE303CB8</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>1E85AABA23B5E543708FA4E03130F831</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>C89A8A53A46D3DEF96F80C4034490CA4</string>
+			<key>buildPhases</key>
+			<array>
+				<string>28A89D93FC444A6217968F7769FA4266</string>
+				<string>BE98135A552FC71BF990DB90C060E208</string>
+				<string>E00EFA61CB6BE390356A2D41B9BACC8C</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>NXOAuth2Client</string>
+			<key>productName</key>
+			<string>NXOAuth2Client</string>
+			<key>productReference</key>
+			<string>AE5A2E609251B64150A94D04CD996718</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>1EF780185E61A36672F2EBC3FDD75ABD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NXOAuth2Request.m</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2Request.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1FC05C99BA48029B527FC7482BBA87D5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E739031BD1B6ED062A4016B0749F073B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>203555FFD858DEF94D638D31EC450BF5</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>E8537D6528DBCA6858859A94D97EA203</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/NXOAuth2Client/NXOAuth2Client-prefix.pch</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PRIVATE_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
 		</dict>
 		<key>20F0806A731540D229D73F184327B3BC</key>
 		<dict>
@@ -179,6 +568,36 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
+		<key>21694433C5C7DA07235C7E547CAC8669</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NXOAuth2Connection.h</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2Connection.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2211746839B43E2B36A13493C743160E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NXOAuth2Constants.m</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2Constants.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>229AB29C0AE0CCC6CB1531BC60B8B6DB</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -191,6 +610,87 @@
 			<string>Pods-MyMovieApp-resources.sh</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>231E8776B626EA144BD492140E23F02D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NXOAuth2FileStreamWrapper.m</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2FileStreamWrapper.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>234465DB8759C9730B1F21A88546FBBB</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>88943E0D8E9C0E52F2678C5F8A077722</string>
+			<key>buildPhases</key>
+			<array>
+				<string>DC59D1E20C113A4910BAAC850505241E</string>
+				<string>FFF49F61D6D4C46B8C32E6D0D96B899C</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>751BA703E0A165C54B58B05DF2D05309</string>
+				<string>C4570FB79FD79847889F434CD10FAC0E</string>
+				<string>3ECEF8B44C06F180770FF2D379B0ACB6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods-MyMovieApp</string>
+			<key>productName</key>
+			<string>Pods-MyMovieApp</string>
+			<key>productReference</key>
+			<string>8E3D759AFD865DEBEF6F27804E413466</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>28A89D93FC444A6217968F7769FA4266</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>496F81C0BF46852BDB2FF6DD0613A705</string>
+				<string>9182B36F359CE9F54AD3CD24BE93CBC5</string>
+				<string>2F603E30DC05C00DA356E6A85631BB91</string>
+				<string>F61B50E72560137C1BAB08BB5E0F704B</string>
+				<string>876B49C130BA2283A8A226A296C950F3</string>
+				<string>0992373E828319E84CF32CA572BA3877</string>
+				<string>43E283C47E79FE66D338B3049661CEE8</string>
+				<string>D6DF5A496FD858DE4036ACE9A912C895</string>
+				<string>67B47E511DCA3A06974DBCFE2B65D012</string>
+				<string>F80352DA4E8B5745EFBBAE0A619D62CD</string>
+				<string>3AE3D4CD9960B3471E2E445470807E92</string>
+				<string>AB7A92BC0570218D33CB991B74709C56</string>
+				<string>198F8CB2EB0FD8A76BB8F827216B6B77</string>
+				<string>29586E6E3C8D6F62D117FA1684C911AF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>29586E6E3C8D6F62D117FA1684C911AF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1EF780185E61A36672F2EBC3FDD75ABD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
 		</dict>
 		<key>2B389FAB51F6EEA43F72CA7BDC8E8E28</key>
 		<dict>
@@ -279,13 +779,25 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>309EAFD35D92C2738CF8D08FD341232F</key>
+		<key>2F603E30DC05C00DA356E6A85631BB91</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C234D0B84FB5A37EFA29F25CB03695C0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>2F94674A59282D72AFD4F57819455396</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>98CE330CF81AD9FDBA295F124BCF52A0</string>
-				<string>38B51F2879649A8E5EB886DC8A578B2E</string>
-				<string>0AD4E2615B9A2A129886EBCD165447A0</string>
+				<string>0EFCD24D8F0A0E65E3634B0330663177</string>
+				<string>FD0F65C51B53C36AAEBA91B347CDC96A</string>
+				<string>D7B761BA0AEE8E6E6B0E64F15F45AD36</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -296,7 +808,128 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>327616E5469B51BEBF015D99EFD10AB5</key>
+		<key>306E06A0B371AB168A4013EE9ED05D3A</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6B7251BB93B716846915A668347C447B</string>
+				<string>52AEAB964F4F4612D697441DE729285D</string>
+				<string>3D8169353199DF98C3921CCAB55BB19A</string>
+				<string>02511501AFD8C946997A31E28836F135</string>
+				<string>94729C85651083514C6C946B2406723B</string>
+				<string>C234D0B84FB5A37EFA29F25CB03695C0</string>
+				<string>EE664A82B235A11E43BE35EAB984E58D</string>
+				<string>197DAC88E80DED6ECE42CEB0B3F61388</string>
+				<string>142630198A22B473722785CEC2E9ECD0</string>
+				<string>E739031BD1B6ED062A4016B0749F073B</string>
+				<string>BE354FA2F0109CC05B97227FE45FB1A3</string>
+				<string>152F507C87EB48C9B2EF6E9AD288219A</string>
+				<string>109C16A7EBA1C87A327DCDB84FD4804A</string>
+				<string>703C08C15166390B864C54313AACFC18</string>
+				<string>5AA8F63026A147E7AC443C07678DA093</string>
+				<string>334C75817E08BF42414C13663C50D7AA</string>
+				<string>C2232ABA8AFFE8E93895B4C57DBEE0B9</string>
+				<string>21694433C5C7DA07235C7E547CAC8669</string>
+				<string>C1AFC019A730F36C2824B118CBBC7E06</string>
+				<string>058FDE4467CB2A16AC8D1499DE303CB8</string>
+				<string>BC6DEAAA7CDA848B481A7468AD4406B0</string>
+				<string>2211746839B43E2B36A13493C743160E</string>
+				<string>09DFDB4265F8FC4FC383B9CF4202B48B</string>
+				<string>231E8776B626EA144BD492140E23F02D</string>
+				<string>C80619F26C9512D958D548BE0226BFE3</string>
+				<string>B51B7E56A27F601EED6A0FBF27AFD70E</string>
+				<string>C6A1C911CBD7EC38AE2369824A4FBB93</string>
+				<string>7735750B92B572FBDDE080BDEBB8A029</string>
+				<string>FE15D9E52EA511A42E5DC7948F7C4022</string>
+				<string>1EF780185E61A36672F2EBC3FDD75ABD</string>
+				<string>3EBF58DD9BC8B8782CFBC0C1AD70F42E</string>
+				<string>DF710FEF90923601E213EE09D7E69634</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>NXOAuth2Client</string>
+			<key>path</key>
+			<string>NXOAuth2Client</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>334C75817E08BF42414C13663C50D7AA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NXOAuth2Client.m</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2Client.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>348381B43FB8CC45BBF351A5BEF11837</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>69505CD65E5BB8E11FC0BF7D6DCDBB70</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>3646E4204070811F758076FA046546FA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>CA94792E3DFE086C92801375D6F52A4E</string>
+				<string>AE5A2E609251B64150A94D04CD996718</string>
+				<string>8E3D759AFD865DEBEF6F27804E413466</string>
+				<string>4C8451BC658209CA9678216337EC10F0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3AE3D4CD9960B3471E2E445470807E92</key>
+		<dict>
+			<key>fileRef</key>
+			<string>231E8776B626EA144BD492140E23F02D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>3D8169353199DF98C3921CCAB55BB19A</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -305,89 +938,91 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>HCSStarRatingView.h</string>
+			<string>NSString+NXOAuth2.h</string>
 			<key>path</key>
-			<string>HCSStarRatingView/HCSStarRatingView.h</string>
+			<string>Sources/NSString+NXOAuth2.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>3290515B8AC6A8F17EC6A30D18DD8561</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>A693E526D4075F8DD754D41D266686C7</string>
-				<string>9D512BF26345F13B292CBE1EE7023AAA</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>38B51F2879649A8E5EB886DC8A578B2E</key>
+		<key>3EBF58DD9BC8B8782CFBC0C1AD70F42E</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NXOAuth2TrustDelegate.h</string>
 			<key>path</key>
-			<string>HCSStarRatingView-dummy.m</string>
+			<string>Sources/OAuth2Client/NXOAuth2TrustDelegate.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>3BC8CF97B14255AFAAE0BF12C4F10242</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>E8F7F78D6100DE30FFA04C2C6ED303A1</string>
-				<string>5F546575C7B0A8231E934FC3DCEF5BD8</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>3E4E89230EF59BC255123B67864ACF77</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Foundation.framework</string>
-			<key>path</key>
-			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>3EA8DC713B1A07B9E95582335A8E15EC</key>
+		<key>3ECEF8B44C06F180770FF2D379B0ACB6</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXTargetDependency</string>
 			<key>name</key>
 			<string>youtube-ios-player-helper</string>
 			<key>target</key>
-			<string>9D6994988CEA875B7C6DBEC1C4619504</string>
+			<string>F9FF8AE559C0A85B6488D6D67E0A5DFF</string>
 			<key>targetProxy</key>
-			<string>773E0A5F4F0E5278EC7A2A091122F8C8</string>
+			<string>B7056A3E23CE9E4F43E1383A3134D27C</string>
 		</dict>
-		<key>4032BA44561C3C9E02DA447E18F68922</key>
-		<dict>
-			<key>fileRef</key>
-			<string>3E4E89230EF59BC255123B67864ACF77</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>41E57418B5D6E64CEBD8F2358D7E9EA2</key>
+		<key>433CD3331B6C3787F473C941B61FC68F</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>9F010B2C1AA767E4B33ED69DDAD8549D</string>
+				<string>5A86A7991AF0B723B7571D408852AEBF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>43E283C47E79FE66D338B3049661CEE8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4F39ED7C8C97833D2C9B148BD267562E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>44F191740E27CCCE532A4BF5E62318C4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>09DFDB4265F8FC4FC383B9CF4202B48B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>45995A1C9596908132B5FC22E41B6821</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FE15D9E52EA511A42E5DC7948F7C4022</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>45EEB90F634FD2CBA235D764D17DA847</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F84C7912F4AABD5B6A4CF58B0E6608F6</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -395,6 +1030,18 @@
 			<string>Resources</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>496F81C0BF46852BDB2FF6DD0613A705</key>
+		<dict>
+			<key>fileRef</key>
+			<string>52AEAB964F4F4612D697441DE729285D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
 		</dict>
 		<key>4A8497AB8C46DB052AC26A27ADDD5CE1</key>
 		<dict>
@@ -410,7 +1057,7 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>59811F863C0AF3CA94F47877EF613E5E</key>
+		<key>4C8451BC658209CA9678216337EC10F0</key>
 		<dict>
 			<key>explicitFileType</key>
 			<string>archive.ar</string>
@@ -424,6 +1071,34 @@
 			<string>libyoutube-ios-player-helper.a</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>4F39ED7C8C97833D2C9B148BD267562E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>NXOAuth2Client-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>52AEAB964F4F4612D697441DE729285D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NSData+NXOAuth2.m</string>
+			<key>path</key>
+			<string>Sources/NSData+NXOAuth2.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>59F9C98973BD9CBE7E152463CBEC2B79</key>
 		<dict>
@@ -514,172 +1189,43 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>5B4E5E17436518AD0449BE7FFDA41C5D</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>libHCSStarRatingView.a</string>
-			<key>path</key>
-			<string>libHCSStarRatingView.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>5F546575C7B0A8231E934FC3DCEF5BD8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>862E2555F0B73591A426D5C390FAE460</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>63A244C3B42971BFA7F9BAE54E9474A2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>3E4E89230EF59BC255123B67864ACF77</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>69505CD65E5BB8E11FC0BF7D6DCDBB70</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-MyMovieApp.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>6F9192691E8CED6553C0BBC427D0D81F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Pods-MyMovieApp-acknowledgements.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>773E0A5F4F0E5278EC7A2A091122F8C8</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>9D6994988CEA875B7C6DBEC1C4619504</string>
-			<key>remoteInfo</key>
-			<string>youtube-ios-player-helper</string>
-		</dict>
-		<key>7DB346D0F39D3F0E887471402A8071AB</key>
+		<key>5A86A7991AF0B723B7571D408852AEBF</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
-				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
-				<string>7E7611F3378782C867E1A441AA89387C</string>
-				<string>DEBEF520696F7B864790ED7546CCDCDF</string>
-				<string>0F40911BDE036479FCA93B9620202D6B</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7E7611F3378782C867E1A441AA89387C</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>993A8152D7129C0B3801BCC87818E38F</string>
-				<string>CEA773C96CD0D6261654E8A49A386444</string>
+				<string>0307982621563C439755B9BC0ED60A1A</string>
+				<string>60FA6CD62EB7A9C85C7DBBA20924D70A</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Pods</string>
+			<string>iOS</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>7F84A8F06A89F89D34F81DC1BDC4F174</key>
+		<key>5AA8F63026A147E7AC443C07678DA093</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>youtube-ios-player-helper.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8352B5E0308A4391AF6DF2B799D3C4F5</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>B77D82BE92B4EA1E41E4A79A4A2AE4C6</string>
-			<key>buildPhases</key>
-			<array>
-				<string>BD0AFFE6D485C5AEF8819BF09282C9A7</string>
-				<string>9E9B5DCE2E20BFC1EC5E42C02F230902</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>C102FB98D51055F88E0B94AE36AFF062</string>
-				<string>3EA8DC713B1A07B9E95582335A8E15EC</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>Pods-MyMovieApp</string>
-			<key>productName</key>
-			<string>Pods-MyMovieApp</string>
-			<key>productReference</key>
-			<string>B750A1BE393449F465602455D5173CEB</string>
-			<key>productType</key>
-			<string>com.apple.product-type.library.static</string>
-		</dict>
-		<key>83A5C986267385BBCA353159C39D7579</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
+			<string>NXOAuth2Client.h</string>
 			<key>path</key>
-			<string>Pods-MyMovieApp-frameworks.sh</string>
+			<string>Sources/OAuth2Client/NXOAuth2Client.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>862E2555F0B73591A426D5C390FAE460</key>
+		<key>5B46959B711883A342F66AA89430292E</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>0307982621563C439755B9BC0ED60A1A</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>YTPlayerView.m</string>
-			<key>path</key>
-			<string>Classes/YTPlayerView.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
-		<key>871E497DD2852655E28E0F650D7E7C46</key>
+		<key>5BEA15D381A0943FF7D19416D85C049C</key>
 		<dict>
 			<key>baseConfigurationReference</key>
 			<string>D1BFEBE4A64625686A53736474D82AB1</string>
@@ -711,7 +1257,27 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>96AC9A323CAAFFBE6A1D62DF54869AE2</key>
+		<key>60FA6CD62EB7A9C85C7DBBA20924D70A</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Security.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Security.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>63A244C3B42971BFA7F9BAE54E9474A2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>0307982621563C439755B9BC0ED60A1A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6487A5DCA275E325438BB9B8737E67D2</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -726,14 +1292,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>97F3FDE22E7855C7CE43DC047A595724</key>
+		<key>67B47E511DCA3A06974DBCFE2B65D012</key>
 		<dict>
 			<key>fileRef</key>
-			<string>3E4E89230EF59BC255123B67864ACF77</string>
+			<string>C1AFC019A730F36C2824B118CBBC7E06</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
 		</dict>
-		<key>98CE330CF81AD9FDBA295F124BCF52A0</key>
+		<key>69505CD65E5BB8E11FC0BF7D6DCDBB70</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -742,147 +1313,296 @@
 			<key>lastKnownFileType</key>
 			<string>text.xcconfig</string>
 			<key>path</key>
-			<string>HCSStarRatingView.xcconfig</string>
+			<string>Pods-MyMovieApp.release.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>993A8152D7129C0B3801BCC87818E38F</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>327616E5469B51BEBF015D99EFD10AB5</string>
-				<string>0B955694052A62DA1A4D8C9A049D8890</string>
-				<string>309EAFD35D92C2738CF8D08FD341232F</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>HCSStarRatingView</string>
-			<key>path</key>
-			<string>HCSStarRatingView</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9D512BF26345F13B292CBE1EE7023AAA</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>7F84A8F06A89F89D34F81DC1BDC4F174</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/youtube-ios-player-helper/youtube-ios-player-helper-prefix.pch</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.3</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PRIVATE_HEADERS_FOLDER_PATH</key>
-				<string></string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
-				<string></string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>9D6994988CEA875B7C6DBEC1C4619504</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>3290515B8AC6A8F17EC6A30D18DD8561</string>
-			<key>buildPhases</key>
-			<array>
-				<string>3BC8CF97B14255AFAAE0BF12C4F10242</string>
-				<string>B77B28321D11EB100868DE56588D893A</string>
-				<string>E6DEFFF1ADC8D6E6F328CE43A3F4FFD9</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>youtube-ios-player-helper</string>
-			<key>productName</key>
-			<string>youtube-ios-player-helper</string>
-			<key>productReference</key>
-			<string>59811F863C0AF3CA94F47877EF613E5E</string>
-			<key>productType</key>
-			<string>com.apple.product-type.library.static</string>
-		</dict>
-		<key>9E9B5DCE2E20BFC1EC5E42C02F230902</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>4032BA44561C3C9E02DA447E18F68922</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>9F010B2C1AA767E4B33ED69DDAD8549D</key>
+		<key>6B7251BB93B716846915A668347C447B</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>wrapper.plug-in</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>Assets.bundle</string>
+			<string>NSData+NXOAuth2.h</string>
 			<key>path</key>
-			<string>youtube-ios-player-helper/Assets.bundle</string>
+			<string>Sources/NSData+NXOAuth2.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A693E526D4075F8DD754D41D266686C7</key>
+		<key>6F9192691E8CED6553C0BBC427D0D81F</key>
 		<dict>
-			<key>baseConfigurationReference</key>
-			<string>7F84A8F06A89F89D34F81DC1BDC4F174</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/youtube-ios-player-helper/youtube-ios-player-helper-prefix.pch</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.3</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PRIVATE_HEADERS_FOLDER_PATH</key>
-				<string></string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
-				<string></string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-			</dict>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>XCBuildConfiguration</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Pods-MyMovieApp-acknowledgements.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>703C08C15166390B864C54313AACFC18</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>Debug</string>
+			<string>NXOAuth2AccountStore.m</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2AccountStore.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>751BA703E0A165C54B58B05DF2D05309</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>HCSStarRatingView</string>
+			<key>target</key>
+			<string>A8488902FAD1650405BAE38299A468E3</string>
+			<key>targetProxy</key>
+			<string>FE598DCBDAC1A9FC6B237FF3D7F52DB8</string>
+		</dict>
+		<key>75755A1AD2F91FD2C60645E1361773A6</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>7671E057A43DFD028087AA746E546990</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>7671E057A43DFD028087AA746E546990</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6487A5DCA275E325438BB9B8737E67D2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>7735750B92B572FBDDE080BDEBB8A029</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NXOAuth2PostBodyStream.m</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2PostBodyStream.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7DB346D0F39D3F0E887471402A8071AB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
+				<string>433CD3331B6C3787F473C941B61FC68F</string>
+				<string>BC3107144870C4A1DB0ED5F4CBC03BA0</string>
+				<string>3646E4204070811F758076FA046546FA</string>
+				<string>0F40911BDE036479FCA93B9620202D6B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>83A5C986267385BBCA353159C39D7579</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-MyMovieApp-frameworks.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8530202A852F9311BA7FAF3E7E018947</key>
+		<dict>
+			<key>fileRef</key>
+			<string>0307982621563C439755B9BC0ED60A1A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>876B49C130BA2283A8A226A296C950F3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BE354FA2F0109CC05B97227FE45FB1A3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>88943E0D8E9C0E52F2678C5F8A077722</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>5BEA15D381A0943FF7D19416D85C049C</string>
+				<string>348381B43FB8CC45BBF351A5BEF11837</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>89B6CFE588B981547314C4103D8B4675</key>
+		<dict>
+			<key>fileRef</key>
+			<string>60FA6CD62EB7A9C85C7DBBA20924D70A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8E0647A6DE92E993472445D8A9A31410</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3EBF58DD9BC8B8782CFBC0C1AD70F42E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>8E3D759AFD865DEBEF6F27804E413466</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>libPods-MyMovieApp.a</string>
+			<key>path</key>
+			<string>libPods-MyMovieApp.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>9182B36F359CE9F54AD3CD24BE93CBC5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>02511501AFD8C946997A31E28836F135</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>94729C85651083514C6C946B2406723B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NSURL+NXOAuth2.h</string>
+			<key>path</key>
+			<string>Sources/NSURL+NXOAuth2.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9495FE23D465CBB5BC9EBE2DC92F4494</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6487A5DCA275E325438BB9B8737E67D2</string>
+				<string>E26C3AE2FA368DE838637D0998D309B2</string>
+				<string>45EEB90F634FD2CBA235D764D17DA847</string>
+				<string>F316C205D37AE94B4BDADD067C3199FA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>youtube-ios-player-helper</string>
+			<key>path</key>
+			<string>youtube-ios-player-helper</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9EB5C021CD0890A0F1A01E3BF4093E2B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>EE664A82B235A11E43BE35EAB984E58D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>A2CA9E6B2BDCF663BE218A1FE2F00269</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C80619F26C9512D958D548BE0226BFE3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>A464A7711317466CE3622FFF75923DD4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>197DAC88E80DED6ECE42CEB0B3F61388</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>A7ACE0D0FE8ADC07DBAA27C019A38988</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E26C3AE2FA368DE838637D0998D309B2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>A8488902FAD1650405BAE38299A468E3</key>
 		<dict>
@@ -905,9 +1625,21 @@
 			<key>productName</key>
 			<string>HCSStarRatingView</string>
 			<key>productReference</key>
-			<string>5B4E5E17436518AD0449BE7FFDA41C5D</string>
+			<string>CA94792E3DFE086C92801375D6F52A4E</string>
 			<key>productType</key>
 			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>AB7A92BC0570218D33CB991B74709C56</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B51B7E56A27F601EED6A0FBF27AFD70E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
 		</dict>
 		<key>AC5AB07D1EB751242083E50A77D446A7</key>
 		<dict>
@@ -923,27 +1655,7 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>B0E1075BE75407A436FD465B1F7B5FDC</key>
-		<dict>
-			<key>fileRef</key>
-			<string>38B51F2879649A8E5EB886DC8A578B2E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>B2D12FC709F51EAFF15043D8645B2F3D</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>youtube-ios-player-helper-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B750A1BE393449F465602455D5173CEB</key>
+		<key>AE5A2E609251B64150A94D04CD996718</key>
 		<dict>
 			<key>explicitFileType</key>
 			<string>archive.ar</string>
@@ -952,24 +1664,60 @@
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>name</key>
-			<string>libPods-MyMovieApp.a</string>
+			<string>libNXOAuth2Client.a</string>
 			<key>path</key>
-			<string>libPods-MyMovieApp.a</string>
+			<string>libNXOAuth2Client.a</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>B77B28321D11EB100868DE56588D893A</key>
+		<key>B0E1075BE75407A436FD465B1F7B5FDC</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>97F3FDE22E7855C7CE43DC047A595724</string>
-			</array>
+			<key>fileRef</key>
+			<string>FD0F65C51B53C36AAEBA91B347CDC96A</string>
 			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B23A00A5ED73210D3BC7AA7F21EA9B1C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>94729C85651083514C6C946B2406723B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>B51B7E56A27F601EED6A0FBF27AFD70E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NXOAuth2PostBodyPart.m</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2PostBodyPart.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B7056A3E23CE9E4F43E1383A3134D27C</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>F9FF8AE559C0A85B6488D6D67E0A5DFF</string>
+			<key>remoteInfo</key>
+			<string>youtube-ios-player-helper</string>
 		</dict>
 		<key>B77BB741E3CE806DD8CAB35A8136B6F8</key>
 		<dict>
@@ -983,20 +1731,6 @@
 			<string>PBXHeadersBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
-		</dict>
-		<key>B77D82BE92B4EA1E41E4A79A4A2AE4C6</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>871E497DD2852655E28E0F650D7E7C46</string>
-				<string>FE96D878CB974948B06EAFFAE80AA870</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
 		</dict>
 		<key>BA6428E9F66FD5A23C0A2E06ED26CD2F</key>
 		<dict>
@@ -1015,10 +1749,140 @@
 			<key>xcLanguageSpecificationIdentifier</key>
 			<string>xcode.lang.ruby</string>
 		</dict>
-		<key>BB34BE7A8768B8CD6E1017E7C14A81BA</key>
+		<key>BC3107144870C4A1DB0ED5F4CBC03BA0</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>03230A019129918BFA46065DEF7ED354</string>
+				<string>306E06A0B371AB168A4013EE9ED05D3A</string>
+				<string>9495FE23D465CBB5BC9EBE2DC92F4494</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BC6DEAAA7CDA848B481A7468AD4406B0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NXOAuth2Constants.h</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2Constants.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BE354FA2F0109CC05B97227FE45FB1A3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NXOAuth2Account.m</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2Account.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BE7256B71C3CFA14A04F7586DCA89575</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>youtube-ios-player-helper-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BE98135A552FC71BF990DB90C060E208</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>5B46959B711883A342F66AA89430292E</string>
+				<string>89B6CFE588B981547314C4103D8B4675</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>C13886E3BE721352FC57A21620DA46B4</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>1E85AABA23B5E543708FA4E03130F831</string>
+			<key>remoteInfo</key>
+			<string>NXOAuth2Client</string>
+		</dict>
+		<key>C1AFC019A730F36C2824B118CBBC7E06</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NXOAuth2Connection.m</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2Connection.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C2232ABA8AFFE8E93895B4C57DBEE0B9</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NXOAuth2ClientDelegate.h</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2ClientDelegate.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C234D0B84FB5A37EFA29F25CB03695C0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NSURL+NXOAuth2.m</string>
+			<key>path</key>
+			<string>Sources/NSURL+NXOAuth2.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C35FB79A52A53C86EC1AEE2BF99712CF</key>
 		<dict>
 			<key>fileRef</key>
-			<string>96AC9A323CAAFFBE6A1D62DF54869AE2</string>
+			<string>109C16A7EBA1C87A327DCDB84FD4804A</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -1029,73 +1893,103 @@
 				</array>
 			</dict>
 		</dict>
-		<key>BC3CA7F9E30CC8F7E2DD044DD34432FC</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>BF6342C8B29F4CEEA088EFF7AB4DE362</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BD0AFFE6D485C5AEF8819BF09282C9A7</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>10A6F6D0DBD2D155E0A6C2FC9C52E0E3</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>BF6342C8B29F4CEEA088EFF7AB4DE362</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>3E4E89230EF59BC255123B67864ACF77</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>iOS</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>C102FB98D51055F88E0B94AE36AFF062</key>
+		<key>C4570FB79FD79847889F434CD10FAC0E</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXTargetDependency</string>
 			<key>name</key>
-			<string>HCSStarRatingView</string>
+			<string>NXOAuth2Client</string>
 			<key>target</key>
-			<string>A8488902FAD1650405BAE38299A468E3</string>
+			<string>1E85AABA23B5E543708FA4E03130F831</string>
 			<key>targetProxy</key>
-			<string>0F6DA524A1CB31719338E458405DBB20</string>
+			<string>C13886E3BE721352FC57A21620DA46B4</string>
 		</dict>
-		<key>CEA773C96CD0D6261654E8A49A386444</key>
+		<key>C57283F3FE89FF92353E2D92DFDB7BCD</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>96AC9A323CAAFFBE6A1D62DF54869AE2</string>
-				<string>862E2555F0B73591A426D5C390FAE460</string>
-				<string>41E57418B5D6E64CEBD8F2358D7E9EA2</string>
-				<string>DE95E1458C8D961CF4F39F714AAB17F5</string>
-			</array>
+			<key>fileRef</key>
+			<string>ECC49F86A38B72598BEF99F91C254847</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>C6A1C911CBD7EC38AE2369824A4FBB93</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>youtube-ios-player-helper</string>
+			<string>NXOAuth2PostBodyStream.h</string>
 			<key>path</key>
-			<string>youtube-ios-player-helper</string>
+			<string>Sources/OAuth2Client/NXOAuth2PostBodyStream.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C80619F26C9512D958D548BE0226BFE3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NXOAuth2PostBodyPart.h</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2PostBodyPart.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C89A8A53A46D3DEF96F80C4034490CA4</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>203555FFD858DEF94D638D31EC450BF5</string>
+				<string>0E48CD3F72B2BDF585990510F50B1391</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>CA94792E3DFE086C92801375D6F52A4E</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>libHCSStarRatingView.a</string>
+			<key>path</key>
+			<string>libHCSStarRatingView.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>CDC229FCDA668D0077958EB1B48C03D7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5AA8F63026A147E7AC443C07678DA093</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>CF1CF6827B6B4B6FB504BBEB367D1A5A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E3ADB57891E9730A785A396819A8DEB9</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>D1BFEBE4A64625686A53736474D82AB1</key>
 		<dict>
@@ -1109,6 +2003,20 @@
 			<string>Pods-MyMovieApp.debug.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D27B1021ED5A281761C33D770E16A58D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C6A1C911CBD7EC38AE2369824A4FBB93</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>D41D8CD98F00B204E9800998ECF8427E</key>
 		<dict>
@@ -1136,7 +2044,7 @@
 			<key>mainGroup</key>
 			<string>7DB346D0F39D3F0E887471402A8071AB</string>
 			<key>productRefGroup</key>
-			<string>DEBEF520696F7B864790ED7546CCDCDF</string>
+			<string>3646E4204070811F758076FA046546FA</string>
 			<key>projectDirPath</key>
 			<string></string>
 			<key>projectReferences</key>
@@ -1146,50 +2054,38 @@
 			<key>targets</key>
 			<array>
 				<string>A8488902FAD1650405BAE38299A468E3</string>
-				<string>8352B5E0308A4391AF6DF2B799D3C4F5</string>
-				<string>9D6994988CEA875B7C6DBEC1C4619504</string>
+				<string>1E85AABA23B5E543708FA4E03130F831</string>
+				<string>234465DB8759C9730B1F21A88546FBBB</string>
+				<string>F9FF8AE559C0A85B6488D6D67E0A5DFF</string>
 			</array>
 		</dict>
-		<key>D896FE6B8AE200AB403BB94EE4A2A22A</key>
+		<key>D48FA58A38ADC8CAF616EF9A472581E9</key>
 		<dict>
 			<key>fileRef</key>
-			<string>0B955694052A62DA1A4D8C9A049D8890</string>
+			<string>21694433C5C7DA07235C7E547CAC8669</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
-		<key>DE95E1458C8D961CF4F39F714AAB17F5</key>
+		<key>D6DF5A496FD858DE4036ACE9A912C895</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>7F84A8F06A89F89D34F81DC1BDC4F174</string>
-				<string>B2D12FC709F51EAFF15043D8645B2F3D</string>
-				<string>DF94A52A10713F10F7D7D2AD17C41D0C</string>
-			</array>
+			<key>fileRef</key>
+			<string>334C75817E08BF42414C13663C50D7AA</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>../Target Support Files/youtube-ios-player-helper</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
 		</dict>
-		<key>DEBEF520696F7B864790ED7546CCDCDF</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5B4E5E17436518AD0449BE7FFDA41C5D</string>
-				<string>B750A1BE393449F465602455D5173CEB</string>
-				<string>59811F863C0AF3CA94F47877EF613E5E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>DF94A52A10713F10F7D7D2AD17C41D0C</key>
+		<key>D7B761BA0AEE8E6E6B0E64F15F45AD36</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1198,7 +2094,131 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>path</key>
-			<string>youtube-ios-player-helper-prefix.pch</string>
+			<string>HCSStarRatingView-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D896FE6B8AE200AB403BB94EE4A2A22A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F0C20C2A6705F1C741DC4F9CD59AD5F6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>DA34B62B6D1106865162C98D977E2D9E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>C57283F3FE89FF92353E2D92DFDB7BCD</string>
+				<string>A7ACE0D0FE8ADC07DBAA27C019A38988</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>DB3B2657B0DBB2EC8F74D1A602582051</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3D8169353199DF98C3921CCAB55BB19A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>DC259A831AAD609D68A368E16228D4F5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C2232ABA8AFFE8E93895B4C57DBEE0B9</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>DC59D1E20C113A4910BAAC850505241E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>CF1CF6827B6B4B6FB504BBEB367D1A5A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>DF710FEF90923601E213EE09D7E69634</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E8537D6528DBCA6858859A94D97EA203</string>
+				<string>4F39ED7C8C97833D2C9B148BD267562E</string>
+				<string>EFA9B938D7BA5A91CB409684C2B7EA92</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/NXOAuth2Client</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E00EFA61CB6BE390356A2D41B9BACC8C</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>1CC5AACA78908ED08FB968E551C9E907</string>
+				<string>DB3B2657B0DBB2EC8F74D1A602582051</string>
+				<string>B23A00A5ED73210D3BC7AA7F21EA9B1C</string>
+				<string>9EB5C021CD0890A0F1A01E3BF4093E2B</string>
+				<string>A464A7711317466CE3622FFF75923DD4</string>
+				<string>E66FF19936CA6EF7FF4BF3E13EE0D7D7</string>
+				<string>1FC05C99BA48029B527FC7482BBA87D5</string>
+				<string>C35FB79A52A53C86EC1AEE2BF99712CF</string>
+				<string>CDC229FCDA668D0077958EB1B48C03D7</string>
+				<string>DC259A831AAD609D68A368E16228D4F5</string>
+				<string>D48FA58A38ADC8CAF616EF9A472581E9</string>
+				<string>1D56CA0D7139A4028B93CA7E074AEDDF</string>
+				<string>006CA7289952B00BA727BEF299ECE8BD</string>
+				<string>44F191740E27CCCE532A4BF5E62318C4</string>
+				<string>A2CA9E6B2BDCF663BE218A1FE2F00269</string>
+				<string>D27B1021ED5A281761C33D770E16A58D</string>
+				<string>45995A1C9596908132B5FC22E41B6821</string>
+				<string>8E0647A6DE92E993472445D8A9A31410</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E26C3AE2FA368DE838637D0998D309B2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YTPlayerView.m</string>
+			<key>path</key>
+			<string>Classes/YTPlayerView.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1215,57 +2235,265 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>E6DEFFF1ADC8D6E6F328CE43A3F4FFD9</key>
+		<key>E66FF19936CA6EF7FF4BF3E13EE0D7D7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>152F507C87EB48C9B2EF6E9AD288219A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>E739031BD1B6ED062A4016B0749F073B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NXOAuth2Account.h</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2Account.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E8537D6528DBCA6858859A94D97EA203</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>NXOAuth2Client.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>EBC15D13249BBE87BE199307D57CD861</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>1CF9F932E8F0AB335AC0C2AC96672F13</string>
+				<string>09089A6F4CC19EE47F18AA431E44171C</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>ECC49F86A38B72598BEF99F91C254847</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>youtube-ios-player-helper-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>EE664A82B235A11E43BE35EAB984E58D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NXOAuth2.h</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>EFA9B938D7BA5A91CB409684C2B7EA92</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>NXOAuth2Client-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F0C20C2A6705F1C741DC4F9CD59AD5F6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HCSStarRatingView.m</string>
+			<key>path</key>
+			<string>HCSStarRatingView/HCSStarRatingView.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F316C205D37AE94B4BDADD067C3199FA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F3C74D9A43CF5AD342B20CDFCA448B56</string>
+				<string>ECC49F86A38B72598BEF99F91C254847</string>
+				<string>BE7256B71C3CFA14A04F7586DCA89575</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/youtube-ios-player-helper</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F3C74D9A43CF5AD342B20CDFCA448B56</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>youtube-ios-player-helper.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F61B50E72560137C1BAB08BB5E0F704B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>142630198A22B473722785CEC2E9ECD0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>F80352DA4E8B5745EFBBAE0A619D62CD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2211746839B43E2B36A13493C743160E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>F84C7912F4AABD5B6A4CF58B0E6608F6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.plug-in</string>
+			<key>name</key>
+			<string>Assets.bundle</string>
+			<key>path</key>
+			<string>youtube-ios-player-helper/Assets.bundle</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F9FF8AE559C0A85B6488D6D67E0A5DFF</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>EBC15D13249BBE87BE199307D57CD861</string>
+			<key>buildPhases</key>
+			<array>
+				<string>DA34B62B6D1106865162C98D977E2D9E</string>
+				<string>13223B923840F337CEB04D9F39025433</string>
+				<string>75755A1AD2F91FD2C60645E1361773A6</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>youtube-ios-player-helper</string>
+			<key>productName</key>
+			<string>youtube-ios-player-helper</string>
+			<key>productReference</key>
+			<string>4C8451BC658209CA9678216337EC10F0</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>FD0F65C51B53C36AAEBA91B347CDC96A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>HCSStarRatingView-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FE15D9E52EA511A42E5DC7948F7C4022</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NXOAuth2Request.h</string>
+			<key>path</key>
+			<string>Sources/OAuth2Client/NXOAuth2Request.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FE598DCBDAC1A9FC6B237FF3D7F52DB8</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>A8488902FAD1650405BAE38299A468E3</string>
+			<key>remoteInfo</key>
+			<string>HCSStarRatingView</string>
+		</dict>
+		<key>FFF49F61D6D4C46B8C32E6D0D96B899C</key>
 		<dict>
 			<key>buildActionMask</key>
 			<string>2147483647</string>
 			<key>files</key>
 			<array>
-				<string>BB34BE7A8768B8CD6E1017E7C14A81BA</string>
+				<string>8530202A852F9311BA7FAF3E7E018947</string>
 			</array>
 			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
+			<string>PBXFrameworksBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
-		</dict>
-		<key>E8F7F78D6100DE30FFA04C2C6ED303A1</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B2D12FC709F51EAFF15043D8645B2F3D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>FE96D878CB974948B06EAFFAE80AA870</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>69505CD65E5BB8E11FC0BF7D6DCDBB70</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.3</string>
-				<key>MACH_O_TYPE</key>
-				<string>staticlib</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PODS_ROOT</key>
-				<string>$(SRCROOT)</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
 		</dict>
 	</dict>
 	<key>rootObject</key>

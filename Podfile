@@ -7,4 +7,5 @@
 target 'MyMovieApp' do
    pod  "youtube-ios-player-helper", "~> 0.1.4"
    pod "HCSStarRatingView", "~> 1.4.5"
+   pod 'NXOAuth2Client', '~> 1.2.8'
 end

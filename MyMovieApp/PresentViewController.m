@@ -7,7 +7,10 @@
 //
 
 #import "PresentViewController.h"
+#import "NXOAuth2.h"
+#import "Constant.h"
 static UIImage* backIamge;
+
 @interface PresentViewController ()
 
 @end
@@ -24,11 +27,30 @@ static UIImage* backIamge;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    //self.modalTransitionStyle = UIModalTransitionStylePartialCurl;
     self.backImageView.image = backIamge;
 }
 
+- (IBAction)upload:(id)sender {
+   // [[NXOAuth2AccountStore sharedStore]requestAccessToAccountWithType:NXOAuth2AccountType];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths lastObject] : nil;
+    NSString *imagePath = [basePath stringByAppendingPathComponent:@"image.igo"];
+    NSLog(@"%@",imagePath);
+    [[NSFileManager defaultManager]removeItemAtPath:imagePath error:nil];
+    [UIImagePNGRepresentation(self.backImageView.image) writeToFile:imagePath atomically:YES];
+    _documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:imagePath]];
+    _documentInteractionController.delegate = self;
+    _documentInteractionController.UTI = @"com.instagram.exclusivegram";
+    //NSString *msgBody = @"My message";
+    //_documentInteractionController.annotation = [NSDictionary dictionaryWithObject:msgBody forKey:@"InstagramCaption"];
+    [_documentInteractionController presentOpenInMenuFromRect:self.view.frame inView:self.view animated:YES];
+    
+}
 
+- (IBAction)dismiss:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -36,9 +58,7 @@ static UIImage* backIamge;
     // Dispose of any resources that can be recreated.
 }
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskPortrait;
-}
+
 /*
 #pragma mark - Navigation
 

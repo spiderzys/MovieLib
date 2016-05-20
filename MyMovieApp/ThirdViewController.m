@@ -241,13 +241,21 @@ static NSArray* contentArray;
 }
 
 
-- (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)viewWillLayoutSubviews{
+    
+    [super viewWillLayoutSubviews];
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout*)_userMovieCollectionView.collectionViewLayout;
     float height = self.view.frame.size.height;
-    return CGSizeMake(height*0.18	, height*0.24);
+    
+    flowLayout.itemSize = CGSizeMake(height*0.18, height*0.24);
+    
+    
+    [flowLayout invalidateLayout]; //force the elements to get laid out again with the new size
+    
+    
 }
+
+
 
 
 
@@ -418,9 +426,7 @@ static NSArray* contentArray;
     // Dispose of any resources that can be recreated.
 }
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskPortrait;
-}
+
 /*
  #pragma mark - Navigation
  

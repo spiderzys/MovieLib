@@ -34,5 +34,6 @@ extern float scrollVelocity;
 extern CGFloat backdropRatio;
 extern CGFloat trailerRatio;
 extern NSString * const youtubeWeb;
-
+extern int maxNumberPagesOfCoreData;
+extern NSString * const NXOAuth2AccountType;
 #endif /* Constant_h */

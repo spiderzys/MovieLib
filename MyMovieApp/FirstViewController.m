@@ -9,6 +9,7 @@
 #import "FirstViewController.h"
 #import "SecondViewController.h"
 #import "MovieMediaViewController.h"
+#import "MovieBackdropCollectionViewCell.h"
 @interface FirstViewController ()
 
 @end
@@ -35,6 +36,7 @@
     AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
     
     if(buttonTapped==cancel){
+        
         [self singleOptionAlertWithMessage:@"Unsuccessful rating"];
     }
     else if(buttonTapped ==signIn){
@@ -74,7 +76,7 @@
     if(delegate.sessionId){
         
         [self showRatingSuccess];
-    
+        
     }
     else{
         [self signIn];
@@ -91,7 +93,7 @@
     [self presentViewController:alertController animated:YES completion:^{
         [NSThread sleepForTimeInterval:0.8];
         [alertController dismissViewControllerAnimated:YES completion:^{
-     //   _ratingView.tintColor = [UIColor orangeColor];
+            //   _ratingView.tintColor = [UIColor orangeColor];
             
         }];
     }];
@@ -101,11 +103,7 @@
 
 //----------------------------major-------------------------------------
 
--(void)loadView{
-    [super loadView];
-    _heightConstraint.constant = (self.view.frame.size.height-48)*0.42;
-    _moviePostImage.frame = CGRectMake(0, 0, _moviePostImage.frame.size.width , _heightConstraint.constant);
-}
+
 
 - (void)viewDidLoad {
     
@@ -132,7 +130,8 @@
     [self.view addSubview:self.backImageView];
     self.backImageView.alpha = 0.2;
     [self.view sendSubviewToBack:self.backImageView];
-    
+    [_moviePosterCollectionView registerNib:[UINib nibWithNibName:@"MovieBackdropCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"movieImages"];
+    _moviePosterCollectionView.decelerationRate = UIScrollViewDecelerationRateFast;
 }
 
 
@@ -146,7 +145,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if(_playingMoviesRequestResult.count==0 ||_playingMoviesRequestResult == nil){
+    if(_playingMoviesRequestResult.count==0){
         [self loadScrollView];
         
     }
@@ -156,8 +155,8 @@
 
 -(void)loadScrollView{
     
-    [[_moviePostImage subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
-    _scrollWeight = 0;
+    
+    
     _selectedMovie = 0;
     _connected = [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]];
     
@@ -169,7 +168,6 @@
     else{
         [self loadFromCoreData];
         
-        
     }
     
     if(_playingMoviesRequestResult.count>0){
@@ -179,7 +177,7 @@
         [self singleOptionAlertWithMessage:@"No network"];
     }
     
-    
+    [_moviePosterCollectionView reloadData];
     
 }
 
@@ -188,28 +186,16 @@
 
 -(void)loadFromCoreData{
     
-    // _mediaButton.userInteractionEnabled = NO;
-    // _ratingView.userInteractionEnabled = NO;
     [self loadMovieFromCoreData];
-    
-    _moviePostImage.contentSize = CGSizeMake(_playingMoviesRequestResult.count*(_moviePostImage.bounds.size.height*posterRatio+scrollViewContentGap), _moviePostImage.bounds.size.height);
-    for (int i = 0;i<_playingMoviesRequestResult.count;i++) {
-        Movie *movie = _playingMoviesRequestResult[i];
-        [self setImageViewWithTag:i];
-        [self setImageWithTag:i WithData:movie.posterData];
-        
-    }
+
     [_loadingActivityIndicator stopAnimating];
     [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
-    // _playingMoviesRequestResult = [NSMutableArray arrayWithCapacity:_playingMoviesRequestResult.count];
-    //if (_playingMoviesRequestResult.count>0) {
-    //     [self netAlert];
-    //  }
     
 }
 
 
 -(void)removeCoreData{
+    
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
     NSError *error;
     NSArray *temp = [NSMutableArray arrayWithArray: [_delegate.managedObjectContext executeFetchRequest:request error:&error]];
@@ -223,8 +209,9 @@
 -(void)loadMovieFromCoreData{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
     NSError *error;
-    
-    
+    _connected = NO;
+    _infoSegmentControl.selectedSegmentIndex = 1;
+    _infoSegmentControl.userInteractionEnabled = NO;
     _playingMoviesRequestResult = [NSMutableArray arrayWithArray: [_delegate.managedObjectContext executeFetchRequest:request error:&error]];
     
     if(_playingMoviesRequestResult==nil){
@@ -238,13 +225,13 @@
     
     [self loadMovieFromNet];
     if (_playingMoviesRequestResult.count>0) {
+        _infoSegmentControl.selectedSegmentIndex = 0;
+        _infoSegmentControl.userInteractionEnabled = YES;
         _mediaButton.userInteractionEnabled = YES;
         _ratingView.userInteractionEnabled = YES;
-        _moviePostImage.contentSize = CGSizeMake(_playingMoviesRequestResult.count*(_moviePostImage.bounds.size.height*posterRatio+scrollViewContentGap), _moviePostImage.bounds.size.height);
         
-        for (int i = 0;i<_playingMoviesRequestResult.count;i++) {
-            [self setImageViewWithTag:i];
-        }
+        
+        
         [self removeCoreData];
         
         for (int i=0;i<_playingMoviesRequestResult.count;i++)
@@ -254,16 +241,17 @@
                 NSString *poster_path = [temp valueForKey:@"poster_path"];
                 NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self setImageWithTag:i WithData:data];
-                        if(i==6){
-                            
-                            [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
-                            [_loadingActivityIndicator stopAnimating];
-                        }
+                        
+                     
                         if(i<=20){
                             [temp setObject:data forKey:@"poster_data"];
                             [self addMovieToCoreData:i];
                             
+                        }
+                        if(i==6){
+                            
+                            [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
+                            [_loadingActivityIndicator stopAnimating];
                         }
                     });
                 }];
@@ -276,9 +264,7 @@
         
     }
     
-    
 }
-
 
 
 -(void)loadMovieFromNet{
@@ -298,7 +284,7 @@
         _playingMoviesRequestResult  = [self removeUndesiredDataFromResults:_playingMoviesRequestResult  WithNullValueForKey:@"poster_path"]; // remove movies without post.
         
         
-      
+        
         
         NSMutableArray *array = [NSMutableArray array];
         for (NSDictionary *temp in _playingMoviesRequestResult) {
@@ -337,7 +323,7 @@
 
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-    if(scrollView == _moviePostImage ){
+    if(scrollView ==_moviePosterCollectionView ){
         if (velocity.x>0){
             [self autoScroll:[NSNumber numberWithFloat:scrollVelocity]];
         }
@@ -384,19 +370,6 @@
 }
 
 
--(void)setImageWithTag:(int)tag WithData:(NSData*)data{
-    UIImageView *imageView = (UIImageView*)[self.view viewWithTag:tag+20];
-    imageView.image = [UIImage imageWithData:data];
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    singleTap.numberOfTapsRequired=1;
-    // UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap2:)];
-    // doubleTap.numberOfTapsRequired=2;
-    [imageView addGestureRecognizer:singleTap];
-    // [imageView addGestureRecognizer:doubleTap];
-    imageView.userInteractionEnabled = YES;
-    imageView.backgroundColor = [UIColor grayColor];
-}
-
 -(void)showInfoFromCoreData:(long)num{
     Movie *movie =_playingMoviesRequestResult[num];
     
@@ -424,6 +397,8 @@
     _ratingView.tintColor = _movieInfo.textColor;
     
     if(_connected){
+        
+        
         NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:num];
         NSDictionary *genreDic = [[NSDictionary alloc] initWithContentsOfFile: self.genreResourcePath];
         NSArray *genre_ids = [movie valueForKey:@"genre_ids"];
@@ -454,11 +429,23 @@
         
         [self.backImageView setImage:[UIImage imageWithData: data]];
         
+        [self showTextView:movie];
+        _selectedMovie = num;
         
-        NSString *overview = [movie  valueForKey:@"overview"];
         
-        NSString *idn = [movie  valueForKey:@"id"];
-        NSString *showCast = @"";
+    }
+    else{
+        [self showInfoFromCoreData:num];
+        
+    }
+    
+}
+
+-(void)showTextView: (NSDictionary*)movie{
+    NSString *idn = [movie  valueForKey:@"id"];
+    if(_infoSegmentControl.selectedSegmentIndex == 0){
+        
+        
         //  /*
         NSString *castRequestString = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
         
@@ -467,109 +454,32 @@
             
             castList = @"N/A";
         }
-        NSArray *castArray = [castList componentsSeparatedByString:@","];
+        [_movieInfo setText:castList];
         
+    }
+    else if(_infoSegmentControl.selectedSegmentIndex == 1){
         
-        for (NSString *name in castArray) {
-            showCast = [showCast stringByAppendingString:name];
-            if (showCast.length>maxCastLengthForDisplay) {
-                break;
-            }
-        }
-        
-        
-        
-        NSString *info = [NSString stringWithFormat:@"Cast: %@ \n\nOverview:\n%@ ", showCast, overview];
+        [_movieInfo setText:[movie valueForKey:@"overview"]];
+    }
+    else{
         
         NSString *reviewRequestString = [NSString stringWithFormat:@"%@%@/reviews?%@",movieWeb,idn,APIKey];
         NSArray *reviewList = [self getDataFromUrl:[NSURL URLWithString:reviewRequestString] withKey:@"results" LimitPages:1];
-        NSString *reviewString = @"\n\nReview:\n";
-        NSUInteger reviewLength = reviewString.length;
+        NSString *reviewString = @"";
+        
         if(reviewList.count>0){
             
             for (NSDictionary *reviewDic in reviewList) {
                 NSString *author = [reviewDic valueForKey:@"author"];
                 NSString *content = [reviewDic valueForKey:@"content"];
-                reviewString = [NSString stringWithFormat:@"%@\n%@:\n%@\n(End)\n\n",reviewString,author,content];
+                reviewString = [NSString stringWithFormat:@"%@%@:\n%@\n\n\n",reviewString,author,content];
             }
         }
-        if(reviewString.length>reviewLength){
-            info = [info stringByAppendingString:reviewString];
-        }
-        
-        [_movieInfo setText:info];
-        
-        
-      
-        
-        
-        _selectedMovie = num;
-        
-        
-    }
-    else{
-        [self showInfoFromCoreData:num];
+        [_movieInfo setText:reviewString];
     }
     
 }
 
-
-- (void)handleTap:(UITapGestureRecognizer *)sender
-{
-    if (sender.state == UIGestureRecognizerStateEnded){
-        if(sender.view.tag-20!= _selectedMovie){
-            [_autoScrollTimer invalidate];
-            [self showInfo:sender.view.tag-20];
-        }
-        else{
-            
-            
-            UIImageView *imageView = (UIImageView*)sender.view;
-            if(imageView.image){
-                
-                PresentViewController *presentController = [[PresentViewController alloc]initWithNibName:@"PresentViewController" bundle:nil image:imageView.image];
-               // presentController.backImageView.image = imageView.image;
-                [self presentViewController:presentController animated:YES completion:^{
-                                    }];
-            }
-            
-            
-        }
-    }
-}
-
-- (void)handleTap2:(UITapGestureRecognizer *)sender
-{
-    if (sender.state == UIGestureRecognizerStateEnded){
-        
-        UIImageView *imageView = (UIImageView*)sender.view;
-        if(imageView.image){
-            
-            PresentViewController *presentController = [[PresentViewController alloc]initWithNibName:@"PresentViewController" bundle:nil];
-            [self presentViewController:presentController animated:YES completion:^{
-                presentController.backImageView.image = imageView.image;
-            }];
-        }
-    }
-}
-
-- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRang{
-    NSDictionary * movie = [_playingMoviesRequestResult objectAtIndex:_selectedMovie];
-    MovieMediaViewController *mediaViewController = [[MovieMediaViewController alloc]initWithNibName:@"MovieMediaViewController" bundle:nil movieDic:movie];
-    [self presentViewController:mediaViewController animated:YES completion:nil];
-    
-    return NO;
-}
-
--(void)setImageViewWithTag:(long)tag{
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(_scrollWeight, 0,_moviePostImage.bounds.size.height*posterRatio, _moviePostImage.bounds.size.height)];
-    imageView.tag = 20+tag;
-    [imageView setContentMode:UIViewContentModeScaleAspectFill];
-    [imageView setClipsToBounds:YES];
-    [_moviePostImage addSubview:imageView];
-    _scrollWeight = _moviePostImage.bounds.size.height*posterRatio+_scrollWeight+scrollViewContentGap;
-    
-}
 
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -579,16 +489,95 @@
 }
 
 
-
-
--(void)viewdidLayoutSubviews{
-    [_movieInfo setContentOffset:CGPointZero animated:NO];
+- (void)viewWillLayoutSubviews{
+    
     [super viewWillLayoutSubviews];
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout*)_moviePosterCollectionView.collectionViewLayout;
+    float height = _moviePosterCollectionView.frame.size.height;
+    if (UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation)) {
+        flowLayout.itemSize = CGSizeMake(height*posterRatio, height);
+    } else {
+        flowLayout.itemSize = CGSizeMake(height*posterRatio, height);
+    }
     
- 
+    [flowLayout invalidateLayout]; //force the elements to get laid out again with the new size
     
+    [_movieInfo setContentOffset:CGPointZero animated:NO];
 }
 
+
+
+
+
+#pragma -mark ---  delegate method for collectionview
+
+
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    MovieBackdropCollectionViewCell * customCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"movieImages" forIndexPath:indexPath];
+    if(_connected){ // the data come from API
+        
+        NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:indexPath.row];
+        
+        
+        NSString *file_path = [movie valueForKey:@"poster_path"];
+        file_path = [imdbPosterWeb stringByAppendingString: file_path];
+        NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:file_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (data) {
+                UIImage *poster = [UIImage imageWithData:data];
+                if (poster) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        MovieBackdropCollectionViewCell *updateCell =(MovieBackdropCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+                        if (updateCell){
+                            updateCell.movieImageView.image = poster;
+                        }
+                    });
+                }
+            }
+        }];
+        
+        [task resume];
+    }
+    else{ // the data come from core data
+        Movie *movie = [_playingMoviesRequestResult objectAtIndex:indexPath.row];
+        UIImage *poster = [UIImage imageWithData: movie.posterData];
+        customCell.movieImageView.image = poster;
+    }
+    return customCell;
+}
+
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return _playingMoviesRequestResult.count;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [_autoScrollTimer invalidate];
+    
+    if(indexPath.row == _selectedMovie){
+   
+        PresentViewController *presentController = [[PresentViewController alloc]initWithNibName:@"PresentViewController" bundle:nil image:self.backImageView.image];
+        
+        [self presentViewController:presentController animated:YES completion:^{
+        }];
+        
+    }
+    else{
+        MovieBackdropCollectionViewCell *cell = (MovieBackdropCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+        self.backImageView.image = cell.movieImageView.image;
+        
+        [self showInfo:indexPath.row];
+    }
+    
+    
+}
 
 
 #pragma -mark ---  delegate method for scrollview
@@ -606,9 +595,9 @@
     
     float velocity = [[timer userInfo] floatValue];
     //This makes the scrollView scroll to the desired position
-    if(velocity+_moviePostImage.contentOffset.x+self.view.bounds.size.width<_scrollWeight & velocity+_moviePostImage.contentOffset.x>0){
+    if(velocity+_moviePosterCollectionView.contentOffset.x+self.view.bounds.size.width<_moviePosterCollectionView.contentSize.width & velocity+_moviePosterCollectionView.contentOffset.x>0){
         
-        [_moviePostImage setContentOffset: CGPointMake(velocity+_moviePostImage.contentOffset.x,0) animated:YES];
+        [_moviePosterCollectionView setContentOffset: CGPointMake(velocity+_moviePosterCollectionView.contentOffset.x,0) animated:YES];
     }
 }
 
@@ -618,8 +607,13 @@
     [self presentViewController:mediaViewController animated:YES completion:nil];
 }
 
-
-
+- (IBAction)segmentChanged:(id)sender {
+    if(_connected){
+        NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:_selectedMovie];
+        [self showTextView:movie];
+    }
+    
+}
 
 
 @end

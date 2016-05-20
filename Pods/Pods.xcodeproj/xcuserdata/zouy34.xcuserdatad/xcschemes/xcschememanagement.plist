@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>NXOAuth2Client.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MyMovieApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>8352B5E0308A4391AF6DF2B799D3C4F5</key>
+		<key>1E85AABA23B5E543708FA4E03130F831</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9D6994988CEA875B7C6DBEC1C4619504</key>
+		<key>234465DB8759C9730B1F21A88546FBBB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>A8488902FAD1650405BAE38299A468E3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F9FF8AE559C0A85B6488D6D67E0A5DFF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

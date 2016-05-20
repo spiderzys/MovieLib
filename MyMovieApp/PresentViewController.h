@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PresentViewController : UIViewController
+@interface PresentViewController : UIViewController <UIDocumentInteractionControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *backImageView;
+@property UIDocumentInteractionController *documentInteractionController;
+
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil image: (UIImage*)image;
+
 @end

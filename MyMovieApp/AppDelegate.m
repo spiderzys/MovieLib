@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "Constant.h"
+#import "NXOAuth2.h"
+#import "SecondViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -29,15 +31,23 @@
     [self persistentStoreCoordinator];
     NSAssert([self managedObjectContext]!=nil, @"cannot create manageobjectcontext");
     
+    /*
+    [[NXOAuth2AccountStore sharedStore] setClientID:@"9484ca43e10c4e5f867cbc28e2556430"
+                                             secret:@"db1f3862d8f0458ab6a7d2dd6da55540"
+                                   authorizationURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/authorize"]
+                                           tokenURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"]
+                                        redirectURL:[NSURL URLWithString:@"scheme://authenticate.com"]
+                                     forAccountType:NXOAuth2AccountType];
     
     
+    */
     
     return YES;
 }
 
 -(void)loadRatingDataWithSession:(NSString*)sessionId username:(NSString*)username{
     
-   // dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    // dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     NSString* ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
     NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:ratingRequestString]];
     [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
@@ -47,17 +57,21 @@
             _username = nil;
             _sessionId = nil;
         }
-  //      dispatch_semaphore_signal(semaphore);
+        //      dispatch_semaphore_signal(semaphore);
     }]resume];
- //   dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    //   dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     
     
 }
 
-
+-(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+    NSLog(@"the call back we receive comes %@",url.absoluteString);
+    return [[NXOAuth2AccountStore sharedStore]handleRedirectURL:url];
+    
+}
 
 -(void)updateSessionId:(NSString*)session_id username:(NSString*)username{
-
+    
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_userResourcePath];
     [dict setValue:session_id forKey:@"session_id"];
     [dict setValue:username forKey:@"username"];
@@ -174,7 +188,6 @@
     
     return _persistentStoreCoordinator;
 }
-
 
 
 

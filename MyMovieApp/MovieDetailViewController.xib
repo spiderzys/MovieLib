@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieDetailViewController">
@@ -24,13 +25,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngC-AZ-eXe">
-                    <rect key="frame" x="315" y="315" width="257" height="0.0"/>
+                    <rect key="frame" x="315" y="355" width="257" height="0.0"/>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
                     <color key="textColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tear_off_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="IgR-1a-GbV">
-                    <rect key="frame" x="8" y="305" width="20" height="20"/>
+                    <rect key="frame" x="8" y="345" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="25" id="Gbz-x0-Mpm"/>
                         <constraint firstAttribute="width" secondItem="IgR-1a-GbV" secondAttribute="height" multiplier="1:1" id="Kqq-pj-Yx2"/>
@@ -43,13 +44,13 @@
                     </variation>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQ8-6x-uoH">
-                    <rect key="frame" x="33" y="305" width="257" height="20"/>
+                    <rect key="frame" x="33" y="345" width="257" height="20"/>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
                     <color key="textColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="christmas_star" translatesAutoresizingMaskIntoConstraints="NO" id="8Qd-5p-F4L">
-                    <rect key="frame" x="290" y="305" width="20" height="20"/>
+                    <rect key="frame" x="290" y="345" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="Nci-ei-I9q"/>
                         <constraint firstAttribute="width" constant="20" id="niM-Ih-CgF"/>
@@ -62,14 +63,14 @@
                     </variation>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbI-jD-YKj">
-                    <rect key="frame" x="572" y="305" width="20" height="20"/>
+                    <rect key="frame" x="572" y="345" width="20" height="20"/>
                     <state key="normal" image="movie-1"/>
                     <connections>
                         <action selector="showMedia:" destination="-1" eventType="touchUpInside" id="e1l-nZ-9qD"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJO-NS-Gqs" customClass="HCSStarRatingView">
-                    <rect key="frame" x="11" y="255" width="110" height="50"/>
+                    <rect key="frame" x="11" y="295" width="110" height="50"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="tintColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -113,7 +114,7 @@
                     </items>
                 </navigationBar>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R3P-5b-hPO">
-                    <rect key="frame" x="8" y="255" width="0.0" height="50"/>
+                    <rect key="frame" x="8" y="295" width="0.0" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="OXs-fQ-MSo"/>
                     </constraints>
@@ -121,8 +122,19 @@
                     <color key="textColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUC-V7-FMC">
+                    <rect key="frame" x="0.0" y="365" width="600" height="235"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                        <rect key="frame" x="0.0" y="451" width="800" height="349"/>
+                    </variation>
+                </textView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="H0t-fe-LEF">
-                    <rect key="frame" x="-16" y="55" width="632" height="200"/>
+                    <rect key="frame" x="-16" y="55" width="632" height="240"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="200" id="1CQ-0D-IRB"/>
@@ -133,28 +145,23 @@
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="1CQ-0D-IRB"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="hZG-Bq-1Uo"/>
                         <outlet property="delegate" destination="-1" id="NsO-eT-IzV"/>
                     </connections>
                 </collectionView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUC-V7-FMC">
-                    <rect key="frame" x="0.0" y="325" width="600" height="275"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <color key="textColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                        <rect key="frame" x="0.0" y="451" width="800" height="349"/>
-                    </variation>
-                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="LbI-jD-YKj" firstAttribute="centerY" secondItem="ngC-AZ-eXe" secondAttribute="centerY" id="0U1-ld-y4v"/>
                 <constraint firstItem="IgR-1a-GbV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="0i9-ib-5eM"/>
                 <constraint firstItem="R3P-5b-hPO" firstAttribute="centerY" secondItem="eJO-NS-Gqs" secondAttribute="centerY" id="1Jy-5v-8iw"/>
+                <constraint firstItem="H0t-fe-LEF" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.4" id="1qt-Ed-Xu1"/>
                 <constraint firstItem="LbI-jD-YKj" firstAttribute="width" secondItem="8Qd-5p-F4L" secondAttribute="width" id="62A-wn-r2H"/>
                 <constraint firstItem="R3P-5b-hPO" firstAttribute="top" secondItem="H0t-fe-LEF" secondAttribute="bottom" id="6Cb-g3-g2N"/>
                 <constraint firstItem="R3P-5b-hPO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="79X-NV-Gip"/>
