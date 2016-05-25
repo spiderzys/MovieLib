@@ -24,6 +24,7 @@ static NSArray* contentArray;
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     if([self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]){
         if(!_needRatingMovieList){
@@ -33,6 +34,7 @@ static NSArray* contentArray;
     else{
         [super netAlert];
     }
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 

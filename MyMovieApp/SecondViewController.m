@@ -73,7 +73,7 @@
 
 
 -(void)searchKeywords:(NSString*) keywords{
-    // [_searchButton setBackgroundColor:[UIColor redColor]];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     if ([[keywords stringByReplacingOccurrencesOfString:@" "
                                               withString:@""] length]==0) {
@@ -101,6 +101,7 @@
             
         }
     }
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 -(void)sortResult{

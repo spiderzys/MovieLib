@@ -156,7 +156,7 @@
 -(void)loadScrollView{
     
     
-    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     _selectedMovie = 0;
     _connected = [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]];
     
@@ -169,7 +169,7 @@
         [self loadFromCoreData];
         
     }
-    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     if(_playingMoviesRequestResult.count>0){
         [self showInfo:0];
     }
@@ -178,6 +178,7 @@
     }
     
     [_moviePosterCollectionView reloadData];
+    
     
 }
 
@@ -234,9 +235,8 @@
         
         [self removeCoreData];
         
-        for (int i=0;i<_playingMoviesRequestResult.count;i++)
-        {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        for (int i=0;i<_playingMoviesRequestResult.count;i++){
+         //   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
                 NSMutableDictionary *temp = _playingMoviesRequestResult[i];
                 NSString *poster_path = [temp valueForKey:@"poster_path"];
                 NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -257,7 +257,7 @@
                 }];
                 [task resume];
                 
-            });
+          //  });
             
             
         }

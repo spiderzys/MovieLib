@@ -38,13 +38,13 @@ static AppDelegate  *delegate;
        
     }];
     
-   
+   /*
     UIAlertAction *regAction = [UIAlertAction actionWithTitle:@"sign up" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         
          [self.delegate didDismissAlertControllerButtonTapped:signUp];
        
     }];
-  
+  */
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         [self.delegate didDismissAlertControllerButtonTapped:cancel];
