@@ -60,7 +60,7 @@ static NSArray* contentArray;
                   willDecelerate:(BOOL)decelerate{
     
     if (scrollView.contentOffset.y < -30) {
-        [self.view bringSubviewToFront:_loadingActivityIndicator];
+        
         if([self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]){
             
             
@@ -71,7 +71,7 @@ static NSArray* contentArray;
             scrollView.scrollEnabled = YES;
             
         }
-        //  [_loadingActivityIndicator stopAnimating];
+        [_loadingActivityIndicator stopAnimating];
     }
 }
 
@@ -305,12 +305,12 @@ static NSArray* contentArray;
 
 
 -(BOOL)loadRatingDataWithSession:(NSString*)sessionId username:(NSString*)username{
-    // [_loadingActivityIndicator startAnimating];
+     [_loadingActivityIndicator startAnimating];
     
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     _ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
-    NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:_ratingRequestString]];
-    [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
+    NSURLRequest *rateRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:_ratingRequestString]];
+    [[[NSURLSession sharedSession] dataTaskWithRequest:rateRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
         
         NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         if([rateResult objectForKey:@"results"]){

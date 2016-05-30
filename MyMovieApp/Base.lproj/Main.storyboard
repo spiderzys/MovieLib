@@ -64,10 +64,6 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DUz-M5-Vqy">
-                                <rect key="frame" x="290" y="0.0" width="20" height="20"/>
-                                <color key="color" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIY-yY-hmz" customClass="HCSStarRatingView">
                                 <rect key="frame" x="13" y="270" width="110" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -133,11 +129,16 @@
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="Eo6-rz-pAC"/>
                                 </connections>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DUz-M5-Vqy">
+                                <rect key="frame" x="290" y="264" width="20" height="20"/>
+                                <color key="color" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="RFm-jk-HZC" firstAttribute="width" secondItem="K0U-pm-TVz" secondAttribute="width" id="00B-OG-aYp"/>
+                            <constraint firstItem="DUz-M5-Vqy" firstAttribute="top" secondItem="tMQ-tg-Tyw" secondAttribute="bottom" id="0Zq-lU-Mpb"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="faK-my-Dut" secondAttribute="bottom" id="0gE-Nh-u3o"/>
                             <constraint firstAttribute="trailingMargin" secondItem="faK-my-Dut" secondAttribute="trailing" constant="-20" id="5uQ-ON-qrm"/>
                             <constraint firstItem="Mgg-Tc-VmQ" firstAttribute="height" secondItem="6iW-aK-IAr" secondAttribute="height" id="66Y-6s-Gtt"/>
@@ -155,7 +156,6 @@
                             <constraint firstItem="EJH-jr-bdb" firstAttribute="top" secondItem="6iW-aK-IAr" secondAttribute="bottom" constant="3" id="LMP-Tq-Ux8"/>
                             <constraint firstItem="faK-my-Dut" firstAttribute="top" secondItem="EJH-jr-bdb" secondAttribute="bottom" id="Ohy-lk-uwf"/>
                             <constraint firstItem="6iW-aK-IAr" firstAttribute="top" secondItem="USM-tR-qXF" secondAttribute="bottom" id="PUu-eE-std"/>
-                            <constraint firstItem="DUz-M5-Vqy" firstAttribute="top" secondItem="tMQ-tg-Tyw" secondAttribute="bottom" id="PXo-MI-SUm"/>
                             <constraint firstItem="faK-my-Dut" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="Pkn-Fj-o9H"/>
                             <constraint firstItem="K0U-pm-TVz" firstAttribute="centerY" secondItem="6iW-aK-IAr" secondAttribute="centerY" id="Sg2-wa-nHc"/>
                             <constraint firstItem="6iW-aK-IAr" firstAttribute="centerY" secondItem="Mgg-Tc-VmQ" secondAttribute="centerY" id="UkT-5J-zyN"/>
@@ -173,11 +173,6 @@
                             <constraint firstItem="RNZ-DX-Rym" firstAttribute="width" secondItem="Mgg-Tc-VmQ" secondAttribute="width" id="vyh-uQ-wWY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EJH-jr-bdb" secondAttribute="trailing" constant="-20" id="z70-uK-B0l"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="PXo-MI-SUm"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Showing" image="movie" id="acW-dT-cKf"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -196,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="814" y="-288"/>
+            <point key="canvasLocation" x="814" y="-291"/>
         </scene>
         <!--Profile-->
         <scene sceneID="hLN-Vb-anR">
@@ -210,10 +205,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sAg-EW-CCU">
-                                <rect key="frame" x="290" y="137" width="20" height="20"/>
-                                <color key="color" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LnF-yJ-thy">
                                 <rect key="frame" x="10" y="97" width="70" height="30"/>
                                 <state key="normal" title="About">
@@ -290,6 +281,10 @@
                                     <constraint firstAttribute="width" secondItem="DVz-3n-y3c" secondAttribute="height" multiplier="7.7:1" id="J0s-Zw-Q59"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sAg-EW-CCU">
+                                <rect key="frame" x="290" y="137" width="20" height="20"/>
+                                <color key="color" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

@@ -38,13 +38,29 @@ static AppDelegate  *delegate;
        
     }];
     
-   /*
+   
     UIAlertAction *regAction = [UIAlertAction actionWithTitle:@"sign up" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         
-         [self.delegate didDismissAlertControllerButtonTapped:signUp];
+      //   [self.delegate didDismissAlertControllerButtonTapped:signUp];
+        
+        
+        NSString *requestString = [NSString stringWithFormat:@"%@?%@",tokenRequestUrl,APIKey];;
+        NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:requestString]];
+        [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
+            NSDictionary *dataDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            NSNumber *requestResult = [dataDic valueForKey:@"success"];
+            if ([requestResult intValue]==1) {
+                NSString* requestToken = [dataDic valueForKey:@"request_token"];
+                NSString* authString = [NSString stringWithFormat:@"https://www.themoviedb.org/authenticate/%@",requestToken];
+                [[UIApplication sharedApplication]openURL:[NSURL URLWithString:authString]];
+                            }
+        }]resume];
+
+        
        
     }];
-  */
+  
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         [self.delegate didDismissAlertControllerButtonTapped:cancel];
@@ -53,7 +69,7 @@ static AppDelegate  *delegate;
     }];
    
     [self addAction:loginAction];
-  //  [self addAction:regAction];
+   // [self addAction:regAction];
     [self addAction:cancelAction];
     
 
@@ -72,7 +88,7 @@ static AppDelegate  *delegate;
 
 -(void)loginWithUsername:(NSString*)username Password:(NSString*)password{
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    NSString *requestString = [NSString stringWithFormat:@"%@?%@",tokenRequestUrl,APIKey];;
+    NSString *requestString = [NSString stringWithFormat:@"%@?%@",tokenRequestUrl,APIKey];
     NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:requestString]];
     [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
         NSDictionary *dataDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
