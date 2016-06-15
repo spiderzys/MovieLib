@@ -13,5 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet HCSStarRatingView *ratingView;
 
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+
 @property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
 @end

@@ -215,6 +215,7 @@
         
         
     }
+    NSLog(@"%@",[_movie valueForKey:@"id"]);
 
     
 }

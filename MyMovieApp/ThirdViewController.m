@@ -24,7 +24,7 @@ static NSArray* contentArray;
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     
     if([self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]){
         if(!_needRatingMovieList){
@@ -41,8 +41,8 @@ static NSArray* contentArray;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-  
-   // [self resetRatingList];
+    
+    // [self resetRatingList];
     
     [[_userLabel layer] setCornerRadius:10.0f];
     [[_userLabel layer] setMasksToBounds:YES];
@@ -99,8 +99,8 @@ static NSArray* contentArray;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if(contentArray){
-    NSArray *array = [contentArray objectAtIndex:section];
-    return array.count;
+        NSArray *array = [contentArray objectAtIndex:section];
+        return array.count;
     }
     else{
         return 0;
@@ -116,13 +116,25 @@ static NSArray* contentArray;
     NSDictionary *movie = [array objectAtIndex:indexPath.row];
     
     
+    [customCell.deleteButton removeTarget:nil
+                       action:NULL
+             forControlEvents:UIControlEventAllEvents];
+    customCell.deleteButton.tag = 0;
     if(indexPath.section<3){
         
         customCell.userRatingView.value =[[movie valueForKey:@"rating"]floatValue]/2;
         customCell.userRatingView.hidden = NO;
+        customCell.deleteButton.hidden = NO;
+        customCell.deleteButton.userInteractionEnabled = YES;
+        customCell.deleteButton.tag = 10000+indexPath.section*1000 + indexPath.row;
+        [customCell.deleteButton addTarget:self action:@selector(deleteRating:) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     else{
         customCell.userRatingView.hidden = YES;
+        customCell.deleteButton.hidden = YES;
+        customCell.deleteButton.userInteractionEnabled = NO;
+    
     }
     
     customCell.ratingView.value = [[movie valueForKey:@"vote_average"]floatValue]/2;
@@ -137,7 +149,7 @@ static NSArray* contentArray;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UserMovieCollectionViewCell *updateCell =(UserMovieCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
                     if (updateCell)
-                        updateCell.cellImageView.image = image;
+                    updateCell.cellImageView.image = image;
                     
                 });
             }
@@ -150,18 +162,35 @@ static NSArray* contentArray;
     return customCell;
 }
 
+-(void)deleteRating:(UIButton*)button{
+    if(button.tag >= (long)10000){
+      
+        NSInteger row = button.tag%1000;
+        NSInteger section = (button.tag-row-10000)/1000;
+
+       
+        NSMutableArray *temp = [contentArray objectAtIndex:section];
+        NSDictionary *movie = [temp objectAtIndex:row];
+        NSString *idn = [movie valueForKey:@"id"];
+        [super deleteRatingWithId:idn];
+        [temp removeObjectAtIndex:row];
+        [_userMovieCollectionView reloadData];
+
+    }
+}
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     
     UserMovieCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"head" forIndexPath:indexPath];
     if(headerView){
-       
+        
         NSString *title = [_headTitleArray objectAtIndex:indexPath.section];
         NSArray *array = [contentArray objectAtIndex:indexPath.section];
         if(array.count==0){
             title = [title stringByAppendingString:@" N/A"];
         }
-        [headerView.headerLabel setText:title];        
+        [headerView.headerLabel setText:title];
     }
     return headerView;
 }
@@ -237,7 +266,7 @@ static NSArray* contentArray;
                 break;
             }
         }
-        
+
     }
     return nonRatedList;
 }
@@ -305,32 +334,38 @@ static NSArray* contentArray;
 
 
 -(BOOL)loadRatingDataWithSession:(NSString*)sessionId username:(NSString*)username{
-     [_loadingActivityIndicator startAnimating];
+    [_loadingActivityIndicator startAnimating];
     
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     _ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
     NSURLRequest *rateRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:_ratingRequestString]];
+   
     [[[NSURLSession sharedSession] dataTaskWithRequest:rateRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
         
-        NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        if([rateResult objectForKey:@"results"]){
-            
-            
-            [self initRatingListFromUrl:[NSURL URLWithString:_ratingRequestString]];
-            [self reloadRatingList];
-            
-        }
-        else{
-            AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
-            delegate.username = nil;
-            delegate.sessionId = nil;
-            
-        }
-        dispatch_semaphore_signal(semaphore);
+       
+        
+            NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            if([rateResult objectForKey:@"results"]){
+                
+                
+                [self initRatingListFromUrl:[NSURL URLWithString:_ratingRequestString]];
+                [self reloadRatingList];
+                
+            }
+            else{
+                AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+                delegate.username = nil;
+                delegate.sessionId = nil;
+                
+            }
+       
+              dispatch_semaphore_signal(semaphore);
     }]resume];
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+       dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     
     [_loadingActivityIndicator stopAnimating];
+    
+    
     if(_needRatingMovieList){
         return YES;
     }
@@ -364,7 +399,7 @@ static NSArray* contentArray;
     else if(buttonTapped ==signIn){
         if(delegate.sessionId){
             [self loadRatingDataWithSession:delegate.sessionId username:delegate.username];
-             _userLabel.text = delegate.username;
+            _userLabel.text = delegate.username;
         }
         else{
             LoginAlertController *alertController = [LoginAlertController alertControllerWithTitle:@"Username and Password do not match!" message:nil preferredStyle:UIAlertControllerStyleAlert];

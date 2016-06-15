@@ -31,4 +31,5 @@
 -(void)singleOptionAlertWithMessage:(NSString *)message;
 -(void)updateGenre;
 -(void)rateMovieWithId:(NSString*)idn Rate:(float)mark;
+-(void)deleteRatingWithId:(NSString*)idn;
 @end

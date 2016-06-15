@@ -131,6 +131,39 @@
 }
 
 
+-(void)deleteRatingWithId:(NSString*)idn{
+    
+    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    NSString *rateRequstString = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/%@/rating?%@&session_id=%@",idn,APIKey,delegate.sessionId];
+    NSURL *URL = [NSURL URLWithString:rateRequstString];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    [request setHTTPMethod:@"DELETE"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+     NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      
+                                      if (error) {
+                                          // Handle error...
+                                          return;
+                                      }
+                                      
+                                      if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                          NSLog(@"Response HTTP Status code: %ld\n", (long)[(NSHTTPURLResponse *)response statusCode]);
+                                          NSLog(@"Response HTTP Headers:\n%@\n", [(NSHTTPURLResponse *)response allHeaderFields]);
+                                      }
+                                      
+                                      NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                      NSLog(@"Response Body:\n%@\n", body);
+                                  }];
+    [task resume];
+}
+
+
+
 -(void)rateMovieWithId:(NSString*)idn Rate:(float)mark{
     AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
     NSString *rateRequstString = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/%@/rating?%@&session_id=%@",idn,APIKey,delegate.sessionId];

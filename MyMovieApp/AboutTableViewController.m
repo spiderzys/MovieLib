@@ -27,7 +27,7 @@ static NSArray *kitTerm;
 
 - (void)viewDidLoad {
     self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    NSArray* acknowledegementArray = @[@"HCSStarRatingView",@"YTPlayerView",@"Term of Use of API",@"Privacy Policy of API"];
+    NSArray* acknowledegementArray = @[@"HCSStarRatingView",@"YTPlayerView",@"Privacy Policy of API",@"Authorization of API Usage"];
     NSArray* feedbackArray = @[@"Contact by email",@"Rate This App"];
     //NSArray* feedbackArray = @[@"Contact by email"];
     tableCellStringArray = [NSArray arrayWithObjects:acknowledegementArray,feedbackArray, nil];
@@ -40,7 +40,7 @@ static NSArray *kitTerm;
     
     kitTerm =@[@"Copyright (c) 2015 Hugo Sousa\n\n Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\n THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
                
-               @"Copyright 2014 Google Inc. All rights reserved.\n\n Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.",termContent,privacyContent
+               @"Copyright 2014 Google Inc. All rights reserved.\n\n Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.",privacyContent,[NSString stringWithFormat: @"This product uses the TMDb API but is not endorsed or certified by TMDb. The product has been authorized to use this API, including logo of API's provider, by following the API term of use. \n\n %@",termContent]
                ];
     
     [super viewDidLoad];
@@ -112,7 +112,7 @@ static NSArray *kitTerm;
         
     }
     
-    else if(indexPath.row==1){
+    else if(indexPath.row==1 && indexPath.section == 1){
         NSString *appId = @"1112858592";
         NSString *reviewURL = [NSString stringWithFormat:@"http://itunes.apple.com/app/id%@",appId];
         
@@ -121,8 +121,9 @@ static NSArray *kitTerm;
     }
     
     
+    
     else if(indexPath.section==0){
-        if(indexPath.row==0){
+        
             LicenseViewController *linceseviewController = [[LicenseViewController alloc]initWithNibName:@"LicenseViewController" bundle:nil];
             NSArray *array = [tableCellStringArray objectAtIndex:indexPath.section];
             
@@ -130,7 +131,7 @@ static NSArray *kitTerm;
             [self presentViewController:linceseviewController animated:YES completion:nil];
             [linceseviewController.licenseTextView setText:[kitTerm objectAtIndex:indexPath.row]];
             linceseviewController.navigationBar.topItem.title = [array objectAtIndex:indexPath.row];
-        }
+        
     }
     
     

@@ -26,11 +26,10 @@
     _sessionId = [dict valueForKey:@"session_id"];
     _username = [dict valueForKey:@"username"];
     
-    
     [self managedObjectModel];
     [self persistentStoreCoordinator];
     NSAssert([self managedObjectContext]!=nil, @"cannot create manageobjectcontext");
-    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     /*
     [[NXOAuth2AccountStore sharedStore] setClientID:@"9484ca43e10c4e5f867cbc28e2556430"
                                              secret:@"db1f3862d8f0458ab6a7d2dd6da55540"
