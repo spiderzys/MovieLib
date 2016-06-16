@@ -265,6 +265,7 @@
     
     NSString *file_path = [movieImageDic valueForKey:@"file_path"];
     file_path = [imdbPosterWeb stringByAppendingString: file_path];
+    customCell.movieImageView.image = nil;
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:file_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
             UIImage *image = [UIImage imageWithData:data];

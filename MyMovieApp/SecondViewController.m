@@ -177,6 +177,7 @@
     NSString *backPath = [movie valueForKey:@"backdrop_path"];
     backPath = [imdbPosterWeb stringByAppendingString:backPath];
     customCell.infoLabel.text = [movie valueForKey:@"title"];
+    customCell.backPosterImageView.image = nil;
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:backPath] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
             UIImage *image = [UIImage imageWithData:data];

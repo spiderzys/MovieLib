@@ -142,6 +142,7 @@ static NSArray* contentArray;
     
     NSString *poster_path = [movie valueForKey:@"poster_path"];
     poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
+    customCell.cellImageView.image = nil;
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
             UIImage *image = [UIImage imageWithData:data];

@@ -518,6 +518,7 @@
     
     
     MovieBackdropCollectionViewCell * customCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"movieImages" forIndexPath:indexPath];
+    customCell.movieImageView.image = nil;
     if(_connected){ // the data come from API
         
         NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:indexPath.row];
@@ -525,6 +526,7 @@
         
         NSString *file_path = [movie valueForKey:@"poster_path"];
         file_path = [imdbPosterWeb stringByAppendingString: file_path];
+        
         NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:file_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (data) {
                 UIImage *poster = [UIImage imageWithData:data];
