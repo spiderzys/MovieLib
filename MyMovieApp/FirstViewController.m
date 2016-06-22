@@ -111,7 +111,15 @@
     
     [super viewDidLoad];
     
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        UIFont *font = [UIFont boldSystemFontOfSize:33.0f];
+        NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                               forKey:NSFontAttributeName];
+        [self.infoSegmentControl setTitleTextAttributes:attributes
+                                        forState:UIControlStateNormal];
+    }
     
+    self.releaseDateLabel.adjustsFontSizeToFitWidth = YES;
     UITabBarController *tab = self.tabBarController;
     [tab.tabBar setBackgroundImage:[[UIImage alloc] init]];
     [tab.tabBar setShadowImage:[[UIImage alloc] init]];

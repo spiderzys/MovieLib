@@ -35,8 +35,12 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.41923148557449197" green="0.34757930487747596" blue="0.57389152486910988" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                        </variation>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="50z-1p-RNG" secondAttribute="trailing" id="E4O-Um-mtN"/>
                     <constraint firstItem="50z-1p-RNG" firstAttribute="top" secondItem="0zd-Ph-pkW" secondAttribute="topMargin" constant="-8" id="TbD-tl-fRl"/>

@@ -135,7 +135,13 @@
 
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        return 70;
+    }
+    
+    
     if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        
         return 45.0f;
     } else {
         return 60.0f;
@@ -170,6 +176,7 @@
         //customCell =[_searchResultTableView  dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
          NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SearchResultTableViewCell" owner:self options:nil];
         customCell = [nib objectAtIndex:0];
+        customCell.backgroundColor = [UIColor clearColor];
     }
     
     
@@ -214,6 +221,12 @@
 }
 
 
+
+-(void)viewWillAppear:(BOOL)animated{
+     [super viewWillAppear:animated];
+    [_searchBar sizeToFit];
+   
+}
 
 
 - (void)didReceiveMemoryWarning {

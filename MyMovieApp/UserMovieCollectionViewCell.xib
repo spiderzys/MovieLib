@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserMovieCollectionViewCell"/>
@@ -18,11 +19,12 @@
                         <color key="backgroundColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mWx-61-yM2" customClass="HCSStarRatingView">
-                        <rect key="frame" x="0.0" y="100" width="90" height="10"/>
+                        <rect key="frame" x="0.0" y="80" width="90" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="1" green="0.80970532490000002" blue="0.28329452519999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="10" id="K1Q-K3-fbM"/>
+                            <constraint firstAttribute="height" priority="750" constant="10" id="K1Q-K3-fbM"/>
+                            <constraint firstAttribute="height" constant="20" id="xVE-4S-tBC"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="continuous" value="YES"/>
@@ -38,13 +40,24 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="accurateHalfStars" value="YES"/>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="YES"/>
                         </userDefinedRuntimeAttributes>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="xVE-4S-tBC"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="xVE-4S-tBC"/>
+                            </mask>
+                        </variation>
                     </view>
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k1z-4D-51Z" customClass="HCSStarRatingView">
-                        <rect key="frame" x="0.0" y="110" width="90" height="10"/>
+                        <rect key="frame" x="0.0" y="100" width="90" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.57983654129999995" green="0.480734842" blue="0.79374590970000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="10" id="lRT-bt-dQ4"/>
+                            <constraint firstAttribute="height" constant="20" id="BMw-US-OAn"/>
+                            <constraint firstAttribute="height" priority="750" constant="10" id="lRT-bt-dQ4"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="continuous" value="YES"/>
@@ -61,29 +74,43 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTr-uz-gUs">
-                        <rect key="frame" x="80" y="0.0" width="10" height="10"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofc-7D-Xzu">
+                        <rect key="frame" x="60" y="0.0" width="30" height="30"/>
+                        <color key="backgroundColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="10" id="mmf-ys-vYb"/>
-                            <constraint firstAttribute="height" constant="10" id="yfW-rP-mGz"/>
+                            <constraint firstAttribute="width" secondItem="ofc-7D-Xzu" secondAttribute="height" id="1Ee-4T-lgB"/>
+                            <constraint firstAttribute="height" priority="750" constant="10" id="3K0-zn-uPh"/>
+                            <constraint firstAttribute="height" constant="20" id="d4B-TT-I8V"/>
+                            <constraint firstAttribute="width" priority="750" constant="10" id="qYl-gQ-YvP"/>
+                            <constraint firstAttribute="width" constant="20" id="sEa-Aa-Zto"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" title="X">
-                            <color key="titleColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="d4B-TT-I8V"/>
+                                <exclude reference="sEa-Aa-Zto"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="d4B-TT-I8V"/>
+                                <include reference="sEa-Aa-Zto"/>
+                            </mask>
+                        </variation>
                     </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstItem="ofc-7D-Xzu" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="4uR-x3-rsB"/>
                 <constraint firstItem="mWx-61-yM2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="5s7-kt-td3"/>
-                <constraint firstItem="yTr-uz-gUs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="6R3-j5-04a"/>
                 <constraint firstItem="k1z-4D-51Z" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9kW-mR-j8K"/>
                 <constraint firstAttribute="trailing" secondItem="mWx-61-yM2" secondAttribute="trailing" id="GCa-DW-Fw2"/>
-                <constraint firstAttribute="trailing" secondItem="yTr-uz-gUs" secondAttribute="trailing" id="RWS-pd-S94"/>
                 <constraint firstAttribute="trailing" secondItem="5Qa-ZQ-ROB" secondAttribute="trailing" id="TQg-Cc-4rT"/>
                 <constraint firstItem="5Qa-ZQ-ROB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Y4N-kt-mCN"/>
+                <constraint firstAttribute="trailing" secondItem="ofc-7D-Xzu" secondAttribute="trailing" id="bEP-dr-bEs"/>
                 <constraint firstAttribute="bottom" secondItem="k1z-4D-51Z" secondAttribute="bottom" id="fOo-uO-TJy"/>
                 <constraint firstAttribute="trailing" secondItem="k1z-4D-51Z" secondAttribute="trailing" id="qeE-3E-Yuj"/>
                 <constraint firstItem="k1z-4D-51Z" firstAttribute="top" secondItem="mWx-61-yM2" secondAttribute="bottom" id="tuB-Dg-mlq"/>
@@ -93,7 +120,7 @@
             <size key="customSize" width="70" height="80"/>
             <connections>
                 <outlet property="cellImageView" destination="5Qa-ZQ-ROB" id="pUw-2X-JsS"/>
-                <outlet property="deleteButton" destination="yTr-uz-gUs" id="9g1-a5-Dgc"/>
+                <outlet property="deleteButton" destination="ofc-7D-Xzu" id="tp6-83-hZH"/>
                 <outlet property="ratingView" destination="k1z-4D-51Z" id="QDr-Eb-GZk"/>
                 <outlet property="userRatingView" destination="mWx-61-yM2" id="nSm-5T-naL"/>
             </connections>

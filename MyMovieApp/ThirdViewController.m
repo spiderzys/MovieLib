@@ -59,7 +59,7 @@ static NSArray* contentArray;
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                   willDecelerate:(BOOL)decelerate{
     
-    if (scrollView.contentOffset.y < -30) {
+    if (scrollView.contentOffset.y < -50) {
         
         if([self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]){
             
@@ -138,8 +138,11 @@ static NSArray* contentArray;
     }
     
     customCell.ratingView.value = [[movie valueForKey:@"vote_average"]floatValue]/2;
+ //   NSLog(@"%f",customCell.ratingView.value);
     customCell.ratingView.hidden = (customCell.ratingView.value==0)?YES:NO;
-    
+    if(customCell.ratingView.hidden == NO){
+    NSLog(@"%f,%f,%f,%f",customCell.ratingView.frame.origin.x,customCell.ratingView.frame.origin.y,customCell.frame.size.height,customCell.ratingView.frame.size.height);
+    }
     NSString *poster_path = [movie valueForKey:@"poster_path"];
     poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
     customCell.cellImageView.image = nil;
