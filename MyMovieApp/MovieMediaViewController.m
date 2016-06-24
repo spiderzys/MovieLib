@@ -41,6 +41,9 @@ static CGRect NALabelRect;
 -(void)setCollectionView{
     [_movieMediaCollection registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cell];
     [_movieMediaCollection registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:header];
+    
+   
+ 
     NALabelSize = CGSizeMake([UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height*0.1);
     NALabelRect = CGRectMake(20, 0, NALabelSize.width, NALabelSize.height);
     // Do any additional setup after loading the view from its nib.
@@ -268,6 +271,9 @@ static CGRect NALabelRect;
             return headerView;
         }
         UILabel *label = [[UILabel alloc]initWithFrame:NALabelRect];
+        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+            label.font = [UIFont systemFontOfSize:40];
+        }
         [headerView addSubview:label];
         label.textColor = _tintColor;
         [label setText:[_headTitleArray objectAtIndex:indexPath.section]];

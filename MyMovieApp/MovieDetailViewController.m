@@ -238,6 +238,25 @@
 }
 
 
+- (void)viewWillLayoutSubviews{
+    
+    [super viewWillLayoutSubviews];
+    
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout*)_movieBackdropCollectionView.collectionViewLayout;
+    float height = _movieBackdropCollectionView.frame.size.height;
+    if (UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation)) {
+        flowLayout.itemSize = CGSizeMake(height*posterRatio, height);
+    } else {
+        flowLayout.itemSize = CGSizeMake(height*posterRatio, height);
+    }
+    
+    [flowLayout invalidateLayout]; //force the elements to get laid out again with the new size
+    
+    [_movieInfo setContentOffset:CGPointZero animated:NO];
+}
+
+
+
 
 
 

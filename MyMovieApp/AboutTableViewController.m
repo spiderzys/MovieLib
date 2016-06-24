@@ -81,8 +81,25 @@ static NSArray *kitTerm;
     // Configure the cell...
     NSArray *array = [tableCellStringArray objectAtIndex:indexPath.section];
     cell.textLabel.text = [array objectAtIndex:indexPath.row];
-    
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        cell.textLabel.font = [UIFont systemFontOfSize:30];
+    }
+
     return cell;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        return 70;
+    }
+    
+    
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        
+        return 45.0f;
+    } else {
+        return 60.0f;
+    }
 }
 
 
