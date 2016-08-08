@@ -32,3 +32,4 @@ float scrollViewContentGap = 10.0;
 NSString * const genreUrl = @"http://api.themoviedb.org/3/genre/list?";
 float scrollVelocity = 10.0;
 NSString * const youtubeWeb = @"https://www.youtube.com/watch?v=";
+int coreDataSize = 20;

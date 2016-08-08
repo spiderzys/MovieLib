@@ -22,6 +22,48 @@
 		69466A331CC70925002B95B6 /* UserMovieCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69466A311CC70925002B95B6 /* UserMovieCollectionHeaderView.m */; };
 		6946E5CD1CB31E96007546ED /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6946E5CC1CB31E96007546ED /* SearchResultTableViewCell.xib */; };
 		6946E5D01CB330F0007546ED /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6946E5CF1CB330F0007546ED /* SearchResultTableViewCell.m */; };
+		694773091D5802E7004C986F /* MovieMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FCCCC11CCF483D0067420B /* MovieMediaViewController.m */; };
+		6947730A1D5802EB004C986F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695FC7F31C3A1B2900AA5B24 /* ViewController.m */; };
+		6947730B1D5802EE004C986F /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 690D584E1BC0962200406ADA /* FirstViewController.m */; };
+		6947730C1D5802F4004C986F /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 690D58511BC0962200406ADA /* SecondViewController.m */; };
+		6947730D1D5802F6004C986F /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6946E5CF1CB330F0007546ED /* SearchResultTableViewCell.m */; };
+		6947730E1D5802F9004C986F /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699AB2F71C3E3D170066A6C0 /* ThirdViewController.m */; };
+		6947730F1D5802FC004C986F /* LoginAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E002D81CDAF45500F5DBDA /* LoginAlertController.m */; };
+		694773101D580300004C986F /* UserMovieCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69466A311CC70925002B95B6 /* UserMovieCollectionHeaderView.m */; };
+		694773111D580302004C986F /* UserMovieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6916137B1CC5F78F0075A55A /* UserMovieCollectionViewCell.m */; };
+		694773121D580306004C986F /* PresentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698006DA1C3CC8B400A1494B /* PresentViewController.m */; };
+		694773131D580309004C986F /* MovieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6925B9241CB49BAB0023EDCC /* MovieDetailViewController.m */; };
+		694773141D580310004C986F /* MovieBackdropCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69027DE31CC9F2A900DD6C3A /* MovieBackdropCollectionViewCell.m */; };
+		694773151D580315004C986F /* LicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695F0F851CE1A37F00715526 /* LicenseViewController.m */; };
+		694773161D580318004C986F /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 694D776D1CE05FB900A1A4F5 /* AboutTableViewController.m */; };
+		694773171D58031A004C986F /* RegViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6965FFD21CBF4B72009D9AB0 /* RegViewController.m */; };
+		694773181D580375004C986F /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6925B9251CB49BAB0023EDCC /* MovieDetailViewController.xib */; };
+		694773191D580377004C986F /* MovieBackdropCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 698F02E91CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib */; };
+		6947731A1D58037A004C986F /* LicenseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 695F0F861CE1A37F00715526 /* LicenseViewController.xib */; };
+		6947731B1D58037C004C986F /* AboutTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 694D776E1CE05FB900A1A4F5 /* AboutTableViewController.xib */; };
+		6947731C1D580384004C986F /* MovieMediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69FCCCC21CCF483D0067420B /* MovieMediaViewController.xib */; };
+		6947731D1D580389004C986F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 690D58531BC0962200406ADA /* Main.storyboard */; };
+		6947731E1D58038F004C986F /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6946E5CC1CB31E96007546ED /* SearchResultTableViewCell.xib */; };
+		6947731F1D58039A004C986F /* PresentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 694D776A1CE0473200A1A4F5 /* PresentViewController.xib */; };
+		694773201D58039D004C986F /* UserMovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6916137C1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib */; };
+		694773211D5803A5004C986F /* RegViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6965FFD31CBF4B72009D9AB0 /* RegViewController.xib */; };
+		694773221D5803AF004C986F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 690D58581BC0962200406ADA /* LaunchScreen.storyboard */; };
+		694773231D580404004C986F /* MyMovieApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69764BC61C37844900509D09 /* MyMovieApp.xcdatamodeld */; };
+		694773261D580410004C986F /* libPods-MyMovieApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3879134C8E5BC01DD945129 /* libPods-MyMovieApp.a */; };
+		694773271D58041D004C986F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F5808F1BC7396900656024 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		694773281D580421004C986F /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F5809A1BC7487300656024 /* Constant.m */; };
+		694773291D580426004C986F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 690D58481BC0962200406ADA /* main.m */; };
+		6947732A1D580650004C986F /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 69668F461BE1CEC200E9D59A /* libxml2.tbd */; };
+		6947732B1D580652004C986F /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F580981BC73DA900656024 /* libz.1.2.5.tbd */; };
+		6947732C1D580654004C986F /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69F8F10D1C3A764100438350 /* Assets.bundle */; };
+		6947732D1D580658004C986F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F580941BC73CB300656024 /* CoreGraphics.framework */; };
+		6947732E1D58065A004C986F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F580961BC73CBC00656024 /* SystemConfiguration.framework */; };
+		6947732F1D58065D004C986F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F580921BC73CA100656024 /* MobileCoreServices.framework */; };
+		694773301D58067D004C986F /* term.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69496F111CE40C1000B457F7 /* term.txt */; };
+		694773311D58067F004C986F /* privacy.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69496F131CE40EB800B457F7 /* privacy.txt */; };
+		694773321D580681004C986F /* user.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6965FFC51CBF1883009D9AB0 /* user.plist */; };
+		694773331D580684004C986F /* genre.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6977C4F71CCC5D3900DE1188 /* genre.plist */; };
+		694773341D580686004C986F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 690D58561BC0962200406ADA /* Assets.xcassets */; };
 		69496F121CE40C1000B457F7 /* term.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69496F111CE40C1000B457F7 /* term.txt */; };
 		69496F141CE40EB800B457F7 /* privacy.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69496F131CE40EB800B457F7 /* privacy.txt */; };
 		694D776B1CE0473200A1A4F5 /* PresentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 694D776A1CE0473200A1A4F5 /* PresentViewController.xib */; };
@@ -39,6 +81,7 @@
 		698006DB1C3CC8B400A1494B /* PresentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 698006DA1C3CC8B400A1494B /* PresentViewController.m */; };
 		698F02EA1CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 698F02E91CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib */; };
 		699AB2F81C3E3D170066A6C0 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699AB2F71C3E3D170066A6C0 /* ThirdViewController.m */; };
+		69CE5ED31D56767E00EC6730 /* FirstViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CE5ED21D56767E00EC6730 /* FirstViewControllerTest.m */; };
 		69E002DA1CDAF45500F5DBDA /* LoginAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E002D81CDAF45500F5DBDA /* LoginAlertController.m */; };
 		69F580901BC7396900656024 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F5808F1BC7396900656024 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		69F580931BC73CA100656024 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F580921BC73CA100656024 /* MobileCoreServices.framework */; };
@@ -51,6 +94,16 @@
 		69FCCCC41CCF483D0067420B /* MovieMediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69FCCCC21CCF483D0067420B /* MovieMediaViewController.xib */; };
 		BFA44ACBC84EB8F5F5815235 /* libPods-MyMovieApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3879134C8E5BC01DD945129 /* libPods-MyMovieApp.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		69CE5ECD1D56762D00EC6730 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 690D583C1BC0962200406ADA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 690D58431BC0962200406ADA;
+			remoteInfo = MyMovieApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		69027DE31CC9F2A900DD6C3A /* MovieBackdropCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieBackdropCollectionViewCell.m; sourceTree = "<group>"; };
@@ -103,6 +156,9 @@
 		698F02E91CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieBackdropCollectionViewCell.xib; sourceTree = "<group>"; };
 		699AB2F61C3E3D170066A6C0 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
 		699AB2F71C3E3D170066A6C0 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		69CE5EC81D56762D00EC6730 /* MyMovieAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyMovieAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		69CE5ECC1D56762D00EC6730 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69CE5ED21D56767E00EC6730 /* FirstViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewControllerTest.m; sourceTree = "<group>"; };
 		69E002D71CDAF45500F5DBDA /* LoginAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAlertController.h; sourceTree = "<group>"; };
 		69E002D81CDAF45500F5DBDA /* LoginAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAlertController.m; sourceTree = "<group>"; };
 		69F5808E1BC7396900656024 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -132,6 +188,19 @@
 				69F580951BC73CB300656024 /* CoreGraphics.framework in Frameworks */,
 				69F580931BC73CA100656024 /* MobileCoreServices.framework in Frameworks */,
 				BFA44ACBC84EB8F5F5815235 /* libPods-MyMovieApp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69CE5EC51D56762D00EC6730 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6947732D1D580658004C986F /* CoreGraphics.framework in Frameworks */,
+				6947732E1D58065A004C986F /* SystemConfiguration.framework in Frameworks */,
+				694773261D580410004C986F /* libPods-MyMovieApp.a in Frameworks */,
+				6947732F1D58065D004C986F /* MobileCoreServices.framework in Frameworks */,
+				6947732B1D580652004C986F /* libz.1.2.5.tbd in Frameworks */,
+				6947732A1D580650004C986F /* libxml2.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +234,7 @@
 				69F580961BC73CBC00656024 /* SystemConfiguration.framework */,
 				69F580941BC73CB300656024 /* CoreGraphics.framework */,
 				69F580921BC73CA100656024 /* MobileCoreServices.framework */,
+				69CE5EC91D56762D00EC6730 /* MyMovieAppTests */,
 				690D58451BC0962200406ADA /* Products */,
 				690D58461BC0962200406ADA /* MyMovieApp */,
 				21C517F808E178F25E39C080 /* Pods */,
@@ -176,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				690D58441BC0962200406ADA /* MyMovieApp.app */,
+				69CE5EC81D56762D00EC6730 /* MyMovieAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,9 +285,9 @@
 				6925B9241CB49BAB0023EDCC /* MovieDetailViewController.m */,
 				6925B9251CB49BAB0023EDCC /* MovieDetailViewController.xib */,
 				69027DE91CC9F30E00DD6C3A /* MovieBackdropCollectionViewCell.h */,
+				6965FFD11CBF4B72009D9AB0 /* RegViewController.h */,
 				69027DE31CC9F2A900DD6C3A /* MovieBackdropCollectionViewCell.m */,
 				698F02E91CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib */,
-				6965FFD11CBF4B72009D9AB0 /* RegViewController.h */,
 				6965FFD21CBF4B72009D9AB0 /* RegViewController.m */,
 				6965FFD31CBF4B72009D9AB0 /* RegViewController.xib */,
 				694D776C1CE05FB900A1A4F5 /* AboutTableViewController.h */,
@@ -257,6 +328,15 @@
 			name = Constant;
 			sourceTree = "<group>";
 		};
+		69CE5EC91D56762D00EC6730 /* MyMovieAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				69CE5ED21D56767E00EC6730 /* FirstViewControllerTest.m */,
+				69CE5ECC1D56762D00EC6730 /* Info.plist */,
+			);
+			path = MyMovieAppTests;
+			sourceTree = "<group>";
+		};
 		69F580711BC738CD00656024 /* HttpRequest */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +369,24 @@
 			productReference = 690D58441BC0962200406ADA /* MyMovieApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		69CE5EC71D56762D00EC6730 /* MyMovieAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 69CE5ECF1D56762D00EC6730 /* Build configuration list for PBXNativeTarget "MyMovieAppTests" */;
+			buildPhases = (
+				69CE5EC41D56762D00EC6730 /* Sources */,
+				69CE5EC51D56762D00EC6730 /* Frameworks */,
+				69CE5EC61D56762D00EC6730 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				69CE5ECE1D56762D00EC6730 /* PBXTargetDependency */,
+			);
+			name = MyMovieAppTests;
+			productName = MyMovieAppTests;
+			productReference = 69CE5EC81D56762D00EC6730 /* MyMovieAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -301,6 +399,10 @@
 					690D58431BC0962200406ADA = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = M9KWKR5F39;
+					};
+					69CE5EC71D56762D00EC6730 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 690D58431BC0962200406ADA;
 					};
 				};
 			};
@@ -318,6 +420,7 @@
 			projectRoot = "";
 			targets = (
 				690D58431BC0962200406ADA /* MyMovieApp */,
+				69CE5EC71D56762D00EC6730 /* MyMovieAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -344,6 +447,30 @@
 				6916137E1CC5F78F0075A55A /* UserMovieCollectionViewCell.xib in Resources */,
 				69496F141CE40EB800B457F7 /* privacy.txt in Resources */,
 				690D58551BC0962200406ADA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69CE5EC61D56762D00EC6730 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				694773201D58039D004C986F /* UserMovieCollectionViewCell.xib in Resources */,
+				694773211D5803A5004C986F /* RegViewController.xib in Resources */,
+				694773181D580375004C986F /* MovieDetailViewController.xib in Resources */,
+				6947731A1D58037A004C986F /* LicenseViewController.xib in Resources */,
+				6947731F1D58039A004C986F /* PresentViewController.xib in Resources */,
+				6947731C1D580384004C986F /* MovieMediaViewController.xib in Resources */,
+				694773341D580686004C986F /* Assets.xcassets in Resources */,
+				694773331D580684004C986F /* genre.plist in Resources */,
+				694773301D58067D004C986F /* term.txt in Resources */,
+				6947731D1D580389004C986F /* Main.storyboard in Resources */,
+				6947731E1D58038F004C986F /* SearchResultTableViewCell.xib in Resources */,
+				6947732C1D580654004C986F /* Assets.bundle in Resources */,
+				694773321D580681004C986F /* user.plist in Resources */,
+				694773191D580377004C986F /* MovieBackdropCollectionViewCell.xib in Resources */,
+				694773311D58067F004C986F /* privacy.txt in Resources */,
+				694773221D5803AF004C986F /* LaunchScreen.storyboard in Resources */,
+				6947731B1D58037C004C986F /* AboutTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,7 +552,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		69CE5EC41D56762D00EC6730 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6947730F1D5802FC004C986F /* LoginAlertController.m in Sources */,
+				6947730C1D5802F4004C986F /* SecondViewController.m in Sources */,
+				694773121D580306004C986F /* PresentViewController.m in Sources */,
+				694773281D580421004C986F /* Constant.m in Sources */,
+				694773141D580310004C986F /* MovieBackdropCollectionViewCell.m in Sources */,
+				6947730E1D5802F9004C986F /* ThirdViewController.m in Sources */,
+				694773091D5802E7004C986F /* MovieMediaViewController.m in Sources */,
+				694773161D580318004C986F /* AboutTableViewController.m in Sources */,
+				694773131D580309004C986F /* MovieDetailViewController.m in Sources */,
+				6947730B1D5802EE004C986F /* FirstViewController.m in Sources */,
+				694773271D58041D004C986F /* Reachability.m in Sources */,
+				694773231D580404004C986F /* MyMovieApp.xcdatamodeld in Sources */,
+				6947730A1D5802EB004C986F /* ViewController.m in Sources */,
+				694773101D580300004C986F /* UserMovieCollectionHeaderView.m in Sources */,
+				694773151D580315004C986F /* LicenseViewController.m in Sources */,
+				694773171D58031A004C986F /* RegViewController.m in Sources */,
+				69CE5ED31D56767E00EC6730 /* FirstViewControllerTest.m in Sources */,
+				694773111D580302004C986F /* UserMovieCollectionViewCell.m in Sources */,
+				694773291D580426004C986F /* main.m in Sources */,
+				6947730D1D5802F6004C986F /* SearchResultTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		69CE5ECE1D56762D00EC6730 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 690D58431BC0962200406ADA /* MyMovieApp */;
+			targetProxy = 69CE5ECD1D56762D00EC6730 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		690D58531BC0962200406ADA /* Main.storyboard */ = {
@@ -581,6 +743,38 @@
 			};
 			name = Release;
 		};
+		69CE5ED01D56762D00EC6730 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E07A5864759464E2E821440 /* Pods-MyMovieApp.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MyMovieAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = zys.MyMovieAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMovieApp.app/MyMovieApp";
+			};
+			name = Debug;
+		};
+		69CE5ED11D56762D00EC6730 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8ABB8052FAD66F22F2712F70 /* Pods-MyMovieApp.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MyMovieAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = zys.MyMovieAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMovieApp.app/MyMovieApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -598,6 +792,15 @@
 			buildConfigurations = (
 				690D585F1BC0962200406ADA /* Debug */,
 				690D58601BC0962200406ADA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		69CE5ECF1D56762D00EC6730 /* Build configuration list for PBXNativeTarget "MyMovieAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69CE5ED01D56762D00EC6730 /* Debug */,
+				69CE5ED11D56762D00EC6730 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

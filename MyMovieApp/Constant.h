@@ -36,4 +36,5 @@ extern CGFloat trailerRatio;
 extern NSString * const youtubeWeb;
 extern int maxNumberPagesOfCoreData;
 extern NSString * const NXOAuth2AccountType;
+extern int coreDataSize;
 #endif /* Constant_h */

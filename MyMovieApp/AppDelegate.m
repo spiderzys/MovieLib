@@ -28,7 +28,7 @@
     
     [self managedObjectModel];
     [self persistentStoreCoordinator];
-    NSAssert([self managedObjectContext]!=nil, @"cannot create manageobjectcontext");
+   
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     /*
     [[NXOAuth2AccountStore sharedStore] setClientID:@"9484ca43e10c4e5f867cbc28e2556430"

@@ -40,5 +40,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *rateLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *infoSegmentControl;
 
+
+-(void)addMovieToCoreData:(int)tag;
 @end
 

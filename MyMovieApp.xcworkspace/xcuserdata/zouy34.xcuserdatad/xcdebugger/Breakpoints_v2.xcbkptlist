@@ -317,5 +317,319 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMovieAppTests/FirstViewControllerTest.m"
+            timestampString = "492328315.986352"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "-testExample"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMovieAppTests/FirstViewControllerTest.m"
+            timestampString = "492328747.022568"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-testExample"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FirstViewControllerTest testExample]"
+                  moduleName = "MyMovieAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieAppTests/FirstViewControllerTest.m"
+                  timestampString = "492326246.518073"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "3075">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FirstViewControllerTest testExample]"
+                  moduleName = "MyMovieAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieAppTests/FirstViewControllerTest.m"
+                  timestampString = "492326246.518413"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "4366">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FirstViewControllerTest testExample]"
+                  moduleName = "MyMovieAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieAppTests/FirstViewControllerTest.m"
+                  timestampString = "492326246.519177"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "5293">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FirstViewControllerTest testExample]"
+                  moduleName = "MyMovieAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieAppTests/FirstViewControllerTest.m"
+                  timestampString = "492326246.519368"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "5405">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMovieAppTests/FirstViewControllerTest.m"
+            timestampString = "492330614.856098"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "-testExample"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FirstViewControllerTest testExample]"
+                  moduleName = "MyMovieAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieAppTests/FirstViewControllerTest.m"
+                  timestampString = "492327308.271852"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "3088">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FirstViewControllerTest testExample]"
+                  moduleName = "MyMovieAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieAppTests/FirstViewControllerTest.m"
+                  timestampString = "492327308.272147"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "4385">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FirstViewControllerTest testExample]"
+                  moduleName = "MyMovieAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieAppTests/FirstViewControllerTest.m"
+                  timestampString = "492327308.272516"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "5312">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FirstViewControllerTest testExample]"
+                  moduleName = "MyMovieAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieAppTests/FirstViewControllerTest.m"
+                  timestampString = "492327308.272897"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "5424">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMovieAppTests/FirstViewControllerTest.m"
+            timestampString = "492330614.856098"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-testExample"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMovieAppTests/FirstViewControllerTest.m"
+            timestampString = "492330614.856098"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "-testExample"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[FirstViewControllerTest testExample]_block_invoke"
+                  moduleName = "MyMovieAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieAppTests/FirstViewControllerTest.m"
+                  timestampString = "492330678.708901"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "234">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[FirstViewControllerTest testExample]_block_invoke"
+                  moduleName = "MyMovieAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieAppTests/FirstViewControllerTest.m"
+                  timestampString = "492330678.709227"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "576">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[FirstViewControllerTest testExample]_block_invoke"
+                  moduleName = "MyMovieAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieAppTests/FirstViewControllerTest.m"
+                  timestampString = "492330678.710295"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "694">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[FirstViewControllerTest testExample]_block_invoke"
+                  moduleName = "MyMovieAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieAppTests/FirstViewControllerTest.m"
+                  timestampString = "492330678.710659"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "797">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMovieApp/FirstViewController.m"
+            timestampString = "492330906.536693"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "-removeCoreData"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FirstViewController removeCoreData]"
+                  moduleName = "MyMovieApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieApp/FirstViewController.m"
+                  timestampString = "492330999.536741"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "47">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FirstViewController removeCoreData]"
+                  moduleName = "MyMovieAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zouy34/Dropbox/MyMovieApp/MyMovieApp/FirstViewController.m"
+                  timestampString = "492331000.219587"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "47">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

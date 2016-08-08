@@ -205,6 +205,8 @@
 
 -(void)removeCoreData{
     
+    
+    
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
     NSError *error;
     NSArray *temp = [NSMutableArray arrayWithArray: [_delegate.managedObjectContext executeFetchRequest:request error:&error]];
@@ -251,7 +253,7 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
                      
-                        if(i<=20){
+                        if(i<coreDataSize){
                             [temp setObject:data forKey:@"poster_data"];
                             [self addMovieToCoreData:i];
                             
