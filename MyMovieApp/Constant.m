@@ -12,8 +12,8 @@
 NSString * const movieDiscoverWeb = @"http://api.themoviedb.org/3/discover/movie?";
 NSString * const nowPlayWeb = @"https://api.themoviedb.org/3/movie/now_playing?";
 NSString * const movieWeb = @"http://api.themoviedb.org/3/movie/";
-NSString * const APIKey = @"api_key=?????";
-NSString * const movieSearchWeb = @"http://api.themoviedb.org/3/search/movie?api_key=?????";
+NSString * const APIKey = @"api_key3c9140cda64a622c6cb5feb6c2689164";
+NSString * const movieSearchWeb = @"http://api.themoviedb.org/3/search/movie?api_key=3c9140cda64a622c6cb5feb6c2689164";
 NSString * const imdbPosterWeb = @"https://image.tmdb.org/t/p/w396";
 CGFloat posterRatio = 2.0/3.0;
 CGFloat backdropRatio = 1.778;
