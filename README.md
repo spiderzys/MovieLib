@@ -1,4 +1,10 @@
 #MovieLib
+
+Currenly I am changing the coding style !!! see coding branch
+
+
+
+
 (data from API provided by https://www.themoviedb.org/documentation/api (JSON style)
 This app is to provide movie infomation for users. key word: core data, plist, network session, API, multithread, size class, auto layout....
 

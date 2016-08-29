@@ -69,6 +69,9 @@
 		694D776B1CE0473200A1A4F5 /* PresentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 694D776A1CE0473200A1A4F5 /* PresentViewController.xib */; };
 		694D776F1CE05FB900A1A4F5 /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 694D776D1CE05FB900A1A4F5 /* AboutTableViewController.m */; };
 		694D77701CE05FB900A1A4F5 /* AboutTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 694D776E1CE05FB900A1A4F5 /* AboutTableViewController.xib */; };
+		69585E1D1D6F9AF9007B339B /* APICommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 69585E1C1D6F9AF9007B339B /* APICommunicator.m */; };
+		69585E231D6F9B35007B339B /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 69585E221D6F9B35007B339B /* DataProcessor.m */; };
+		69585E261D6FA1FA007B339B /* LoginRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 69585E251D6FA1FA007B339B /* LoginRequester.m */; };
 		695F0F871CE1A37F00715526 /* LicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695F0F851CE1A37F00715526 /* LicenseViewController.m */; };
 		695F0F881CE1A37F00715526 /* LicenseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 695F0F861CE1A37F00715526 /* LicenseViewController.xib */; };
 		695FC7F41C3A1B2900AA5B24 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695FC7F31C3A1B2900AA5B24 /* ViewController.m */; };
@@ -138,6 +141,12 @@
 		694D776C1CE05FB900A1A4F5 /* AboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewController.h; sourceTree = "<group>"; };
 		694D776D1CE05FB900A1A4F5 /* AboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewController.m; sourceTree = "<group>"; };
 		694D776E1CE05FB900A1A4F5 /* AboutTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutTableViewController.xib; sourceTree = "<group>"; };
+		69585E1B1D6F9AF9007B339B /* APICommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APICommunicator.h; sourceTree = "<group>"; };
+		69585E1C1D6F9AF9007B339B /* APICommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APICommunicator.m; sourceTree = "<group>"; };
+		69585E211D6F9B35007B339B /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProcessor.h; sourceTree = "<group>"; };
+		69585E221D6F9B35007B339B /* DataProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProcessor.m; sourceTree = "<group>"; };
+		69585E241D6FA1FA007B339B /* LoginRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRequester.h; sourceTree = "<group>"; };
+		69585E251D6FA1FA007B339B /* LoginRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRequester.m; sourceTree = "<group>"; };
 		695F0F841CE1A37F00715526 /* LicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicenseViewController.h; sourceTree = "<group>"; };
 		695F0F851CE1A37F00715526 /* LicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LicenseViewController.m; sourceTree = "<group>"; };
 		695F0F861CE1A37F00715526 /* LicenseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LicenseViewController.xib; sourceTree = "<group>"; };
@@ -256,6 +265,12 @@
 			children = (
 				690D584A1BC0962200406ADA /* AppDelegate.h */,
 				690D584B1BC0962200406ADA /* AppDelegate.m */,
+				69585E1B1D6F9AF9007B339B /* APICommunicator.h */,
+				69585E1C1D6F9AF9007B339B /* APICommunicator.m */,
+				69585E211D6F9B35007B339B /* DataProcessor.h */,
+				69585E221D6F9B35007B339B /* DataProcessor.m */,
+				69585E241D6FA1FA007B339B /* LoginRequester.h */,
+				69585E251D6FA1FA007B339B /* LoginRequester.m */,
 				69FCCCC01CCF483D0067420B /* MovieMediaViewController.h */,
 				69FCCCC11CCF483D0067420B /* MovieMediaViewController.m */,
 				69FCCCC21CCF483D0067420B /* MovieMediaViewController.xib */,
@@ -285,9 +300,9 @@
 				6925B9241CB49BAB0023EDCC /* MovieDetailViewController.m */,
 				6925B9251CB49BAB0023EDCC /* MovieDetailViewController.xib */,
 				69027DE91CC9F30E00DD6C3A /* MovieBackdropCollectionViewCell.h */,
-				6965FFD11CBF4B72009D9AB0 /* RegViewController.h */,
 				69027DE31CC9F2A900DD6C3A /* MovieBackdropCollectionViewCell.m */,
 				698F02E91CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib */,
+				6965FFD11CBF4B72009D9AB0 /* RegViewController.h */,
 				6965FFD21CBF4B72009D9AB0 /* RegViewController.m */,
 				6965FFD31CBF4B72009D9AB0 /* RegViewController.xib */,
 				694D776C1CE05FB900A1A4F5 /* AboutTableViewController.h */,
@@ -537,15 +552,18 @@
 				690D584C1BC0962200406ADA /* AppDelegate.m in Sources */,
 				698006DB1C3CC8B400A1494B /* PresentViewController.m in Sources */,
 				694D776F1CE05FB900A1A4F5 /* AboutTableViewController.m in Sources */,
+				69585E231D6F9B35007B339B /* DataProcessor.m in Sources */,
 				690D584F1BC0962200406ADA /* FirstViewController.m in Sources */,
 				6965FFD41CBF4B72009D9AB0 /* RegViewController.m in Sources */,
 				699AB2F81C3E3D170066A6C0 /* ThirdViewController.m in Sources */,
 				6925B9261CB49BAB0023EDCC /* MovieDetailViewController.m in Sources */,
+				69585E1D1D6F9AF9007B339B /* APICommunicator.m in Sources */,
 				69F5809B1BC7487300656024 /* Constant.m in Sources */,
 				695F0F871CE1A37F00715526 /* LicenseViewController.m in Sources */,
 				695FC7F41C3A1B2900AA5B24 /* ViewController.m in Sources */,
 				69027DE61CC9F2A900DD6C3A /* MovieBackdropCollectionViewCell.m in Sources */,
 				69764BC81C37844900509D09 /* MyMovieApp.xcdatamodeld in Sources */,
+				69585E261D6FA1FA007B339B /* LoginRequester.m in Sources */,
 				69466A331CC70925002B95B6 /* UserMovieCollectionHeaderView.m in Sources */,
 				690D58491BC0962200406ADA /* main.m in Sources */,
 				6946E5D01CB330F0007546ED /* SearchResultTableViewCell.m in Sources */,

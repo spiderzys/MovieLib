@@ -85,7 +85,7 @@
 
 -(void)showRatingSuccess{
     
-    NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:_selectedMovie];
+    NSDictionary *movie = [_playingMovieDictionaryArray objectAtIndex:_selectedMovie];
     [self rateMovieWithId:[movie valueForKey:@"id"] Rate:_ratingView.value*2];
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Thanks for your rating" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -93,7 +93,6 @@
     [self presentViewController:alertController animated:YES completion:^{
         [NSThread sleepForTimeInterval:0.8];
         [alertController dismissViewControllerAnimated:YES completion:^{
-            //   _ratingView.tintColor = [UIColor orangeColor];
             
         }];
     }];
@@ -107,18 +106,17 @@
 
 - (void)viewDidLoad {
     
-    
-    
     [super viewDidLoad];
+    _appDelegate = [UIApplication sharedApplication].delegate;
+    _appDelegate.window.tintColor = _movieInfo.textColor;
+    _playingMovieDictionaryArray = [NSArray array];
     
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
-        UIFont *font = [UIFont boldSystemFontOfSize:33.0f];
-        NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
-                                                               forKey:NSFontAttributeName];
-        [self.infoSegmentControl setTitleTextAttributes:attributes
-                                        forState:UIControlStateNormal];
-    }
+  
+  
+  
+    [self modifySubviewForIPad];
     
+    // modify subview
     self.releaseDateLabel.adjustsFontSizeToFitWidth = YES;
     UITabBarController *tab = self.tabBarController;
     [tab.tabBar setBackgroundImage:[[UIImage alloc] init]];
@@ -126,12 +124,7 @@
     tab.tabBar.backgroundColor = [UIColor clearColor];
     SecondViewController *second= [tab.viewControllers objectAtIndex:1];
     second.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
-    
-    _delegate = [UIApplication sharedApplication].delegate;
-    _delegate.window.tintColor = _movieInfo.textColor;
-    
     self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
-    
     [self.backImageView setContentMode:UIViewContentModeScaleAspectFill];
     self.backImageView.clipsToBounds = YES;
     self.backImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
@@ -140,6 +133,17 @@
     [self.view sendSubviewToBack:self.backImageView];
     [_moviePosterCollectionView registerNib:[UINib nibWithNibName:@"MovieBackdropCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"movieImages"];
     _moviePosterCollectionView.decelerationRate = UIScrollViewDecelerationRateFast;
+    // end
+}
+
+-(void)modifySubviewForIPad{
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        UIFont *font = [UIFont boldSystemFontOfSize:33.0f];
+        NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                               forKey:NSFontAttributeName];
+        [self.infoSegmentControl setTitleTextAttributes:attributes
+                                               forState:UIControlStateNormal];
+    }
 }
 
 
@@ -153,8 +157,8 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if(_playingMoviesRequestResult.count==0){
-        [self loadScrollView];
+    if(_playingMovieDictionaryArray.count == 0){
+        [self loadScrollView];  //  try to load scrollview again again
         
     }
     
@@ -178,7 +182,7 @@
         
     }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    if(_playingMoviesRequestResult.count>0){
+    if(_playingMovieDictionaryArray.count>0){
         [self showInfo:0];
     }
     else{
@@ -209,10 +213,10 @@
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
     NSError *error;
-    NSArray *temp = [NSMutableArray arrayWithArray: [_delegate.managedObjectContext executeFetchRequest:request error:&error]];
+    NSArray *temp = [NSMutableArray arrayWithArray: [_appDelegate.managedObjectContext executeFetchRequest:request error:&error]];
     for (Movie *movie in temp ) {
-        [_delegate.managedObjectContext deleteObject:movie];
-        [_delegate saveContext];
+        [_appDelegate.managedObjectContext deleteObject:movie];
+        [_appDelegate saveContext];
     }
     
     
@@ -223,9 +227,9 @@
     _connected = NO;
     _infoSegmentControl.selectedSegmentIndex = 1;
     _infoSegmentControl.userInteractionEnabled = NO;
-    _playingMoviesRequestResult = [NSMutableArray arrayWithArray: [_delegate.managedObjectContext executeFetchRequest:request error:&error]];
+    _playingMovieDictionaryArray = [NSMutableArray arrayWithArray: [_appDelegate.managedObjectContext executeFetchRequest:request error:&error]];
     
-    if(_playingMoviesRequestResult==nil){
+    if(_playingMovieDictionaryArray==nil){
         NSLog(@"%@",error);
         abort();
     }
@@ -235,7 +239,7 @@
 -(void)loadFromAPI{
     
     [self loadMovieFromNet];
-    if (_playingMoviesRequestResult.count>0) {
+    if (_playingMovieDictionaryArray.count>0) {
         _infoSegmentControl.selectedSegmentIndex = 0;
         _infoSegmentControl.userInteractionEnabled = YES;
         _mediaButton.userInteractionEnabled = YES;
@@ -245,15 +249,17 @@
         
         [self removeCoreData];
         
-        for (int i=0;i<_playingMoviesRequestResult.count;i++){
-         //   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                NSMutableDictionary *temp = _playingMoviesRequestResult[i];
+        for (int i=0;i<_playingMovieDictionaryArray.count;i++){
+    
+                NSMutableDictionary *temp = _playingMovieDictionaryArray[i];
+                NSLog(@"%@",temp);
                 NSString *poster_path = [temp valueForKey:@"poster_path"];
                 NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
                      
                         if(i<coreDataSize){
+                            NSLog(@"%d",i);
                             [temp setObject:data forKey:@"poster_data"];
                             [self addMovieToCoreData:i];
                             
@@ -279,11 +285,19 @@
 
 -(void)loadMovieFromNet{
     
+    DataProcessor * processor = [[DataProcessor alloc]init];
+    _dataSource = processor;
     
-    NSString *playingMovie = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=en-US&certification_country=US",nowPlayWeb,APIKey];
+ //   NSString *playingMovie = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=en-US&certification_country=US",nowPlayWeb,APIKey];
     
-    _playingMoviesRequestResult = [self getDataFromUrl:[NSURL URLWithString:playingMovie] withKey:@"results" LimitPages:maxNumberPagesOfScrollView];
-    if (_playingMoviesRequestResult  == nil || _playingMoviesRequestResult.count==0) {
+ //   _playingMovieDictionaryArray = [self getDataFromUrl:[NSURL URLWithString:playingMovie] withKey:@"results" LimitPages:maxNumberPagesOfScrollView];
+    
+    NSLog(@"%@",_dataSource);
+    _playingMovieDictionaryArray = [_dataSource getPlayingMovies];
+    
+    
+    
+    if (_playingMovieDictionaryArray  == nil) {
         
         [self loadFromCoreData];
         
@@ -291,13 +305,11 @@
     }
     else{
         [_loadingActivityIndicator startAnimating];
-        _playingMoviesRequestResult  = [self removeUndesiredDataFromResults:_playingMoviesRequestResult  WithNullValueForKey:@"poster_path"]; // remove movies without post.
-        
-        
-        
-        
+  
+      /*
+        //    _playingMovieDictionaryArray  = [self removeUndesiredDataFromResults:_playingMovieDictionaryArray  WithNullValueForKey:@"poster_path"]; // remove movies without post.
         NSMutableArray *array = [NSMutableArray array];
-        for (NSDictionary *temp in _playingMoviesRequestResult) {
+        for (NSDictionary *temp in _playingMovieDictionaryArray) {
             NSString *idn  = [temp valueForKey:@"id"];
             NSString *overview = [temp valueForKey:@"overview"];
             if (overview.length==0) {
@@ -323,13 +335,12 @@
                                         nil];
             [array addObject:dic];
         }
-        _playingMoviesRequestResult = [NSArray arrayWithArray:array];
-        
+        _playingMovieDictionaryArray = [NSArray arrayWithArray:array];
+        */
     }
-    
 }
 
-
+// scrollviewDelegate
 
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
@@ -352,12 +363,14 @@
     }
 }
 
+// end
+
 
 -(void)addMovieToCoreData:(int)tag{
     Movie *movie;
-    movie = [_delegate createMovieObject];
+    movie = [_appDelegate createMovieObject];
     
-    NSDictionary *temp = _playingMoviesRequestResult[tag];
+    NSDictionary *temp = _playingMovieDictionaryArray[tag];
     movie.idn = [temp valueForKey:@"id"];
     
     movie.overview = [temp valueForKey:@"overview"];
@@ -372,7 +385,7 @@
     movie.posterData = [temp valueForKey:@"poster_data"];
     movie.vote_count = [temp valueForKey:@"vote_count"];
     
-    [_delegate saveContext];
+    [_appDelegate saveContext];
     
     
     
@@ -381,7 +394,7 @@
 
 
 -(void)showInfoFromCoreData:(long)num{
-    Movie *movie =_playingMoviesRequestResult[num];
+    Movie *movie =_playingMovieDictionaryArray[num];
     
     
     [_titleLabel setText:movie.title];
@@ -409,7 +422,7 @@
     if(_connected){
         
         
-        NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:num];
+        NSDictionary *movie = [_playingMovieDictionaryArray objectAtIndex:num];
         NSDictionary *genreDic = [[NSDictionary alloc] initWithContentsOfFile: self.genreResourcePath];
         NSArray *genre_ids = [movie valueForKey:@"genre_ids"];
         NSString *label = @"Label: ";
@@ -531,7 +544,7 @@
     customCell.movieImageView.image = nil;
     if(_connected){ // the data come from API
         
-        NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:indexPath.row];
+        NSDictionary *movie = [_playingMovieDictionaryArray objectAtIndex:indexPath.row];
         
         
         NSString *file_path = [movie valueForKey:@"poster_path"];
@@ -554,7 +567,7 @@
         [task resume];
     }
     else{ // the data come from core data
-        Movie *movie = [_playingMoviesRequestResult objectAtIndex:indexPath.row];
+        Movie *movie = [_playingMovieDictionaryArray objectAtIndex:indexPath.row];
         UIImage *poster = [UIImage imageWithData: movie.posterData];
         customCell.movieImageView.image = poster;
     }
@@ -567,7 +580,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return _playingMoviesRequestResult.count;
+    return _playingMovieDictionaryArray.count;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -614,14 +627,14 @@
 }
 
 - (IBAction)showMedia:(id)sender {
-    NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:_selectedMovie];
+    NSDictionary *movie = [_playingMovieDictionaryArray objectAtIndex:_selectedMovie];
     MovieMediaViewController *mediaViewController = [[MovieMediaViewController alloc]initWithNibName:@"MovieMediaViewController" bundle:nil movieDic:movie];
     [self presentViewController:mediaViewController animated:YES completion:nil];
 }
 
 - (IBAction)segmentChanged:(id)sender {
     if(_connected){
-        NSDictionary *movie = [_playingMoviesRequestResult objectAtIndex:_selectedMovie];
+        NSDictionary *movie = [_playingMovieDictionaryArray objectAtIndex:_selectedMovie];
         [self showTextView:movie];
     }
     

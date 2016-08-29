@@ -42,8 +42,6 @@ static UIImage* backIamge;
     _documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:imagePath]];
     _documentInteractionController.delegate = self;
     _documentInteractionController.UTI = @"com.instagram.exclusivegram";
-    //NSString *msgBody = @"My message";
-    //_documentInteractionController.annotation = [NSDictionary dictionaryWithObject:msgBody forKey:@"InstagramCaption"];
     [_documentInteractionController presentOpenInMenuFromRect:self.view.frame inView:self.view animated:YES];
     
 }

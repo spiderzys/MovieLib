@@ -11,7 +11,7 @@
 #import "HCSStarRatingView.h"
 #import "LoginAlertController.h"
 #import "RegViewController.h"
-@interface ThirdViewController : ViewController <UIScrollViewDelegate,UIAlertControllerDelegate,UIRegVuewControllerDelegate>
+@interface ThirdViewController : ViewController <UIScrollViewDelegate,UIAlertControllerDelegate,RegViewControllerDelegate>
 
 
 

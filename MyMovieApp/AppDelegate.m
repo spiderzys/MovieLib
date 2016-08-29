@@ -30,24 +30,13 @@
     [self persistentStoreCoordinator];
    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    /*
-    [[NXOAuth2AccountStore sharedStore] setClientID:@"9484ca43e10c4e5f867cbc28e2556430"
-                                             secret:@"db1f3862d8f0458ab6a7d2dd6da55540"
-                                   authorizationURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/authorize"]
-                                           tokenURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"]
-                                        redirectURL:[NSURL URLWithString:@"scheme://authenticate.com"]
-                                     forAccountType:NXOAuth2AccountType];
-    
-    
-    */
     
     return YES;
 }
 
 -(void)loadRatingDataWithSession:(NSString*)sessionId username:(NSString*)username{
     
-    // dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    NSString* ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
+      NSString* ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
     NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:ratingRequestString]];
     [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
         

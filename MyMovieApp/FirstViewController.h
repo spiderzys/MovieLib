@@ -12,8 +12,18 @@
 #import "RegViewController.h"
 #import "HCSStarRatingView.h"
 #import "LoginAlertController.h"
-@interface FirstViewController : ViewController <UIAlertControllerDelegate, UIRegVuewControllerDelegate>
+#import "DataProcessor.h"
 
+
+@protocol playingMovieDataSource <NSObject>
+
+-(NSArray*)getPlayingMovies;
+
+@end
+
+@interface FirstViewController : ViewController <UIAlertControllerDelegate, RegViewControllerDelegate>
+
+@property (weak, nonatomic) id<playingMovieDataSource> dataSource; //the data provider for this view controller
 
 @property (weak, nonatomic) IBOutlet UIButton *mediaButton;
 
@@ -22,7 +32,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *moviePosterCollectionView;
 
 
-@property NSArray *playingMoviesRequestResult;
+@property NSArray *playingMovieDictionaryArray;
 @property long selectedMovie;
 @property BOOL connected;
 @property NSTimer* autoScrollTimer;
@@ -32,7 +42,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
-@property AppDelegate *delegate;
+@property AppDelegate *appDelegate;
 //@property (weak, nonatomic) IBOutlet UILabel *playLengthLabel;
 @property (weak, nonatomic) IBOutlet HCSStarRatingView *ratingView;
 

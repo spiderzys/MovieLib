@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol UIRegVuewControllerDelegate <NSObject>
+@protocol RegViewControllerDelegate <NSObject>
 - (void)didDismissRegViewController;
 @end
 @interface RegViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (nonatomic, weak) id<UIRegVuewControllerDelegate> delegate;
+@property (nonatomic, weak) id<RegViewControllerDelegate> delegate;
 @end

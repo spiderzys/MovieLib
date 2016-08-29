@@ -12,8 +12,7 @@
 #import "RegViewController.h"
 #import "LoginAlertController.h"
 
-@interface MovieDetailViewController : ViewController <UIAlertControllerDelegate, UIRegVuewControllerDelegate>
-
+@interface MovieDetailViewController : ViewController <UIAlertControllerDelegate, RegViewControllerDelegate >
 
 
 @property (weak, nonatomic) IBOutlet UICollectionView *movieBackdropCollectionView;
