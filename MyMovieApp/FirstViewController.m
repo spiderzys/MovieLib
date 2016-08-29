@@ -111,9 +111,9 @@
     _appDelegate.window.tintColor = _movieInfo.textColor;
     _playingMovieDictionaryArray = [NSArray array];
     
-  
-  
-  
+    
+    
+    
     [self modifySubviewForIPad];
     
     // modify subview
@@ -200,7 +200,7 @@
 -(void)loadFromCoreData{
     
     [self loadMovieFromCoreData];
-
+    
     [_loadingActivityIndicator stopAnimating];
     [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
     
@@ -250,30 +250,30 @@
         [self removeCoreData];
         
         for (int i=0;i<_playingMovieDictionaryArray.count;i++){
-    
-                NSMutableDictionary *temp = _playingMovieDictionaryArray[i];
-                NSLog(@"%@",temp);
-                NSString *poster_path = [temp valueForKey:@"poster_path"];
-                NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSMutableDictionary *temp = _playingMovieDictionaryArray[i];
+            NSLog(@"%@",temp);
+            NSString *poster_path = [temp valueForKey:@"poster_path"];
+            NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    
+                    if(i<coreDataSize){
+                        NSLog(@"%d",i);
+                        [temp setObject:data forKey:@"poster_data"];
+                        [self addMovieToCoreData:i];
                         
-                     
-                        if(i<coreDataSize){
-                            NSLog(@"%d",i);
-                            [temp setObject:data forKey:@"poster_data"];
-                            [self addMovieToCoreData:i];
-                            
-                        }
-                        if(i==6){
-                            
-                            [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
-                            [_loadingActivityIndicator stopAnimating];
-                        }
-                    });
-                }];
-                [task resume];
-                
-          //  });
+                    }
+                    if(i==6){
+                        
+                        [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
+                        [_loadingActivityIndicator stopAnimating];
+                    }
+                });
+            }];
+            [task resume];
+            
+            //  });
             
             
         }
@@ -288,9 +288,9 @@
     DataProcessor * processor = [[DataProcessor alloc]init];
     _dataSource = processor;
     
- //   NSString *playingMovie = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=en-US&certification_country=US",nowPlayWeb,APIKey];
+    //   NSString *playingMovie = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=en-US&certification_country=US",nowPlayWeb,APIKey];
     
- //   _playingMovieDictionaryArray = [self getDataFromUrl:[NSURL URLWithString:playingMovie] withKey:@"results" LimitPages:maxNumberPagesOfScrollView];
+    //   _playingMovieDictionaryArray = [self getDataFromUrl:[NSURL URLWithString:playingMovie] withKey:@"results" LimitPages:maxNumberPagesOfScrollView];
     
     NSLog(@"%@",_dataSource);
     _playingMovieDictionaryArray = [_dataSource getPlayingMovies];
@@ -305,38 +305,38 @@
     }
     else{
         [_loadingActivityIndicator startAnimating];
-  
-      /*
-        //    _playingMovieDictionaryArray  = [self removeUndesiredDataFromResults:_playingMovieDictionaryArray  WithNullValueForKey:@"poster_path"]; // remove movies without post.
-        NSMutableArray *array = [NSMutableArray array];
-        for (NSDictionary *temp in _playingMovieDictionaryArray) {
-            NSString *idn  = [temp valueForKey:@"id"];
-            NSString *overview = [temp valueForKey:@"overview"];
-            if (overview.length==0) {
-                overview = @"No overview so far";
-            }
-            NSNumber *vote_average =[temp valueForKey:@"vote_average"];
-            NSString *title =[temp valueForKey:@"title"];
-            
-            NSString *release_date =[temp valueForKey:@"release_date"];
-            
-            NSString *poster_path = [temp valueForKey:@"poster_path"];
-            NSNumber *vote_count = [temp valueForKey:@"vote_count"];
-            poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
-            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                        idn, @"id",
-                                        title, @"title",
-                                        // cast, @"cast",
-                                        vote_count, @"vote_count",
-                                        poster_path, @"poster_path",
-                                        release_date, @"release_date",
-                                        vote_average, @"vote_average",
-                                        overview, @"overview",
-                                        nil];
-            [array addObject:dic];
-        }
-        _playingMovieDictionaryArray = [NSArray arrayWithArray:array];
-        */
+        
+        /*
+         //    _playingMovieDictionaryArray  = [self removeUndesiredDataFromResults:_playingMovieDictionaryArray  WithNullValueForKey:@"poster_path"]; // remove movies without post.
+         NSMutableArray *array = [NSMutableArray array];
+         for (NSDictionary *temp in _playingMovieDictionaryArray) {
+         NSString *idn  = [temp valueForKey:@"id"];
+         NSString *overview = [temp valueForKey:@"overview"];
+         if (overview.length==0) {
+         overview = @"No overview so far";
+         }
+         NSNumber *vote_average =[temp valueForKey:@"vote_average"];
+         NSString *title =[temp valueForKey:@"title"];
+         
+         NSString *release_date =[temp valueForKey:@"release_date"];
+         
+         NSString *poster_path = [temp valueForKey:@"poster_path"];
+         NSNumber *vote_count = [temp valueForKey:@"vote_count"];
+         poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
+         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+         idn, @"id",
+         title, @"title",
+         // cast, @"cast",
+         vote_count, @"vote_count",
+         poster_path, @"poster_path",
+         release_date, @"release_date",
+         vote_average, @"vote_average",
+         overview, @"overview",
+         nil];
+         [array addObject:dic];
+         }
+         _playingMovieDictionaryArray = [NSArray arrayWithArray:array];
+         */
     }
 }
 
@@ -550,21 +550,32 @@
         NSString *file_path = [movie valueForKey:@"poster_path"];
         file_path = [imdbPosterWeb stringByAppendingString: file_path];
         
-        NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:file_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            if (data) {
-                UIImage *poster = [UIImage imageWithData:data];
-                if (poster) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        MovieBackdropCollectionViewCell *updateCell =(MovieBackdropCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
-                        if (updateCell){
-                            updateCell.movieImageView.image = poster;
-                        }
-                    });
+        NSData *imageCacheData = [self.imageCache objectForKey:[NSString stringWithFormat: @"%ld",(long)indexPath.row]];
+        if(imageCacheData != nil){
+            customCell.movieImageView.image = [UIImage imageWithData:imageCacheData];
+        }
+        else {
+            
+            NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:file_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                if (data) {
+                    UIImage *poster = [UIImage imageWithData:data];
+                    if (poster) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            [self.imageCache setObject:data forKey:[NSString stringWithFormat: @"%ld",(long)indexPath.row]];
+                            
+                            MovieBackdropCollectionViewCell *updateCell =(MovieBackdropCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+                            if (updateCell){
+                                
+                                updateCell.movieImageView.image = poster;
+                            }
+                        });
+                    }
                 }
-            }
-        }];
-        
-        [task resume];
+            }];
+            
+            [task resume];
+        }
     }
     else{ // the data come from core data
         Movie *movie = [_playingMovieDictionaryArray objectAtIndex:indexPath.row];
@@ -587,7 +598,7 @@
     [_autoScrollTimer invalidate];
     
     if(indexPath.row == _selectedMovie){
-   
+        
         PresentViewController *presentController = [[PresentViewController alloc]initWithNibName:@"PresentViewController" bundle:nil image:self.backImageView.image];
         
         [self presentViewController:presentController animated:YES completion:^{

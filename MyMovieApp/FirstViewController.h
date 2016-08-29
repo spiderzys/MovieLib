@@ -16,8 +16,10 @@
 
 
 @protocol playingMovieDataSource <NSObject>
+// the data source should provide playing movie info and the cast for any movie
 
--(NSArray*)getPlayingMovies;
+- (NSArray*)getPlayingMovies;
+- (NSString*)getCastForMovie:(NSDictionary*)movieDictionary;
 
 @end
 

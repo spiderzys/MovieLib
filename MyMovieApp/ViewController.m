@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+    _imageCache = [NSCache new];
     
     // Do any additional setup after loading the view.
 }

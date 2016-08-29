@@ -20,6 +20,7 @@
 @property UIImageView *backImageView;
 @property NSString* userResourcePath;
 @property NSString* genreResourcePath;
+@property NSCache* imageCache;
 -(NSArray*)getDataFromUrl:(NSURL*)url withKey:(NSString*) key LimitPages:(int)max;
 -(NSMutableArray*)removeUndesiredDataFromResults:(NSArray *)results WithNullValueForKey:(NSString*)key;
 

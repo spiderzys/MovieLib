@@ -76,7 +76,8 @@
     return nil;
 }
 
-- (NSString*)getCastForMovieWithId:(NSNumber*)idn{
+- (NSString*)getCastForMovie:(NSDictionary*)movieDictionary{
+    NSNumber *idn = [movieDictionary valueForKey:@"id"];
     NSData *castData = [_dataSource getCastDataWithId:idn];
     NSArray *cast = [self JSONPreProcessData:castData Withkey:@"cast"];
     if (cast != nil){
