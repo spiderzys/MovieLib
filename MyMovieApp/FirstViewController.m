@@ -213,7 +213,7 @@
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
     NSError *error;
-    NSArray *temp = [NSMutableArray arrayWithArray: [_appDelegate.managedObjectContext executeFetchRequest:request error:&error]];
+    NSArray *temp =  [_appDelegate.managedObjectContext executeFetchRequest:request error:&error];
     for (Movie *movie in temp ) {
         [_appDelegate.managedObjectContext deleteObject:movie];
         [_appDelegate saveContext];

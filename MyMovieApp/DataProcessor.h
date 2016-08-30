@@ -26,6 +26,8 @@
 
 @property (nonatomic,weak) id<DataProviderDelegate> dataSource;
 
+
+
 - (NSArray*)getPlayingMovies;  // return playing movie array to first view controller
 - (NSString*)getCastForMovie:(NSDictionary*)movieDictionary;   //return cast for specific movie
 

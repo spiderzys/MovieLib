@@ -16,6 +16,7 @@
     self = [super init];
     if(self != nil){
         self.dataSource = [APICommunicator sharedInstance]; // set dataSource
+        
     }
     return self;
 }
@@ -89,7 +90,9 @@
         }
         return castList;
     }
-    return @"N/A";
+      return @"N/A";
+  
+    
 }
 
 
