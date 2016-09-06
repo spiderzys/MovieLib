@@ -9,7 +9,7 @@
 #import "DataProcessor.h"
 #import "APICommunicator.h"
 
-static int numberOfPlayingMoviePages = 3;
+static const int numberOfPlayingMoviePages = 3;
 
 @implementation DataProcessor
 
@@ -118,14 +118,14 @@ static int numberOfPlayingMoviePages = 3;
     
 }
 
--(void)addMovie:(NSDictionary*)movie{
+-(void)saveMovie:(NSDictionary*)movie{
     
     // save movie to core data
     Movie *savedMovie = [_appDelegate createMovieObject];
     
 
     savedMovie.idn = [movie valueForKey:@"id"];
-    
+    savedMovie.cast = [movie valueForKey:@"cast"];
     savedMovie.overview = [movie valueForKey:@"overview"];
     if (savedMovie.overview.length==0) {
         savedMovie.overview = @"No overview so far";
@@ -135,7 +135,7 @@ static int numberOfPlayingMoviePages = 3;
     
     savedMovie.release_date =[movie valueForKey:@"release_date"];
     
-    savedMovie.posterData = [movie valueForKey:@"poster_data"];
+    savedMovie.poster_data = [movie valueForKey:@"poster_data"];
     savedMovie.vote_count = [movie valueForKey:@"vote_count"];
     
     [_appDelegate saveContext];

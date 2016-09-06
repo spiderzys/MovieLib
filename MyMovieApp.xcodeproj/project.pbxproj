@@ -160,6 +160,7 @@
 		69668F461BE1CEC200E9D59A /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		69764BC71C37844900509D09 /* MyMovieApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyMovieApp.xcdatamodel; sourceTree = "<group>"; };
 		6977C4F71CCC5D3900DE1188 /* genre.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = genre.plist; sourceTree = "<group>"; };
+		697DCD811D7E6384001132F0 /* 1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 1.0.xcdatamodel; sourceTree = "<group>"; };
 		698006D91C3CC8B400A1494B /* PresentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentViewController.h; sourceTree = "<group>"; };
 		698006DA1C3CC8B400A1494B /* PresentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentViewController.m; sourceTree = "<group>"; };
 		698F02E91CCB43EE00CFEE3A /* MovieBackdropCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieBackdropCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -321,7 +322,6 @@
 				69F580711BC738CD00656024 /* HttpRequest */,
 				690D58641BC0A8B000406ADA /* Constant */,
 				690D58471BC0962200406ADA /* Supporting Files */,
-				69764BC61C37844900509D09 /* MyMovieApp.xcdatamodeld */,
 			);
 			path = MyMovieApp;
 			sourceTree = "<group>";
@@ -329,6 +329,7 @@
 		690D58471BC0962200406ADA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				69764BC61C37844900509D09 /* MyMovieApp.xcdatamodeld */,
 				690D58481BC0962200406ADA /* main.m */,
 			);
 			name = "Supporting Files";
@@ -829,9 +830,10 @@
 		69764BC61C37844900509D09 /* MyMovieApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				697DCD811D7E6384001132F0 /* 1.0.xcdatamodel */,
 				69764BC71C37844900509D09 /* MyMovieApp.xcdatamodel */,
 			);
-			currentVersion = 69764BC71C37844900509D09 /* MyMovieApp.xcdatamodel */;
+			currentVersion = 697DCD811D7E6384001132F0 /* 1.0.xcdatamodel */;
 			path = MyMovieApp.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

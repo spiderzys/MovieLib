@@ -10,6 +10,7 @@
 #import "SecondViewController.h"
 #import "MovieMediaViewController.h"
 #import "MovieBackdropCollectionViewCell.h"
+
 @interface FirstViewController ()
 
 @end
@@ -107,10 +108,11 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
     _appDelegate = [UIApplication sharedApplication].delegate;
     _appDelegate.window.tintColor = _movieInfo.textColor;
     _playingMovieDictionaryArray = [NSArray array];
-    
+    _playingMovieDataProcessor = [[DataProcessor alloc]init];
     
     
     
@@ -261,7 +263,8 @@
                     if(i<coreDataSize){
             
                         [temp setObject:data forKey:@"poster_data"];
-                        [self addMovieToCoreData:i];
+                        [_playingMovieDataProcessor saveMovie:temp];
+                        //[self addMovieToCoreData:i];
                         
                     }
                     if(i==6){
@@ -285,16 +288,16 @@
 
 -(void)loadMovieFromNet{
     
-    DataProcessor * processor = [[DataProcessor alloc]init];
-    _dataSource = processor;
+    
+    
     
     //   NSString *playingMovie = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=en-US&certification_country=US",nowPlayWeb,APIKey];
     
     //   _playingMovieDictionaryArray = [self getDataFromUrl:[NSURL URLWithString:playingMovie] withKey:@"results" LimitPages:maxNumberPagesOfScrollView];
     
-    NSLog(@"%@",_dataSource);
+   
     
-    _playingMovieDictionaryArray = [_dataSource getPlayingMovies];
+    _playingMovieDictionaryArray = [_playingMovieDataProcessor getPlayingMovies];
     
     
     
@@ -382,7 +385,7 @@
     
     movie.release_date =[temp valueForKey:@"release_date"];
     
-    movie.posterData = [temp valueForKey:@"poster_data"];
+    movie.poster_data = [temp valueForKey:@"poster_data"];
     movie.vote_count = [temp valueForKey:@"vote_count"];
     
     [_appDelegate saveContext];
@@ -400,7 +403,7 @@
     [_titleLabel setText:movie.title];
     float mark = [movie.vote_average floatValue];
     [_ratingView setValue:mark/2];
-    [self.backImageView setImage:[UIImage imageWithData: movie.posterData]];
+    [self.backImageView setImage:[UIImage imageWithData: movie.poster_data]];
     [_releaseDateLabel setText:movie.release_date];
     
     
@@ -576,7 +579,7 @@
     }
     else{ // the data come from core data
         Movie *movie = [_playingMovieDictionaryArray objectAtIndex:indexPath.row];
-        UIImage *poster = [UIImage imageWithData: movie.posterData];
+        UIImage *poster = [UIImage imageWithData: movie.poster_data];
         customCell.movieImageView.image = poster;
     }
     return customCell;

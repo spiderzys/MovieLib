@@ -6,7 +6,7 @@
 //  Copyright © 2015 YANGSHENG ZOU. All rights reserved.
 //
 
-
+#import <Foundation/Foundation.h>
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "RegViewController.h"
@@ -14,7 +14,7 @@
 #import "LoginAlertController.h"
 #import "DataProcessor.h"
 
-
+/*
 @protocol playingMovieDataSource <NSObject>
 // the data source should provide playing movie info and the cast for any movie
 
@@ -23,10 +23,11 @@
 - (void)saveMovie:(NSDictionary*)movie;
 
 @end
-
+*/
 @interface FirstViewController : ViewController <UIAlertControllerDelegate, RegViewControllerDelegate>
 
-@property (weak, nonatomic) id<playingMovieDataSource> dataSource; //the data provider for this view controller
+//@property (weak, nonatomic) id<playingMovieDataSource> dataSource; //the data provider for this view controller
+
 
 @property (weak, nonatomic) IBOutlet UIButton *mediaButton;
 
@@ -34,7 +35,7 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *moviePosterCollectionView;
 
-
+@property (strong, nonatomic) DataProcessor *playingMovieDataProcessor;
 @property NSArray *playingMovieDictionaryArray;
 @property long selectedMovie;
 @property BOOL connected;
@@ -46,7 +47,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
 @property AppDelegate *appDelegate;
-//@property (weak, nonatomic) IBOutlet UILabel *playLengthLabel;
+
 @property (weak, nonatomic) IBOutlet HCSStarRatingView *ratingView;
 
 

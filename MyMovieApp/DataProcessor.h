@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FirstViewController.h"
+#import "AppDelegate.h"
+#import "Constant.h"
 
 
-@protocol playingMovieDataSource;
+//@protocol playingMovieDataSource;
 
 
 @protocol DataProviderDelegate <NSObject>
@@ -20,7 +21,8 @@
 @end
 
 
-@interface DataProcessor : NSObject <playingMovieDataSource>
+//@interface DataProcessor : NSObject <playingMovieDataSource>
+@interface DataProcessor : NSObject
 // 1. request desired data from API communicator
 // 2. save data
 
