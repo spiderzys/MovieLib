@@ -47,15 +47,21 @@
 
 
 
-- (NSData*)getPlayingMovieData{
-    // Call API for playing movies
-    return [NSData dataWithContentsOfURL:[NSURL URLWithString: [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=en-US&certification_country=US",nowPlayWeb,APIKey]]];
+- (NSData*)getPlayingMovieDataInPage:(int) page{
+    // Call API for playing movies of specified page
+    NSString *playingMovieUrlString = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=en-US&certification_country=US&page=%d",nowPlayWeb,APIKey, page];
+    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString: playingMovieUrlString]];
+    
+    return data;
+    
 }
 
 - (NSData*)getCastDataWithId:(NSNumber*)idn{
      NSString *castRequestUrlString = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
     return [NSData dataWithContentsOfURL:[NSURL URLWithString:castRequestUrlString]];
 }
+
+
 
 
 
@@ -68,14 +74,5 @@
 
 
 
-//-------------------------------post data-----------------------------------
-
-
--(void)postDataToUrl:(NSURL*)url WithHttpBody:(NSData*)HttpBody {
-    
-}
-
-
-//---------------------------------end----------------------------------------
 
 @end

@@ -216,9 +216,9 @@
     NSArray *temp =  [_appDelegate.managedObjectContext executeFetchRequest:request error:&error];
     for (Movie *movie in temp ) {
         [_appDelegate.managedObjectContext deleteObject:movie];
-        [_appDelegate saveContext];
+        
     }
-    
+    [_appDelegate saveContext];
     
 }
 -(void)loadMovieFromCoreData{
@@ -259,7 +259,7 @@
                     
                     
                     if(i<coreDataSize){
-                        NSLog(@"%d",i);
+            
                         [temp setObject:data forKey:@"poster_data"];
                         [self addMovieToCoreData:i];
                         
@@ -293,6 +293,7 @@
     //   _playingMovieDictionaryArray = [self getDataFromUrl:[NSURL URLWithString:playingMovie] withKey:@"results" LimitPages:maxNumberPagesOfScrollView];
     
     NSLog(@"%@",_dataSource);
+    
     _playingMovieDictionaryArray = [_dataSource getPlayingMovies];
     
     
@@ -367,8 +368,7 @@
 
 
 -(void)addMovieToCoreData:(int)tag{
-    Movie *movie;
-    movie = [_appDelegate createMovieObject];
+    Movie *movie = [_appDelegate createMovieObject];
     
     NSDictionary *temp = _playingMovieDictionaryArray[tag];
     movie.idn = [temp valueForKey:@"id"];
@@ -470,13 +470,10 @@
         
         
         //  /*
-        NSString *castRequestString = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
+       // NSString *castRequestString = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
         
-        NSString *castList = [self getCastFromUrl:[NSURL URLWithString:castRequestString]];
-        if(castList.length==0){
-            
-            castList = @"N/A";
-        }
+      //  NSString *castList = [self getCastFromUrl:[NSURL URLWithString:castRequestString]];
+        NSString *castList = [movie valueForKey:@"cast"];
         [_movieInfo setText:castList];
         
     }

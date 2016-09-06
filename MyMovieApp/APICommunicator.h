@@ -14,7 +14,7 @@
 
 
 
-
+- (NSData*)getPlayingMovieDataInPage:(int) page;
 
 
 + (APICommunicator*)sharedInstance; // only access for singleton

@@ -20,6 +20,7 @@
 
 - (NSArray*)getPlayingMovies;
 - (NSString*)getCastForMovie:(NSDictionary*)movieDictionary;
+- (void)saveMovie:(NSDictionary*)movie;
 
 @end
 

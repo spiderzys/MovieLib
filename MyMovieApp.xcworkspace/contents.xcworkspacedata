@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <FileRef
-      location = "group:MyMovieApp/Movie+CoreDataProperties.h">
-   </FileRef>
-   <FileRef
-      location = "group:MyMovieApp/Movie+CoreDataProperties.m">
-   </FileRef>
-   <FileRef
-      location = "group:MyMovieApp/Movie.h">
-   </FileRef>
-   <FileRef
-      location = "group:MyMovieApp/Movie.m">
-   </FileRef>
+   <Group
+      location = "container:"
+      name = "Core Data">
+      <FileRef
+         location = "group:MyMovieApp/Movie+CoreDataProperties.h">
+      </FileRef>
+      <FileRef
+         location = "group:MyMovieApp/Movie+CoreDataProperties.m">
+      </FileRef>
+      <FileRef
+         location = "group:MyMovieApp/Movie.h">
+      </FileRef>
+      <FileRef
+         location = "group:MyMovieApp/Movie.m">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:MyMovieApp.xcodeproj">
    </FileRef>

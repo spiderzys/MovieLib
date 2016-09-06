@@ -228,6 +228,12 @@
 		341256DFED036D442C6A0643 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				69668F461BE1CEC200E9D59A /* libxml2.tbd */,
+				69F580981BC73DA900656024 /* libz.1.2.5.tbd */,
+				69F8F10D1C3A764100438350 /* Assets.bundle */,
+				69F580961BC73CBC00656024 /* SystemConfiguration.framework */,
+				69F580941BC73CB300656024 /* CoreGraphics.framework */,
+				69F580921BC73CA100656024 /* MobileCoreServices.framework */,
 				695FC7FB1C3A5CDF00AA5B24 /* MediaPlayer.framework */,
 				A3879134C8E5BC01DD945129 /* libPods-MyMovieApp.a */,
 			);
@@ -237,12 +243,6 @@
 		690D583B1BC0962200406ADA = {
 			isa = PBXGroup;
 			children = (
-				69668F461BE1CEC200E9D59A /* libxml2.tbd */,
-				69F580981BC73DA900656024 /* libz.1.2.5.tbd */,
-				69F8F10D1C3A764100438350 /* Assets.bundle */,
-				69F580961BC73CBC00656024 /* SystemConfiguration.framework */,
-				69F580941BC73CB300656024 /* CoreGraphics.framework */,
-				69F580921BC73CA100656024 /* MobileCoreServices.framework */,
 				69CE5EC91D56762D00EC6730 /* MyMovieAppTests */,
 				690D58451BC0962200406ADA /* Products */,
 				690D58461BC0962200406ADA /* MyMovieApp */,

@@ -15,7 +15,7 @@
 
 @protocol DataProviderDelegate <NSObject>
 
-- (NSData*)getPlayingMovieData;  // get the data of playing movie from API
+- (NSData*)getPlayingMovieDataInPage:(int) page;  // get the data of playing movie from API
 - (NSData*)getCastDataWithId:(NSNumber*)idn;    // get the cast of a movie from API
 @end
 
@@ -25,10 +25,11 @@
 // 2. save data
 
 @property (nonatomic,weak) id<DataProviderDelegate> dataSource;
-
+@property AppDelegate *appDelegate;
 
 
 - (NSArray*)getPlayingMovies;  // return playing movie array to first view controller
 - (NSString*)getCastForMovie:(NSDictionary*)movieDictionary;   //return cast for specific movie
+- (void)saveMovie:(NSDictionary*)movie;
 
 @end
