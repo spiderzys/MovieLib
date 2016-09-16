@@ -133,7 +133,7 @@
 
 -(void)deleteRatingWithId:(NSString*)idn{
     
-    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     NSString *rateRequstString = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/%@/rating?%@&session_id=%@",idn,APIKey,delegate.sessionId];
     NSURL *URL = [NSURL URLWithString:rateRequstString];
     
@@ -165,7 +165,7 @@
 
 
 -(void)rateMovieWithId:(NSString*)idn Rate:(float)mark{
-    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    AppDelegate *_Nullable delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     NSString *rateRequstString = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/%@/rating?%@&session_id=%@",idn,APIKey,delegate.sessionId];
     NSURL *URL = [NSURL URLWithString:rateRequstString];
     

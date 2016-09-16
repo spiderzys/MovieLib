@@ -24,7 +24,7 @@ static AppDelegate  *delegate;
     [self addTextFieldWithConfigurationHandler:^(UITextField *passwordField){[passwordField setPlaceholder:@"password"];[passwordField setSecureTextEntry:YES];}];
     
     [super viewDidLoad];
-    delegate  = [[UIApplication sharedApplication]delegate];
+    delegate = (AppDelegate*) [[UIApplication sharedApplication]delegate];
  
     UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"sign in" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         
@@ -125,7 +125,7 @@ static AppDelegate  *delegate;
 
 -(void)updateSessionId:(NSString*)session_id username:(NSString*)username{
     
-    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     NSDictionary *dict = @{@"session_id":session_id,@"username":username};
    
     [dict writeToFile: delegate.userResourcePath atomically:YES];

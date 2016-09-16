@@ -16,8 +16,8 @@
 
 @protocol DataProviderDelegate <NSObject>
 
-- (NSData*)getPlayingMovieDataInPage:(int) page;  // get the data of playing movie from API
-- (NSData*)getCastDataWithId:(NSNumber*)idn;    // get the cast of a movie from API
+- (nullable NSData*)getPlayingMovieDataInPage:(int) page;  // get the data of playing movie from API
+- (nullable NSData*)getCastDataWithId:(nonnull NSNumber*)idn;    // get the cast of a movie from API
 @end
 
 
@@ -26,12 +26,12 @@
 // 1. request desired data from API communicator
 // 2. save data
 
-@property (nonatomic,weak) id<DataProviderDelegate> dataSource;
-@property AppDelegate *appDelegate;
+@property (nonatomic,weak,nullable) id<DataProviderDelegate> dataSource;
+@property (weak) AppDelegate*_Nullable  appDelegate ;
 
 
-- (NSArray*)getPlayingMovies;  // return playing movie array to first view controller
-- (NSString*)getCastForMovie:(NSDictionary*)movieDictionary;   //return cast for specific movie
-- (void)saveMovie:(NSDictionary*)movie;
+- (nullable NSArray*)getPlayingMovies;  // return playing movie array to first view controller
+- (nullable NSString*)getCastForMovie:( NSDictionary* _Nonnull ) movieDictionary;   //return cast for specific movie
+- (void)saveMovie:(nonnull NSDictionary*)movie;
 
 @end

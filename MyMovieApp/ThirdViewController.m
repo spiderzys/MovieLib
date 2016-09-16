@@ -310,7 +310,7 @@ static NSArray* contentArray;
 
 
 -(void)tryLogin{
-    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     
     if(delegate.sessionId){
@@ -357,7 +357,7 @@ static NSArray* contentArray;
                 
             }
             else{
-                AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+                AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
                 delegate.username = nil;
                 delegate.sessionId = nil;
                 
@@ -396,7 +396,7 @@ static NSArray* contentArray;
 }
 
 - (void)didDismissAlertControllerButtonTapped:(NSInteger)buttonTapped{
-    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     if(buttonTapped==cancel){
         [self.tabBarController setSelectedIndex:0];
     }
@@ -437,7 +437,7 @@ static NSArray* contentArray;
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
     [dict setValue:@"" forKey:@"session_id"];
     [dict setValue:@"" forKey:@"username"];
-    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     delegate.sessionId = nil;
     [dict writeToFile: delegate.userResourcePath atomically:YES];
     

@@ -34,7 +34,7 @@
 }
 
 - (void)didDismissAlertControllerButtonTapped:(NSInteger)buttonTapped{
-    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     if(buttonTapped==cancel){
         
@@ -73,7 +73,7 @@
 
 
 - (IBAction)rateMovie:(id)sender {
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(delegate.sessionId){
         
         [self showRatingSuccess];
@@ -109,7 +109,7 @@
     
     [super viewDidLoad];
     
-    _appDelegate = [UIApplication sharedApplication].delegate;
+    _appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     _appDelegate.window.tintColor = _movieInfo.textColor;
     _playingMovieDictionaryArray = [NSArray array];
     _playingMovieDataProcessor = [[DataProcessor alloc]init];

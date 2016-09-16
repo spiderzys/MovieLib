@@ -42,7 +42,7 @@
 }
 
 - (void)didDismissAlertControllerButtonTapped:(NSInteger)buttonTapped{
-    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     if(buttonTapped==cancel){
         [self singleOptionAlertWithMessage:@"Unsuccessful rating"];
@@ -81,7 +81,7 @@
 
 - (IBAction)rateMovie:(id)sender {
     _ratingView.userInteractionEnabled = NO;
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(delegate.sessionId){
         
         [self showRatingSuccess];

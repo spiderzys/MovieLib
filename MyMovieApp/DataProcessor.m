@@ -8,6 +8,7 @@
 
 #import "DataProcessor.h"
 #import "APICommunicator.h"
+#import "Constant.h"
 
 static const int numberOfPlayingMoviePages = 3;
 
@@ -19,7 +20,7 @@ static const int numberOfPlayingMoviePages = 3;
     self = [super init];
     if(self != nil){
         self.dataSource = [APICommunicator sharedInstance]; // set dataSource
-        self.appDelegate = [[UIApplication sharedApplication]delegate];
+        self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     }
     return self;
 }
