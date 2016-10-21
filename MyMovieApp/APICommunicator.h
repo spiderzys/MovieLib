@@ -21,6 +21,6 @@
 
 - (NSData*)getCastDataWithId:(NSNumber*)idn; // get recent movie data
 
-
+- (NSData*)getReviewDataWithId:(NSNumber*)idn; // get movie review
 
 @end

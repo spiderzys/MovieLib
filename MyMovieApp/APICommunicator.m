@@ -57,11 +57,16 @@
 }
 
 - (NSData*)getCastDataWithId:(NSNumber*)idn{
-     NSString *castRequestUrlString = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
+    NSString *castRequestUrlString = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
     return [NSData dataWithContentsOfURL:[NSURL URLWithString:castRequestUrlString]];
 }
 
-
+- (NSData*)getReviewDataWithId:(NSNumber*)idn{
+    NSString *reviewRequestString = [NSString stringWithFormat:@"%@%@/reviews?%@",movieWeb,idn,APIKey];
+    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:reviewRequestString]];
+    
+    return data;
+}
 
 
 

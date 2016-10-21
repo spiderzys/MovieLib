@@ -117,8 +117,8 @@ static NSArray* contentArray;
     
     
     [customCell.deleteButton removeTarget:nil
-                       action:NULL
-             forControlEvents:UIControlEventAllEvents];
+                                   action:NULL
+                         forControlEvents:UIControlEventAllEvents];
     customCell.deleteButton.tag = 0;
     if(indexPath.section<3){
         
@@ -134,52 +134,61 @@ static NSArray* contentArray;
         customCell.userRatingView.hidden = YES;
         customCell.deleteButton.hidden = YES;
         customCell.deleteButton.userInteractionEnabled = NO;
-    
+        
     }
     
     customCell.ratingView.value = [[movie valueForKey:@"vote_average"]floatValue]/2;
- //   NSLog(@"%f",customCell.ratingView.value);
+    //   NSLog(@"%f",customCell.ratingView.value);
     customCell.ratingView.hidden = (customCell.ratingView.value==0)?YES:NO;
     if(customCell.ratingView.hidden == NO){
-    NSLog(@"%f,%f,%f,%f",customCell.ratingView.frame.origin.x,customCell.ratingView.frame.origin.y,customCell.frame.size.height,customCell.ratingView.frame.size.height);
+        NSLog(@"%f,%f,%f,%f",customCell.ratingView.frame.origin.x,customCell.ratingView.frame.origin.y,customCell.frame.size.height,customCell.ratingView.frame.size.height);
     }
     NSString *poster_path = [movie valueForKey:@"poster_path"];
     poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
-    customCell.cellImageView.image = nil;
-    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (data) {
-            UIImage *image = [UIImage imageWithData:data];
-            if (image) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    UserMovieCollectionViewCell *updateCell =(UserMovieCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
-                    if (updateCell)
-                    updateCell.cellImageView.image = image;
-                    
-                });
+    NSData *imageCacheData = [self.imageCache objectForKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
+    if(imageCacheData != nil){
+        customCell.cellImageView.image = [UIImage imageWithData:imageCacheData];
+    }
+    
+    else{
+        
+        
+        customCell.cellImageView.image = nil;
+        NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (data) {
+                [self.imageCache setObject:data forKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
+                UIImage *image = [UIImage imageWithData:data];
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UserMovieCollectionViewCell *updateCell =(UserMovieCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+                        if (updateCell)
+                            updateCell.cellImageView.image = image;
+                        
+                    });
+                }
             }
-        }
-    }];
-    
-    [task resume];
-    
-    
+        }];
+        
+        [task resume];
+        
+    }
     return customCell;
 }
 
 -(void)deleteRating:(UIButton*)button{
     if(button.tag >= (long)10000){
-      
+        
         NSInteger row = button.tag%1000;
         NSInteger section = (button.tag-row-10000)/1000;
-
-       
+        
+        
         NSMutableArray *temp = [contentArray objectAtIndex:section];
         NSDictionary *movie = [temp objectAtIndex:row];
         NSString *idn = [movie valueForKey:@"id"];
         [super deleteRatingWithId:idn];
         [temp removeObjectAtIndex:row];
         [_userMovieCollectionView reloadData];
-
+        
     }
 }
 
@@ -258,6 +267,8 @@ static NSArray* contentArray;
     _needRatingMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     contentArray = [NSArray arrayWithObjects:_higherRatingList,_approxRatingList,_lowerRatingList,_niceMovieList,_badMovieList,_needRatingMovieList, nil];
 }
+
+
 -(NSMutableArray*)nonRatedListFrom:(NSArray*)temp ExcludingRatedList:(NSArray*)ratedList{
     temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
     NSMutableArray *nonRatedList = [NSMutableArray array];
@@ -270,7 +281,7 @@ static NSArray* contentArray;
                 break;
             }
         }
-
+        
     }
     return nonRatedList;
 }
@@ -340,32 +351,32 @@ static NSArray* contentArray;
 -(BOOL)loadRatingDataWithSession:(NSString*)sessionId username:(NSString*)username{
     [_loadingActivityIndicator startAnimating];
     
-     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     _ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
     NSURLRequest *rateRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:_ratingRequestString]];
-   
+    
     [[[NSURLSession sharedSession] dataTaskWithRequest:rateRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
         
-       
         
-            NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            if([rateResult objectForKey:@"results"]){
-                
-                
-                [self initRatingListFromUrl:[NSURL URLWithString:_ratingRequestString]];
-                [self reloadRatingList];
-                
-            }
-            else{
-                AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-                delegate.username = nil;
-                delegate.sessionId = nil;
-                
-            }
-       
-              dispatch_semaphore_signal(semaphore);
+        
+        NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        if([rateResult objectForKey:@"results"]){
+            
+            
+            [self initRatingListFromUrl:[NSURL URLWithString:_ratingRequestString]];
+            [self reloadRatingList];
+            
+        }
+        else{
+            AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+            delegate.username = nil;
+            delegate.sessionId = nil;
+            
+        }
+        
+        dispatch_semaphore_signal(semaphore);
     }]resume];
-       dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     
     [_loadingActivityIndicator stopAnimating];
     

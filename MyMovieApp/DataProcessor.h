@@ -18,6 +18,7 @@
 
 - (nullable NSData*)getPlayingMovieDataInPage:(int) page;  // get the data of playing movie from API
 - (nullable NSData*)getCastDataWithId:(nonnull NSNumber*)idn;    // get the cast of a movie from API
+- (nullable NSData*)getReviewDataWithId:(nonnull NSNumber*)idn; // get the review of a movie from API
 @end
 
 
@@ -33,5 +34,6 @@
 - (nullable NSArray*)getPlayingMovies;  // return playing movie array to first view controller
 - (nullable NSString*)getCastForMovie:( NSDictionary* _Nonnull ) movieDictionary;   //return cast for specific movie
 - (void)saveMovie:(nonnull NSDictionary*)movie;
+- (nullable NSString*)getReviewFromMovie:(nonnull NSDictionary*)movieDictionary;
 
 @end

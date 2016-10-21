@@ -23,12 +23,12 @@
     FirstViewController *first = [tab.viewControllers objectAtIndex:0];
     
     [self.backImageView setImage:first.backImageView.image];
-
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   // [_searchResultTableView registerNib:[UINib nibWithNibName:@"SearchResultTableViewCell" bundle:nil] forCellReuseIdentifier:@"SearchResultTableViewCell"];
+    // [_searchResultTableView registerNib:[UINib nibWithNibName:@"SearchResultTableViewCell" bundle:nil] forCellReuseIdentifier:@"SearchResultTableViewCell"];
     self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
     
     [self.view addSubview:self.backImageView];
@@ -76,14 +76,14 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     if ([[keywords stringByReplacingOccurrencesOfString:@" "
-                                              withString:@""] length]==0) {
+                                             withString:@""] length]==0) {
         
         [self singleOptionAlertWithMessage:@"no significant input detected"];
     }
     
     else{
         keywords = [keywords stringByReplacingOccurrencesOfString:@" "
-                                                         withString:@"+"];
+                                                       withString:@"+"];
         NSString *searchString = [NSString stringWithFormat:@"%@&query=%@",movieSearchWeb,keywords];
         
         NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:searchString] withKey:@"results" LimitPages:0];
@@ -149,12 +149,14 @@
 }
 
 
+#pragma -mark ---  delegate method for tableview
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-   
-   
+    
+    
     
     NSDictionary *movie = [_searchResult objectAtIndex:indexPath.row];
-        
+    
     MovieDetailViewController *viewController = [[MovieDetailViewController alloc]initWithNibName:@"MovieDetailViewController" bundle:nil movieDic:movie];
     [self presentViewController:viewController animated:YES completion:nil];
     
@@ -174,7 +176,7 @@
     if (!customCell) {
         
         //customCell =[_searchResultTableView  dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
-         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SearchResultTableViewCell" owner:self options:nil];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SearchResultTableViewCell" owner:self options:nil];
         customCell = [nib objectAtIndex:0];
         customCell.backgroundColor = [UIColor clearColor];
     }
@@ -184,28 +186,38 @@
     NSString *backPath = [movie valueForKey:@"backdrop_path"];
     backPath = [imdbPosterWeb stringByAppendingString:backPath];
     customCell.infoLabel.text = [movie valueForKey:@"title"];
-    customCell.backPosterImageView.image = nil;
-    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:backPath] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (data) {
-            UIImage *image = [UIImage imageWithData:data];
-            if (image) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-              SearchResultTableViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
-                    if (updateCell)
-                        updateCell.backPosterImageView.image = image;
-                
-                    
-                });
+    
+    NSData *imageCacheData = [self.imageCache objectForKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
+    if(imageCacheData != nil){
+        customCell.backPosterImageView.image = [UIImage imageWithData:imageCacheData];
+    }
+    
+    else{
+        customCell.backPosterImageView.image = nil;
+        NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:backPath] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (data) {
+                [self.imageCache setObject:data forKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
+                UIImage *image = [UIImage imageWithData:data];
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        SearchResultTableViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
+                        if (updateCell)
+                            updateCell.backPosterImageView.image = image;
+                        
+                        
+                    });
+                }
             }
-        }
-    }];
-    [task resume];
-
-   
+        }];
+        [task resume];
+    }
+    
     
     return customCell;
     
 }
+
+#pragma -mark ---  delegate method for search bar
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     NSString* keywords = [searchBar text];
@@ -223,9 +235,9 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-     [super viewWillAppear:animated];
+    [super viewWillAppear:animated];
     [_searchBar sizeToFit];
-   
+    
 }
 
 

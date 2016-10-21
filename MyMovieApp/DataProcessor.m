@@ -95,7 +95,7 @@ static const int numberOfPlayingMoviePages = 3;
             [filteredPlayingMovieArray addObjectsFromArray:temp];
             
         }
-       
+        
         
     }
     return filteredPlayingMovieArray;
@@ -119,12 +119,37 @@ static const int numberOfPlayingMoviePages = 3;
     
 }
 
+
+- (NSString*)getReviewFromMovie:(NSDictionary*)movieDictionary{
+    NSNumber *idn = [movieDictionary valueForKey:@"id"];
+    
+    NSData* reviewData = [_dataSource getReviewDataWithId:idn];
+    
+    NSArray *reviewList = [self JSONPreProcessData:reviewData Withkey:@"results"];
+    NSString *reviewString = @"";
+    
+    if(reviewList.count>0){
+        
+        for (NSDictionary *reviewDic in reviewList) {
+            NSString *author = [reviewDic valueForKey:@"author"];
+            NSString *content = [reviewDic valueForKey:@"content"];
+            reviewString = [NSString stringWithFormat:@"%@%@:\n%@\n\n\n",reviewString,author,content];
+        }
+        return reviewString;
+    }
+    return  @"N/A";
+    
+}
+
+
+
+
 -(void)saveMovie:(NSDictionary*)movie{
     
     // save movie to core data
     Movie *savedMovie = [_appDelegate createMovieObject];
     
-
+    
     savedMovie.idn = [movie valueForKey:@"id"];
     savedMovie.cast = [movie valueForKey:@"cast"];
     savedMovie.overview = [movie valueForKey:@"overview"];
@@ -144,6 +169,10 @@ static const int numberOfPlayingMoviePages = 3;
 
 
 //-------------------------end------------------------
+
+
+
+//----------------for second and third view controller---------------------
 
 
 

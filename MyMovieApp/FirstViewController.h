@@ -55,6 +55,6 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *infoSegmentControl;
 
 
--(void)addMovieToCoreData:(int)tag;
+//-(void)addMovieToCoreData:(int)tag;
 @end
 
