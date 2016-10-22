@@ -35,18 +35,13 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *moviePosterCollectionView;
 
-@property (strong, nonatomic) DataProcessor *playingMovieDataProcessor;
-@property NSArray *playingMovieDictionaryArray;
-@property long selectedMovie;
-@property BOOL connected;
-@property NSTimer* autoScrollTimer;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivityIndicator;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
-@property AppDelegate *appDelegate;
+
 
 @property (weak, nonatomic) IBOutlet HCSStarRatingView *ratingView;
 
@@ -55,6 +50,5 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *infoSegmentControl;
 
 
-//-(void)addMovieToCoreData:(int)tag;
 @end
 

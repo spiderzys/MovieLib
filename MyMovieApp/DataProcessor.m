@@ -15,7 +15,6 @@ static const int numberOfPlayingMoviePages = 3;
 @implementation DataProcessor
 
 
-
 -(id)init{
     self = [super init];
     if(self != nil){
@@ -64,7 +63,6 @@ static const int numberOfPlayingMoviePages = 3;
 
 
 
-//-------------------------for first view controller------------------------
 
 -(NSArray*)getPlayingMovies{
     // get desired playing movie array
@@ -80,15 +78,15 @@ static const int numberOfPlayingMoviePages = 3;
             temp = [self filterMember:temp WithoutValidValueForKey:@"poster_path"];  // remove movies without posterpath
             
             
-            for (int i = 0; i < temp.count; i++){  //replace movie dict with its subset
-                NSMutableDictionary *movieDictionary = [temp[i] mutableCopy];
+            for (int j = 0; j < temp.count; j++){  //replace movie dict with its subset
+                NSMutableDictionary *movieDictionary = [temp[j] mutableCopy];
                 [movieDictionary setValue:nil forKey:@"poster_data"];  // add key posterData
                 NSString *poster_path = [movieDictionary valueForKey:@"poster_path"];
                 
                 [movieDictionary setValue:[imdbPosterWeb stringByAppendingString:poster_path] forKey:@"poster_path"]; // add prefix for poster path
-                temp[i] = [self subsetDictionary: [movieDictionary mutableCopy] ForKeys:@[@"id",@"title",@"vote_count",@"release_date",@"vote_average", @"overview",@"poster_path",@"poster_data"]];
-                NSString *cast = [self getCastForMovie:temp[i]];
-                [temp[i] setObject:cast forKey: @"cast"];
+                temp[j] = [self subsetDictionary: [movieDictionary mutableCopy] ForKeys:@[@"id",@"title",@"vote_count",@"release_date",@"vote_average", @"overview",@"poster_path",@"poster_data"]];
+                NSString *cast = [self getCastForMovie:temp[j]];
+                [temp[j] setObject:cast forKey: @"cast"];
                 
                 
             }
@@ -100,6 +98,20 @@ static const int numberOfPlayingMoviePages = 3;
     }
     return filteredPlayingMovieArray;
     
+}
+
+-(NSMutableArray*)getSearchingResultWithKeywords:(NSString*)keywords{
+    NSMutableArray *filteredSearchingResult = [NSMutableArray array];
+    int page = 1;
+    NSData* searchingData = [_dataSource getSearchingDataWithKeywords:keywords InPage:page];
+    while (searchingData) {
+        NSArray *resultMovieArray = [self JSONPreProcessData:searchingData Withkey:@"results"];
+        NSMutableArray* temp = [self filterMember:resultMovieArray.mutableCopy WithoutValidValueForKey:@"backdrop_path"];
+        [filteredSearchingResult addObjectsFromArray:temp];
+        searchingData = [_dataSource getSearchingDataWithKeywords:keywords InPage:++page];
+    }
+    
+    return filteredSearchingResult;
 }
 
 - (NSString*)getCastForMovie:(NSDictionary*)movieDictionary{
@@ -141,7 +153,16 @@ static const int numberOfPlayingMoviePages = 3;
     
 }
 
-
+-(void)removeCoreData{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
+    NSError *error;
+    NSArray *temp =  [appDelegate.managedObjectContext executeFetchRequest:request error:&error];
+    for (Movie *movie in temp ) {
+        [appDelegate.managedObjectContext deleteObject:movie];
+        
+    }
+    [appDelegate saveContext];
+}
 
 
 -(void)saveMovie:(NSDictionary*)movie{
@@ -168,12 +189,16 @@ static const int numberOfPlayingMoviePages = 3;
 }
 
 
-//-------------------------end------------------------
-
-
-
-//----------------for second and third view controller---------------------
-
+-(void)clearSessionId{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    [dict setValue:@"" forKey:@"session_id"];
+    [dict setValue:@"" forKey:@"username"];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    delegate.sessionId = nil;
+    [dict writeToFile: delegate.userResourcePath atomically:YES];
+    
+}
 
 
 @end

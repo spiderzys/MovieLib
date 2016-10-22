@@ -71,7 +71,6 @@
 		694D77701CE05FB900A1A4F5 /* AboutTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 694D776E1CE05FB900A1A4F5 /* AboutTableViewController.xib */; };
 		69585E1D1D6F9AF9007B339B /* APICommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 69585E1C1D6F9AF9007B339B /* APICommunicator.m */; };
 		69585E231D6F9B35007B339B /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 69585E221D6F9B35007B339B /* DataProcessor.m */; };
-		69585E261D6FA1FA007B339B /* LoginRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 69585E251D6FA1FA007B339B /* LoginRequester.m */; };
 		695F0F871CE1A37F00715526 /* LicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695F0F851CE1A37F00715526 /* LicenseViewController.m */; };
 		695F0F881CE1A37F00715526 /* LicenseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 695F0F861CE1A37F00715526 /* LicenseViewController.xib */; };
 		695FC7F41C3A1B2900AA5B24 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695FC7F31C3A1B2900AA5B24 /* ViewController.m */; };
@@ -145,8 +144,6 @@
 		69585E1C1D6F9AF9007B339B /* APICommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APICommunicator.m; sourceTree = "<group>"; };
 		69585E211D6F9B35007B339B /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProcessor.h; sourceTree = "<group>"; };
 		69585E221D6F9B35007B339B /* DataProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProcessor.m; sourceTree = "<group>"; };
-		69585E241D6FA1FA007B339B /* LoginRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRequester.h; sourceTree = "<group>"; };
-		69585E251D6FA1FA007B339B /* LoginRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRequester.m; sourceTree = "<group>"; };
 		695F0F841CE1A37F00715526 /* LicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicenseViewController.h; sourceTree = "<group>"; };
 		695F0F851CE1A37F00715526 /* LicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LicenseViewController.m; sourceTree = "<group>"; };
 		695F0F861CE1A37F00715526 /* LicenseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LicenseViewController.xib; sourceTree = "<group>"; };
@@ -270,8 +267,6 @@
 				69585E1C1D6F9AF9007B339B /* APICommunicator.m */,
 				69585E211D6F9B35007B339B /* DataProcessor.h */,
 				69585E221D6F9B35007B339B /* DataProcessor.m */,
-				69585E241D6FA1FA007B339B /* LoginRequester.h */,
-				69585E251D6FA1FA007B339B /* LoginRequester.m */,
 				69FCCCC01CCF483D0067420B /* MovieMediaViewController.h */,
 				69FCCCC11CCF483D0067420B /* MovieMediaViewController.m */,
 				69FCCCC21CCF483D0067420B /* MovieMediaViewController.xib */,
@@ -564,7 +559,6 @@
 				695FC7F41C3A1B2900AA5B24 /* ViewController.m in Sources */,
 				69027DE61CC9F2A900DD6C3A /* MovieBackdropCollectionViewCell.m in Sources */,
 				69764BC81C37844900509D09 /* MyMovieApp.xcdatamodeld in Sources */,
-				69585E261D6FA1FA007B339B /* LoginRequester.m in Sources */,
 				69466A331CC70925002B95B6 /* UserMovieCollectionHeaderView.m in Sources */,
 				690D58491BC0962200406ADA /* main.m in Sources */,
 				6946E5D01CB330F0007546ED /* SearchResultTableViewCell.m in Sources */,

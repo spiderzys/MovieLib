@@ -23,4 +23,5 @@
 
 - (NSData*)getReviewDataWithId:(NSNumber*)idn; // get movie review
 
+- (NSData*)getSearchingDataWithKeywords:(NSString*)keywords InPage:(int)page; // get searching data
 @end

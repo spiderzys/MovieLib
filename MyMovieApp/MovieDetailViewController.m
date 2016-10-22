@@ -110,7 +110,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-   
+    
     self.backImageView =  [[UIImageView alloc]initWithFrame:self.view.frame];
     [self.backImageView setContentMode:UIViewContentModeScaleAspectFill];
     self.backImageView.clipsToBounds = YES;
@@ -123,7 +123,7 @@
     _navigationBar.shadowImage = [UIImage new];
     [_movieBackdropCollectionView registerNib:[UINib nibWithNibName:@"MovieBackdropCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"movieImages"];
     
-   
+    
     NSDictionary *genreDic = [[NSDictionary alloc] initWithContentsOfFile: self.genreResourcePath];
     NSArray *genre_ids = [_movie valueForKey:@"genre_ids"];
     NSString *label = @"Label: ";
@@ -216,17 +216,17 @@
         
     }
     NSLog(@"%@",[_movie valueForKey:@"id"]);
-
+    
     
 }
-    
-       
+
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
 }
-    // Do any additional setup after loading the view from its nib.
-    
+// Do any additional setup after loading the view from its nib.
+
 
 
 
@@ -285,22 +285,29 @@
     NSString *file_path = [movieImageDic valueForKey:@"file_path"];
     file_path = [imdbPosterWeb stringByAppendingString: file_path];
     customCell.movieImageView.image = nil;
-    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:file_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (data) {
-            UIImage *image = [UIImage imageWithData:data];
-            if (image) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    MovieBackdropCollectionViewCell *updateCell =(MovieBackdropCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
-                    if (updateCell){
-                        updateCell.movieImageView.image = image;
-                    }
-                });
+    NSData *imageCacheData = [self.imageCache objectForKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
+
+    if(imageCacheData != nil){
+        customCell.movieImageView.image = [UIImage imageWithData:imageCacheData];
+    }
+    else{
+        NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:file_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (data) {
+                [self.imageCache setObject:data forKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
+                UIImage *image = [UIImage imageWithData:data];
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        MovieBackdropCollectionViewCell *updateCell =(MovieBackdropCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+                        if (updateCell){
+                            updateCell.movieImageView.image = image;
+                        }
+                    });
+                }
             }
-        }
-    }];
-    
-    [task resume];
-    
+        }];
+        
+        [task resume];
+    }
     return customCell;
 }
 

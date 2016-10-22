@@ -13,12 +13,37 @@
 #import "MovieDetailViewController.h"
 #import "AppDelegate.h"
 #import "AboutTableViewController.h"
+#import "DataProcessor.h"
 
-static NSArray* contentArray;
+//static NSArray* contentArray;
 
-@interface ThirdViewController ()
+
+
+@interface ThirdViewController(){
+    NSArray* headTitleArray;
+    
+    NSMutableArray *higherRatingList;
+    
+    NSMutableArray *lowerRatingList;
+    
+    NSMutableArray *approxRatingList;
+    
+    NSMutableArray *niceMovieList;
+    
+    NSMutableArray *badMovieList;
+    
+    NSMutableArray *needRatingMovieList;
+    
+    NSString *ratingRequestString;
+    
+    NSArray* contentArray;
+    
+    DataProcessor* userDataProcessor;
+
+}
 
 @end
+
 
 @implementation ThirdViewController
 
@@ -27,7 +52,7 @@ static NSArray* contentArray;
     
     
     if([self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]]){
-        if(!_needRatingMovieList){
+        if(!needRatingMovieList){
             [self tryLogin];
         }
     }
@@ -42,12 +67,11 @@ static NSArray* contentArray;
     
     [super viewDidLoad];
     
-    // [self resetRatingList];
-    
+    userDataProcessor = DataProcessor.new;
     [[_userLabel layer] setCornerRadius:10.0f];
     [[_userLabel layer] setMasksToBounds:YES];
     
-    _headTitleArray = @[@"Movies you Rated higher:",@"Approximate rate:",@"Movies you Rated lower:",@"Do the following movies deserve high rates indeed?",@"The following movies are terrible! Do you agree?",@"Few comments for these. Could you contribute?"];
+    headTitleArray = @[@"Movies you Rated higher:",@"Approximate rate:",@"Movies you Rated lower:",@"Do the following movies deserve high rates indeed?",@"The following movies are terrible! Do you agree?",@"Few comments for these. Could you contribute?"];
     [_userMovieCollectionView registerNib:[UINib nibWithNibName:@"UserMovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     
 }
@@ -65,7 +89,7 @@ static NSArray* contentArray;
             
             
             scrollView.scrollEnabled = NO;
-            [self initRatingListFromUrl: [NSURL URLWithString:_ratingRequestString]];
+            [self initRatingListFromUrl: [NSURL URLWithString:ratingRequestString]];
             [self reloadRatingList];
             
             scrollView.scrollEnabled = YES;
@@ -138,7 +162,6 @@ static NSArray* contentArray;
     }
     
     customCell.ratingView.value = [[movie valueForKey:@"vote_average"]floatValue]/2;
-    //   NSLog(@"%f",customCell.ratingView.value);
     customCell.ratingView.hidden = (customCell.ratingView.value==0)?YES:NO;
     if(customCell.ratingView.hidden == NO){
         NSLog(@"%f,%f,%f,%f",customCell.ratingView.frame.origin.x,customCell.ratingView.frame.origin.y,customCell.frame.size.height,customCell.ratingView.frame.size.height);
@@ -198,7 +221,7 @@ static NSArray* contentArray;
     UserMovieCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"head" forIndexPath:indexPath];
     if(headerView){
         
-        NSString *title = [_headTitleArray objectAtIndex:indexPath.section];
+        NSString *title = [headTitleArray objectAtIndex:indexPath.section];
         NSArray *array = [contentArray objectAtIndex:indexPath.section];
         if(array.count==0){
             title = [title stringByAppendingString:@" N/A"];
@@ -216,23 +239,23 @@ static NSArray* contentArray;
     ratedList = [self removeUndesiredDataFromResults:ratedList WithNullValueForKey:@"poster_path"];
     ratedList = [[NSSet setWithArray:ratedList] allObjects];
     
-    _approxRatingList = [NSMutableArray array];
-    _higherRatingList = [NSMutableArray array];
-    _lowerRatingList = [NSMutableArray array];
+    approxRatingList = [NSMutableArray array];
+    higherRatingList = [NSMutableArray array];
+    lowerRatingList = [NSMutableArray array];
     for (NSDictionary *movie in ratedList) {
         NSNumber *rating = [movie valueForKey:@"rating"];
         NSNumber *vote_average = [movie valueForKey:@"vote_average"];
         
         if (rating.floatValue >ratingGap+ vote_average.floatValue) {
             
-            [_higherRatingList addObject:movie];
+            [higherRatingList addObject:movie];
         }
         else if (vote_average.floatValue >ratingGap+ rating.floatValue ) {
             
-            [_lowerRatingList addObject:movie];
+            [lowerRatingList addObject:movie];
         }
         else{
-            [_approxRatingList addObject:movie];
+            [approxRatingList addObject:movie];
         }
         
     }
@@ -247,14 +270,14 @@ static NSArray* contentArray;
     NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:niceMovieRequestString] withKey:@"results" LimitPages:1];
     temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
     
-    _niceMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
+    niceMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     
     
     
     NSString *badMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.lte=2.5&sort_by=popularity.desc&language=EN&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
     temp = [self getDataFromUrl:[NSURL URLWithString:badMovieRequestString] withKey:@"results" LimitPages:1];
     temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
-    _badMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
+    badMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     
     
     
@@ -264,8 +287,8 @@ static NSArray* contentArray;
         temp = [temp subarrayWithRange:NSMakeRange(0, 10)];
     }
     temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
-    _needRatingMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
-    contentArray = [NSArray arrayWithObjects:_higherRatingList,_approxRatingList,_lowerRatingList,_niceMovieList,_badMovieList,_needRatingMovieList, nil];
+    needRatingMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
+    contentArray = [NSArray arrayWithObjects:higherRatingList,approxRatingList,lowerRatingList,niceMovieList,badMovieList,needRatingMovieList, nil];
 }
 
 
@@ -306,12 +329,12 @@ static NSArray* contentArray;
 
 
 -(void)resetRatingList{
-    _lowerRatingList = nil;
-    _higherRatingList = nil;
-    _approxRatingList = nil;
-    _badMovieList = nil;
-    _niceMovieList = nil;
-    _needRatingMovieList = nil;
+    lowerRatingList = nil;
+    higherRatingList = nil;
+    approxRatingList = nil;
+    badMovieList = nil;
+    niceMovieList = nil;
+    needRatingMovieList = nil;
     contentArray = nil;
 }
 
@@ -352,8 +375,8 @@ static NSArray* contentArray;
     [_loadingActivityIndicator startAnimating];
     
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    _ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
-    NSURLRequest *rateRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:_ratingRequestString]];
+    ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
+    NSURLRequest *rateRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:ratingRequestString]];
     
     [[[NSURLSession sharedSession] dataTaskWithRequest:rateRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
         
@@ -363,7 +386,7 @@ static NSArray* contentArray;
         if([rateResult objectForKey:@"results"]){
             
             
-            [self initRatingListFromUrl:[NSURL URLWithString:_ratingRequestString]];
+            [self initRatingListFromUrl:[NSURL URLWithString:ratingRequestString]];
             [self reloadRatingList];
             
         }
@@ -381,7 +404,7 @@ static NSArray* contentArray;
     [_loadingActivityIndicator stopAnimating];
     
     
-    if(_needRatingMovieList){
+    if(needRatingMovieList){
         return YES;
     }
     else{
@@ -443,18 +466,6 @@ static NSArray* contentArray;
 
 
 
--(void)clearSessionId{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
-    [dict setValue:@"" forKey:@"session_id"];
-    [dict setValue:@"" forKey:@"username"];
-    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    delegate.sessionId = nil;
-    [dict writeToFile: delegate.userResourcePath atomically:YES];
-    
-}
-
-
 
 
 
@@ -464,7 +475,7 @@ static NSArray* contentArray;
 }
 
 - (IBAction)logout:(id)sender {
-    [self clearSessionId];
+    [userDataProcessor clearSessionId];
     [self resetRatingList];
     _userLabel.text = @"Guest";
     [self.tabBarController setSelectedIndex:0];

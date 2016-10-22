@@ -10,27 +10,32 @@
 #import "SearchResultTableViewCell.h"
 #import "MovieDetailViewController.h"
 #import "FirstViewController.h"
-@interface SecondViewController ()
+#import "DataProcessor.h"
 
+
+@interface SecondViewController () {
+    NSMutableArray *searchResult;
+    DataProcessor* searchingRequestProcessor;
+}
 @end
 
+
 @implementation SecondViewController
+
 
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     UITabBarController *tab = self.tabBarController;
     FirstViewController *first = [tab.viewControllers objectAtIndex:0];
-    
     [self.backImageView setImage:first.backImageView.image];
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // [_searchResultTableView registerNib:[UINib nibWithNibName:@"SearchResultTableViewCell" bundle:nil] forCellReuseIdentifier:@"SearchResultTableViewCell"];
+    searchingRequestProcessor = [DataProcessor new];
     self.backImageView = [[UIImageView alloc]initWithFrame:self.view.frame];
-    
     [self.view addSubview:self.backImageView];
     [self.view sendSubviewToBack:self.backImageView];
     self.backImageView.alpha=0.2;
@@ -50,7 +55,7 @@
     _markLabel.userInteractionEnabled = NO;
     _markLabel.textColor = _dateLabel.textColor;
     _dateLabel.textColor = [UIColor blackColor];
-    if(_searchResult!=nil){
+    if(searchResult!=nil){
         [self sortResult];
     }
 }
@@ -62,7 +67,7 @@
     _dateLabel.textColor = _markLabel.textColor;
     _markLabel.textColor = [UIColor blackColor];
     
-    if(_searchResult!=nil){
+    if(searchResult!=nil){
         [self sortResult];
     }
 }
@@ -84,17 +89,14 @@
     else{
         keywords = [keywords stringByReplacingOccurrencesOfString:@" "
                                                        withString:@"+"];
-        NSString *searchString = [NSString stringWithFormat:@"%@&query=%@",movieSearchWeb,keywords];
         
-        NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:searchString] withKey:@"results" LimitPages:0];
+        searchResult = [searchingRequestProcessor getSearchingResultWithKeywords:keywords];
         
-        if (temp == nil) {
-            _searchResult = nil;
+        if (searchResult.count == 0) {
             
             [self singleOptionAlertWithMessage:@"no data for this search. Check your input or network"];
         }
         else{
-            _searchResult = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"backdrop_path"]; // remove movies without post.
             [self sortResult];
             _searchResultTableView.hidden = NO;
             
@@ -117,8 +119,8 @@
                                                      ascending:NO];
     }
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    NSArray *sorted = [_searchResult sortedArrayUsingDescriptors:sortDescriptors];
-    _searchResult = [sorted mutableCopy];
+    NSArray *sorted = [searchResult sortedArrayUsingDescriptors:sortDescriptors];
+    searchResult = [sorted mutableCopy];
     UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     activity.center = self.view.center;
     activity.hidesWhenStopped = YES;
@@ -155,7 +157,7 @@
     
     
     
-    NSDictionary *movie = [_searchResult objectAtIndex:indexPath.row];
+    NSDictionary *movie = [searchResult objectAtIndex:indexPath.row];
     
     MovieDetailViewController *viewController = [[MovieDetailViewController alloc]initWithNibName:@"MovieDetailViewController" bundle:nil movieDic:movie];
     [self presentViewController:viewController animated:YES completion:nil];
@@ -164,7 +166,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _searchResult.count;
+    return searchResult.count;
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -175,14 +177,13 @@
     SearchResultTableViewCell *customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
     if (!customCell) {
         
-        //customCell =[_searchResultTableView  dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SearchResultTableViewCell" owner:self options:nil];
         customCell = [nib objectAtIndex:0];
         customCell.backgroundColor = [UIColor clearColor];
     }
     
     
-    NSDictionary *movie = [_searchResult objectAtIndex:indexPath.row];
+    NSDictionary *movie = [searchResult objectAtIndex:indexPath.row];
     NSString *backPath = [movie valueForKey:@"backdrop_path"];
     backPath = [imdbPosterWeb stringByAppendingString:backPath];
     customCell.infoLabel.text = [movie valueForKey:@"title"];

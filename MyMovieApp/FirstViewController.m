@@ -11,13 +11,21 @@
 #import "MovieMediaViewController.h"
 #import "MovieBackdropCollectionViewCell.h"
 
-@interface FirstViewController ()
 
+@interface FirstViewController () {
+    DataProcessor *playingMovieDataProcessor;
+    NSArray *playingMovieDictionaryArray;
+    long selectedMovie;
+    BOOL connected;
+    NSTimer* autoScrollTimer;
+    AppDelegate *appDelegate;
+}
 @end
+
+
 
 @implementation FirstViewController
 @synthesize backImageView;
-
 
 
 //------------------------------------login for rating-------------------------------
@@ -86,7 +94,7 @@
 
 -(void)showRatingSuccess{
     
-    NSDictionary *movie = [_playingMovieDictionaryArray objectAtIndex:_selectedMovie];
+    NSDictionary *movie = [playingMovieDictionaryArray objectAtIndex:selectedMovie];
     [self rateMovieWithId:[movie valueForKey:@"id"] Rate:_ratingView.value*2];
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Thanks for your rating" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -109,10 +117,10 @@
     
     [super viewDidLoad];
     
-    _appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    _appDelegate.window.tintColor = _movieInfo.textColor;
-    _playingMovieDictionaryArray = [NSArray array];
-    _playingMovieDataProcessor = [[DataProcessor alloc]init];
+    appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.window.tintColor = _movieInfo.textColor;
+    playingMovieDictionaryArray = [NSArray array];
+    playingMovieDataProcessor = [[DataProcessor alloc]init];
     
     
     
@@ -159,7 +167,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if(_playingMovieDictionaryArray.count == 0){
+    if(playingMovieDictionaryArray.count == 0){
         [self loadScrollView];  //  try to load scrollview again again
         
     }
@@ -171,10 +179,10 @@
     
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    _selectedMovie = 0;
-    _connected = [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]];
+    selectedMovie = 0;
+    connected = [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]];
     
-    if(_connected){
+    if(connected){
         [self updateGenre];
         [self loadFromAPI];
         
@@ -184,7 +192,7 @@
         
     }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    if(_playingMovieDictionaryArray.count>0){
+    if(playingMovieDictionaryArray.count>0){
         [self showInfo:0];
     }
     else{
@@ -215,23 +223,23 @@
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
     NSError *error;
-    NSArray *temp =  [_appDelegate.managedObjectContext executeFetchRequest:request error:&error];
+    NSArray *temp =  [appDelegate.managedObjectContext executeFetchRequest:request error:&error];
     for (Movie *movie in temp ) {
-        [_appDelegate.managedObjectContext deleteObject:movie];
+        [appDelegate.managedObjectContext deleteObject:movie];
         
     }
-    [_appDelegate saveContext];
+    [appDelegate saveContext];
     
 }
 -(void)loadMovieFromCoreData{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
     NSError *error;
-    _connected = NO;
+    connected = NO;
     _infoSegmentControl.selectedSegmentIndex = 1;
     _infoSegmentControl.userInteractionEnabled = NO;
-    _playingMovieDictionaryArray = [NSMutableArray arrayWithArray: [_appDelegate.managedObjectContext executeFetchRequest:request error:&error]];
+    playingMovieDictionaryArray = [NSMutableArray arrayWithArray: [appDelegate.managedObjectContext executeFetchRequest:request error:&error]];
     
-    if(_playingMovieDictionaryArray==nil){
+    if(playingMovieDictionaryArray==nil){
         NSLog(@"%@",error);
         abort();
     }
@@ -241,7 +249,7 @@
 -(void)loadFromAPI{
     
     [self loadMovieFromNet];
-    if (_playingMovieDictionaryArray.count>0) {
+    if (playingMovieDictionaryArray.count>0) {
         _infoSegmentControl.selectedSegmentIndex = 0;
         _infoSegmentControl.userInteractionEnabled = YES;
         _mediaButton.userInteractionEnabled = YES;
@@ -251,9 +259,9 @@
         
         [self removeCoreData];
         
-        for (int i=0;i<_playingMovieDictionaryArray.count;i++){
+        for (int i=0;i<playingMovieDictionaryArray.count;i++){
             
-            NSMutableDictionary *temp = _playingMovieDictionaryArray[i];
+            NSMutableDictionary *temp = playingMovieDictionaryArray[i];
             NSLog(@"%@",temp);
             NSString *poster_path = [temp valueForKey:@"poster_path"];
             NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -263,7 +271,7 @@
                     if(i<coreDataSize){
             
                         [temp setObject:data forKey:@"poster_data"];
-                        [_playingMovieDataProcessor saveMovie:temp]; // new method for adding movie to core data
+                        [playingMovieDataProcessor saveMovie:temp]; // new method for adding movie to core data
                         //[self addMovieToCoreData:i];
                         
                     }
@@ -297,11 +305,11 @@
     
    
     
-    _playingMovieDictionaryArray = [_playingMovieDataProcessor getPlayingMovies];
+    playingMovieDictionaryArray = [playingMovieDataProcessor getPlayingMovies];
     
     
     
-    if (_playingMovieDictionaryArray  == nil) {
+    if (playingMovieDictionaryArray  == nil) {
         
         [self loadFromCoreData];
         
@@ -397,7 +405,7 @@
 */
 
 -(void)showInfoFromCoreData:(long)num{
-    Movie *movie =_playingMovieDictionaryArray[num];
+    Movie *movie =playingMovieDictionaryArray[num];
     
     
     [_titleLabel setText:movie.title];
@@ -416,16 +424,16 @@
     [_movieInfo setText:movie.overview];
     
     
-    _selectedMovie = num;
+    selectedMovie = num;
     
 }
 -(void)showInfo:(long)num{
     _ratingView.tintColor = _movieInfo.textColor;
     
-    if(_connected){
+    if(connected){
         
         
-        NSDictionary *movie = [_playingMovieDictionaryArray objectAtIndex:num];
+        NSDictionary *movie = [playingMovieDictionaryArray objectAtIndex:num];
         NSDictionary *genreDic = [[NSDictionary alloc] initWithContentsOfFile: self.genreResourcePath];
         NSArray *genre_ids = [movie valueForKey:@"genre_ids"];
         NSString *label = @"Label: ";
@@ -456,7 +464,7 @@
         [self.backImageView setImage:[UIImage imageWithData: data]];
         
         [self showTextView:movie];
-        _selectedMovie = num;
+        selectedMovie = num;
         
         
     }
@@ -471,8 +479,6 @@
    // NSString *idn = [movie  valueForKey:@"id"];
     if(_infoSegmentControl.selectedSegmentIndex == 0){
         
-        
-        //  /*
        // NSString *castRequestString = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
         
       //  NSString *castList = [self getCastFromUrl:[NSURL URLWithString:castRequestString]];
@@ -500,7 +506,7 @@
         }
          */
         
-        NSString *reviewString = [_playingMovieDataProcessor getReviewFromMovie:movie];
+        NSString *reviewString = [playingMovieDataProcessor getReviewFromMovie:movie];
         [_movieInfo setText:reviewString];
     }
     
@@ -509,7 +515,7 @@
 
 
 -(void)viewDidDisappear:(BOOL)animated{
-    [_autoScrollTimer invalidate];
+    [autoScrollTimer invalidate];
     [super viewDidDisappear:animated];
     
 }
@@ -545,9 +551,9 @@
     
     MovieBackdropCollectionViewCell * customCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"movieImages" forIndexPath:indexPath];
     customCell.movieImageView.image = nil;
-    if(_connected){ // the data come from API
+    if(connected){ // the data come from API
         
-        NSDictionary *movie = [_playingMovieDictionaryArray objectAtIndex:indexPath.row];
+        NSDictionary *movie = [playingMovieDictionaryArray objectAtIndex:indexPath.row];
         
         
         NSString *file_path = [movie valueForKey:@"poster_path"];
@@ -581,7 +587,7 @@
         }
     }
     else{ // the data come from core data
-        Movie *movie = [_playingMovieDictionaryArray objectAtIndex:indexPath.row];
+        Movie *movie = [playingMovieDictionaryArray objectAtIndex:indexPath.row];
         UIImage *poster = [UIImage imageWithData: movie.poster_data];
         customCell.movieImageView.image = poster;
     }
@@ -594,13 +600,13 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return _playingMovieDictionaryArray.count;
+    return playingMovieDictionaryArray.count;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [_autoScrollTimer invalidate];
+    [autoScrollTimer invalidate];
     
-    if(indexPath.row == _selectedMovie){
+    if(indexPath.row == selectedMovie){
         
         PresentViewController *presentController = [[PresentViewController alloc]initWithNibName:@"PresentViewController" bundle:nil image:self.backImageView.image];
         
@@ -623,8 +629,8 @@
 
 
 -(void)autoScroll:(NSNumber*)autoScrollVelocity{
-    [_autoScrollTimer invalidate];
-    _autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimer:) userInfo:autoScrollVelocity repeats:YES];
+    [autoScrollTimer invalidate];
+    autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onTimer:) userInfo:autoScrollVelocity repeats:YES];
 }
 
 
@@ -641,14 +647,14 @@
 }
 
 - (IBAction)showMedia:(id)sender {
-    NSDictionary *movie = [_playingMovieDictionaryArray objectAtIndex:_selectedMovie];
+    NSDictionary *movie = [playingMovieDictionaryArray objectAtIndex:selectedMovie];
     MovieMediaViewController *mediaViewController = [[MovieMediaViewController alloc]initWithNibName:@"MovieMediaViewController" bundle:nil movieDic:movie];
     [self presentViewController:mediaViewController animated:YES completion:nil];
 }
 
 - (IBAction)segmentChanged:(id)sender {
-    if(_connected){
-        NSDictionary *movie = [_playingMovieDictionaryArray objectAtIndex:_selectedMovie];
+    if(connected){
+        NSDictionary *movie = [playingMovieDictionaryArray objectAtIndex:selectedMovie];
         [self showTextView:movie];
     }
     
