@@ -9,10 +9,10 @@
 #import "LoginAlertController.h"
 #import "Constant.h"
 #import "AppDelegate.h"
+#import "DataProcessor.h"
 static AppDelegate  *delegate;
-@interface LoginAlertController ()
 
-@end
+
 
 @implementation LoginAlertController
 
@@ -109,7 +109,9 @@ static AppDelegate  *delegate;
                         delegate.sessionId = [sessionResult valueForKey:@"session_id"];
                         
                         delegate.username = username;
-                        [self updateSessionId:delegate.sessionId username:username];
+                        
+                        
+                        [[DataProcessor new] updateSessionId:delegate.sessionId username:username];
                     }
                     dispatch_semaphore_signal(semaphore);
                 }]resume];
@@ -122,14 +124,6 @@ static AppDelegate  *delegate;
 }
 
 
-
--(void)updateSessionId:(NSString*)session_id username:(NSString*)username{
-    
-    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    NSDictionary *dict = @{@"session_id":session_id,@"username":username};
-   
-    [dict writeToFile: delegate.userResourcePath atomically:YES];
-}
 
 
 

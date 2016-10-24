@@ -11,11 +11,7 @@
 
 @interface APICommunicator : NSObject <DataProviderDelegate>
 
-
-
-
 - (NSData*)getPlayingMovieDataInPage:(int) page;
-
 
 + (APICommunicator*)sharedInstance; // only access for singleton
 
@@ -24,4 +20,25 @@
 - (NSData*)getReviewDataWithId:(NSNumber*)idn; // get movie review
 
 - (NSData*)getSearchingDataWithKeywords:(NSString*)keywords InPage:(int)page; // get searching data
+
+- (NSData*)getSessionData; // get seesion data
+
+- (NSData*)getImagesDataWithId:(NSNumber*)idn;  // get images data
+
+- (NSData*)getVideosDataWithId:(NSNumber*)idn;  // get videos data
+
+- (void)deleteRatingWithId:(NSNumber*)idn;
+    
+- (void)rateMovieWithId:(NSNumber*)idn Rate:(float)mark;
+
+- (NSData*)getUserRatingDataFromUrl:(NSURL*)url InPage:(int)page;
+
+- (NSData*)getNiceMovieData;
+
+- (NSData*)getBadMovieData;
+
+- (NSData*)getMovieNeedingRatingData;
+
+
+
 @end

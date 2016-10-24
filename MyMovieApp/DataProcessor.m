@@ -12,12 +12,22 @@
 
 static const int numberOfPlayingMoviePages = 3;
 
-@implementation DataProcessor
+@interface DataProcessor(){
+    
+    NSString* genreResourcePath;
+    
+}
 
+@end
+
+@implementation DataProcessor
 
 -(id)init{
     self = [super init];
     if(self != nil){
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+        genreResourcePath = [basePath stringByAppendingPathComponent:@"genre.plist"];
         self.dataSource = [APICommunicator sharedInstance]; // set dataSource
         self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     }
@@ -70,7 +80,7 @@ static const int numberOfPlayingMoviePages = 3;
     for (int i = 1; i<=numberOfPlayingMoviePages; i++){
         NSData *playingMovieData = [_dataSource getPlayingMovieDataInPage:i]; //request data from API
         
-        NSArray *playingMovieArray = [self JSONPreProcessData:playingMovieData Withkey:@"results"]; // process the JSON
+        NSArray *playingMovieArray = [self JSONPreProcessData:playingMovieData Withkey:@"result"]; // process the JSON
         
         if(playingMovieArray != nil){
             NSMutableArray * temp = [playingMovieArray mutableCopy];
@@ -153,24 +163,77 @@ static const int numberOfPlayingMoviePages = 3;
     
 }
 
+- (NSArray*)getVideosFromMovie:(NSDictionary*)movieDictionary{
+    NSNumber *idn = [movieDictionary valueForKey:@"id"];
+    NSData *videoData = [_dataSource getVideosDataWithId:idn];
+    NSArray *videoList = [self JSONPreProcessData:videoData Withkey:@"results"];
+    NSArray* trailerArray = [NSArray array];
+    if(videoList){
+        NSMutableArray *temp = [NSMutableArray array];
+        for (NSDictionary *result in videoList) {
+            
+            if ([[result objectForKey:@"site"] isEqualToString:@"YouTube"]) {
+                NSString *playId = [result objectForKey:@"key"];
+                [temp addObject:playId];
+            }
+        }
+        trailerArray = [temp copy];
+        
+    }
+    return trailerArray;
+    
+}
+
+- (NSArray*)getImagesFromMovie:(NSDictionary*)movieDictionary{
+    NSNumber *idn = [movieDictionary valueForKey:@"id"];
+    NSData *imageData = [_dataSource getImagesDataWithId:idn];
+    if(imageData.length>0){
+        NSArray *posterPathArray = [self JSONPreProcessData:imageData Withkey:@"poster"];
+        NSArray *backdropPathArray = [self JSONPreProcessData:imageData Withkey:@"backdrops"];
+        if(posterPathArray.count>11){
+            posterPathArray = [posterPathArray subarrayWithRange:NSMakeRange(0, 11)];
+        }
+        if(backdropPathArray.count>10){
+            backdropPathArray = [backdropPathArray subarrayWithRange:NSMakeRange(0, 10)];
+        }
+        return [NSArray arrayWithObjects:posterPathArray,backdropPathArray,nil];
+    }
+    else{
+        return [NSArray array];
+    }
+}
+
+
+
+-(NSArray*)getMovieFromCoreData{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
+    NSError *error;
+    NSArray* playingMovieDictionaryArray = [NSMutableArray arrayWithArray: [_appDelegate.managedObjectContext executeFetchRequest:request error:&error]];
+    
+    if(playingMovieDictionaryArray==nil){
+        NSLog(@"%@",error);
+        abort();
+    }
+    return playingMovieDictionaryArray;
+    
+}
+
+
 -(void)removeCoreData{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
     NSError *error;
-    NSArray *temp =  [appDelegate.managedObjectContext executeFetchRequest:request error:&error];
+    NSArray *temp =  [_appDelegate.managedObjectContext executeFetchRequest:request error:&error];
     for (Movie *movie in temp ) {
-        [appDelegate.managedObjectContext deleteObject:movie];
+        [_appDelegate.managedObjectContext deleteObject:movie];
         
     }
-    [appDelegate saveContext];
+    [_appDelegate saveContext];
 }
 
 
 -(void)saveMovie:(NSDictionary*)movie{
     
-    // save movie to core data
     Movie *savedMovie = [_appDelegate createMovieObject];
-    
-    
     savedMovie.idn = [movie valueForKey:@"id"];
     savedMovie.cast = [movie valueForKey:@"cast"];
     savedMovie.overview = [movie valueForKey:@"overview"];
@@ -188,6 +251,13 @@ static const int numberOfPlayingMoviePages = 3;
     [_appDelegate saveContext];
 }
 
+-(void)updateSessionId:(NSString*)session_id username:(NSString*)username{
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    NSDictionary *dict = @{@"session_id":session_id,@"username":username};
+    
+    [dict writeToFile: delegate.userResourcePath atomically:YES];
+}
+
 
 -(void)clearSessionId{
     NSString *path = [[NSBundle mainBundle] pathForResource:@"user" ofType:@"plist"];
@@ -199,6 +269,81 @@ static const int numberOfPlayingMoviePages = 3;
     [dict writeToFile: delegate.userResourcePath atomically:YES];
     
 }
+
+- (void)updateGenre{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    genreResourcePath = [basePath stringByAppendingPathComponent:@"genre.plist"];
+    NSData * sessionData = [_dataSource getSessionData];
+    
+    NSArray *genres = [self JSONPreProcessData:sessionData Withkey:@"genres"];
+    
+    NSMutableDictionary *genreDic = [NSMutableDictionary dictionary];
+    for (NSDictionary* genreItem in genres) {
+        NSNumber *genreIdn = [genreItem valueForKey:@"id"];
+        NSString *genreId = genreIdn.description;
+        NSString *genreName = [genreItem valueForKey:@"name"];
+        [genreDic setObject:genreName forKey:genreId];
+        
+    }
+    [genreDic writeToFile: genreResourcePath atomically:YES];
+    
+}
+
+
+- (void)rateMovie:(nonnull NSDictionary*)movieDictionary Mark:(float)mark{
+    NSNumber *idn = [movieDictionary valueForKey:@"id"];
+    [_dataSource rateMovieWithId:idn Rate:mark];
+}
+- (void)deleteMovieRate:(nonnull NSDictionary*)movieDictionary{
+    NSNumber *idn = [movieDictionary valueForKey:@"id"];
+    [_dataSource deleteRatingWithId:idn];
+}
+
+- (NSArray*)getUserRatingFromUrl:(NSURL*)url{
+    int page = 1;
+    NSData *ratingData = [_dataSource getUserRatingDataFromUrl:url InPage:page];
+    NSMutableArray *result = [NSMutableArray array];
+    
+    while (ratingData) {
+        NSArray *ratingList = [self JSONPreProcessData:ratingData Withkey:@"results"];
+        [result addObjectsFromArray:[self filterMember:ratingList.mutableCopy WithoutValidValueForKey:@"poster_path"]];
+        
+        ratingData = [_dataSource getUserRatingDataFromUrl:url InPage:++page];
+    }
+    
+    return result;
+    
+}
+
+
+
+- (NSArray*)getNiceMovie{
+    NSData *movieData = [_dataSource getNiceMovieData];
+    NSArray *movieList = [self JSONPreProcessData:movieData Withkey:@"results"];
+    movieList = [self filterMember:movieList.mutableCopy WithoutValidValueForKey:@"poster_path"];
+    return movieList;
+    
+}
+
+- (NSArray*)getBadMovie{
+    NSData *movieData = [_dataSource getBadMovieData];
+    NSArray *movieList = [self JSONPreProcessData:movieData Withkey:@"results"];
+    movieList = [self filterMember:movieList.mutableCopy WithoutValidValueForKey:@"poster_path"];
+    return movieList;
+}
+
+- (NSArray*)getMovieNeedingRating{
+    NSData *movieData = [_dataSource getMovieNeedingRatingData];
+    NSArray *movieList = [self JSONPreProcessData:movieData Withkey:@"results"];
+    movieList = [self filterMember:movieList.mutableCopy WithoutValidValueForKey:@"poster_path"];
+    if(movieList.count>10){
+        movieList = [movieList subarrayWithRange:NSMakeRange(0, 10)];
+    }
+    return movieList;
+}
+
+
 
 
 @end

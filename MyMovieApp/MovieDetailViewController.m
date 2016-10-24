@@ -10,8 +10,11 @@
 #import "MovieBackdropCollectionViewCell.h"
 #import "MovieMediaViewController.h"
 #import "AppDelegate.h"
+#import "DataProcessor.h"
 
-@interface MovieDetailViewController ()
+@interface MovieDetailViewController (){
+    DataProcessor *processor;
+}
 
 @end
 
@@ -23,7 +26,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     self.genreResourcePath = [basePath stringByAppendingPathComponent:@"genre.plist"];
-    
+    processor = [DataProcessor new];
     
     return self;
 }
@@ -94,7 +97,8 @@
 }
 
 -(void)showRatingSuccess{
-    [self rateMovieWithId:[_movie valueForKey:@"id"] Rate:_ratingView.value*2];
+    
+    [processor rateMovie:_movie Mark:_ratingView.value*2];
     _ratingView.tintColor = [UIColor orangeColor];
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Thanks for your rating" message:nil preferredStyle:UIAlertControllerStyleAlert];
     [self presentViewController:alertController animated:YES completion:^{
@@ -154,43 +158,19 @@
     
     NSString *overview = [_movie  valueForKey:@"overview"];
     
-    NSString *idn = [_movie  valueForKey:@"id"];
-    NSString *showCast = @"";
-    //  /*
-    NSString *castRequestString = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
     
-    NSString *castList = [self getCastFromUrl:[NSURL URLWithString:castRequestString]];
-    if(castList.length==0){
-        
-        castList = @"N/A";
-    }
-    NSArray *castArray = [castList componentsSeparatedByString:@","];
+   
+    
+    NSString *castList = [processor getCastForMovie:_movie];
+    
+    NSString *info = [NSString stringWithFormat:@"%@\nCast: %@ \n\nOverview:\n%@ ",label, castList, overview];
+    
+    NSString *reviewString = [processor getReviewFromMovie:_movie];
     
     
-    for (NSString *name in castArray) {
-        showCast = [showCast stringByAppendingString:name];
-        if (showCast.length>maxCastLengthForDisplay) {
-            break;
-        }
-    }
-    
-    NSString *info = [NSString stringWithFormat:@"%@\nCast: %@ \n\nOverview:\n%@ ",label, showCast, overview];
-    
-    
-    
-    NSString *reviewRequestString = [NSString stringWithFormat:@"%@%@/reviews?%@",movieWeb,idn,APIKey];
-    NSArray *reviewList = [self getDataFromUrl:[NSURL URLWithString:reviewRequestString] withKey:@"results" LimitPages:1];
-    NSString *reviewString = @"\n\nReview:\n";
-    NSUInteger reviewLength = reviewString.length;
-    if(reviewList.count>0){
-        
-        for (NSDictionary *reviewDic in reviewList) {
-            NSString *author = [reviewDic valueForKey:@"author"];
-            NSString *content = [reviewDic valueForKey:@"content"];
-            reviewString = [NSString stringWithFormat:@"%@\n%@:\n%@\n(End)\n\n",reviewString,author,content];
-        }
-    }
-    if(reviewString.length>reviewLength){
+   
+    NSString *review = @"\n\nReview:\n";
+    if(reviewString.length>review.length){
         info = [info stringByAppendingString:reviewString];
     }
     

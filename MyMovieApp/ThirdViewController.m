@@ -15,9 +15,6 @@
 #import "AboutTableViewController.h"
 #import "DataProcessor.h"
 
-//static NSArray* contentArray;
-
-
 
 @interface ThirdViewController(){
     NSArray* headTitleArray;
@@ -67,7 +64,7 @@
     
     [super viewDidLoad];
     
-    userDataProcessor = DataProcessor.new;
+    userDataProcessor = [DataProcessor new];
     [[_userLabel layer] setCornerRadius:10.0f];
     [[_userLabel layer] setMasksToBounds:YES];
     
@@ -207,8 +204,7 @@
         
         NSMutableArray *temp = [contentArray objectAtIndex:section];
         NSDictionary *movie = [temp objectAtIndex:row];
-        NSString *idn = [movie valueForKey:@"id"];
-        [super deleteRatingWithId:idn];
+        [userDataProcessor deleteMovieRate:movie];
         [temp removeObjectAtIndex:row];
         [_userMovieCollectionView reloadData];
         
@@ -231,12 +227,15 @@
     return headerView;
 }
 
--(void)initRatingListFromUrl:(NSURL*)url{
+
+
+-(void)initRatingListFromUrl:(NSURL*) url{
     
     
     
-    NSArray *ratedList = [self getDataFromUrl:url withKey:@"results" LimitPages:0];
-    ratedList = [self removeUndesiredDataFromResults:ratedList WithNullValueForKey:@"poster_path"];
+    
+    NSArray *ratedList = [userDataProcessor getUserRatingFromUrl:url];
+   
     ratedList = [[NSSet setWithArray:ratedList] allObjects];
     
     approxRatingList = [NSMutableArray array];
@@ -260,40 +259,22 @@
         
     }
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy"];
-    NSString *yearString = [formatter stringFromDate:[NSDate date]];
-    
-    
-    
-    NSString *niceMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.gte=7.5&sort_by=popularity.desc&language=EN&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
-    NSArray *temp = [self getDataFromUrl:[NSURL URLWithString:niceMovieRequestString] withKey:@"results" LimitPages:1];
-    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
-    
+
+   
+    NSArray *temp = [userDataProcessor getNiceMovie];
     niceMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
-    
-    
-    
-    NSString *badMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.lte=2.5&sort_by=popularity.desc&language=EN&vote_count.gte=10",movieDiscoverWeb,APIKey,yearString];
-    temp = [self getDataFromUrl:[NSURL URLWithString:badMovieRequestString] withKey:@"results" LimitPages:1];
-    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
+    temp = [userDataProcessor getBadMovie];
     badMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
+    temp = [userDataProcessor getMovieNeedingRating];
+    needRatingMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     
-    
-    
-    NSString *needRatingMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&sort_by=popularity.desc&vote_count.lte=10&language=EN",movieDiscoverWeb,APIKey,yearString];
-    temp = [self getDataFromUrl:[NSURL URLWithString:needRatingMovieRequestString] withKey:@"results" LimitPages:1];
-    if(temp.count>10){
-        temp = [temp subarrayWithRange:NSMakeRange(0, 10)];
-    }
-    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
     needRatingMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     contentArray = [NSArray arrayWithObjects:higherRatingList,approxRatingList,lowerRatingList,niceMovieList,badMovieList,needRatingMovieList, nil];
 }
 
 
 -(NSMutableArray*)nonRatedListFrom:(NSArray*)temp ExcludingRatedList:(NSArray*)ratedList{
-    temp = [self removeUndesiredDataFromResults:temp WithNullValueForKey:@"poster_path"];
+
     NSMutableArray *nonRatedList = [NSMutableArray array];
     for (NSDictionary *movie in temp) {
         [nonRatedList addObject:movie];
@@ -385,8 +366,8 @@
         NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         if([rateResult objectForKey:@"results"]){
             
-            
             [self initRatingListFromUrl:[NSURL URLWithString:ratingRequestString]];
+           
             [self reloadRatingList];
             
         }

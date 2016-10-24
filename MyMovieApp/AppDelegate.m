@@ -34,38 +34,13 @@
     return YES;
 }
 
--(void)loadRatingDataWithSession:(NSString*)sessionId username:(NSString*)username{
-    
-      NSString* ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
-    NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:ratingRequestString]];
-    [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
-        
-        NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        if(![rateResult objectForKey:@"results"]){
-            _username = nil;
-            _sessionId = nil;
-        }
-        //      dispatch_semaphore_signal(semaphore);
-    }]resume];
-    //   dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    
-    
-}
+
 
 -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
     NSLog(@"the call back we receive comes %@",url.absoluteString);
     return [[NXOAuth2AccountStore sharedStore]handleRedirectURL:url];
     
 }
-
--(void)updateSessionId:(NSString*)session_id username:(NSString*)username{
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_userResourcePath];
-    [dict setValue:session_id forKey:@"session_id"];
-    [dict setValue:username forKey:@"username"];
-    [dict writeToFile: _userResourcePath atomically:YES];
-}
-
 
 
 

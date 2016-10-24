@@ -126,7 +126,7 @@
     
 }
 -(void)netAlert{
-    [self singleOptionAlertWithMessage:@"No network"];
+    [self singleOptionAlertWithMessage:@"connection failed"];
     
 }
 

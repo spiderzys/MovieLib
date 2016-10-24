@@ -95,7 +95,7 @@
 -(void)showRatingSuccess{
     
     NSDictionary *movie = [playingMovieDictionaryArray objectAtIndex:selectedMovie];
-    [self rateMovieWithId:[movie valueForKey:@"id"] Rate:_ratingView.value*2];
+    [playingMovieDataProcessor rateMovie:movie Mark:_ratingView.value*2];
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Thanks for your rating" message:nil preferredStyle:UIAlertControllerStyleAlert];
     alertController.view.tintColor = [UIColor purpleColor];
@@ -183,11 +183,13 @@
     connected = [self connectAPI:[NSString stringWithFormat:@"%@%@",movieDiscoverWeb,APIKey]];
     
     if(connected){
-        [self updateGenre];
+        
+        [playingMovieDataProcessor updateGenre];
         [self loadFromAPI];
         
     }
     else{
+        
         [self loadFromCoreData];
         
     }
@@ -196,6 +198,7 @@
         [self showInfo:0];
     }
     else{
+        
         [self singleOptionAlertWithMessage:@"No network"];
     }
     
@@ -208,56 +211,42 @@
 
 
 -(void)loadFromCoreData{
-    
-    [self loadMovieFromCoreData];
-    
+    playingMovieDictionaryArray = [playingMovieDataProcessor getMovieFromCoreData];
+    connected = NO;
+    _infoSegmentControl.selectedSegmentIndex = 1;
+    _infoSegmentControl.userInteractionEnabled = NO;
     [_loadingActivityIndicator stopAnimating];
     [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
     
 }
 
 
--(void)removeCoreData{
-    
-    
-    
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
-    NSError *error;
-    NSArray *temp =  [appDelegate.managedObjectContext executeFetchRequest:request error:&error];
-    for (Movie *movie in temp ) {
-        [appDelegate.managedObjectContext deleteObject:movie];
-        
-    }
-    [appDelegate saveContext];
-    
-}
--(void)loadMovieFromCoreData{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
-    NSError *error;
-    connected = NO;
-    _infoSegmentControl.selectedSegmentIndex = 1;
-    _infoSegmentControl.userInteractionEnabled = NO;
-    playingMovieDictionaryArray = [NSMutableArray arrayWithArray: [appDelegate.managedObjectContext executeFetchRequest:request error:&error]];
-    
-    if(playingMovieDictionaryArray==nil){
-        NSLog(@"%@",error);
-        abort();
-    }
-    
-}
+
+
 
 -(void)loadFromAPI{
+    playingMovieDictionaryArray = [playingMovieDataProcessor getPlayingMovies];
     
-    [self loadMovieFromNet];
+    
+    
+    if (playingMovieDictionaryArray  == nil) {
+        
+        [self loadFromCoreData];
+        
+        
+    }
+    else{
+        [_loadingActivityIndicator startAnimating];
+        
+    }
+    
     if (playingMovieDictionaryArray.count>0) {
         _infoSegmentControl.selectedSegmentIndex = 0;
         _infoSegmentControl.userInteractionEnabled = YES;
         _mediaButton.userInteractionEnabled = YES;
         _ratingView.userInteractionEnabled = YES;
         
-        
-        
-        [self removeCoreData];
+        [playingMovieDataProcessor removeCoreData];
         
         for (int i=0;i<playingMovieDictionaryArray.count;i++){
             
@@ -272,7 +261,6 @@
             
                         [temp setObject:data forKey:@"poster_data"];
                         [playingMovieDataProcessor saveMovie:temp]; // new method for adding movie to core data
-                        //[self addMovieToCoreData:i];
                         
                     }
                     if(i==6){
@@ -294,63 +282,6 @@
 }
 
 
--(void)loadMovieFromNet{
-    
-    
-    
-    
-    //   NSString *playingMovie = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=en-US&certification_country=US",nowPlayWeb,APIKey];
-    
-    //   _playingMovieDictionaryArray = [self getDataFromUrl:[NSURL URLWithString:playingMovie] withKey:@"results" LimitPages:maxNumberPagesOfScrollView];
-    
-   
-    
-    playingMovieDictionaryArray = [playingMovieDataProcessor getPlayingMovies];
-    
-    
-    
-    if (playingMovieDictionaryArray  == nil) {
-        
-        [self loadFromCoreData];
-        
-        
-    }
-    else{
-        [_loadingActivityIndicator startAnimating];
-        
-        /*
-         //    _playingMovieDictionaryArray  = [self removeUndesiredDataFromResults:_playingMovieDictionaryArray  WithNullValueForKey:@"poster_path"]; // remove movies without post.
-         NSMutableArray *array = [NSMutableArray array];
-         for (NSDictionary *temp in _playingMovieDictionaryArray) {
-         NSString *idn  = [temp valueForKey:@"id"];
-         NSString *overview = [temp valueForKey:@"overview"];
-         if (overview.length==0) {
-         overview = @"No overview so far";
-         }
-         NSNumber *vote_average =[temp valueForKey:@"vote_average"];
-         NSString *title =[temp valueForKey:@"title"];
-         
-         NSString *release_date =[temp valueForKey:@"release_date"];
-         
-         NSString *poster_path = [temp valueForKey:@"poster_path"];
-         NSNumber *vote_count = [temp valueForKey:@"vote_count"];
-         poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
-         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-         idn, @"id",
-         title, @"title",
-         // cast, @"cast",
-         vote_count, @"vote_count",
-         poster_path, @"poster_path",
-         release_date, @"release_date",
-         vote_average, @"vote_average",
-         overview, @"overview",
-         nil];
-         [array addObject:dic];
-         }
-         _playingMovieDictionaryArray = [NSArray arrayWithArray:array];
-         */
-    }
-}
 
 // scrollviewDelegate
 
@@ -375,34 +306,8 @@
     }
 }
 
-// end
 
-/* replaced 
--(void)addMovieToCoreData:(int)tag{
-    Movie *movie = [_appDelegate createMovieObject];
-    
-    NSDictionary *temp = _playingMovieDictionaryArray[tag];
-    movie.idn = [temp valueForKey:@"id"];
-    
-    movie.overview = [temp valueForKey:@"overview"];
-    if (movie.overview.length==0) {
-        movie.overview = @"No overview so far";
-    }
-    movie.vote_average =[temp valueForKey:@"vote_average"];
-    movie.title =[temp valueForKey:@"title"];
-    
-    movie.release_date =[temp valueForKey:@"release_date"];
-    
-    movie.poster_data = [temp valueForKey:@"poster_data"];
-    movie.vote_count = [temp valueForKey:@"vote_count"];
-    
-    [_appDelegate saveContext];
-    
-    
-    
-    
-}
-*/
+
 
 -(void)showInfoFromCoreData:(long)num{
     Movie *movie =playingMovieDictionaryArray[num];
@@ -491,21 +396,7 @@
         [_movieInfo setText:[movie valueForKey:@"overview"]];
     }
     else{
-        /*
-        NSString *reviewRequestString = [NSString stringWithFormat:@"%@%@/reviews?%@",movieWeb,idn,APIKey];
-        NSArray *reviewList = [self getDataFromUrl:[NSURL URLWithString:reviewRequestString] withKey:@"results" LimitPages:1];
-        NSString *reviewString = @"";
-        
-        if(reviewList.count>0){
-            
-            for (NSDictionary *reviewDic in reviewList) {
-                NSString *author = [reviewDic valueForKey:@"author"];
-                NSString *content = [reviewDic valueForKey:@"content"];
-                reviewString = [NSString stringWithFormat:@"%@%@:\n%@\n\n\n",reviewString,author,content];
-            }
-        }
-         */
-        
+               
         NSString *reviewString = [playingMovieDataProcessor getReviewFromMovie:movie];
         [_movieInfo setText:reviewString];
     }
