@@ -11,7 +11,7 @@
 #import "Constant.h"
 
 static const int numberOfPlayingMoviePages = 3;
-static int page = 0;
+
 @interface DataProcessor(){
     
     NSString* genreResourcePath;
@@ -74,55 +74,40 @@ static int page = 0;
 
 
 
--(void)getPlayingMovies{
-    page = 0;
+-(NSArray*)getPlayingMovies{
     // get desired playing movie array
     NSMutableArray *filteredPlayingMovieArray = [NSMutableArray array];
     for (int i = 1; i<=numberOfPlayingMoviePages; i++){
-        NSString *playingMovieUrlString = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=en-US&certification_country=US&page=%d",nowPlayWeb,APIKey, i];
+        NSData *playingMovieData = [_dataSource getPlayingMovieDataInPage:i]; //request data from API
         
-        [[[NSURLSession sharedSession]dataTaskWithURL:[NSURL URLWithString:playingMovieUrlString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            NSArray *playingMovieArray = [self JSONPreProcessData:data Withkey:@"results"]; // process the JSON
-            if(playingMovieArray != nil){
-                NSMutableArray * temp = [playingMovieArray mutableCopy];
+        NSArray *playingMovieArray = [self JSONPreProcessData:playingMovieData Withkey:@"result"]; // process the JSON
+        
+        if(playingMovieArray != nil){
+            NSMutableArray * temp = [playingMovieArray mutableCopy];
+            
+            temp = [self filterMember:temp WithoutValidValueForKey:@"poster_path"];  // remove movies without posterpath
+            
+            
+            for (int j = 0; j < temp.count; j++){  //replace movie dict with its subset
+                NSMutableDictionary *movieDictionary = [temp[j] mutableCopy];
+                [movieDictionary setValue:nil forKey:@"poster_data"];  // add key posterData
+                NSString *poster_path = [movieDictionary valueForKey:@"poster_path"];
                 
-                temp = [self filterMember:temp WithoutValidValueForKey:@"poster_path"];  // remove movies without posterpath
+                [movieDictionary setValue:[imdbPosterWeb stringByAppendingString:poster_path] forKey:@"poster_path"]; // add prefix for poster path
+                temp[j] = [self subsetDictionary: [movieDictionary mutableCopy] ForKeys:@[@"id",@"title",@"vote_count",@"release_date",@"vote_average", @"overview",@"poster_path",@"poster_data"]];
+                NSString *cast = [self getCastForMovie:temp[j]];
+                [temp[j] setObject:cast forKey: @"cast"];
                 
                 
-                for (int j = 0; j < temp.count; j++){  //replace movie dict with its subset
-                    NSMutableDictionary *movieDictionary = [temp[j] mutableCopy];
-                    [movieDictionary setValue:nil forKey:@"poster_data"];  // add key posterData
-                    NSString *poster_path = [movieDictionary valueForKey:@"poster_path"];
-                    
-                    [movieDictionary setValue:[imdbPosterWeb stringByAppendingString:poster_path] forKey:@"poster_path"]; // add prefix for poster path
-                    temp[j] = [self subsetDictionary: [movieDictionary mutableCopy] ForKeys:@[@"id",@"title",@"vote_count",@"release_date",@"vote_average", @"overview",@"poster_path",@"poster_data"]];
-                    NSString *cast = [self getCastForMovie:temp[j]];
-                    [temp[j] setObject:cast forKey: @"cast"];
-                    
-                    
-                }
-                [filteredPlayingMovieArray addObjectsFromArray:temp];
-              
             }
+            [filteredPlayingMovieArray addObjectsFromArray:temp];
             
-            
-            
-            [self pageFinished:filteredPlayingMovieArray];
-            
-            
-            
-        }]resume];
+        }
         
         
     }
-}
-
-
-- (void)pageFinished:(NSMutableArray*)result{
-    page ++;
-    if(page == numberOfPlayingMoviePages){
-        [self.present afterDataTask:result];
-    }
+    return filteredPlayingMovieArray;
+    
 }
 
 -(NSMutableArray*)getSearchingResultWithKeywords:(NSString*)keywords{

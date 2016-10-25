@@ -46,20 +46,13 @@
 //-----------------------------request data--------------------------------------
 
 - (NSData*)getDataSynchronousFromUrl:(NSURL*)url{
-    
-        NSData *data = [NSData dataWithContentsOfURL:url];
-    
-    
-        return data;
+        return [NSData dataWithContentsOfURL:url];
  
 }
 
 - (NSData*)getPlayingMovieDataInPage:(int)page{
-    
-    
     // Call API for playing movies of specified page
     NSString *playingMovieUrlString = [NSString stringWithFormat:@"%@%@&sort_by=popularity.desc&language=en-US&certification_country=US&page=%d",nowPlayWeb,APIKey, page];
-    
     
     NSData* data = [self getDataSynchronousFromUrl:[NSURL URLWithString: playingMovieUrlString]];
     

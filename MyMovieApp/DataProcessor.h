@@ -28,11 +28,6 @@
 - (nullable NSData*)getMovieNeedingRatingData;
 @end
 
-@protocol DataPresentDelegate <NSObject>
-
-- (void)afterDataTask:(nullable NSMutableArray*)result;
-
-@end
 
 
 @interface DataProcessor : NSObject
@@ -41,11 +36,10 @@
 
 
 @property (nonatomic,weak,nullable) id<DataProviderDelegate> dataSource;
-@property (nonatomic,weak,nullable) id<DataPresentDelegate> present;
 @property (weak) AppDelegate*_Nullable  appDelegate ;
 
 
-- (void)getPlayingMovies;  // return playing movie array to first view controller
+- (nullable NSArray*)getPlayingMovies;  // return playing movie array to first view controller
 - (nullable NSString*)getCastForMovie:( NSDictionary* _Nonnull ) movieDictionary;   //return cast for specific movie
 - (void)saveMovie:(nonnull NSDictionary*)movie; //save movie to core data
 - (void)removeCoreData; // remove all core data

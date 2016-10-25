@@ -121,7 +121,7 @@
     appDelegate.window.tintColor = _movieInfo.textColor;
     playingMovieDictionaryArray = [NSArray array];
     playingMovieDataProcessor = [[DataProcessor alloc]init];
-    playingMovieDataProcessor.present = self;
+    
     
     
     [self modifySubviewForIPad];
@@ -192,26 +192,19 @@
         
         [self loadFromCoreData];
         
-
-        
     }
-   
-    
-    
-}
-
-- (void)loadFinish{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     if(playingMovieDictionaryArray.count>0){
         [self showInfo:0];
     }
     else{
         
-        [self singleOptionAlertWithMessage:@"connection failed"];
+        [self singleOptionAlertWithMessage:@"No network"];
     }
     
     [_moviePosterCollectionView reloadData];
-
+    
+    
 }
 
 
@@ -225,8 +218,6 @@
     [_loadingActivityIndicator stopAnimating];
     [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
     
-    [self loadFinish];
-    
 }
 
 
@@ -234,71 +225,60 @@
 
 
 -(void)loadFromAPI{
-    [playingMovieDataProcessor getPlayingMovies];
+    playingMovieDictionaryArray = [playingMovieDataProcessor getPlayingMovies];
     
     
-}
-
-
-
--(void)afterDataTask:(NSMutableArray *)result{
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        playingMovieDictionaryArray = result;
+    if (playingMovieDictionaryArray  == nil) {
         
-        if (playingMovieDictionaryArray.count == 0) {
+        [self loadFromCoreData];
+        
+        
+    }
+    else{
+        [_loadingActivityIndicator startAnimating];
+        
+    }
+    
+    if (playingMovieDictionaryArray.count>0) {
+        _infoSegmentControl.selectedSegmentIndex = 0;
+        _infoSegmentControl.userInteractionEnabled = YES;
+        _mediaButton.userInteractionEnabled = YES;
+        _ratingView.userInteractionEnabled = YES;
+        
+        [playingMovieDataProcessor removeCoreData];
+        
+        for (int i=0;i<playingMovieDictionaryArray.count;i++){
             
-            [self loadFromCoreData];
+            NSMutableDictionary *temp = playingMovieDictionaryArray[i];
+            NSLog(@"%@",temp);
+            NSString *poster_path = [temp valueForKey:@"poster_path"];
+            NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    
+                    if(i<coreDataSize){
             
-        }
-        else{
-            [_loadingActivityIndicator startAnimating];
+                        [temp setObject:data forKey:@"poster_data"];
+                        [playingMovieDataProcessor saveMovie:temp]; // new method for adding movie to core data
+                        
+                    }
+                    if(i==6){
+                        
+                        [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
+                        [_loadingActivityIndicator stopAnimating];
+                    }
+                });
+            }];
+            [task resume];
+            
+            //  });
+            
             
         }
         
-        if (playingMovieDictionaryArray.count>0) {
-            _infoSegmentControl.selectedSegmentIndex = 0;
-            _infoSegmentControl.userInteractionEnabled = YES;
-            _mediaButton.userInteractionEnabled = YES;
-            _ratingView.userInteractionEnabled = YES;
-            
-            [playingMovieDataProcessor removeCoreData];
-            
-            for (int i=0;i<playingMovieDictionaryArray.count;i++){
-                
-                NSMutableDictionary *temp = playingMovieDictionaryArray[i];
-                NSLog(@"%@",temp);
-                NSString *poster_path = [temp valueForKey:@"poster_path"];
-                NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        
-                        if(i<coreDataSize){
-                            
-                            [temp setObject:data forKey:@"poster_data"];
-                            [playingMovieDataProcessor saveMovie:temp]; // new method for adding movie to core data
-                            
-                        }
-                        if(i==6){
-                            
-                            [self autoScroll:[NSNumber numberWithFloat: scrollVelocity]];
-                            [_loadingActivityIndicator stopAnimating];
-                        }
-                    });
-                }];
-                [task resume];
-                
-                //  });
-                
-                
-            }
-            
-        }
-        [self loadFinish];
-    });
+    }
     
-    
-
 }
 
 
