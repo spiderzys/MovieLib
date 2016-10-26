@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AppDelegate.h"
 #import "Constant.h"
-
+#import "APICommunicator.h"
 
 @protocol DataProviderDelegate <NSObject>
 
@@ -35,9 +35,9 @@
 // 2. save data
 
 
-@property (nonatomic,weak,nullable) id<DataProviderDelegate> dataSource;
-@property (weak) AppDelegate*_Nullable  appDelegate ;
 
+@property (weak) AppDelegate*_Nullable  appDelegate;
+@property (nonatomic) APICommunicator* _Nullable  dataSource;
 
 - (nullable NSArray*)getPlayingMovies;  // return playing movie array to first view controller
 - (nullable NSString*)getCastForMovie:( NSDictionary* _Nonnull ) movieDictionary;   //return cast for specific movie
@@ -54,9 +54,9 @@
 - (void)rateMovie:(nonnull NSDictionary*)movieDictionary Mark:(float)mark;
 - (void)deleteMovieRate:(nonnull NSDictionary*)movieDictionary;
 - (nonnull NSArray*)getUserRatingFromUrl:(nonnull NSURL*)url;
-- (nullable NSArray*)getNiceMovie;
-- (nullable NSArray*)getBadMovie;
-- (nullable NSArray*)getMovieNeedingRating;
+- (nullable NSMutableArray*)getNiceMovie;
+- (nullable NSMutableArray*)getBadMovie;
+- (nullable NSMutableArray*)getMovieNeedingRating;
 
 
 @end

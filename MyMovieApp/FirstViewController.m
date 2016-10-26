@@ -258,7 +258,7 @@
                     
                     
                     if(i<coreDataSize){
-            
+                        
                         [temp setObject:data forKey:@"poster_data"];
                         [playingMovieDataProcessor saveMovie:temp]; // new method for adding movie to core data
                         
@@ -381,12 +381,12 @@
 }
 
 -(void)showTextView: (NSDictionary*)movie{
-   // NSString *idn = [movie  valueForKey:@"id"];
+    // NSString *idn = [movie  valueForKey:@"id"];
     if(_infoSegmentControl.selectedSegmentIndex == 0){
         
-       // NSString *castRequestString = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
+        // NSString *castRequestString = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
         
-      //  NSString *castList = [self getCastFromUrl:[NSURL URLWithString:castRequestString]];
+        //  NSString *castList = [self getCastFromUrl:[NSURL URLWithString:castRequestString]];
         NSString *castList = [movie valueForKey:@"cast"];
         [_movieInfo setText:castList];
         
@@ -396,7 +396,7 @@
         [_movieInfo setText:[movie valueForKey:@"overview"]];
     }
     else{
-               
+        
         NSString *reviewString = [playingMovieDataProcessor getReviewFromMovie:movie];
         [_movieInfo setText:reviewString];
     }
@@ -447,23 +447,28 @@
         NSDictionary *movie = [playingMovieDictionaryArray objectAtIndex:indexPath.row];
         
         
-        NSString *file_path = [movie valueForKey:@"poster_path"];
-        file_path = [imdbPosterWeb stringByAppendingString: file_path];
+        NSString *poster_path = [movie valueForKey:@"poster_path"];
+        if(![poster_path containsString:@"http"]){
+            poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
+        }
+        
+        
+        
+        
         
         NSData *imageCacheData = [self.imageCache objectForKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
         if(imageCacheData != nil){
             customCell.movieImageView.image = [UIImage imageWithData:imageCacheData];
+            
         }
         else {
-            customCell.movieImageView.image = nil;
-            NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:file_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            //   customCell.movieImageView.image = nil;
+            NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                 if (data) {
+                    [self.imageCache setObject:data forKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
                     UIImage *poster = [UIImage imageWithData:data];
                     if (poster) {
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            
-                            [self.imageCache setObject:data forKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
-                            
                             MovieBackdropCollectionViewCell *updateCell =(MovieBackdropCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
                             if (updateCell){
                                 

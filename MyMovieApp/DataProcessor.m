@@ -28,7 +28,7 @@ static const int numberOfPlayingMoviePages = 3;
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
         genreResourcePath = [basePath stringByAppendingPathComponent:@"genre.plist"];
-        self.dataSource = [APICommunicator sharedInstance]; // set dataSource
+        self.dataSource = [APICommunicator new]; // set dataSource
         self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     }
     return self;
@@ -80,7 +80,7 @@ static const int numberOfPlayingMoviePages = 3;
     for (int i = 1; i<=numberOfPlayingMoviePages; i++){
         NSData *playingMovieData = [_dataSource getPlayingMovieDataInPage:i]; //request data from API
         
-        NSArray *playingMovieArray = [self JSONPreProcessData:playingMovieData Withkey:@"result"]; // process the JSON
+        NSArray *playingMovieArray = [self JSONPreProcessData:playingMovieData Withkey:@"results"]; // process the JSON
         
         if(playingMovieArray != nil){
             NSMutableArray * temp = [playingMovieArray mutableCopy];
@@ -318,29 +318,29 @@ static const int numberOfPlayingMoviePages = 3;
 
 
 
-- (NSArray*)getNiceMovie{
+- (NSMutableArray*)getNiceMovie{
     NSData *movieData = [_dataSource getNiceMovieData];
     NSArray *movieList = [self JSONPreProcessData:movieData Withkey:@"results"];
     movieList = [self filterMember:movieList.mutableCopy WithoutValidValueForKey:@"poster_path"];
-    return movieList;
+    return movieList.mutableCopy;
     
 }
 
-- (NSArray*)getBadMovie{
+- (NSMutableArray*)getBadMovie{
     NSData *movieData = [_dataSource getBadMovieData];
     NSArray *movieList = [self JSONPreProcessData:movieData Withkey:@"results"];
     movieList = [self filterMember:movieList.mutableCopy WithoutValidValueForKey:@"poster_path"];
-    return movieList;
+    return movieList.mutableCopy;
 }
 
-- (NSArray*)getMovieNeedingRating{
+- (NSMutableArray*)getMovieNeedingRating{
     NSData *movieData = [_dataSource getMovieNeedingRatingData];
     NSArray *movieList = [self JSONPreProcessData:movieData Withkey:@"results"];
     movieList = [self filterMember:movieList.mutableCopy WithoutValidValueForKey:@"poster_path"];
     if(movieList.count>10){
         movieList = [movieList subarrayWithRange:NSMakeRange(0, 10)];
     }
-    return movieList;
+    return movieList.mutableCopy;
 }
 
 

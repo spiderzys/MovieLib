@@ -7,13 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DataProcessor.h"
+#import "AppDelegate.h"
 
-@interface APICommunicator : NSObject <DataProviderDelegate>
+@interface APICommunicator : NSObject
 
 - (NSData*)getPlayingMovieDataInPage:(int) page;
-
-+ (APICommunicator*)sharedInstance; // only access for singleton
 
 - (NSData*)getCastDataWithId:(NSNumber*)idn; // get recent movie data
 

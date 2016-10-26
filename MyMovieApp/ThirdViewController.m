@@ -163,9 +163,15 @@
     if(customCell.ratingView.hidden == NO){
         NSLog(@"%f,%f,%f,%f",customCell.ratingView.frame.origin.x,customCell.ratingView.frame.origin.y,customCell.frame.size.height,customCell.ratingView.frame.size.height);
     }
+    
     NSString *poster_path = [movie valueForKey:@"poster_path"];
-    poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
+    if(![poster_path containsString:@"https://"]){
+        poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
+    }
+    
+   
     NSData *imageCacheData = [self.imageCache objectForKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
+    customCell.cellImageView.image = nil;
     if(imageCacheData != nil){
         customCell.cellImageView.image = [UIImage imageWithData:imageCacheData];
     }
@@ -173,7 +179,6 @@
     else{
         
         
-        customCell.cellImageView.image = nil;
         NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:poster_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (data) {
                 [self.imageCache setObject:data forKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
@@ -241,6 +246,8 @@
     approxRatingList = [NSMutableArray array];
     higherRatingList = [NSMutableArray array];
     lowerRatingList = [NSMutableArray array];
+    
+    
     for (NSDictionary *movie in ratedList) {
         NSNumber *rating = [movie valueForKey:@"rating"];
         NSNumber *vote_average = [movie valueForKey:@"vote_average"];
@@ -268,8 +275,11 @@
     temp = [userDataProcessor getMovieNeedingRating];
     needRatingMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
     
-    needRatingMovieList = [self nonRatedListFrom:temp ExcludingRatedList:ratedList];
+  
     contentArray = [NSArray arrayWithObjects:higherRatingList,approxRatingList,lowerRatingList,niceMovieList,badMovieList,needRatingMovieList, nil];
+    
+    NSLog(@"%d %d %lu",niceMovieList.count,badMovieList.count,(unsigned long)needRatingMovieList.count);
+    
 }
 
 

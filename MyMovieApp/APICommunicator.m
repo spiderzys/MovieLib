@@ -17,27 +17,7 @@
 
 // make it singleton
 
-+ (APICommunicator*)sharedInstance{
-    static APICommunicator *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[APICommunicator alloc] init];
-        // Do any other initialisation stuff here
-    });
-    return sharedInstance;
-}
 
-
-+ (id)allocWithZone:(NSZone *)zone
-{
-    static APICommunicator *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [super allocWithZone:zone];
-        
-    });
-    return sharedInstance;
-}
 
 
 //--------------------------------end--------------------------------------------
@@ -46,8 +26,9 @@
 //-----------------------------request data--------------------------------------
 
 - (NSData*)getDataSynchronousFromUrl:(NSURL*)url{
-        return [NSData dataWithContentsOfURL:url];
- 
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    return data;
+    
 }
 
 - (NSData*)getPlayingMovieDataInPage:(int)page{
@@ -175,13 +156,19 @@
 
 
 - (NSData*)getNiceMovieData{
-    NSString *niceMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.gte=7.5&sort_by=popularity.desc&language=EN&vote_count.gte=10",movieDiscoverWeb,APIKey,[self getYear]];
-    return [self getDataSynchronousFromUrl:[NSURL URLWithString:niceMovieRequestString]];
+    NSString *niceMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.gte=8&sort_by=popularity.desc&language=EN&vote_count.gte=10",movieDiscoverWeb,APIKey,[self getYear]];
+    
+    
+    NSData *data = [self getDataSynchronousFromUrl:[NSURL URLWithString:niceMovieRequestString]];
+    
+    return data;
     
 }
 
 - (NSData*)getBadMovieData{
     NSString *badMovieRequestString = [NSString stringWithFormat:@"%@%@&primary_release_year=%@&vote_average.lte=2.5&sort_by=popularity.desc&language=EN&vote_count.gte=10",movieDiscoverWeb,APIKey,[self getYear]];
+    
+    
     return [self getDataSynchronousFromUrl:[NSURL URLWithString:badMovieRequestString]];
 }
 - (NSData*)getMovieNeedingRatingData{

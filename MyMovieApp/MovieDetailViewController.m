@@ -154,12 +154,7 @@
         [_rateLabel setText:[NSString stringWithFormat: @"%.2f (%ld)",mark/2,(long)vote_count]];
     }
     
-    
-    
     NSString *overview = [_movie  valueForKey:@"overview"];
-    
-    
-   
     
     NSString *castList = [processor getCastForMovie:_movie];
     
@@ -178,8 +173,7 @@
     
     [_ratingView setValue:mark/2];
     
-    
-    //https://api.themoviedb.org/3/movie/id/images?api_key=3c9140cda64a622c6cb5feb6c2689164
+
     NSString *movieImagesString = [NSString stringWithFormat:@"%@%@/images?%@",movieImageUrl,[_movie valueForKey:@"id"],APIKey];
     NSData *moviesImagesData = [NSData dataWithContentsOfURL:[NSURL URLWithString:movieImagesString]];
     if(moviesImagesData.length>0){
@@ -190,12 +184,15 @@
         if(![[_movie valueForKey:@"poster_path"]isEqual:[NSNull null]]){
             NSString *poster_path = [_movie valueForKey:@"poster_path"];
             poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
+            if(![poster_path containsString:@"https://"]){
+               poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
+            }
             self.backImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:poster_path]]];
         }
         
         
     }
-    NSLog(@"%@",[_movie valueForKey:@"id"]);
+    
     
     
 }
@@ -263,7 +260,10 @@
     
     
     NSString *file_path = [movieImageDic valueForKey:@"file_path"];
-    file_path = [imdbPosterWeb stringByAppendingString: file_path];
+    
+    if(![file_path containsString:@"https://"]){
+       file_path = [imdbPosterWeb stringByAppendingString:file_path];
+    }
     customCell.movieImageView.image = nil;
     NSData *imageCacheData = [self.imageCache objectForKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
 

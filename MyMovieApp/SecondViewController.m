@@ -173,7 +173,7 @@
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+  
     SearchResultTableViewCell *customCell =[_searchResultTableView dequeueReusableCellWithIdentifier:@"SearchResultTableViewCell"];
     if (!customCell) {
         
@@ -185,7 +185,10 @@
     
     NSDictionary *movie = [searchResult objectAtIndex:indexPath.row];
     NSString *backPath = [movie valueForKey:@"backdrop_path"];
-    backPath = [imdbPosterWeb stringByAppendingString:backPath];
+
+    if(![backPath containsString:@"https://"]){
+        backPath = [imdbPosterWeb stringByAppendingString:backPath];
+    }
     customCell.infoLabel.text = [movie valueForKey:@"title"];
     
     NSData *imageCacheData = [self.imageCache objectForKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];

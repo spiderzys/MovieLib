@@ -36,7 +36,7 @@ static UIImage* backIamge;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths lastObject] : nil;
     NSString *imagePath = [basePath stringByAppendingPathComponent:@"image.igo"];
-    NSLog(@"%@",imagePath);
+    
     [[NSFileManager defaultManager]removeItemAtPath:imagePath error:nil];
     [UIImagePNGRepresentation(self.backImageView.image) writeToFile:imagePath atomically:YES];
     _documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:imagePath]];
