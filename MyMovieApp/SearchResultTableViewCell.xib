@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchResultTableViewCell"/>
@@ -13,11 +14,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lh1-0U-H1p" id="0zd-Ph-pkW">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                <frame key="frameInset" width="320" height="29"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="84N-JX-ExY">
-                        <rect key="frame" x="0.0" y="0.0" width="51" height="29"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="84N-JX-ExY" secondAttribute="height" multiplier="396:223" id="krP-5w-ay1"/>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="396" id="lhx-ZU-cWP"/>
@@ -31,16 +31,15 @@
                         </variation>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="50z-1p-RNG">
-                        <rect key="frame" x="51" y="0.0" width="261" height="29"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.41923148557449197" green="0.34757930487747596" blue="0.57389152486910988" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.41923148557449197" green="0.34757930487747596" blue="0.57389152486910988" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                         <variation key="heightClass=regular-widthClass=regular">
                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
                         </variation>
                     </label>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="50z-1p-RNG" secondAttribute="trailing" id="E4O-Um-mtN"/>
                     <constraint firstItem="50z-1p-RNG" firstAttribute="top" secondItem="0zd-Ph-pkW" secondAttribute="topMargin" constant="-8" id="TbD-tl-fRl"/>
@@ -51,8 +50,8 @@
                     <constraint firstAttribute="bottomMargin" secondItem="50z-1p-RNG" secondAttribute="bottom" constant="-8" id="pGY-Ip-VfQ"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-            <color key="tintColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="tintColor" red="0.73715244160000004" green="0.60793635859999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="backPosterImageView" destination="84N-JX-ExY" id="QZ1-fj-hOr"/>
                 <outlet property="infoLabel" destination="50z-1p-RNG" id="tBK-0o-WjD"/>

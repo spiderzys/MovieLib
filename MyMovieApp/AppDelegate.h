@@ -18,7 +18,7 @@
 @property NSString* sessionId;
 @property NSString* userResourcePath;
 - (void)saveContext;
--(Movie *)createMovieObject;
+- (Movie *)createMovieObject;
 - (NSURL *)applicationDocumentsDirectory;
 
 

@@ -10,7 +10,7 @@
 #import "Constant.h"
 
 NSString * const movieDiscoverWeb = @"http://api.themoviedb.org/3/discover/movie?";
-NSString * const nowPlayWeb = @"https://api.themoviedb.org/3/movie/now_playing?";
+NSString * const nowPlayWeb = @"http://api.themoviedb.org/3/movie/now_playing?";
 NSString * const movieWeb = @"http://api.themoviedb.org/3/movie/";
 
 

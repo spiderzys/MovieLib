@@ -20,7 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
-@property NSMutableArray *searchResult;
+
 
 @end
 

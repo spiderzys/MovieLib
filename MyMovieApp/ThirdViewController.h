@@ -11,30 +11,11 @@
 #import "HCSStarRatingView.h"
 #import "LoginAlertController.h"
 #import "RegViewController.h"
-@interface ThirdViewController : ViewController <UIScrollViewDelegate,UIAlertControllerDelegate,UIRegVuewControllerDelegate>
-
-
-
+@interface ThirdViewController : ViewController <UIScrollViewDelegate,UIAlertControllerDelegate,RegViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *userMovieCollectionView;
-
-@property NSArray* headTitleArray;
-
-@property NSMutableArray *higherRatingList;
-
-@property NSMutableArray *lowerRatingList;
-
-@property NSMutableArray *approxRatingList;
-
-@property NSMutableArray *niceMovieList;
-
-@property NSMutableArray *badMovieList;
-
-@property NSMutableArray *needRatingMovieList;
-
-@property NSString *ratingRequestString;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivityIndicator;
 

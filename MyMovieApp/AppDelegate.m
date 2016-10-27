@@ -30,53 +30,17 @@
     [self persistentStoreCoordinator];
    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    /*
-    [[NXOAuth2AccountStore sharedStore] setClientID:@"9484ca43e10c4e5f867cbc28e2556430"
-                                             secret:@"db1f3862d8f0458ab6a7d2dd6da55540"
-                                   authorizationURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/authorize"]
-                                           tokenURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"]
-                                        redirectURL:[NSURL URLWithString:@"scheme://authenticate.com"]
-                                     forAccountType:NXOAuth2AccountType];
-    
-    
-    */
     
     return YES;
 }
 
--(void)loadRatingDataWithSession:(NSString*)sessionId username:(NSString*)username{
-    
-    // dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    NSString* ratingRequestString = [NSString stringWithFormat:@"%@%@/rated/movies?%@&session_id=%@",rateMovieUrl,username,APIKey,sessionId];
-    NSURLRequest *tokenRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:ratingRequestString]];
-    [[[NSURLSession sharedSession] dataTaskWithRequest:tokenRequest completionHandler:^(NSData *data,NSURLResponse *response,NSError *error){
-        
-        NSDictionary *rateResult = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        if(![rateResult objectForKey:@"results"]){
-            _username = nil;
-            _sessionId = nil;
-        }
-        //      dispatch_semaphore_signal(semaphore);
-    }]resume];
-    //   dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    
-    
-}
+
 
 -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
     NSLog(@"the call back we receive comes %@",url.absoluteString);
     return [[NXOAuth2AccountStore sharedStore]handleRedirectURL:url];
     
 }
-
--(void)updateSessionId:(NSString*)session_id username:(NSString*)username{
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:_userResourcePath];
-    [dict setValue:session_id forKey:@"session_id"];
-    [dict setValue:username forKey:@"username"];
-    [dict writeToFile: _userResourcePath atomically:YES];
-}
-
 
 
 
@@ -172,7 +136,13 @@
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"MyMovieApp.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    
+    
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options: options error:&error]) {
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";

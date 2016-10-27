@@ -10,8 +10,11 @@
 #import "MovieBackdropCollectionViewCell.h"
 #import "MovieMediaViewController.h"
 #import "AppDelegate.h"
+#import "DataProcessor.h"
 
-@interface MovieDetailViewController ()
+@interface MovieDetailViewController (){
+    DataProcessor *processor;
+}
 
 @end
 
@@ -23,7 +26,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     self.genreResourcePath = [basePath stringByAppendingPathComponent:@"genre.plist"];
-    
+    processor = [DataProcessor new];
     
     return self;
 }
@@ -42,7 +45,7 @@
 }
 
 - (void)didDismissAlertControllerButtonTapped:(NSInteger)buttonTapped{
-    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     if(buttonTapped==cancel){
         [self singleOptionAlertWithMessage:@"Unsuccessful rating"];
@@ -81,7 +84,7 @@
 
 - (IBAction)rateMovie:(id)sender {
     _ratingView.userInteractionEnabled = NO;
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(delegate.sessionId){
         
         [self showRatingSuccess];
@@ -94,7 +97,8 @@
 }
 
 -(void)showRatingSuccess{
-    [self rateMovieWithId:[_movie valueForKey:@"id"] Rate:_ratingView.value*2];
+    
+    [processor rateMovie:_movie Mark:_ratingView.value*2];
     _ratingView.tintColor = [UIColor orangeColor];
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Thanks for your rating" message:nil preferredStyle:UIAlertControllerStyleAlert];
     [self presentViewController:alertController animated:YES completion:^{
@@ -110,7 +114,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-   
+    
     self.backImageView =  [[UIImageView alloc]initWithFrame:self.view.frame];
     [self.backImageView setContentMode:UIViewContentModeScaleAspectFill];
     self.backImageView.clipsToBounds = YES;
@@ -123,7 +127,7 @@
     _navigationBar.shadowImage = [UIImage new];
     [_movieBackdropCollectionView registerNib:[UINib nibWithNibName:@"MovieBackdropCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"movieImages"];
     
-   
+    
     NSDictionary *genreDic = [[NSDictionary alloc] initWithContentsOfFile: self.genreResourcePath];
     NSArray *genre_ids = [_movie valueForKey:@"genre_ids"];
     NSString *label = @"Label: ";
@@ -150,47 +154,18 @@
         [_rateLabel setText:[NSString stringWithFormat: @"%.2f (%ld)",mark/2,(long)vote_count]];
     }
     
-    
-    
     NSString *overview = [_movie  valueForKey:@"overview"];
     
-    NSString *idn = [_movie  valueForKey:@"id"];
-    NSString *showCast = @"";
-    //  /*
-    NSString *castRequestString = [movieWeb stringByAppendingString:[NSString stringWithFormat:@"%@/casts?%@",idn,APIKey]];
+    NSString *castList = [processor getCastForMovie:_movie];
     
-    NSString *castList = [self getCastFromUrl:[NSURL URLWithString:castRequestString]];
-    if(castList.length==0){
-        
-        castList = @"N/A";
-    }
-    NSArray *castArray = [castList componentsSeparatedByString:@","];
+    NSString *info = [NSString stringWithFormat:@"%@\nCast: %@ \n\nOverview:\n%@ ",label, castList, overview];
+    
+    NSString *reviewString = [processor getReviewFromMovie:_movie];
     
     
-    for (NSString *name in castArray) {
-        showCast = [showCast stringByAppendingString:name];
-        if (showCast.length>maxCastLengthForDisplay) {
-            break;
-        }
-    }
-    
-    NSString *info = [NSString stringWithFormat:@"%@\nCast: %@ \n\nOverview:\n%@ ",label, showCast, overview];
-    
-    
-    
-    NSString *reviewRequestString = [NSString stringWithFormat:@"%@%@/reviews?%@",movieWeb,idn,APIKey];
-    NSArray *reviewList = [self getDataFromUrl:[NSURL URLWithString:reviewRequestString] withKey:@"results" LimitPages:1];
-    NSString *reviewString = @"\n\nReview:\n";
-    NSUInteger reviewLength = reviewString.length;
-    if(reviewList.count>0){
-        
-        for (NSDictionary *reviewDic in reviewList) {
-            NSString *author = [reviewDic valueForKey:@"author"];
-            NSString *content = [reviewDic valueForKey:@"content"];
-            reviewString = [NSString stringWithFormat:@"%@\n%@:\n%@\n(End)\n\n",reviewString,author,content];
-        }
-    }
-    if(reviewString.length>reviewLength){
+   
+    NSString *review = @"\n\nReview:\n";
+    if(reviewString.length>review.length){
         info = [info stringByAppendingString:reviewString];
     }
     
@@ -198,8 +173,7 @@
     
     [_ratingView setValue:mark/2];
     
-    
-    //https://api.themoviedb.org/3/movie/id/images?api_key=3c9140cda64a622c6cb5feb6c2689164
+
     NSString *movieImagesString = [NSString stringWithFormat:@"%@%@/images?%@",movieImageUrl,[_movie valueForKey:@"id"],APIKey];
     NSData *moviesImagesData = [NSData dataWithContentsOfURL:[NSURL URLWithString:movieImagesString]];
     if(moviesImagesData.length>0){
@@ -210,23 +184,26 @@
         if(![[_movie valueForKey:@"poster_path"]isEqual:[NSNull null]]){
             NSString *poster_path = [_movie valueForKey:@"poster_path"];
             poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
+            if(![poster_path containsString:@"https://"]){
+               poster_path = [imdbPosterWeb stringByAppendingString:poster_path];
+            }
             self.backImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:poster_path]]];
         }
         
         
     }
-    NSLog(@"%@",[_movie valueForKey:@"id"]);
-
+    
+    
     
 }
-    
-       
+
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
 }
-    // Do any additional setup after loading the view from its nib.
-    
+// Do any additional setup after loading the view from its nib.
+
 
 
 
@@ -283,24 +260,34 @@
     
     
     NSString *file_path = [movieImageDic valueForKey:@"file_path"];
-    file_path = [imdbPosterWeb stringByAppendingString: file_path];
+    
+    if(![file_path containsString:@"https://"]){
+       file_path = [imdbPosterWeb stringByAppendingString:file_path];
+    }
     customCell.movieImageView.image = nil;
-    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:file_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (data) {
-            UIImage *image = [UIImage imageWithData:data];
-            if (image) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    MovieBackdropCollectionViewCell *updateCell =(MovieBackdropCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
-                    if (updateCell){
-                        updateCell.movieImageView.image = image;
-                    }
-                });
+    NSData *imageCacheData = [self.imageCache objectForKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
+
+    if(imageCacheData != nil){
+        customCell.movieImageView.image = [UIImage imageWithData:imageCacheData];
+    }
+    else{
+        NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:file_path] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (data) {
+                [self.imageCache setObject:data forKey:[NSString stringWithFormat: @"%ld,%ld",(long)indexPath.section,(long)indexPath.row]];
+                UIImage *image = [UIImage imageWithData:data];
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        MovieBackdropCollectionViewCell *updateCell =(MovieBackdropCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+                        if (updateCell){
+                            updateCell.movieImageView.image = image;
+                        }
+                    });
+                }
             }
-        }
-    }];
-    
-    [task resume];
-    
+        }];
+        
+        [task resume];
+    }
     return customCell;
 }
 

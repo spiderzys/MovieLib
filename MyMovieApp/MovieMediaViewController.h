@@ -14,19 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *movieMediaCollection;
 
-@property NSArray * tailerArray;
 
-@property NSArray * posterPathArray;
-
-@property NSArray * backdropPathArray;
-
-@property NSArray * headTitleArray;
-
-@property UIColor * tintColor;
-
-@property NSDictionary *movie;
-
-@property UIActivityIndicatorView *loadingIndicator;
 -(void)setCollectionView;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil movieDic:(NSDictionary*)movie;

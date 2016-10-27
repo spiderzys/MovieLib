@@ -14,7 +14,7 @@
 @implementation Movie (CoreDataProperties)
 
 @dynamic overview;
-@dynamic posterData;
+@dynamic poster_data;
 @dynamic release_date;
 @dynamic title;
 @dynamic vote_average;
@@ -22,4 +22,5 @@
 @dynamic cast;
 @dynamic vote_count;
 @dynamic length;
+
 @end

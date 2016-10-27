@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+    _imageCache = [NSCache new];
     
     // Do any additional setup after loading the view.
 }
@@ -126,14 +126,14 @@
     
 }
 -(void)netAlert{
-    [self singleOptionAlertWithMessage:@"No network"];
+    [self singleOptionAlertWithMessage:@"connection failed"];
     
 }
 
 
 -(void)deleteRatingWithId:(NSString*)idn{
     
-    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     NSString *rateRequstString = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/%@/rating?%@&session_id=%@",idn,APIKey,delegate.sessionId];
     NSURL *URL = [NSURL URLWithString:rateRequstString];
     
@@ -142,7 +142,7 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
      NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
                                       
@@ -165,7 +165,7 @@
 
 
 -(void)rateMovieWithId:(NSString*)idn Rate:(float)mark{
-    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    AppDelegate *_Nullable delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     NSString *rateRequstString = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/%@/rating?%@&session_id=%@",idn,APIKey,delegate.sessionId];
     NSURL *URL = [NSURL URLWithString:rateRequstString];
     

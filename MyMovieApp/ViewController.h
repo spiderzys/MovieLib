@@ -20,16 +20,15 @@
 @property UIImageView *backImageView;
 @property NSString* userResourcePath;
 @property NSString* genreResourcePath;
--(NSArray*)getDataFromUrl:(NSURL*)url withKey:(NSString*) key LimitPages:(int)max;
--(NSMutableArray*)removeUndesiredDataFromResults:(NSArray *)results WithNullValueForKey:(NSString*)key;
+@property NSCache* imageCache;
+
 
 -(BOOL)connectAPI:(NSString*)web;
 -(void)netAlert;
--(NSString*)getCastFromUrl:(NSURL*) url;
-//-(void)showPoster:(UITapGestureRecognizer *)sender;
-//-(void)playTrailer:(NSNumber*)idn;
+
+
 -(void)singleOptionAlertWithMessage:(NSString *)message;
--(void)updateGenre;
--(void)rateMovieWithId:(NSString*)idn Rate:(float)mark;
--(void)deleteRatingWithId:(NSString*)idn;
+//-(void)updateGenre;
+//-(void)rateMovieWithId:(NSString*)idn Rate:(float)mark;
+//-(void)deleteRatingWithId:(NSString*)idn;
 @end

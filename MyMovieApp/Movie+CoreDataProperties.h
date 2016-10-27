@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Movie (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSString *overview;
-@property (nullable, nonatomic, retain) NSData *posterData;
+@property (nullable, nonatomic, retain) NSData *poster_data;
 @property (nullable, nonatomic, retain) NSString *release_date;
 @property (nullable, nonatomic, retain) NSString *title;
 @property (nullable, nonatomic, retain) NSNumber *vote_average;
@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *cast;
 @property (nullable, nonatomic, retain) NSNumber *vote_count;
 @property (nullable, nonatomic, retain) NSNumber *length;
+
 @end
 
 NS_ASSUME_NONNULL_END
